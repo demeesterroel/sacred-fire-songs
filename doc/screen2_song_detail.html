@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camino Rojo - Song Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #111827;
+        }
+
+        /* bg-gray-900 */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ChordPro simulation styling */
+        .chord-line {
+            font-family: monospace;
+            font-weight: 700;
+            margin-bottom: -4px;
+            /* Pull chords closer to lyrics */
+            min-height: 1.2em;
+        }
+
+        .lyric-line {
+            font-family: sans-serif;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body class="text-gray-100 font-sans min-h-screen flex justify-center bg-gray-900">
+
+    <!-- Phone Frame -->
+    <div
+        class="w-full max-w-[400px] bg-gray-900 min-h-screen border-x border-gray-800 relative shadow-2xl flex flex-col">
+
+        <!-- Status Bar Area (Simulated) -->
+        <div
+            class="h-6 w-full bg-gray-900 flex justify-between items-center px-4 text-[10px] text-gray-400 select-none shrink-0">
+            <span>9:42</span>
+            <div class="flex gap-1">
+                <i data-lucide="signal" class="w-3 h-3"></i>
+                <i data-lucide="wifi" class="w-3 h-3"></i>
+                <i data-lucide="battery" class="w-3 h-3"></i>
+            </div>
+        </div>
+
+        <!-- App Header (Navigation) -->
+        <header
+            class="flex items-center px-4 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-20 border-b border-gray-800/50 shrink-0">
+            <!-- Back Button -->
+            <button class="text-gray-400 hover:text-white transition-colors p-2 -ml-2 rounded-full hover:bg-gray-800">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Title truncate -->
+            <h1 class="font-bold text-lg text-white ml-2 flex-1 truncate text-center pr-8">Grandmother Earth</h1>
+        </header>
+
+        <!-- Song Metadata -->
+        <div class="bg-gray-800/30 border-b border-gray-800 px-6 py-3 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-2">
+                <i data-lucide="mic-2" class="w-4 h-4 text-red-400"></i>
+                <span class="text-sm text-gray-300 font-medium">Traditional</span>
+            </div>
+            <div class="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-full border border-gray-700">
+                <i data-lucide="music" class="w-3 h-3 text-yellow-500"></i>
+                <span class="text-xs font-mono font-bold text-yellow-500">Key: Am</span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto p-6 pb-24">
+
+            <!-- Verse 1 -->
+            <div class="mb-8">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Verse 1</span>
+
+                <!-- Line 1 -->
+                <div class="text-amber-400 chord-line">
+                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Grandmother Earth</div>
+
+                <!-- Line 2 -->
+                <div class="text-amber-400 chord-line">
+                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">We call upon your spirit</div>
+
+                <!-- Line 3 -->
+                <div class="text-amber-400 chord-line">
+                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Grandmother Earth</div>
+
+                <!-- Line 4 -->
+                <div class="text-amber-400 chord-line">
+                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">We call upon your love</div>
+            </div>
+
+            <!-- Chorus -->
+            <div class="mb-8">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Chorus</span>
+
+                <!-- Line 1 -->
+                <div class="text-amber-400 chord-line">
+                    F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Hear our prayers</div>
+
+                <!-- Line 2 -->
+                <div class="text-amber-400 chord-line">
+                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Healing for the people</div>
+
+                <!-- Line 3 -->
+                <div class="text-amber-400 chord-line">
+                    F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Hear our prayers</div>
+
+                <!-- Line 4 -->
+                <div class="text-amber-400 chord-line">
+                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Healing for the soul</div>
+            </div>
+
+            <!-- Verse 2 -->
+            <div class="mb-8 opacity-70">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Verse 2</span>
+
+                <!-- Line 1 -->
+                <div class="text-amber-400 chord-line">
+                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Grandfather Fire</div>
+
+                <!-- Line 2 -->
+                <div class="text-amber-400 chord-line">
+                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
+                </div>
+                <div class="text-xl text-gray-100 lyric-line">Burn away the shadows</div>
+            </div>
+
+            <!-- YouTube Embed Placeholder -->
+            <div class="mt-8 border-t border-gray-800 pt-6">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 block">Listen</span>
+                <div
+                    class="w-full aspect-video bg-black rounded-xl overflow-hidden relative group cursor-pointer border border-gray-700">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop"
+                        class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity"
+                        alt="Audio Placeholder">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-5 h-5 fill-white text-white ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom spacing -->
+            <div class="h-8"></div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
