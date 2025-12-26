@@ -1,5 +1,16 @@
 # 10-Day Modern Web Development Curriculum: The Camino Rojo Project
 
+**Version:** 1.0
+**Status:** Draft
+**Date:** December 25, 2025
+
+## Changelog
+
+| Version | Date | Description of Changes |
+| ----- | ----- | ----- |
+| **1.0** | Dec 25, 2025 | Initial Document Creation. Defined 10-day curriculum for Next.js/Supabase. |
+
+
 **Student Profile:** Physics/IT Master, Exp. Software Engineering Teacher.
 **Goal:** Build a PWA (Next.js/Supabase) while updating programming skills.
 
