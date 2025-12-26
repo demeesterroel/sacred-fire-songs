@@ -1,3 +1,15 @@
+/*
+**Version:** 1.0
+**Status:** Draft
+**Date:** December 25, 2025
+
+## Changelog
+
+| Version | Date | Description of Changes |
+| ----- | ----- | ----- |
+| **1.0** | Dec 25, 2025 | Initial Schema Creation. |
+*/
+
 -- Enable necessary extensions
 create extension if not exists "uuid-ossp";
 
