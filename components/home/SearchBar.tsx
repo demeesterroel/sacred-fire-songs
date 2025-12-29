@@ -9,7 +9,7 @@ interface SearchBarProps {
 
 export default function SearchBar({ value, onChange }: SearchBarProps) {
     return (
-        <div className="px-4 pt-4 pb-2 sticky top-[68px] bg-gray-900 z-10">
+        <div className="px-4 pt-4 pb-2 sticky top-0 bg-gray-900/95 backdrop-blur-md z-20 border-b border-white/5">
             <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <Search className="text-gray-500 w-5 h-5 group-focus-within:text-red-500 transition-colors" />

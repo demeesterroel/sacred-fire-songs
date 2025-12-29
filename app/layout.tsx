@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/common/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,17 +21,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import Header from "@/components/common/Header";
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans overflow-hidden`}
       >
-        {children}
+        <div className="h-screen h-[100svh] bg-black flex justify-center selection:bg-red-500/30">
+          <div className="w-full max-w-[420px] bg-gray-900 h-full relative shadow-2xl flex flex-col overflow-hidden">
+            <Header />
+            {/* <PageTransition> */}
+            {children}
+            {/* </PageTransition> */}
+          </div>
+        </div>
       </body>
     </html>
   );

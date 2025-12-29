@@ -1,5 +1,6 @@
 // lib/songUtils.ts
 export interface Song {
+    id: string;
     title: string;
     author: string;
     songKey: string;
