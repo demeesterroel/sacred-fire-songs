@@ -11,6 +11,7 @@
 | **1.0** | Dec 25, 2025 | Initial Document Creation. Defined 10-day curriculum for Next.js/Supabase. |
 | **1.1** | Dec 29, 2025 | Inserted "Day 7: Bringing the Application to Life" (Animations). Merged Parsing logic into Day 6. |
 | **1.2** | Dec 29, 2025 | Added "Day 11: Automated Quality & CI/CD" (E2E Testing). |
+| **1.3** | Dec 29, 2025 | Inserted "Day 8: Production & Deployment". Renamed to 12-Day Curriculum. |
 
 
 **Student Profile:** Physics/IT Master, Exp. Software Engineering Teacher.
