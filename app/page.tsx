@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"; // Added useEffect
 import { filterSongs } from "@/lib/songUtils";
 import { supabase } from "@/lib/supabase"; // Import our new connection
 import { Song } from "@/lib/songUtils";
+import SongCardSkeleton from "@/components/home/SongCardSkeleton";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,34 +44,33 @@ export default function Home() {
   const filteredSongs = filterSongs(songs, searchQuery);
 
   return (
-    <div className="min-h-screen bg-black flex justify-center selection:bg-red-500/30">
-      <div className="w-full max-w-[420px] bg-gray-900 min-h-screen relative shadow-2xl flex flex-col overflow-hidden">
-        <Header />
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+    <>
+      <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
-        <main className="flex-1 p-5 space-y-4 pb-32 overflow-y-auto hide-scroll scroll-smooth">
-          {loading ? (
-            <div className="flex justify-center pt-20">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500" />
-            </div>
-          ) : filteredSongs.length > 0 ? (
-            filteredSongs.map((song, index) => (
-              <SongCard
-                key={index}
-                id={song.id}
-                title={song.title}
-                author={song.author}
-                songKey={song.songKey}
-                accentColor={song.color}
-              />
-            ))
-          ) : (
-            <p className="text-center text-gray-400 pt-10">No songs found</p>
-          )}
-        </main>
+      <main className="flex-1 p-5 space-y-4 pb-32 overflow-y-auto hide-scroll scroll-smooth min-h-0">
+        {loading ? (
+          <>
+            {[...Array(5)].map((_, i) => (
+              <SongCardSkeleton key={i} />
+            ))}
+          </>
+        ) : filteredSongs.length > 0 ? (
+          filteredSongs.map((song, index) => (
+            <SongCard
+              key={index}
+              id={song.id}
+              title={song.title}
+              author={song.author}
+              songKey={song.songKey}
+              accentColor={song.color}
+            />
+          ))
+        ) : (
+          <p className="text-center text-gray-400 pt-10">No songs found</p>
+        )}
+      </main>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent pointer-events-none z-20" />
-      </div>
-    </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent pointer-events-none z-20" />
+    </>
   );
 }
