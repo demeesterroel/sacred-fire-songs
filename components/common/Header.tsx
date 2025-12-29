@@ -23,9 +23,10 @@ export default function Header() {
             </div>
 
             {/* Admin Login */}
-            <button className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
+            {/* Admin Upload Link */}
+            <Link href="/admin/upload" className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group" title="Upload Song">
                 <LogIn className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            </button>
+            </Link>
             {/* Back Button */}
             <Link href="/" className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
                 <ArrowLeft className="w-5 h-5 group-hover:scale-110 transition-transform" />
