@@ -208,6 +208,24 @@
   * **Task:** Write a "Navigation" test that clicks a card and ensures the URL changes to `/songs/[id]`.
   * **Task:** Integrate tests into GitHub Actions (or Vercel Checks). Ensure that a "Pull Request" cannot be merged if tests fail.
 
+### Day 12: The Musician's Toolkit & PWA Polish 🎸
+
+**Concept:** The "Love" in MLP. Adding the features that make the app truly useful for a musician in a ceremony.
+
+* **Action:**
+  * **Task:** Implement **Audio Player** (SoundCloud/MP3) for song reference (Story 1.3.2).
+  * **Task:** Implement **Transposition Logic**. Create a helper function to shift chords (+1/-1 semitone) and update the UI (Story 2.1.1).
+  * **Task:** Final Polish: Generate proper PWA icons/splash screens and ensure "Add to Home Screen" looks professional.
+
+### Day 13: Users, Roles & The Community 👥
+
+**Concept:** Authentication vs. Authorization. Who are you, and what can you do?
+
+* **Action:**
+  * **Task:** Implement **Social Login** (Google/GitHub) using Supabase Auth Helpers (Story 3.1.1).
+  * **Task:** Create **Protected Routes**. Ensure `/admin` is only accessible by users with the `admin` role.
+  * **Task:** Implement **"My Favorites"**. A personal collection for logged-in users (Story 3.1.2).
+
 ## Recommended Tools for You
 
 1. **Cursor (IDE):** It allows you to query your codebase. "Where is the logic for transposition?" -> It takes you there.

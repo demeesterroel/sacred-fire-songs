@@ -20,20 +20,30 @@ This document breaks down the project roadmap into actionable Epics and User Sto
 
 ### Epic 1.1: Song Management (Admin)
 
-**Story 1.1.1:** As an Admin, I want to upload a raw `.cho` file so that I can quickly add existing songs to the database.
+**Story 1.1.1: [Implemented]** As an Admin, I want to add a song using a web form so that I can copy-paste content directly.
 
 ```
-Scenario: Admin uploads a valid ChordPro file
+Scenario: Admin uploads via Form
   Given I am logged in as an Admin
   And I am on the "Upload Song" page
-  When I select a file named "grandmother_earth.cho" containing "{title: Grandmother Earth}"
-  And I click the "Upload" button
+  When I fill in the Title "New Song" and Content "[C]Lyrics"
+  And I click the "Upload Song" button
   Then a new song should be created in the database
-  And the song title should be "Grandmother Earth"
-  And I should see a "Upload Successful" success message
+  And I should be redirected to the Home page
 ```
 
-**Story 1.1.2:** As an Admin, I want to delete a song so that I can remove duplicate or incorrect entries.
+**Story 1.1.2:** As an Admin, I want to upload a raw `.cho` file to auto-fill the form so that I don't have to type metadata manually.
+
+```
+Scenario: Import metadata from File
+  Given I am on the Upload Song page
+  When I upload a file containing "{title: Grandmother Earth} {author: Traditional}"
+  Then the "Title" field should be automatically filled with "Grandmother Earth"
+  And the "Author" field should be automatically filled with "Traditional"
+  And the "Content" field should be filled with the file body
+```
+
+**Story 1.1.3:** As an Admin, I want to delete a song so that I can remove duplicate or incorrect entries.
 
 ```
 Scenario: Admin deletes a song
@@ -44,7 +54,7 @@ Scenario: Admin deletes a song
   Then the song "Pachamama" should no longer appear in the list
 ```
 
-**Story 1.1.3:** As an Admin, I want to log in securely so that I can access management features.
+**Story 1.1.4:** As an Admin, I want to log in securely so that I can access management features.
 
 ```
 Scenario: Successful Admin Login
@@ -55,9 +65,19 @@ Scenario: Successful Admin Login
   And I should see Admin controls (e.g., Upload button, Delete icons)
 ```
 
+**Story 1.1.5:** As a Guest, I want to be kindly prompted to create an account when I click "Upload" so that I understand this is a community feature.
+
+```
+Scenario: Guest clicks Upload
+  Given I am an unauthenticated Guest
+  When I click the "Upload Song" icon in the header
+  Then I should see a modal or page saying "Please join our circle to share medicine."
+  And I should be offered options to "Log In" or "Create Account"
+```
+
 ### Epic 1.2: Public Library & Discovery
 
-**Story 1.2.1:** As a Guest, I want to view a list of all songs so that I can see what is available in the songbook.
+**Story 1.2.1: [Implemented]** As a Guest, I want to view a list of all songs so that I can see what is available in the songbook.
 
 ```
 Scenario: Guest views song library
@@ -68,7 +88,7 @@ Scenario: Guest views song library
   And the list should load more songs as I scroll down
 ```
 
-**Story 1.2.2:** As a Guest, I want to search for a song by title or lyrics so that I can find a specific medicine song.
+**Story 1.2.2: [Implemented]** As a Guest, I want to search for a song by title or lyrics so that I can find a specific medicine song.
 
 ```
 Scenario: Search by lyrics
@@ -79,7 +99,7 @@ Scenario: Search by lyrics
 
 ### Epic 1.3: Basic Song Viewer
 
-**Story 1.3.1:** As a Musician, I want to see chords displayed above the lyrics so that I can play the song on my guitar.
+**Story 1.3.1: [Implemented]** As a Musician, I want to see chords displayed above the lyrics so that I can play the song on my guitar.
 
 ```
 Scenario: Render ChordPro content
@@ -98,7 +118,7 @@ Scenario: Display Audio Player
   Then I should see an embedded SoundCloud player at the bottom of the page
 ```
 
-**Story 1.3.3:** As a User, I want to navigate back to the home screen from any page so that I can easily browse more songs.
+**Story 1.3.3: [Implemented]** As a User, I want to navigate back to the home screen from any page so that I can easily browse more songs.
 
 ```
 Scenario: Navigate back to home

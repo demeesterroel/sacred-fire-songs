@@ -12,6 +12,7 @@
 | **1.1** | Dec 29, 2025 | Updated test examples to use real songs from `data/songs` (Agüita, Pachamama, Espíritu del agua). |
 | **1.2** | Dec 29, 2025 | Cleaned up song titles in examples (removed file prefixes like "43."). |
 | **1.3** | Dec 29, 2025 | Added TC-1.3.4 for Logo Navigation. |
+| **1.4** | Dec 29, 2025 | Added TC-1.1.4 for Guest Upload Prompt. |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -41,7 +42,7 @@ This document contains the test cases derived from the project's Epics and User 
     - The song no longer appears in the library list.
 
 #### TC-1.1.3: Admin Login
-- **User Story**: 1.1.3
+- **User Story**: 1.1.4
 - **Pre-conditions**: On the Login page.
 - **Steps**:
     1. Enter valid admin credentials.
@@ -49,6 +50,15 @@ This document contains the test cases derived from the project's Epics and User 
 - **Expected Results**:
     - Redirected to the Home page.
     - Admin controls (Upload, Delete) are visible.
+
+#### TC-1.1.4: Guest tries to upload
+- **User Story**: 1.1.5
+- **Pre-conditions**: Unauthenticated (Guest).
+- **Steps**:
+    1. Click the "Upload" icon in the header.
+- **Expected Results**:
+    - A prompt appears: "Please join our circle to share medicine."
+    - Links to Login/Signup are visible.
 
 ### 1.2 Public Library & Discovery
 
