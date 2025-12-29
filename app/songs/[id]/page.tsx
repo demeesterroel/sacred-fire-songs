@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import Header from '@/components/common/Header';
+import SongDisplay from '@/components/song/SongDisplay';
 
 export default function SongDetailPage() {
     const { id } = useParams(); // This grabs the UUID from the URL!
@@ -52,9 +53,7 @@ export default function SongDetailPage() {
                     <p className="text-gray-400 mt-1">by {song.original_author || 'Traditional'}</p>
 
                     <div className="mt-8 p-4 bg-gray-800 rounded-xl border border-white/5 font-mono text-sm whitespace-pre-wrap">
-                        {/* We'll render proper chords here soon! */}
-                        {song.song_versions?.[0]?.content_chordpro || 'No content found'}
-                    </div>
+                        <SongDisplay content={song.song_versions?.[0]?.content_chordpro || ''} />                    </div>
                 </main>
             </div>
         </div>
