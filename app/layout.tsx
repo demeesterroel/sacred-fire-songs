@@ -29,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans overflow-hidden`}
+        suppressHydrationWarning
       >
         <QueryProvider>
           <div className="h-screen h-[100svh] bg-black flex justify-center selection:bg-red-500/30">
