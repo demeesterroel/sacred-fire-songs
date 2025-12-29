@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/common/Header";
+import QueryProvider from "@/components/providers/QueryProvider";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
@@ -29,15 +30,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans overflow-hidden`}
       >
-        <div className="h-screen h-[100svh] bg-black flex justify-center selection:bg-red-500/30">
-          <div className="w-full max-w-[420px] bg-gray-900 h-full relative shadow-2xl flex flex-col overflow-hidden">
-            <Header />
-            {/* <PageTransition> */}
-            {children}
-            {/* </PageTransition> */}
+        <QueryProvider>
+          <div className="h-screen h-[100svh] bg-black flex justify-center selection:bg-red-500/30">
+            <div className="w-full max-w-[420px] bg-gray-900 h-full relative shadow-2xl flex flex-col overflow-hidden">
+              <Header />
+              {/* <PageTransition> */}
+              {children}
+              {/* </PageTransition> */}
+            </div>
           </div>
-        </div>
+        </QueryProvider>
       </body>
-    </html>
+    </html >
   );
 }
