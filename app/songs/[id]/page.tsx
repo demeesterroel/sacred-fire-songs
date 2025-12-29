@@ -1,25 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import Header from '@/components/common/Header';
 import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
+import { useQuery } from '@tanstack/react-query';
 
-export default function SongDetailPage() {
-    const { id } = useParams(); // This grabs the UUID from the URL!
-    const [song, setSong] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchSongDetails() {
-            setLoading(true);
-
-            // The "Magic" Query: Fetch song + all its children versions
-            const { data, error } = await supabase
-                .from('compositions')
-                .select(`
+// Standalone fetch function
+const fetchSong = async (id: string) => {
+    const { data, error } = await supabase
+        .from('compositions')
+        .select(`
           title,
           original_author,
           song_versions (
@@ -29,25 +22,30 @@ export default function SongDetailPage() {
             key
           )
         `)
-                .eq('id', id)
-                .single();
+        .eq('id', id)
+        .single();
 
-            if (!error && data) {
-                setSong(data);
-            }
-            setLoading(false);
-        }
+    if (error) throw error;
+    return data;
+};
 
-        if (id) fetchSongDetails();
-    }, [id]);
-
+export default function SongDetailPage() {
+    const params = useParams();
+    const id = typeof params.id === 'string' ? params.id : params.id?.[0]; // Safe type handling
 
     const [selectedVersionIndex, setSelectedVersionIndex] = useState(0);
 
-    // ... inside the component ...
-    if (loading) return <SongDetailSkeleton />;
+    // The Query Hook
+    const { data: song, isLoading } = useQuery({
+        queryKey: ['song', id],
+        queryFn: () => fetchSong(id!),
+        enabled: !!id, // Only fetch if we have an ID
+    });
+
+    if (isLoading) return <SongDetailSkeleton />;
     if (!song) return notFound();
 
+    // The rest of your UI logic remains exactly the same...
     const versions = song.song_versions || [];
     const currentVersion = versions[selectedVersionIndex];
 
