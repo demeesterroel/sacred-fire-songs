@@ -26,20 +26,26 @@ export default function SongCard({ title, author, songKey, accentColor = 'red' }
     };
 
     return (
-        <div className="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
+        <div className="bg-gray-800/30 p-4 rounded-2xl border border-white/5 active:scale-[0.98] transition-all duration-300 cursor-pointer group relative overflow-hidden backdrop-blur-sm hover:bg-gray-800/50 hover:border-white/10 hover:shadow-2xl hover:shadow-black/50">
+            {/* Glow Effect */}
+            <div className={`absolute -inset-1 ${borderColors[accentColor]} opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-500`}></div>
+
             <div
-                className={`absolute left-0 top-0 bottom-0 w-1 ${borderColors[accentColor]} rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity`}
+                className={`absolute left-0 top-0 bottom-0 w-1.5 ${borderColors[accentColor]} rounded-l-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-y-110`}
             ></div>
-            <div className="flex justify-between items-center">
+
+            <div className="relative flex justify-between items-center z-10">
                 <div>
-                    <h3 className={`text-[17px] font-semibold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors`}>
+                    <h3 className={`text-[17px] font-bold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors group-hover:translate-x-1 duration-300`}>
                         {title}
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1 font-medium">{author}</p>
+                    <p className="text-sm text-gray-400 mt-1 font-medium group-hover:text-gray-300 transition-colors">
+                        {author}
+                    </p>
                 </div>
-                <div className="flex flex-col items-end gap-1">
-                    <span className="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                    <span className="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">
+                <div className="flex flex-col items-end gap-1.5">
+                    <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
+                    <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
                         {songKey}
                     </span>
                 </div>

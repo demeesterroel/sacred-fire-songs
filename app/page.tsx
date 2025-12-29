@@ -12,14 +12,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 flex justify-center">
+    <div className="min-h-screen bg-black flex justify-center selection:bg-red-500/30">
       {/* Phone Frame */}
-      <div className="w-full max-w-[400px] bg-gray-900 min-h-screen border-x border-gray-800 relative shadow-2xl flex flex-col">
+      <div className="w-full max-w-[420px] bg-gray-900 min-h-screen relative shadow-2xl flex flex-col overflow-hidden">
         <Header />
 
         <SearchBar />
 
-        <main className="flex-1 p-4 space-y-3 pb-24 overflow-y-auto hide-scroll">
+        <main className="flex-1 p-5 space-y-4 pb-32 overflow-y-auto hide-scroll scroll-smooth">
           {mockSongs.map((song, index) => (
             <SongCard
               key={index}
@@ -30,6 +30,9 @@ export default function Home() {
             />
           ))}
         </main>
+
+        {/* Bottom Fade - Gradient Overlay for Premium Feel */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent pointer-events-none z-20" />
       </div>
     </div>
   );
