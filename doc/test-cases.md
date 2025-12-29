@@ -1,6 +1,6 @@
 # Test Cases: Camino Rojo
 
-**Version:** 1.2
+**Version:** 1.3
 **Status:** Draft
 **Date:** December 29, 2025
 
@@ -11,6 +11,7 @@
 | **1.0** | Dec 25, 2025 | Initial Document Creation. Derived test cases from Epics/Stories. |
 | **1.1** | Dec 29, 2025 | Updated test examples to use real songs from `data/songs` (Agüita, Pachamama, Espíritu del agua). |
 | **1.2** | Dec 29, 2025 | Cleaned up song titles in examples (removed file prefixes like "43."). |
+| **1.3** | Dec 29, 2025 | Added TC-1.3.4 for Logo Navigation. |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -89,13 +90,21 @@ This document contains the test cases derived from the project's Epics and User 
 - **Expected Results**:
     - Embedded audio player (SoundCloud/Spotify) is visible and playable.
 
-#### TC-1.3.3: Navigate back to Home
+#### TC-1.3.3: Navigate back to Home (Back Arrow)
 - **User Story**: 1.3.3
 - **Pre-conditions**: On the Song Detail page.
 - **Steps**:
     1. Click the "Back" arrow in the header.
 - **Expected Results**:
     - Redirected to the Home page.
+
+#### TC-1.3.4: Navigate Home via Logo
+- **User Story**: 1.3.3
+- **Pre-conditions**: On any page (e.g., /admin/upload or /songs/123).
+- **Steps**:
+    1. Click the "Camino Rojo" logo or the text title in the header.
+- **Expected Results**:
+    - Redirected to the Home page (`/`).
 
 ## Phase 2: MLP - Music Tools & rich Editing
 
