@@ -1,9 +1,14 @@
 // lib/songUtils.ts
-
+export interface Song {
+    title: string;
+    author: string;
+    songKey: string;
+    color: string;
+}
 /**
  * Filters a list of songs by title or author (case-insensitive)
  */
-export function filterSongs(songs: any[], query: string) {
+export function filterSongs(songs: Song[], query: string) {
     const lowerQuery = query.toLowerCase();
 
     return songs.filter(song =>
