@@ -1,15 +1,16 @@
 # Test Cases: Camino Rojo
 
-**Version:** 1.0
+**Version:** 1.2
 **Status:** Draft
-**Date:** December 25, 2025
+**Date:** December 29, 2025
 
 ## Changelog
 
 | Version | Date | Description of Changes |
 | ----- | ----- | ----- |
 | **1.0** | Dec 25, 2025 | Initial Document Creation. Derived test cases from Epics/Stories. |
-
+| **1.1** | Dec 29, 2025 | Updated test examples to use real songs from `data/songs` (Agüita, Pachamama, Espíritu del agua). |
+| **1.2** | Dec 29, 2025 | Cleaned up song titles in examples (removed file prefixes like "43."). |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -21,12 +22,12 @@ This document contains the test cases derived from the project's Epics and User 
 - **User Story**: 1.1.1
 - **Pre-conditions**: Admin is logged in, "Upload Song" page is open.
 - **Steps**:
-    1. Select a valid `.cho` file (e.g., `grandmother_earth.cho`).
+    1. Select a valid `.cho` file (e.g., `43_Aguida.cho`).
     2. Click "Upload".
 - **Expected Results**:
     - "Upload Successful" message appears.
     - New song entry is created in the database.
-    - Song title "Grandmother Earth" is visible in the library.
+    - Song title "Agüita" is visible in the library.
 
 #### TC-1.1.2: Admin deletes a song
 - **User Story**: 1.1.2
@@ -62,22 +63,23 @@ This document contains the test cases derived from the project's Epics and User 
 
 #### TC-1.2.2: Search for a song
 - **User Story**: 1.2.2
-- **Pre-conditions**: Songs "Water Spirit" and "Grandmother Earth" exist.
+- **Pre-conditions**: Songs "Espíritu del agua" and "Pachamama" exist.
 - **Steps**:
-    1. Type "Water" into the search bar.
+    1. Type "Espíritu" into the search bar.
 - **Expected Results**:
-    - "Water Spirit" is displayed.
-    - "Grandmother Earth" is hidden.
+    - "Espíritu del agua" is displayed.
+    - "Pachamama" is hidden.
 
 ### 1.3 Basic Song Viewer
 
 #### TC-1.3.1: Render ChordPro chords
 - **User Story**: 1.3.1
-- **Pre-conditions**: View a song with ChordPro formatting (e.g., `[Am]Grandmother`).
+- **Pre-conditions**: View "Agüita" with content `[Bm]Agüitay, [A]agüita`.
 - **Steps**:
-    1. Open the Song Detail page.
+    1. Open the Song Detail page for "Agüita".
 - **Expected Results**:
-    - The chord "Am" is rendered above the word "Grandmother".
+    - The chord "Bm" is rendered above the word "Agüitay".
+    - The chord "A" is rendered above the word "agüita".
 
 #### TC-1.3.2: Audio reference playback
 - **User Story**: 1.3.2
@@ -105,7 +107,7 @@ This document contains the test cases derived from the project's Epics and User 
     1. Open Song Detail.
     2. Click "Transpose +1".
 - **Expected Results**:
-    - Chords shift up by one semitone (e.g., Am -> Bbm).
+    - Chords shift up by one semitone (e.g., Bm -> Cm).
 
 #### TC-2.1.2: Render Sheet Music (ABC Notation)
 - **User Story**: 2.1.2
