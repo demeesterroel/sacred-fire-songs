@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { LogIn } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function Header() {
     return (
@@ -24,6 +26,10 @@ export default function Header() {
             <button className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
                 <LogIn className="w-5 h-5 group-hover:scale-110 transition-transform" />
             </button>
+            {/* Back Button */}
+            <Link href="/" className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
+                <ArrowLeft className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            </Link>
         </header>
     );
 }
