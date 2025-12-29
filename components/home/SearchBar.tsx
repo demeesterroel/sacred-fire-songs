@@ -2,7 +2,12 @@
 
 import { Search } from 'lucide-react';
 
-export default function SearchBar() {
+interface SearchBarProps {
+    value: string;
+    onChange: (text: string) => void;
+}
+
+export default function SearchBar({ value, onChange }: SearchBarProps) {
     return (
         <div className="px-4 pt-4 pb-2 sticky top-[68px] bg-gray-900 z-10">
             <div className="relative group">
@@ -11,6 +16,8 @@ export default function SearchBar() {
                 </div>
                 <input
                     type="text"
+                    value={value} // 1. Set the visual value from our state
+                    onChange={(e) => onChange(e.target.value)} // 2. Update the state on change
                     className="block w-full pl-11 pr-4 py-3.5 bg-gray-800/80 border border-gray-700/50 rounded-2xl text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 focus:bg-gray-800 transition-all text-base shadow-inner"
                     placeholder="Search title or lyrics..."
                 />
@@ -18,3 +25,4 @@ export default function SearchBar() {
         </div>
     );
 }
+
