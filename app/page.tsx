@@ -25,6 +25,7 @@ export default function Home() {
       if (!error && data) {
         // Map the DB fields to the props our SongCard expects
         const formatted = data.map(item => ({
+          id: item.id,
           title: item.title,
           author: item.original_author || "Unknown",
           songKey: "Am", // Note: We'll fetch real keys in Phase 2
@@ -56,6 +57,7 @@ export default function Home() {
             filteredSongs.map((song, index) => (
               <SongCard
                 key={index}
+                id={song.id}
                 title={song.title}
                 author={song.author}
                 songKey={song.songKey}
