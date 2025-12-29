@@ -97,6 +97,15 @@ Scenario: Display Audio Player
   Then I should see an embedded SoundCloud player at the bottom of the page
 ```
 
+**Story 1.3.3:** As a User, I want to navigate back to the home screen from any page so that I can easily browse more songs.
+
+```
+Scenario: Navigate back to home
+  Given I am on the Song Detail page
+  When I click the "Back" arrow in the header
+  Then I should be redirected to the Home page
+```
+
 ## Phase 2: Minimal Lovable Product (MLP)
 
 **Focus:** Utility for musicians and better organization.

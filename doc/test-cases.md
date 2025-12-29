@@ -87,6 +87,14 @@ This document contains the test cases derived from the project's Epics and User 
 - **Expected Results**:
     - Embedded audio player (SoundCloud/Spotify) is visible and playable.
 
+#### TC-1.3.3: Navigate back to Home
+- **User Story**: 1.3.3
+- **Pre-conditions**: On the Song Detail page.
+- **Steps**:
+    1. Click the "Back" arrow in the header.
+- **Expected Results**:
+    - Redirected to the Home page.
+
 ## Phase 2: MLP - Music Tools & rich Editing
 
 ### 2.1 Music Tools

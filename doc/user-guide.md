@@ -24,6 +24,7 @@ The **Home Page** lists all available songs.
 
 ### 1.2 Learning a Song
 Click on any song to open the **Detail View**.
+- **Navigation**: Click the **Back Arrow** in the top-right header to return to the library at any time.
 - **Chords & Lyrics**: Chords are displayed directly above the lyrics for easy playing.
 - **Key Transposition (Phase 2)**: Use the `+` and `-` buttons to shift the song into a key that suits your voice.
 - **Listen**: If available, use the embedded player to hear a reference recording.
