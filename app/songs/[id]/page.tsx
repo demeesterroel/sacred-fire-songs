@@ -19,7 +19,8 @@ const fetchSong = async (id: string) => {
             id,
             version_name,
             content_chordpro,
-            key
+            key,
+            youtube_url
           )
         `)
         .eq('id', id)
@@ -28,6 +29,8 @@ const fetchSong = async (id: string) => {
     if (error) throw error;
     return data;
 };
+
+import YouTubeEmbed from '@/components/song/YouTubeEmbed';
 
 export default function SongDetailPage() {
     const params = useParams();
@@ -45,12 +48,11 @@ export default function SongDetailPage() {
     if (isLoading) return <SongDetailSkeleton />;
     if (!song) return notFound();
 
-    // The rest of your UI logic remains exactly the same...
     const versions = song.song_versions || [];
     const currentVersion = versions[selectedVersionIndex];
 
     return (
-        <main className="flex-1 p-6 text-white overflow-y-auto min-h-0 hide-scroll scroll-smooth">
+        <main className="flex-1 p-6 text-white min-h-0">
             <h1 className="text-3xl font-bold text-red-500">{song.title}</h1>
             <p className="text-gray-400 mt-1">by {song.original_author || 'Traditional'}</p>
 
@@ -83,7 +85,15 @@ export default function SongDetailPage() {
                     </div>
                 )}
                 <SongDisplay key={currentVersion?.id || 'empty'} content={currentVersion?.content_chordpro || ''} />
+
+                {/* YouTube Embed */}
+                {currentVersion?.youtube_url && (
+                    <YouTubeEmbed videoId={currentVersion.youtube_url} />
+                )}
             </div>
+
+            {/* Bottom spacing */}
+            <div className="h-8"></div>
         </main>
     );
 }
