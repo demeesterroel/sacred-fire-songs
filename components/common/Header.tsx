@@ -1,38 +1,38 @@
 'use client';
 
-import Image from 'next/image';
-import { LogIn } from 'lucide-react';
+import { Flame, Menu } from 'lucide-react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { useState } from 'react';
+import MobileMenu from './MobileMenu';
 
 export default function Header() {
-    return (
-        <header className="flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/80 backdrop-blur-md z-30 border-b border-white/5 ring-1 ring-white/5">
-            <div className="flex items-center gap-3">
-                {/* Logo */}
-                <Link href="/" className="w-10 h-10 rounded-full overflow-hidden shadow-xl shadow-red-900/40 ring-2 ring-white/10 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-                    <Image
-                        src="/favicon.svg"
-                        alt="Camino Rojo Logo"
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-cover"
-                    />
-                </Link>
-                <Link href="/" className="font-bold text-xl tracking-tight text-white drop-shadow-sm hover:opacity-80 transition-opacity">
-                    Camino Rojo
-                </Link>
-            </div>
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-            {/* Admin Login */}
-            {/* Admin Upload Link */}
-            <Link href="/admin/upload" className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group" title="Upload Song">
-                <LogIn className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            </Link>
-            {/* Back Button */}
-            <Link href="/" className="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
-                <ArrowLeft className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            </Link>
-        </header>
+    return (
+        <>
+            <header className="md:hidden flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-30 border-b border-gray-800/50">
+                <div className="flex items-center gap-3">
+                    {/* Logo */}
+                    <Link href="/" className="w-9 h-9 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 cursor-pointer">
+                        <Flame className="text-white w-5 h-5 fill-current" />
+                    </Link>
+                    <Link href="/" className="font-bold text-xl tracking-tight text-white hover:opacity-80 transition-opacity">
+                        Camino Rojo
+                    </Link>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    {/* Hamburger Menu Trigger */}
+                    <button
+                        onClick={() => setIsMenuOpen(true)}
+                        className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800"
+                    >
+                        <Menu className="w-6 h-6" />
+                    </button>
+                </div>
+            </header>
+
+            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        </>
     );
 }
