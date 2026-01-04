@@ -22,22 +22,29 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/common/Header";
+import Sidebar from "@/components/common/Sidebar";
 import QueryProvider from "@/components/providers/QueryProvider";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <QueryProvider>
-          <div className="h-screen h-[100svh] bg-black flex justify-center selection:bg-red-500/30">
-            <div className="w-full max-w-[420px] bg-gray-900 h-full relative shadow-2xl flex flex-col overflow-hidden">
+          <div className="min-h-screen bg-black text-gray-100 font-sans flex flex-col md:flex-row selection:bg-red-500/30">
+
+            {/* Desktop Sidebar */}
+            <Sidebar />
+
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col min-w-0 bg-gray-950 relative">
+              {/* Mobile Header */}
               <Header />
-              {/* <PageTransition> */}
+
+              {/* Page Content */}
               {children}
-              {/* </PageTransition> */}
             </div>
           </div>
         </QueryProvider>
