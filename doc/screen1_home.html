@@ -37,169 +37,323 @@
     </style>
 </head>
 
-<body class="text-gray-100 font-sans min-h-screen flex justify-center bg-gray-900">
+<body class="text-gray-100 font-sans min-h-screen bg-gray-950 flex flex-col md:flex-row">
 
-    <!-- Phone Frame -->
-    <div class="w-full max-w-[400px] bg-gray-900 min-h-screen border-x border-gray-800 relative shadow-2xl">
-
-        <!-- Status Bar Area (Simulated) -->
-        <div
-            class="h-6 w-full bg-gray-900 flex justify-between items-center px-4 text-[10px] text-gray-400 select-none">
-            <span>9:41</span>
-            <div class="flex gap-1">
-                <i data-lucide="signal" class="w-3 h-3"></i>
-                <i data-lucide="wifi" class="w-3 h-3"></i>
-                <i data-lucide="battery" class="w-3 h-3"></i>
+    <!-- Mobile Header -->
+    <header
+        class="md:hidden flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-30 border-b border-gray-800/50">
+        <div class="flex items-center gap-3">
+            <!-- Logo -->
+            <div
+                class="w-9 h-9 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
+                <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
             </div>
+            <h1 class="font-bold text-xl tracking-tight text-white">Camino Rojo</h1>
         </div>
 
-        <!-- App Header -->
-        <header
-            class="flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-20 border-b border-gray-800/50">
-            <div class="flex items-center gap-3">
-                <!-- Logo -->
+        <div class="flex items-center gap-3">
+            <!-- Hamburger Menu Trigger -->
+            <button class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar (Desktop Navigation & Filters) -->
+    <aside
+        class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-8">
                 <div
-                    class="w-9 h-9 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
+                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
                     <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
                 </div>
                 <h1 class="font-bold text-xl tracking-tight text-white">Camino Rojo</h1>
             </div>
 
-            <!-- Admin Login -->
-            <button class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800">
-                <i data-lucide="log-in" class="w-5 h-5"></i>
-            </button>
+            <!-- Main Menu -->
+            <nav class="space-y-1 mb-8">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
+                    <i data-lucide="layout-grid" class="w-5 h-5 text-red-500"></i>
+                    Dashboard
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="music" class="w-5 h-5"></i>
+                    Browse Songs
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                    Upload
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    Settings
+                </a>
+            </nav>
 
-            <!-- Back Button -->
-            <a href="/"
-                class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-gray-800 group">
-                <i data-lucide="arrow-left" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-            </a>
-        </header>
-
-        <!-- Search Section -->
-        <div class="px-4 pt-4 pb-2 sticky top-[68px] bg-gray-900 z-10">
-            <div class="relative group">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i data-lucide="search"
-                        class="text-gray-500 w-5 h-5 group-focus-within:text-red-500 transition-colors"></i>
+            <!-- Filters -->
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Elements</h3>
+                    <div class="space-y-1">
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-red-600 focus:ring-red-500/30">
+                            Fire
+                        </label>
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-blue-500 focus:ring-blue-500/30">
+                            Water
+                        </label>
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-amber-500 focus:ring-amber-500/30">
+                            Earth
+                        </label>
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-slate-400 focus:ring-slate-500/30">
+                            Air
+                        </label>
+                    </div>
                 </div>
-                <input type="text"
-                    class="block w-full pl-11 pr-4 py-3.5 bg-gray-800/80 border border-gray-700/50 rounded-2xl text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 focus:bg-gray-800 transition-all text-base shadow-inner"
-                    placeholder="Search title or lyrics...">
+
+                <div>
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Origin</h3>
+                    <div class="space-y-1">
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-green-500 focus:ring-green-500/30">
+                            Medicine
+                        </label>
+                        <label
+                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
+                            <input type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-purple-500 focus:ring-purple-500/30">
+                            Icaros
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Song List -->
-        <main class="p-4 space-y-3 pb-24 overflow-y-auto">
-
-            <!-- Song 1 -->
-            <div
-                class="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
+        <!-- User Profile (Bottom Sidebar) -->
+        <div class="mt-auto p-4 border-t border-gray-800 bg-gray-900/50">
+            <div class="flex items-center gap-3">
                 <div
-                    class="absolute left-0 top-0 bottom-0 w-1 bg-red-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">
+                    AG</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-white truncate">Admin Guest</p>
+                    <p class="text-xs text-gray-500 truncate">admin@caminorojo.com</p>
                 </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3
-                            class="text-[17px] font-semibold text-gray-100 leading-tight group-hover:text-red-400 transition-colors">
-                            Grandmother Earth</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Traditional</p>
-                    </div>
-                    <div class="flex flex-col items-end gap-1">
-                        <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                        <span
-                            class="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">Am</span>
-                    </div>
-                </div>
+                <button><i data-lucide="log-out" class="w-4 h-4 text-gray-500 hover:text-white"></i></button>
             </div>
+        </div>
+    </aside>
 
-            <!-- Song 2 -->
-            <div
-                class="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
-                <div
-                    class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 overflow-y-auto">
+
+        <!-- Desktop Header (Search) -->
+        <div
+            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800/50 px-6 py-4 hidden md:flex justify-between items-center">
+            <h2 class="text-xl font-bold text-white">Dashboard</h2>
+            <div class="relative w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
                 </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3
-                            class="text-[17px] font-semibold text-gray-100 leading-tight group-hover:text-orange-400 transition-colors">
-                            Aguita de la Vida</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Danit</p>
-                    </div>
-                    <div class="flex flex-col items-end gap-1">
-                        <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                        <span
-                            class="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">Em</span>
-                    </div>
-                </div>
+                <input type="text"
+                    class="block w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 focus:border-red-500/50 transition-all text-sm"
+                    placeholder="Search songs, lyrics, artists...">
             </div>
+        </div>
 
-            <!-- Song 3 -->
-            <div
-                class="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
-                <div
-                    class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3
-                            class="text-[17px] font-semibold text-gray-100 leading-tight group-hover:text-yellow-400 transition-colors">
-                            Pachamama</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Medicine Family</p>
-                    </div>
-                    <div class="flex flex-col items-end gap-1">
-                        <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                        <span
-                            class="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">G</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Dashboard Widgets Area -->
+        <div class="p-4 md:p-8 space-y-8 max-w-7xl mx-auto">
 
-            <!-- Song 4 -->
-            <div
-                class="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
-                <div
-                    class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3
-                            class="text-[17px] font-semibold text-gray-100 leading-tight group-hover:text-blue-400 transition-colors">
-                            Water Spirit</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Nalini Blossom</p>
+            <!-- Quick Actions -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button
+                    class="bg-gradient-to-br from-red-900/50 to-gray-900 border border-red-500/30 hover:border-red-400/50 p-4 rounded-xl flex flex-col items-center gap-2 group transition-all hover:shadow-lg hover:shadow-red-900/20">
+                    <div
+                        class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
+                        <i data-lucide="music" class="w-5 h-5"></i>
                     </div>
-                    <div class="flex flex-col items-end gap-1">
-                        <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                        <span
-                            class="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">Dm</span>
-                    </div>
-                </div>
-            </div>
+                    <span class="font-medium text-gray-200 text-sm">Browse Songs</span>
+                </button>
 
-            <!-- Song 5 -->
-            <div
-                class="bg-gray-800/40 p-4 rounded-2xl border border-gray-700/50 active:bg-gray-800 active:scale-[0.99] transition-all cursor-pointer group relative overflow-hidden">
-                <div
-                    class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3
-                            class="text-[17px] font-semibold text-gray-100 leading-tight group-hover:text-purple-400 transition-colors">
-                            Cuatro Vientos</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Danit</p>
+                <button
+                    class="bg-gradient-to-br from-blue-900/50 to-gray-900 border border-blue-500/30 hover:border-blue-400/50 p-4 rounded-xl flex flex-col items-center gap-2 group transition-all hover:shadow-lg hover:shadow-blue-900/20">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                        <i data-lucide="upload-cloud" class="w-5 h-5"></i>
                     </div>
-                    <div class="flex flex-col items-end gap-1">
-                        <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">Key</span>
-                        <span
-                            class="text-xs font-mono font-bold bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30">Am</span>
-                    </div>
-                </div>
-            </div>
+                    <span class="font-medium text-gray-200 text-sm">Upload Song</span>
+                </button>
 
-        </main>
-    </div>
+                <button
+                    class="bg-gradient-to-br from-amber-900/50 to-gray-900 border border-amber-500/30 hover:border-amber-400/50 p-4 rounded-xl flex flex-col items-center gap-2 group transition-all hover:shadow-lg hover:shadow-amber-900/20">
+                    <div
+                        class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-medium text-gray-200 text-sm">Favorites</span>
+                </button>
+
+                <button
+                    class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 hover:border-gray-600 p-4 rounded-xl flex flex-col items-center gap-2 group transition-all hover:shadow-lg">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:scale-110 transition-transform">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-medium text-gray-200 text-sm">Settings</span>
+                </button>
+            </section>
+
+            <!-- Song List Section -->
+            <section>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="library" class="w-5 h-5 text-gray-400"></i>
+                        Recent Additions
+                    </h2>
+                    <!-- Mobile Filter Toggle (only visible on mobile if needed, but redundant with hamburger for now) -->
+                </div>
+
+                <!-- Grid Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <!-- Song 1 -->
+                    <div
+                        class="bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-red-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-1 bg-red-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3
+                                    class="text-lg font-semibold text-gray-100 leading-tight group-hover:text-red-400 transition-colors">
+                                    Grandmother Earth</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Traditional</span>
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20">Fire</span>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Am</span>
+                        </div>
+                    </div>
+
+                    <!-- Song 2 -->
+                    <div
+                        class="bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-orange-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3
+                                    class="text-lg font-semibold text-gray-100 leading-tight group-hover:text-orange-400 transition-colors">
+                                    Aguita de la Vida</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Danit</span>
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">Water</span>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Em</span>
+                        </div>
+                    </div>
+
+                    <!-- Song 3 -->
+                    <div
+                        class="bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-yellow-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3
+                                    class="text-lg font-semibold text-gray-100 leading-tight group-hover:text-yellow-400 transition-colors">
+                                    Pachamama</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Medicine
+                                        Family</span>
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">Earth</span>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">G</span>
+                        </div>
+                    </div>
+
+                    <!-- Song 4 -->
+                    <div
+                        class="bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3
+                                    class="text-lg font-semibold text-gray-100 leading-tight group-hover:text-blue-400 transition-colors">
+                                    Water Spirit</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Nalini
+                                        Blossom</span>
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">Water</span>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Dm</span>
+                        </div>
+                    </div>
+
+                    <!-- Song 5 -->
+                    <div
+                        class="bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-purple-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3
+                                    class="text-lg font-semibold text-gray-100 leading-tight group-hover:text-purple-400 transition-colors">
+                                    Cuatro Vientos</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">Danit</span>
+                                    <span
+                                        class="text-xs px-2 py-0.5 rounded-full bg-slate-500/10 text-slate-400 border border-slate-500/20">Air</span>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Am</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script>
         lucide.createIcons();

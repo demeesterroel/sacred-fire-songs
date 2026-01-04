@@ -10,6 +10,7 @@
 | ----- | ----- | ----- |
 | **1.0** | Dec 25, 2025 | Initial Document Creation. Defined Epics and User Stories for Phases 1-4. |
 | **1.1** | Dec 29, 2025 | Added Story 1.3.3 (Navigation) and aligned UI mockups. |
+| **1.2** | Jan 04, 2026 | Added stories for Dashboard, Category Filtering, Desktop View, and YouTube links based on user feedback. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -83,6 +84,8 @@ Scenario: Guest clicks Upload
 Scenario: Guest views song library
   Given I am an unauthenticated Guest
   When I visit the Home page
+  Then I should see a clear Dashboard with options: "Browse Songs", "Upload Song", "Settings"
+  When I click "Browse Songs"
   Then I should see a list of songs
   And each song card should display a Title and Author
   And the list should load more songs as I scroll down
@@ -116,6 +119,16 @@ Scenario: Display Audio Player
   Given a song has an audio_url "https://soundcloud.com/example"
   When I view the Song Detail page
   Then I should see an embedded SoundCloud player at the bottom of the page
+```
+
+**Story 1.3.4:** As a Guest, I want to watch a YouTube video reference so that I can see how the song is played.
+
+```
+Scenario: Display YouTube Video
+  Given a song has a youtube_url "https://youtube.com/watch?v=example"
+  When I view the Song Detail page
+  Then I should see an embedded YouTube player
+```
 ```
 
 **Story 1.3.3: [Implemented]** As a User, I want to navigate back to the home screen from any page so that I can easily browse more songs.
@@ -188,6 +201,29 @@ Scenario: Filter by Category
   When I select "Water" from the filter menu
   Then only songs tagged with "Water" should be visible
   And songs tagged with "Fire" should be hidden
+```
+
+**Story 2.3.2:** As a User, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
+
+```
+Scenario: Open Filter Menu
+  Given I am on the Song List page
+  When I click the hamburger menu icon
+  Then a side drawer should slide in
+  And I should see filter options for "Theme", "Rhythm", etc.
+```
+```
+
+```
+
+**Story 2.3.2:** As a User, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
+
+```
+Scenario: Open Filter Menu
+  Given I am on the Song List page
+  When I click the hamburger menu icon
+  Then a side drawer should slide in
+  And I should see filter options for "Theme", "Rhythm", etc.
 ```
 
 ## Phase 3: Community & Evolution
@@ -299,4 +335,16 @@ Scenario: Offline Access
   When I navigate to "Full Moon Setlist"
   Then the setlist and its songs should load from the cache
   And I should see an "Offline Mode" indicator
+```
+
+### Epic 4.4: Desktop Experience
+
+**Story 4.4.1:** As a User on a laptop, I want a responsive layout so that the app uses the full screen width effectively.
+
+```
+Scenario: Desktop Layout
+  Given I am viewing the app on a screen wider than 1024px
+  When I view the Song List
+  Then the list should be displayed in a grid or multi-column layout
+  And the navigation menu should be always visible on the side (instead of a hamburger menu)
 ```

@@ -71,6 +71,7 @@ This document contains the test cases derived from the project's Epics and User 
     - List of songs is visible.
     - Each song card shows Title and Author.
     - Infinite scroll/pagination works as expected.
+    - Dashboard options "Upload", "Browse", "Settings" are visible (if on Home).
 
 #### TC-1.2.2: Search for a song
 - **User Story**: 1.2.2
@@ -115,6 +116,14 @@ This document contains the test cases derived from the project's Epics and User 
     1. Click the "Camino Rojo" logo or the text title in the header.
 - **Expected Results**:
     - Redirected to the Home page (`/`).
+
+#### TC-1.3.5: YouTube Video
+- **User Story**: 1.3.3 (New)
+- **Pre-conditions**: Song has `youtube_url`.
+- **Steps**:
+    1. View Song Detail.
+- **Expected Results**:
+    - Embedded YouTube player is visible.
 
 ## Phase 2: MLP - Music Tools & rich Editing
 
@@ -163,3 +172,24 @@ This document contains the test cases derived from the project's Epics and User 
     1. Select "Water" from filter menu.
 - **Expected Results**:
     - Only "Water" themed songs are shown.
+
+#### TC-2.3.2: Open Filter Menu (Hamburger)
+- **User Story**: 2.3.2
+- **Pre-conditions**: On Song List page.
+- **Steps**:
+    1. Click hamburger menu.
+- **Expected Results**:
+    - Side drawer opens with filter options.
+
+### 2.4 Desktop Experience
+
+#### TC-4.4.1: Desktop Layout
+- **User Story**: 4.4.1
+- **Pre-conditions**: Viewport width > 1024px.
+- **Steps**:
+    1. View Song List.
+- **Expected Results**:
+    - Grid layout or multi-column view.
+    - Permanent sidebar navigation.
+
+## Phase 3: Community & Evolution

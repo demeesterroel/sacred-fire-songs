@@ -45,6 +45,7 @@ export interface SongVersion {
     key?: string | null; // e.g., 'Am'
     capo: number;
     audio_url?: string | null;
+    youtube_url?: string | null;
     contributor_id?: string | null; // Foreign Key -> UserProfile
     vote_count: number;
     created_at: string;

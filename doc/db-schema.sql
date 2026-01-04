@@ -63,6 +63,7 @@ create table public.song_versions (
   key text,
   capo integer default 0,
   audio_url text,
+  youtube_url text,
   contributor_id uuid references public.profiles(id),
   vote_count integer default 0,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
