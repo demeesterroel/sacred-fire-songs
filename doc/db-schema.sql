@@ -14,7 +14,7 @@
 create extension if not exists "uuid-ossp";
 
 -- 1. Create ENUMs
-create type user_role as enum ('admin', 'moderator', 'user');
+create type user_role as enum ('admin', 'musician', 'member');
 create type category_type as enum ('Theme', 'Rhythm', 'Origin');
 
 -- 2. Create Tables
@@ -25,7 +25,7 @@ create type category_type as enum ('Theme', 'Rhythm', 'Origin');
 create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
   email text unique not null,
-  role user_role default 'user',
+  role user_role default 'member',
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

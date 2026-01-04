@@ -55,7 +55,7 @@ Scenario: Admin deletes a song
   Then the song "Pachamama" should no longer appear in the list
 ```
 
-**Story 1.1.4:** As an Admin, I want to log in securely so that I can access management features.
+**Story 1.1.4:** As a Member, I want to log in securely so that I can access personalized features.
 
 ```
 Scenario: Successful Admin Login
@@ -131,7 +131,7 @@ Scenario: Display YouTube Video
 ```
 ```
 
-**Story 1.3.3: [Implemented]** As a User, I want to navigate back to the home screen from any page so that I can easily browse more songs.
+**Story 1.3.3: [Implemented]** As a Guest, I want to navigate back to the home screen from any page so that I can easily browse more songs.
 
 ```
 Scenario: Navigate back to home
@@ -193,7 +193,7 @@ Scenario: Manual Edit
 
 ### Epic 2.3: Taxonomy & Filtering
 
-**Story 2.3.1:** As a User, I want to filter songs by category (e.g., "Water", "Fire") so that I can find songs for specific ceremony moments.
+**Story 2.3.1:** As a Guest, I want to filter songs by category (e.g., "Water", "Fire") so that I can find songs for specific ceremony moments.
 
 ```
 Scenario: Filter by Category
@@ -203,7 +203,7 @@ Scenario: Filter by Category
   And songs tagged with "Fire" should be hidden
 ```
 
-**Story 2.3.2:** As a User, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
+**Story 2.3.2:** As a Guest, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
 
 ```
 Scenario: Open Filter Menu
@@ -232,7 +232,7 @@ Scenario: Open Filter Menu
 
 ### Epic 3.1: User Accounts
 
-**Story 3.1.1:** As a User, I want to sign up with my Google/Facebook account so that I don't have to remember another password.
+**Story 3.1.1:** As a Guest, I want to sign up with my Google/Facebook account so that I don't have to remember another password.
 
 ```
 Scenario: Social Login
@@ -266,7 +266,7 @@ Scenario: Add Alternative Version
   And it should be viewable via the version selector
 ```
 
-**Story 3.2.2:** As a Community Member, I want to vote on song versions so that the best arrangement rises to the top.
+**Story 3.2.2:** As a Member, I want to vote on song versions so that the best arrangement rises to the top.
 
 ```
 Scenario: Upvote Version
@@ -281,7 +281,7 @@ Scenario: Upvote Version
 
 ### Epic 4.1: Setlists
 
-**Story 4.1.1:** As a Ceremony Leader, I want to create a named setlist so that I can prepare for a specific night.
+**Story 4.1.1:** As a Musician, I want to create a named setlist so that I can prepare for a specific night.
 
 ```
 Scenario: Create Setlist
@@ -291,7 +291,7 @@ Scenario: Create Setlist
   Then a new empty setlist named "Full Moon Ceremony" should exist
 ```
 
-**Story 4.1.2:** As a Leader, I want to reorder songs in my setlist so that the flow matches the ceremony intensity.
+**Story 4.1.2:** As a Musician, I want to reorder songs in my setlist so that the flow matches the ceremony intensity.
 
 ```
 Scenario: Reorder Setlist
@@ -303,7 +303,7 @@ Scenario: Reorder Setlist
 
 ### Epic 4.2: Print & Export
 
-**Story 4.2.1:** As a User, I want to generate a PDF of my setlist so that I can print it for the ceremony.
+**Story 4.2.1:** As a Musician, I want to generate a PDF of my setlist so that I can print it for the ceremony.
 
 ```
 Scenario: Export PDF
@@ -313,7 +313,7 @@ Scenario: Export PDF
   And the PDF should contain the lyrics and chords for all songs in the setlist
 ```
 
-**Story 4.2.2:** As a User, I want to group songs by category in the PDF so that I can keep "Water" songs together on paper.
+**Story 4.2.2:** As a Musician, I want to group songs by category in the PDF so that I can keep "Water" songs together on paper.
 
 ```
 Scenario: Group by Category in PDF
@@ -326,7 +326,7 @@ Scenario: Group by Category in PDF
 
 ### Epic 4.3: Offline Reliability
 
-**Story 4.3.1:** As a User, I want to access my setlists while offline so that I can use the app in the forest.
+**Story 4.3.1:** As a Musician, I want to access my setlists while offline so that I can use the app in the forest.
 
 ```
 Scenario: Offline Access
@@ -339,7 +339,7 @@ Scenario: Offline Access
 
 ### Epic 4.4: Desktop Experience
 
-**Story 4.4.1:** As a User on a laptop, I want a responsive layout so that the app uses the full screen width effectively.
+**Story 4.4.1:** As a Guest on a laptop, I want a responsive layout so that the app uses the full screen width effectively.
 
 ```
 Scenario: Desktop Layout
