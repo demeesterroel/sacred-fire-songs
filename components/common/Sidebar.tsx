@@ -12,7 +12,7 @@ export default function Sidebar() {
                         className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </div>
-                    <h1 className="font-bold text-xl tracking-tight text-white">Camino Rojo</h1>
+                    <h1 className="font-bold text-xl tracking-tight text-white">🔥Sacred Fire Songs</h1>
                 </div>
 
                 {/* Main Menu */}
@@ -81,7 +81,7 @@ export default function Sidebar() {
                     <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">AG</div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-white truncate">Admin Guest</p>
-                        <p className="text-xs text-gray-500 truncate">admin@caminorojo.com</p>
+                        <p className="text-xs text-gray-500 truncate">admin@sacredfire.com</p>
                     </div>
                     <button><LogOut className="w-4 h-4 text-gray-500 hover:text-white" /></button>
                 </div>

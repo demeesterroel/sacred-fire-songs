@@ -1,17 +1,18 @@
-# User Guide: Camino Rojo Songbook
+# User Guide: Sacred Fire Songs
 
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Draft
-**Date:** December 25, 2025
+**Date:** January 10, 2026
 
 ## Changelog
 
 | Version | Date | Description of Changes |
 | ----- | ----- | ----- |
 | **1.0** | Dec 25, 2025 | Initial Document Creation. User guide for Guests, Members, and Admins. |
+| **1.1** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 
 
-Welcome to **Camino Rojo**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
+Welcome to **Sacred Fire Songs**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
 
 ---
 
@@ -31,7 +32,7 @@ Click on any song to open the **Detail View**.
 - **Sheet Music (Phase 2)**: View the melody in musical notation and use the "Play Melody" button to hear the synthesized notes.
 
 ### 1.3 Offline Use
-Camino Rojo is a Progressive Web App (PWA). If you have viewed a song once while online, it will be cached on your device. You can access these songs even when you are in remote ceremony locations without internet access.
+Sacred Fire Songs is a Progressive Web App (PWA). If you have viewed a song once while online, it will be cached on your device. You can access these songs even when you are in remote ceremony locations without internet access.
 
 ---
 

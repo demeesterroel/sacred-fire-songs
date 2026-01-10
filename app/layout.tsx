@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Camino Rojo | Songbook",
+  title: "🔥Sacred Fire Songs",
   description: "A digital songbook for medicine music ceremonies.",
   icons: {
     icon: "/favicon.svg",

@@ -1,8 +1,8 @@
-# Test Cases: Camino Rojo
+# Test Cases: Sacred Fire Songs
 
-**Version:** 1.3
+**Version:** 1.5
 **Status:** Draft
-**Date:** December 29, 2025
+**Date:** January 10, 2026
 
 ## Changelog
 
@@ -13,6 +13,7 @@
 | **1.2** | Dec 29, 2025 | Cleaned up song titles in examples (removed file prefixes like "43."). |
 | **1.3** | Dec 29, 2025 | Added TC-1.3.4 for Logo Navigation. |
 | **1.4** | Dec 29, 2025 | Added TC-1.1.4 for Guest Upload Prompt. |
+| **1.5** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -113,7 +114,7 @@ This document contains the test cases derived from the project's Epics and User 
 - **User Story**: 1.3.3
 - **Pre-conditions**: On any page (e.g., /admin/upload or /songs/123).
 - **Steps**:
-    1. Click the "Camino Rojo" logo or the text title in the header.
+    1. Click the "Sacred Fire Songs" logo or the text title in the header.
 - **Expected Results**:
     - Redirected to the Home page (`/`).
 

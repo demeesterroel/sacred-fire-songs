@@ -1,8 +1,8 @@
-# Project Analysis & Design Document: Song Sharing Application (Camino Rojo)
+# Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.14
+**Version:** 1.15
 **Status:** Living Document
-**Date:** December 29, 2025
+**Date:** January 10, 2026
 
 ## Changelog
 
@@ -11,11 +11,12 @@
 | **1.0** | Oct 26, 2023 | Initial Document Creation. Defined User Personas, Core Requirements, Domain Model, and Tech Stack. | 
 | **...** | ... | (Previous versions 1.1 - 1.13 retained in history) |
 | **1.14** | Dec 29, 2025 | **Major Update:** Aligned document with Day 9 Implementation. Added `TanStack Query` to architecture. Verified `compositions` and `song_versions` schema. Marked Phase 1 features as Implemented. |
+| **1.15** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. Updated references to community name. |
 
 ## 1. Introduction
 
 ### 1.1 Purpose
-The purpose of this application is to centralize, preserve, and share the medicine songs (Icaros, ceremonial songs) of the Camino Rojo community. It serves as a digital songbook that bridges the gap between oral tradition and accessibility.
+The purpose of this application is to centralize, preserve, and share the medicine songs (Icaros, ceremonial songs) of the Sacred Fire community. It serves as a digital songbook that bridges the gap between oral tradition and accessibility.
 
 ### 1.2 Scope
 The application is a **Progressive Web App (PWA)** optimized for mobile use during ceremonies (dark mode, offline capable).

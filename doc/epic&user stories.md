@@ -1,8 +1,8 @@
-# Epics & User Stories: Camino Rojo Song Sharing App
+# Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.0
+**Version:** 1.3
 **Status:** Draft
-**Date:** December 25, 2025
+**Date:** January 10, 2026
 
 ## Changelog
 
@@ -11,6 +11,7 @@
 | **1.0** | Dec 25, 2025 | Initial Document Creation. Defined Epics and User Stories for Phases 1-4. |
 | **1.1** | Dec 29, 2025 | Added Story 1.3.3 (Navigation) and aligned UI mockups. |
 | **1.2** | Jan 04, 2026 | Added stories for Dashboard, Category Filtering, Desktop View, and YouTube links based on user feedback. |
+| **1.3** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -60,7 +61,7 @@ Scenario: Admin deletes a song
 ```
 Scenario: Successful Admin Login
   Given I am on the Login page
-  When I enter a valid email "admin@caminorojo.com" and valid password
+  When I enter a valid email "admin@sacredfire.com" and valid password
   And I click "Sign In"
   Then I should be redirected to the Home page
   And I should see Admin controls (e.g., Upload button, Delete icons)

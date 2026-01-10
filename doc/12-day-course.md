@@ -1,8 +1,8 @@
-# 11-Day Modern Web Development Curriculum: The Camino Rojo Project
+# 11-Day Modern Web Development Curriculum: The Sacred Fire Songs Project
 
-**Version:** 1.0
+**Version:** 1.4
 **Status:** Draft
-**Date:** December 25, 2025
+**Date:** January 10, 2026
 
 ## Changelog
 
@@ -12,6 +12,7 @@
 | **1.1** | Dec 29, 2025 | Inserted "Day 7: Bringing the Application to Life" (Animations). Merged Parsing logic into Day 6. |
 | **1.2** | Dec 29, 2025 | Added "Day 11: Automated Quality & CI/CD" (E2E Testing). |
 | **1.3** | Dec 29, 2025 | Inserted "Day 8: Production & Deployment". Renamed to 12-Day Curriculum. |
+| **1.4** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 
 
 **Student Profile:** Physics/IT Master, Exp. Software Engineering Teacher.
