@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.3
+**Version:** 1.4
 **Status:** Draft
 **Date:** January 10, 2026
 
@@ -12,6 +12,7 @@
 | **1.1** | Dec 29, 2025 | Added Story 1.3.3 (Navigation) and aligned UI mockups. |
 | **1.2** | Jan 04, 2026 | Added stories for Dashboard, Category Filtering, Desktop View, and YouTube links based on user feedback. |
 | **1.3** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
+| **1.4** | Jan 10, 2026 | Added Roles & Permissions Summary table. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -349,3 +350,20 @@ Scenario: Desktop Layout
   Then the list should be displayed in a grid or multi-column layout
   And the navigation menu should be always visible on the side (instead of a hamburger menu)
 ```
+
+## Roles & Permissions Summary
+
+| Feature / Action | Guest | Member | Musician | Admin |
+| :--- | :---: | :---: | :---: | :---: |
+| **Browse & Search Songs** | ✅ | ✅ | ✅ | ✅ |
+| **View Chords & Lyrics** | ✅ | ✅ | ✅ | ✅ |
+| **Listen to Audio/Video** | ✅ | ✅ | ✅ | ✅ |
+| **Play Melody (Synth)** | ✅ | ✅ | ✅ | ✅ |
+| **Favorite Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Vote on Versions** | ❌ | ✅ | ✅ | ✅ |
+| **Transpose Chords** | ❌ | ❌ | ✅ | ✅ |
+| **Create/Edit Setlists** | ❌ | ❌ | ✅ | ✅ |
+| **Export/Print PDF** | ❌ | ❌ | ✅ | ✅ |
+| **Submit New Version** | ❌ | ❌ | ✅ | ✅ |
+| **Upload/Edit Songs** | ❌ | ❌ | ❌ | ✅ |
+| **Delete Songs** | ❌ | ❌ | ❌ | ✅ |
