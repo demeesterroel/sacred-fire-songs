@@ -1,7 +1,9 @@
 ---
+trigger: glob
 description: Ensure documentation metadata (Version, Date, Changelog) is updated on every change.
 globs: doc/*.{md,sql,html}
 ---
+
 # Update Documentation Metadata
 
 Whenever you modify a file in the `doc/` directory (Markdown, SQL, or HTML):

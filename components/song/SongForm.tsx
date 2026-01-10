@@ -4,66 +4,105 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-type UploadFormData = {
+type SongFormData = {
     title: string;
     author: string;
     content: string;
 };
 
-export default function UploadForm() {
+interface SongFormProps {
+    mode: 'create' | 'edit';
+    initialData?: SongFormData;
+    songId?: string;
+    versionId?: string; // For updating the specific version
+}
+
+export default function SongForm({ mode, initialData, songId, versionId }: SongFormProps) {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<UploadFormData>();
+    } = useForm<SongFormData>({
+        defaultValues: initialData
+    });
 
     const queryClient = useQueryClient();
     const router = useRouter();
     const [serverError, setServerError] = useState<string | null>(null);
 
     const mutation = useMutation({
-        mutationFn: async (data: UploadFormData) => {
-            // 1. Insert Composition
-            const { data: composition, error: compError } = await supabase
-                .from('compositions')
-                .insert({
-                    title: data.title,
-                    original_author: data.author,
-                    primary_language: 'es', // Default for now
-                })
-                .select()
-                .single();
+        mutationFn: async (data: SongFormData) => {
+            if (mode === 'create') {
+                // 1. Insert Composition
+                const { data: composition, error: compError } = await supabase
+                    .from('compositions')
+                    .insert({
+                        title: data.title,
+                        original_author: data.author,
+                        primary_language: 'es', // Default for now
+                    })
+                    .select()
+                    .single();
 
-            if (compError) throw compError;
-            if (!composition) throw new Error('Failed to create composition');
+                if (compError) throw compError;
+                if (!composition) throw new Error('Failed to create composition');
 
-            // 2. Insert Version
-            const { error: versionError } = await supabase
-                .from('song_versions')
-                .insert({
-                    composition_id: composition.id,
-                    version_name: 'Standard',
-                    content_chordpro: data.content,
-                    capo: 0,
-                    vote_count: 0
-                });
+                // 2. Insert Version
+                const { error: versionError } = await supabase
+                    .from('song_versions')
+                    .insert({
+                        composition_id: composition.id,
+                        version_name: 'Standard',
+                        content_chordpro: data.content,
+                        capo: 0,
+                        vote_count: 0
+                    });
 
-            if (versionError) throw versionError;
+                if (versionError) throw versionError;
 
-            return composition;
+                return composition.id;
+            } else {
+                // UPDATE MODE
+                if (!songId || !versionId) throw new Error('Missing ID for update');
+
+                // 1. Update Composition
+                const { error: compError } = await supabase
+                    .from('compositions')
+                    .update({
+                        title: data.title,
+                        original_author: data.author,
+                    })
+                    .eq('id', songId);
+
+                if (compError) throw compError;
+
+                // 2. Update Version
+                const { error: versionError } = await supabase
+                    .from('song_versions')
+                    .update({
+                        content_chordpro: data.content,
+                    })
+                    .eq('id', versionId);
+
+                if (versionError) throw versionError;
+
+                return songId;
+            }
         },
-        onSuccess: () => {
+        onSuccess: (id) => {
             queryClient.invalidateQueries({ queryKey: ['songs'] });
-            router.push('/'); // Go back home
+            queryClient.invalidateQueries({ queryKey: ['song', id] });
+            router.push(mode === 'create' ? '/' : `/songs/${id}`);
         },
         onError: (error: any) => {
-            setServerError(error.message);
+            console.error('Mutation Error:', error);
+            setServerError(error.message || 'An unexpected error occurred.');
         }
     });
 
-    const onSubmit = (data: UploadFormData) => {
+    const onSubmit = (data: SongFormData) => {
         setServerError(null);
         mutation.mutate(data);
     };
@@ -130,7 +169,7 @@ export default function UploadForm() {
                         Saving...
                     </>
                 ) : (
-                    'Upload Song'
+                    mode === 'create' ? 'Add Song' : 'Save Changes'
                 )}
             </button>
         </form>
