@@ -166,7 +166,7 @@ create policy "Authenticated users can create compositions" on public.compositio
 create policy "Users can insert versions" on public.song_versions for insert with check ((select auth.uid()) = contributor_id);
 
 -- Setlist Policies (RLS enabled)
-create policy "Owners can view their setlists" on public.setlists for select to authenticated using (owner_id = (select auth.uid()));
+create policy "Owners can view their setlists" on public.setlists for select to authenticated using (owner_id = (select auth.uid()) and is_public = false);
 create policy "Owners can insert setlists" on public.setlists for insert to authenticated with check (owner_id = (select auth.uid()));
 create policy "Owners can update setlists" on public.setlists for update to authenticated using (owner_id = (select auth.uid()));
 create policy "Owners can delete setlists" on public.setlists for delete to authenticated using (owner_id = (select auth.uid()));
