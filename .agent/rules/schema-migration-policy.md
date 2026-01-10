@@ -1,7 +1,9 @@
 ---
+trigger: glob
 description: Ensure database schema documentation is kept in sync with migrations.
 globs: supabase/migrations/*.sql
 ---
+
 # Update Schema Documentation
 
 Whenever you create, modify, or delete a migration file in `supabase/migrations/`:

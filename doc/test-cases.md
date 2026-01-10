@@ -1,6 +1,6 @@
 # Test Cases: Sacred Fire Songs
 
-**Version:** 1.7
+**Version:** 1.8
 **Status:** Draft
 **Date:** January 10, 2026
 
@@ -16,6 +16,7 @@
 | **1.5** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 | **1.6** | Jan 10, 2026 | Updated cases for Member Uploads and Owner Editing. |
 | **1.7** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
+| **1.8** | Jan 10, 2026 | Added test cases for Non-Owner restriction and Admin override. |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -167,6 +168,25 @@ This document contains the test cases derived from the project's Epics and User 
     3. Save.
 - **Expected Results**:
     - Changes saved to database and reflected in viewer.
+
+#### TC-2.2.2: Non-owner cannot edit
+- **User Story**: 2.2.1
+- **Pre-conditions**: Member is logged in but is NOT the owner of the song.
+- **Steps**:
+    1. View a song owned by another user.
+- **Expected Results**:
+    - The "Edit Song" button is NOT visible.
+    - Direct access to `/songs/[id]/edit` shows an error or redirects.
+
+#### TC-2.2.3: Admin can edit any song
+- **User Story**: 2.2.1
+- **Pre-conditions**: User is logged in as Admin.
+- **Steps**:
+    1. View a song owned by a Member.
+    2. Click "Edit Song".
+- **Expected Results**:
+    - Edit form opens.
+    - Changes can be saved successfully.
 
 ### 2.3 Taxonomy
 
