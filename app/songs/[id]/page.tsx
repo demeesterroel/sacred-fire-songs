@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, notFound } from 'next/navigation';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/hooks/useAuth';
 import Header from '@/components/common/Header';
 import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
@@ -15,6 +17,7 @@ const fetchSong = async (id: string) => {
         .select(`
           title,
           original_author,
+          owner_id,
           song_versions (
             id,
             version_name,
@@ -38,14 +41,16 @@ export default function SongDetailPage() {
 
     const [selectedVersionIndex, setSelectedVersionIndex] = useState(0);
 
+    const { user, loading: authLoading } = useAuth();
+
     // The Query Hook
-    const { data: song, isLoading } = useQuery({
+    const { data: song, isLoading: songLoading } = useQuery({
         queryKey: ['song', id],
         queryFn: () => fetchSong(id!),
-        enabled: !!id, // Only fetch if we have an ID
+        enabled: !!id,
     });
 
-    if (isLoading) return <SongDetailSkeleton />;
+    if (songLoading || authLoading) return <SongDetailSkeleton />;
     if (!song) return notFound();
 
     const versions = song.song_versions || [];
@@ -53,8 +58,21 @@ export default function SongDetailPage() {
 
     return (
         <main className="flex-1 p-6 text-white min-h-0">
-            <h1 className="text-3xl font-bold text-red-500">{song.title}</h1>
-            <p className="text-gray-400 mt-1">by {song.original_author || 'Traditional'}</p>
+            <div className="flex justify-between items-start">
+                <div>
+                    <h1 className="text-3xl font-bold text-red-500">{song.title}</h1>
+                    <p className="text-gray-400 mt-1">by {song.original_author || 'Traditional'}</p>
+                </div>
+                {/* Edit Button for Owners or Admins */}
+                {user && (song.owner_id === user.id || user.role === 'admin') && (
+                    <Link
+                        href={`/songs/${id}/edit`}
+                        className="bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm font-bold border border-gray-700 transition-colors"
+                    >
+                        Edit Song
+                    </Link>
+                )}
+            </div>
 
             {/* Version Selector Pills */}
             {versions.length > 1 && (

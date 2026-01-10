@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Documentation Sync Policy
 
 All project artifacts must remain 100% synchronized with the codebase and each other.

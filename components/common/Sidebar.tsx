@@ -1,9 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Flame, LayoutGrid, Music, UploadCloud, Settings, LogOut } from 'lucide-react';
+import { Flame, LayoutGrid, Music, CloudUpload, Settings, LogOut } from 'lucide-react';
+import { useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
 
 export default function Sidebar() {
+    const { user, loading, mockRole, switchMockRole, logout } = useAuth();
+
     return (
         <aside className="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
             <div className="p-6">
@@ -25,9 +30,9 @@ export default function Sidebar() {
                         <Music className="w-5 h-5" />
                         Browse Songs
                     </Link>
-                    <Link href="/admin/upload" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                        <UploadCloud className="w-5 h-5" />
-                        Upload
+                    <Link href="/songs/add" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                        <CloudUpload className="w-5 h-5" />
+                        Add Song
                     </Link>
                     <Link href="#" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
                         <Settings className="w-5 h-5" />
@@ -77,13 +82,42 @@ export default function Sidebar() {
 
             {/* User Profile (Bottom Sidebar) */}
             <div className="mt-auto p-4 border-t border-gray-800 bg-gray-900/50">
-                <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">AG</div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white truncate">Admin Guest</p>
-                        <p className="text-xs text-gray-500 truncate">admin@sacredfire.com</p>
+                <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">
+                        {user ? (user.email?.charAt(0).toUpperCase() || '?') : '?'}
                     </div>
-                    <button><LogOut className="w-4 h-4 text-gray-500 hover:text-white" /></button>
+                    <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-white truncate">
+                            {user ? (user.email?.split('@')[0] || 'Member') : 'Guest'}
+                        </p>
+                        <p className="text-[10px] text-gray-500 truncate font-mono" title={user?.id || ''}>
+                            {user ? `ID: ${user.id.slice(0, 8)}...` : 'Not Logged In'}
+                        </p>
+                    </div>
+                    {user && (
+                        <button
+                            onClick={logout}
+                            title="Log Out"
+                            className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+                        >
+                            <LogOut className="w-4 h-4 text-gray-500 hover:text-white" />
+                        </button>
+                    )}
+                </div>
+
+                {/* Mock Role Switcher (Test Only) */}
+                <div className="pt-2 border-t border-gray-800/50">
+                    <select
+                        className="w-full bg-gray-800 text-xs text-gray-400 rounded px-2 py-1 border border-gray-700 focus:outline-none focus:border-red-500"
+                        value={mockRole || ''}
+                        onChange={(e) => switchMockRole(e.target.value || null)}
+                    >
+                        <option value="">-- Use Real Auth --</option>
+                        <option value="guest">Guest</option>
+                        <option value="mock-member">Mock Member</option>
+                        <option value="mock-musician">Mock Musician</option>
+                        <option value="mock-admin">Mock Admin</option>
+                    </select>
                 </div>
             </div>
         </aside>
