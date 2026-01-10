@@ -99,7 +99,7 @@ begin
   end if;
   return new;
 end;
-$$ language plpgsql;
+$$ language plpgsql security definer set search_path = public;
 
 create trigger trg_check_subcategory
 before insert or update on public.song_category_map
@@ -120,10 +120,11 @@ select
   concat(child.emoji, ' ', child.name, ' (', parent.emoji, ' ', parent.name, ')') as full_display_name
 from public.categories child
 join public.categories parent on child.parent_id = parent.id
-where child.parent_id is not null;
+where child.parent_id is not null
+with (security_invoker = true);
 
 -- View: Songs with Categories
-create or replace view public.song_with_categories as
+create or replace view public.song_with_categories with (security_invoker = true) as
 select 
   s.id as song_id,
   s.title,
@@ -156,7 +157,14 @@ create policy "Public versions are viewable by everyone" on public.song_versions
 
 -- Admin/Member Policies (Simplified for MVP)
 create policy "Allow admins/members to manage categories" on public.categories for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+-- Compositions: Authenticated creation
+create policy "Authenticated users can create compositions" on public.compositions for insert to authenticated with check (auth.role() = 'authenticated');
+-- Song Versions: Strict contributor check
 create policy "Users can insert versions" on public.song_versions for insert with check (auth.uid() = contributor_id);
+
+-- Setlist Policies (RLS enabled)
+create policy "Users can manage their own setlists" on public.setlists for all to authenticated using (auth.uid() = owner_id) with check (auth.uid() = owner_id);
+create policy "Public setlists are viewable by everyone" on public.setlists for select to public using (is_public = true);
 
 -- Setlist Items Policies
 create policy "Allow public read access" on public.setlist_items for select to public using (true);
