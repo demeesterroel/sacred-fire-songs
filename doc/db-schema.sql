@@ -1,13 +1,12 @@
 /*
-**Version:** 1.0
-**Status:** Draft
-**Date:** December 25, 2025
+**Version:** 2.0
+**Status:** Current
+**Date:** January 10, 2026
 
-## Changelog
-
-| Version | Date | Description of Changes |
-| ----- | ----- | ----- |
-| **1.0** | Dec 25, 2025 | Initial Schema Creation. |
+## Usage
+This script provides a complete setup for the "Sacred Fire Songs" database. 
+It consolidates the initial schema and all subsequent migrations up to Jan 10, 2026.
+Run this in the Supabase SQL Editor to initialize a fresh database.
 */
 
 -- Enable necessary extensions
@@ -15,13 +14,10 @@ create extension if not exists "uuid-ossp";
 
 -- 1. Create ENUMs
 create type user_role as enum ('admin', 'musician', 'member');
-create type category_type as enum ('Theme', 'Rhythm', 'Origin');
 
 -- 2. Create Tables
 
 -- PROFILES (Extends Supabase Auth)
--- Note: We link this to auth.users automatically via triggers in a real app, 
--- but for MVP we just define the table structure.
 create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
   email text unique not null,
@@ -29,15 +25,18 @@ create table public.profiles (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- CATEGORIES (Tags)
+-- CATEGORIES (Recursive Structure)
 create table public.categories (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid primary key default gen_random_uuid(),
   name text not null,
-  type category_type not null,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+  slug text not null unique,
+  emoji text,
+  flavour_text text,
+  parent_id uuid references public.categories(id),
+  created_at timestamptz default now()
 );
 
--- COMPOSITIONS (Parent Song)
+-- COMPOSITIONS (Parent Song entity)
 create table public.compositions (
   id uuid default uuid_generate_v4() primary key,
   title text not null,
@@ -46,11 +45,11 @@ create table public.compositions (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- COMPOSITION_CATEGORY (Join Table)
-create table public.composition_categories (
-  composition_id uuid references public.compositions(id) on delete cascade,
+-- SONG_CATEGORY_MAP (Join Table)
+create table public.song_category_map (
+  song_id uuid references public.compositions(id) on delete cascade,
   category_id uuid references public.categories(id) on delete cascade,
-  primary key (composition_id, category_id)
+  primary key (song_id, category_id)
 );
 
 -- SONG_VERSIONS (The actual playable content)
@@ -63,7 +62,7 @@ create table public.song_versions (
   key text,
   capo integer default 0,
   audio_url text,
-  youtube_url text,
+  youtube_url text, -- Video ID or URL for YouTube embed
   contributor_id uuid references public.profiles(id),
   vote_count integer default 0,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
@@ -89,23 +88,125 @@ create table public.setlist_items (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- 3. Row Level Security (RLS) Policies
--- This ensures security (e.g., only admins can delete songs)
+-- 3. Triggers & Functions
+
+-- Trigger to prevent linking songs to parent groups (only subcategories allowed)
+create or replace function public.check_is_subcategory()
+returns trigger as $$
+begin
+  if (select parent_id from public.categories where id = new.category_id) is null then
+    raise exception 'Songs can only be linked to subcategories, not parent groups.';
+  end if;
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger trg_check_subcategory
+before insert or update on public.song_category_map
+for each row execute function public.check_is_subcategory();
+
+-- 4. Views
+
+-- View: Category Details (for UI display)
+create or replace view public.category_details as
+select 
+  child.id as subcategory_id,
+  child.name as subcategory_name,
+  child.slug as subcategory_slug,
+  child.emoji as subcategory_emoji,
+  child.flavour_text,
+  parent.name as parent_group_name,
+  parent.emoji as parent_emoji,
+  concat(child.emoji, ' ', child.name, ' (', parent.emoji, ' ', parent.name, ')') as full_display_name
+from public.categories child
+join public.categories parent on child.parent_id = parent.id
+where child.parent_id is not null;
+
+-- View: Songs with Categories
+create or replace view public.song_with_categories as
+select 
+  s.id as song_id,
+  s.title,
+  jsonb_agg(
+    jsonb_build_object(
+      'category', cd.subcategory_name,
+      'emoji', cd.subcategory_emoji,
+      'parent', cd.parent_group_name
+    )
+  ) as categories
+from public.compositions s
+join public.song_category_map scm on s.id = scm.song_id
+join public.category_details cd on scm.category_id = cd.subcategory_id
+group by s.id, s.title;
+
+-- 5. Row Level Security (RLS) Policies
 
 alter table public.profiles enable row level security;
+alter table public.categories enable row level security;
 alter table public.compositions enable row level security;
+alter table public.song_category_map enable row level security;
 alter table public.song_versions enable row level security;
+alter table public.setlists enable row level security;
+alter table public.setlist_items enable row level security;
 
--- Policy: Everyone can read songs
-create policy "Public compositions are viewable by everyone"
-  on public.compositions for select
-  using ( true );
+-- Public Read Policies
+create policy "Allow public read access" on public.categories for select to public using (true);
+create policy "Public compositions are viewable by everyone" on public.compositions for select using (true);
+create policy "Public versions are viewable by everyone" on public.song_versions for select using (true);
 
-create policy "Public versions are viewable by everyone"
-  on public.song_versions for select
-  using ( true );
+-- Admin/Member Policies (Simplified for MVP)
+create policy "Allow admins/members to manage categories" on public.categories for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Users can insert versions" on public.song_versions for insert with check (auth.uid() = contributor_id);
 
--- Policy: Only authenticated users can insert (for Phase 2)
-create policy "Users can insert versions"
-  on public.song_versions for insert
-  with check ( auth.uid() = contributor_id );
+-- 6. SEED DATA (Categories)
+with groups as (
+  insert into public.categories (name, slug, emoji)
+  values 
+    ('The Elements', 'the-elements', '🌀'),
+    ('Nature', 'nature', '🌿'),
+    ('Languages', 'languages', '🗣️'),
+    ('Lineage & Tradition', 'lineage-tradition', '🌳'),
+    ('Medicine & Healing', 'medicine-healing', '🦅'),
+    ('Spiritual Concepts', 'spiritual-concepts', '✨')
+  returning id, name
+)
+insert into public.categories (name, slug, emoji, flavour_text, parent_id)
+values
+-- THE ELEMENTS
+('Water', 'water', '💧', 'Songs dedicated to the water element, rivers, and rain.', (select id from groups where name = 'The Elements')),
+('Air', 'air', '🌬️', 'Songs for the wind, the breath, and the invisible spirit.', (select id from groups where name = 'The Elements')),
+('Fire', 'fire', '🔥', 'Songs for the sacred fire, transformation, and warmth.', (select id from groups where name = 'The Elements')),
+('Earth', 'earth', '🌎', 'Songs for Pachamama and the physical grounding of the earth.', (select id from groups where name = 'The Elements')),
+-- NATURE
+('Animales', 'animales', '🐾', 'Songs dedicated to power animals like the Jaguar and Serpent.', (select id from groups where name = 'Nature')),
+('Bird', 'bird', '🦅', 'Melodies for the winged ones, the Condor, and the Eagle.', (select id from groups where name = 'Nature')),
+('Plantas', 'plantas', '🍃', 'Songs for specific master plants or general botanical spirits.', (select id from groups where name = 'Nature')),
+('Moon', 'moon', '🌙', 'Songs for Mama Quilla and the cycles of the night.', (select id from groups where name = 'Nature')),
+('Sun', 'sun', '☀️', 'Songs for Inti and the light of consciousness.', (select id from groups where name = 'Nature')),
+('Mountain', 'mountain', '🏔️', 'Hymns for the Apus and the sacred heights.', (select id from groups where name = 'Nature')),
+('Selva', 'selva', '🌳', 'Songs emerging from the heart of the jungle.', (select id from groups where name = 'Nature')),
+-- LANGUAGES
+('Spanish', 'espanol', '🇪🇸', 'Songs written or sung in Spanish.', (select id from groups where name = 'Languages')),
+('English', 'english', '🇬🇧', 'Songs written or sung in English.', (select id from groups where name = 'Languages')),
+('Quechua / Kichwa', 'quechua-kichwa', '🏔️', 'Traditional Andean songs in the native tongue.', (select id from groups where name = 'Languages')),
+('Portuguese', 'portuguese', '🇧🇷', 'Hinos and songs from the Brazilian traditions.', (select id from groups where name = 'Languages')),
+('Nahuatl', 'nahuatl', '🏹', 'Ancient songs from the Mexica and Mesoamerican traditions.', (select id from groups where name = 'Languages')),
+('Huni Kuin', 'huni-kuin', '🐍', 'Sacred chants in the Hatxa Kuin language.', (select id from groups where name = 'Languages')),
+-- LINEAGE & TRADITION
+('Andean', 'andean', '🧣', 'Songs from the high mountains and Q''ero traditions.', (select id from groups where name = 'Lineage & Tradition')),
+('Amazonian', 'amazonian', '🏹', 'Songs emerging from the Shipibo and Yawanawa lineages.', (select id from groups where name = 'Lineage & Tradition')),
+('Native American', 'native-american', '🪶', 'Songs from Northern traditions and the Red Road.', (select id from groups where name = 'Lineage & Tradition')),
+('Santo Daime / Umbanda', 'santo-daime-umbanda', '🌟', 'Specific religious spiritual lineages from Brazil.', (select id from groups where name = 'Lineage & Tradition')),
+('Traditional', 'traditional', '📜', 'Folk songs passed down through oral tradition.', (select id from groups where name = 'Lineage & Tradition')),
+-- MEDICINE & HEALING
+('Medicine Songs', 'medicine-songs', '🧪', 'The broad category for songs used in ceremony.', (select id from groups where name = 'Medicine & Healing')),
+('Icaros', 'icaros', '🎶', 'Healing chants used by maestros during plant ceremonies.', (select id from groups where name = 'Medicine & Healing')),
+('Healing / Limpieza', 'healing-limpieza', '🌿', 'Songs specifically for cleansing the energy field.', (select id from groups where name = 'Medicine & Healing')),
+('Protection', 'protection', '🛡️', 'Songs used to create a sacred container or ward off heavy energy.', (select id from groups where name = 'Medicine & Healing')),
+('Opening / Closing', 'opening-closing', '🔑', 'Songs used for the start or end of a ritual.', (select id from groups where name = 'Medicine & Healing')),
+-- SPIRITUAL CONCEPTS
+('Gratitude', 'gratitude', '🙏', 'Songs of thanks and deep appreciation.', (select id from groups where name = 'Spiritual Concepts')),
+('Love / Heart', 'love-heart', '💖', 'Songs focused on opening the Anahata heart center.', (select id from groups where name = 'Spiritual Concepts')),
+('Plegarias', 'plegarias', '🕯️', 'Devotional prayers and sacred invocations.', (select id from groups where name = 'Spiritual Concepts')),
+('Vocalization', 'vocalization', '🗣️', 'Songs focusing on the power of pure voice and tone.', (select id from groups where name = 'Spiritual Concepts')),
+('Women', 'women', '♀️', 'Songs celebrating the divine feminine and sisterhood.', (select id from groups where name = 'Spiritual Concepts'));
