@@ -158,6 +158,10 @@ create policy "Public versions are viewable by everyone" on public.song_versions
 create policy "Allow admins/members to manage categories" on public.categories for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "Users can insert versions" on public.song_versions for insert with check (auth.uid() = contributor_id);
 
+-- Setlist Items Policies
+create policy "Allow public read access" on public.setlist_items for select to public using (true);
+create policy "Allow authenticated users to manage items" on public.setlist_items for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+
 -- 6. SEED DATA (Categories)
 with groups as (
   insert into public.categories (name, slug, emoji)
