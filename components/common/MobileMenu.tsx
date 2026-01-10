@@ -102,7 +102,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">AG</div>
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-white truncate">Admin Guest</p>
-                            <p className="text-xs text-gray-500 truncate">admin@caminorojo.com</p>
+                            <p className="text-xs text-gray-500 truncate">admin@sacredfire.com</p>
                         </div>
                         <button><LogOut className="w-4 h-4 text-gray-500 hover:text-white" /></button>
                     </div>

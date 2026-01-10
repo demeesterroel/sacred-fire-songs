@@ -1,5 +1,5 @@
 /**
- * Camino Rojo - Data Contract
+ * Sacred Fire Songs - Data Contract
  * These interfaces map to the Supabase database schema and UI requirements.
  */
 

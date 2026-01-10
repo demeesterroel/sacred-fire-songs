@@ -17,7 +17,7 @@ export default function Header() {
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </Link>
                     <Link href="/" className="font-bold text-xl tracking-tight text-white hover:opacity-80 transition-opacity">
-                        Camino Rojo
+                        🔥Sacred Fire Songs
                     </Link>
                 </div>
 

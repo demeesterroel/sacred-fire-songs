@@ -1,39 +1,25 @@
--- Refactor Categories Table & Taxonomy
--- Replaces flat 'category_type' with hierarchical 'categories' table
--- Adapts user-provided 'songs' references to 'compositions'
 
-BEGIN;
-
--- 1. Clean up old schema
-DROP TABLE IF EXISTS public.composition_categories CASCADE;
-DROP TABLE IF EXISTS public.categories CASCADE;
-DROP TYPE IF EXISTS public.category_type CASCADE;
-DROP VIEW IF EXISTS public.category_details CASCADE;
-DROP VIEW IF EXISTS public.song_with_categories CASCADE;
-
--- 2. Create new Categories table
-create table public.categories (
+create table categories (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   slug text not null unique,
   emoji text,
   flavour_text text,
-  parent_id uuid references public.categories(id),
+  parent_id uuid references categories(id),
   created_at timestamptz default now()
 );
 
--- 3. Create new Map table (Adapting 'songs' -> 'compositions')
-create table public.song_category_map (
-  song_id uuid references public.compositions(id) on delete cascade,
-  category_id uuid references public.categories(id) on delete cascade,
+create table song_category_map (
+  song_id uuid references songs(id) on delete cascade,
+  category_id uuid references categories(id) on delete cascade,
   primary key (song_id, category_id)
 );
 
--- 4. Trigger to prevent linking to parent groups
-create or replace function public.check_is_subcategory()
+-- Prevents linking songs to parent groups
+create or replace function check_is_subcategory()
 returns trigger as $$
 begin
-  if (select parent_id from public.categories where id = new.category_id) is null then
+  if (select parent_id from categories where id = new.category_id) is null then
     raise exception 'Songs can only be linked to subcategories, not parent groups.';
   end if;
   return new;
@@ -41,12 +27,14 @@ end;
 $$ language plpgsql;
 
 create trigger trg_check_subcategory
-before insert or update on public.song_category_map
-for each row execute function public.check_is_subcategory();
+before insert or update on song_category_map
+for each row execute function check_is_subcategory();
 
--- 5. Seed Data
+
+
+
 with groups as (
-  insert into public.categories (name, slug, emoji)
+  insert into categories (name, slug, emoji)
   values 
     ('The Elements', 'the-elements', '🌀'),
     ('Nature', 'nature', '🌿'),
@@ -56,7 +44,7 @@ with groups as (
     ('Spiritual Concepts', 'spiritual-concepts', '✨')
   returning id, name
 )
-insert into public.categories (name, slug, emoji, flavour_text, parent_id)
+insert into categories (name, slug, emoji, flavour_text, parent_id)
 values
 -- THE ELEMENTS
 ('Water', 'water', '💧', 'Songs dedicated to the water element, rivers, and rain.', (select id from groups where name = 'The Elements')),
@@ -102,10 +90,12 @@ values
 ('Vocalization', 'vocalization', '🗣️', 'Songs focusing on the power of pure voice and tone.', (select id from groups where name = 'Spiritual Concepts')),
 ('Women', 'women', '♀️', 'Songs celebrating the divine feminine and sisterhood.', (select id from groups where name = 'Spiritual Concepts'));
 
--- 6. Create Views
 
--- View: Category Details (for UI display)
-create or replace view public.category_details as
+
+
+
+
+create or replace view category_details as
 select 
   child.id as subcategory_id,
   child.name as subcategory_name,
@@ -114,13 +104,16 @@ select
   child.flavour_text,
   parent.name as parent_group_name,
   parent.emoji as parent_emoji,
+  -- This creates a nice display string like "💧 Water (🌀 The Elements)"
   concat(child.emoji, ' ', child.name, ' (', parent.emoji, ' ', parent.name, ')') as full_display_name
-from public.categories child
-join public.categories parent on child.parent_id = parent.id
+from categories child
+join categories parent on child.parent_id = parent.id
 where child.parent_id is not null;
 
--- View: Songs with Categories (Adapting 'songs' -> 'compositions')
-create or replace view public.song_with_categories as
+
+
+
+create or replace view song_with_categories as
 select 
   s.id as song_id,
   s.title,
@@ -131,27 +124,40 @@ select
       'parent', cd.parent_group_name
     )
   ) as categories
-from public.compositions s
-join public.song_category_map scm on s.id = scm.song_id
-join public.category_details cd on scm.category_id = cd.subcategory_id
+from songs s
+join song_category_map scm on s.id = scm.song_id
+join category_details cd on scm.category_id = cd.subcategory_id
 group by s.id, s.title;
 
--- 7. RLS Policies
 
-alter table public.categories enable row level security;
-alter table public.song_category_map enable row level security;
+
+alter table categories enable row level security;
+alter table song_category_map enable row level security;
+
 
 -- Allow anyone (public) to read categories
 create policy "Allow public read access"
-on public.categories for select
+on categories for select
 to public
 using (true);
 
 -- Allow only authenticated users to manage categories (Insert/Update/Delete)
-create policy "Allow admins/members to manage categories"
-on public.categories for all
+create policy "Allow admins to manage categories"
+on categories for all
 to authenticated
 using (auth.role() = 'authenticated')
 with check (auth.role() = 'authenticated');
 
-COMMIT;
+
+-- Allow anyone (public) to read categories
+create policy "Allow public read access"
+on categories for select
+to public
+using (true);
+
+-- Allow only authenticated users to manage categories (Insert/Update/Delete)
+create policy "Allow admins to manage categories"
+on categories for all
+to authenticated
+using (auth.role() = 'authenticated')
+with check (auth.role() = 'authenticated');
