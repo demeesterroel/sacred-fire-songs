@@ -156,19 +156,27 @@ create policy "Public compositions are viewable by everyone" on public.compositi
 create policy "Public versions are viewable by everyone" on public.song_versions for select using (true);
 
 -- Admin/Member Policies (Simplified for MVP)
-create policy "Allow admins/members to manage categories" on public.categories for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+-- Admin/Member Policies (Optimized: Split actions, cached auth)
+create policy "Admins/Members can manage categories" on public.categories for insert to authenticated with check ((select auth.role()) = 'authenticated');
+create policy "Admins/Members can update categories" on public.categories for update to authenticated using ((select auth.role()) = 'authenticated');
+create policy "Admins/Members can delete categories" on public.categories for delete to authenticated using ((select auth.role()) = 'authenticated');
 -- Compositions: Authenticated creation
-create policy "Authenticated users can create compositions" on public.compositions for insert to authenticated with check (auth.role() = 'authenticated');
+create policy "Authenticated users can create compositions" on public.compositions for insert to authenticated with check ((select auth.role()) = 'authenticated');
 -- Song Versions: Strict contributor check
-create policy "Users can insert versions" on public.song_versions for insert with check (auth.uid() = contributor_id);
+create policy "Users can insert versions" on public.song_versions for insert with check ((select auth.uid()) = contributor_id);
 
 -- Setlist Policies (RLS enabled)
-create policy "Users can manage their own setlists" on public.setlists for all to authenticated using (auth.uid() = owner_id) with check (auth.uid() = owner_id);
+create policy "Owners can view their setlists" on public.setlists for select to authenticated using (owner_id = (select auth.uid()));
+create policy "Owners can insert setlists" on public.setlists for insert to authenticated with check (owner_id = (select auth.uid()));
+create policy "Owners can update setlists" on public.setlists for update to authenticated using (owner_id = (select auth.uid()));
+create policy "Owners can delete setlists" on public.setlists for delete to authenticated using (owner_id = (select auth.uid()));
 create policy "Public setlists are viewable by everyone" on public.setlists for select to public using (is_public = true);
 
 -- Setlist Items Policies
 create policy "Allow public read access" on public.setlist_items for select to public using (true);
-create policy "Allow authenticated users to manage items" on public.setlist_items for all to authenticated using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Auth users can insert setlist items" on public.setlist_items for insert to authenticated with check ((select auth.role()) = 'authenticated');
+create policy "Auth users can update setlist items" on public.setlist_items for update to authenticated using ((select auth.role()) = 'authenticated');
+create policy "Auth users can delete setlist items" on public.setlist_items for delete to authenticated using ((select auth.role()) = 'authenticated');
 
 -- 6. SEED DATA (Categories)
 with groups as (
