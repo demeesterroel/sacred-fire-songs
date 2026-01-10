@@ -1,11 +1,12 @@
 /*
-**Version:** 2.0
+**Version:** 2.1
 **Status:** Current
 **Date:** January 10, 2026
 
 ## Usage
 This script provides a complete setup for the "Sacred Fire Songs" database. 
 It consolidates the initial schema and all subsequent migrations up to Jan 10, 2026.
+(v2.1: Added owner_id to compositions and expanded RLS policies.)
 Run this in the Supabase SQL Editor to initialize a fresh database.
 */
 
@@ -42,6 +43,7 @@ create table public.compositions (
   title text not null,
   original_author text,
   primary_language text default 'ES',
+  owner_id uuid references public.profiles(id),
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
@@ -161,9 +163,15 @@ create policy "Admins/Members can manage categories" on public.categories for in
 create policy "Admins/Members can update categories" on public.categories for update to authenticated using ((select auth.role()) = 'authenticated');
 create policy "Admins/Members can delete categories" on public.categories for delete to authenticated using ((select auth.role()) = 'authenticated');
 -- Compositions: Authenticated creation
+-- Compositions: Authenticated creation, Owner Edit, Admin Edit
 create policy "Authenticated users can create compositions" on public.compositions for insert to authenticated with check ((select auth.role()) = 'authenticated');
--- Song Versions: Strict contributor check
+create policy "Owners can update their songs" on public.compositions for update to authenticated using (owner_id = (select auth.uid()));
+create policy "Admins can update all songs" on public.compositions for update to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
+
+-- Song Versions: Strict contributor check + Admin Override
 create policy "Users can insert versions" on public.song_versions for insert with check ((select auth.uid()) = contributor_id);
+create policy "Contributors can update their versions" on public.song_versions for update to authenticated using (contributor_id = (select auth.uid()));
+create policy "Admins can update all versions" on public.song_versions for update to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
 
 -- Setlist Policies (RLS enabled)
 create policy "Public setlists visible" on public.setlists for select to public using (is_public = true);
