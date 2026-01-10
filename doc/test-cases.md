@@ -1,6 +1,6 @@
 # Test Cases: Sacred Fire Songs
 
-**Version:** 1.5
+**Version:** 1.7
 **Status:** Draft
 **Date:** January 10, 2026
 
@@ -14,6 +14,8 @@
 | **1.3** | Dec 29, 2025 | Added TC-1.3.4 for Logo Navigation. |
 | **1.4** | Dec 29, 2025 | Added TC-1.1.4 for Guest Upload Prompt. |
 | **1.5** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
+| **1.6** | Jan 10, 2026 | Updated cases for Member Uploads and Owner Editing. |
+| **1.7** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -21,14 +23,14 @@ This document contains the test cases derived from the project's Epics and User 
 
 ### 1.1 Song Management (Admin)
 
-#### TC-1.1.1: Admin uploads valid ChordPro file
+#### TC-1.1.1: Member adds valid ChordPro file
 - **User Story**: 1.1.1
-- **Pre-conditions**: Admin is logged in, "Upload Song" page is open.
+- **Pre-conditions**: Member is logged in, "Add Song" page is open.
 - **Steps**:
     1. Select a valid `.cho` file (e.g., `43_Aguida.cho`).
-    2. Click "Upload".
+    2. Click "Add Song".
 - **Expected Results**:
-    - "Upload Successful" message appears.
+    - "Song Added Successfully" message appears.
     - New song entry is created in the database.
     - Song title "Agüita" is visible in the library.
 
@@ -52,11 +54,11 @@ This document contains the test cases derived from the project's Epics and User 
     - Redirected to the Home page.
     - Admin controls (Upload, Delete) are visible.
 
-#### TC-1.1.4: Guest tries to upload
+#### TC-1.1.4: Guest tries to add song
 - **User Story**: 1.1.5
 - **Pre-conditions**: Unauthenticated (Guest).
 - **Steps**:
-    1. Click the "Upload" icon in the header.
+    1. Click the "Add Song" icon in the header.
 - **Expected Results**:
     - A prompt appears: "Please join our circle to share medicine."
     - Links to Login/Signup are visible.
@@ -72,7 +74,7 @@ This document contains the test cases derived from the project's Epics and User 
     - List of songs is visible.
     - Each song card shows Title and Author.
     - Infinite scroll/pagination works as expected.
-    - Dashboard options "Upload", "Browse", "Settings" are visible (if on Home).
+    - Dashboard options "Add Song", "Browse", "Settings" are visible (if on Home).
 
 #### TC-1.2.2: Search for a song
 - **User Story**: 1.2.2
@@ -156,8 +158,9 @@ This document contains the test cases derived from the project's Epics and User 
 
 ### 2.2 Rich Editing
 
-#### TC-2.2.1: Manual Edit Song
+#### TC-2.2.1: Member edits their own song
 - **User Story**: 2.2.1
+- **Pre-conditions**: Member is logged in and is the owner of the song.
 - **Steps**:
     1. Click "Edit" on a song.
     2. Modify lyrics/chords in the text area.
