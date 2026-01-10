@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.4
+**Version:** 1.6
 **Status:** Draft
 **Date:** January 10, 2026
 
@@ -13,6 +13,8 @@
 | **1.2** | Jan 04, 2026 | Added stories for Dashboard, Category Filtering, Desktop View, and YouTube links based on user feedback. |
 | **1.3** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 | **1.4** | Jan 10, 2026 | Added Roles & Permissions Summary table. |
+| **1.5** | Jan 10, 2026 | Expanded song management stories (Members create, Owners edit). |
+| **1.6** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -23,14 +25,14 @@ This document breaks down the project roadmap into actionable Epics and User Sto
 
 ### Epic 1.1: Song Management (Admin)
 
-**Story 1.1.1: [Implemented]** As an Admin, I want to add a song using a web form so that I can copy-paste content directly.
+**Story 1.1.1: [Implemented]** As a Member, I want to add a song using a web form so that I can share medicine with the community.
 
 ```
 Scenario: Admin uploads via Form
   Given I am logged in as an Admin
-  And I am on the "Upload Song" page
+  And I am on the "Add Song" page
   When I fill in the Title "New Song" and Content "[C]Lyrics"
-  And I click the "Upload Song" button
+  And I click the "Add Song" button
   Then a new song should be created in the database
   And I should be redirected to the Home page
 ```
@@ -39,7 +41,7 @@ Scenario: Admin uploads via Form
 
 ```
 Scenario: Import metadata from File
-  Given I am on the Upload Song page
+  Given I am on the Add Song page
   When I upload a file containing "{title: Grandmother Earth} {author: Traditional}"
   Then the "Title" field should be automatically filled with "Grandmother Earth"
   And the "Author" field should be automatically filled with "Traditional"
@@ -73,7 +75,7 @@ Scenario: Successful Admin Login
 ```
 Scenario: Guest clicks Upload
   Given I am an unauthenticated Guest
-  When I click the "Upload Song" icon in the header
+  When I click the "Add Song" icon in the header
   Then I should see a modal or page saying "Please join our circle to share medicine."
   And I should be offered options to "Log In" or "Create Account"
 ```
@@ -181,7 +183,7 @@ Scenario: Play Melody
 
 ### Epic 2.2: Rich Editing
 
-**Story 2.2.1:** As an Admin, I want to edit song lyrics and chords in a text editor so that I can fix typos without re-uploading a file.
+**Story 2.2.1:** As a User, I want to edit the lyrics of a song I uploaded so that I can fix typos.
 
 ```
 Scenario: Manual Edit
@@ -365,5 +367,7 @@ Scenario: Desktop Layout
 | **Create/Edit Setlists** | ❌ | ❌ | ✅ | ✅ |
 | **Export/Print PDF** | ❌ | ❌ | ✅ | ✅ |
 | **Submit New Version** | ❌ | ❌ | ✅ | ✅ |
-| **Upload/Edit Songs** | ❌ | ❌ | ❌ | ✅ |
+| **Add/Create Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Edit All Songs** | ❌ | ❌ | ❌ | ✅ |
 | **Delete Songs** | ❌ | ❌ | ❌ | ✅ |

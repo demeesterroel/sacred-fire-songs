@@ -1,6 +1,6 @@
 # User Guide: Sacred Fire Songs
 
-**Version:** 1.1
+**Version:** 1.3
 **Status:** Draft
 **Date:** January 10, 2026
 
@@ -10,6 +10,8 @@
 | ----- | ----- | ----- |
 | **1.0** | Dec 25, 2025 | Initial Document Creation. User guide for Guests, Members, and Admins. |
 | **1.1** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
+| **1.2** | Jan 10, 2026 | Moved "Adding New Songs" to Member section. |
+| **1.3** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 
 
 Welcome to **Sacred Fire Songs**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
@@ -41,6 +43,11 @@ Sacred Fire Songs is a Progressive Web App (PWA). If you have viewed a song once
 ### 2.1 Favorites
 Once logged in, click the **Heart** icon on any song to add it to your personal library for quick access.
 
+### 2.2 Adding New Songs
+As a Member, you can add songs in two ways:
+1.  **File Upload**: Upload a `.cho` (ChordPro) file. The system will automatically extract the title and metadata.
+2.  **Manual Entry (Phase 2)**: Use the built-in editor to type or paste lyrics and chords directly.
+
 ### 2.2 Setlists (Phase 4)
 Build custom setlists for ceremonies.
 - **Manage**: Create a named list (e.g., "Full Moon Oct 2025") and add songs to it.
@@ -51,10 +58,7 @@ Build custom setlists for ceremonies.
 
 ## 3. For Administrators
 
-### 3.1 Adding New Songs
-As an admin, you can add songs in two ways:
-1.  **File Upload**: Upload a `.cho` (ChordPro) file. The system will automatically extract the title and metadata.
-2.  **Manual Entry (Phase 2)**: Use the built-in editor to type or paste lyrics and chords directly.
+
 
 ### 3.2 Managing the Library
 - **Edit**: Correct typos or update chords on existing songs.
