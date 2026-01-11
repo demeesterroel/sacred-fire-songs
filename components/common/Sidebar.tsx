@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
 
-export default function Sidebar() {
+const Sidebar = () => {
     const { user, loading, mockRole, switchMockRole, logout } = useAuth();
 
     return (
@@ -115,7 +115,7 @@ export default function Sidebar() {
                         <option value="">-- Use Real Auth --</option>
                         <option value="guest">Guest</option>
                         <option value="mock-member">Mock Member</option>
-                        <option value="mock-musician">Mock Musician</option>
+                        <option value="mock-expert">Mock Expert</option>
                         <option value="mock-admin">Mock Admin</option>
                     </select>
                 </div>
@@ -123,3 +123,5 @@ export default function Sidebar() {
         </aside>
     );
 }
+
+export default Sidebar;

@@ -19,7 +19,7 @@ interface SongFormProps {
     versionId?: string; // For updating the specific version
 }
 
-export default function SongForm({ mode, initialData, songId, versionId }: SongFormProps) {
+const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     const {
         register,
         handleSubmit,
@@ -102,13 +102,13 @@ export default function SongForm({ mode, initialData, songId, versionId }: SongF
         }
     });
 
-    const onSubmit = (data: SongFormData) => {
+    const handleFormSubmit = (data: SongFormData) => {
         setServerError(null);
         mutation.mutate(data);
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-gray-900 border border-white/10 p-6 rounded-2xl max-w-2xl mx-auto shadow-xl">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6 bg-gray-900 border border-white/10 p-6 rounded-2xl max-w-2xl mx-auto shadow-xl">
             <div className="space-y-2">
                 <label htmlFor="title" className="block text-sm font-medium text-gray-300">
                     Song Title
@@ -175,3 +175,5 @@ export default function SongForm({ mode, initialData, songId, versionId }: SongF
         </form>
     );
 }
+
+export default SongForm;

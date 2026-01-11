@@ -3,7 +3,7 @@
  * These interfaces map to the Supabase database schema and UI requirements.
  */
 
-export type UserRole = 'admin' | 'moderator' | 'user';
+export type UserRole = 'admin' | 'expert' | 'member';
 
 export type CategoryType = 'Theme' | 'Rhythm' | 'Origin';
 
