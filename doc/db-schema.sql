@@ -1,12 +1,12 @@
 /*
-**Version:** 2.1
+**Version:** 2.2
 **Status:** Current
-**Date:** January 10, 2026
+**Date:** January 11, 2026
 
 ## Usage
 This script provides a complete setup for the "Sacred Fire Songs" database. 
-It consolidates the initial schema and all subsequent migrations up to Jan 10, 2026.
-(v2.1: Added owner_id to compositions and expanded RLS policies.)
+It consolidates the initial schema and all subsequent migrations up to Jan 11, 2026.
+(v2.2: Added Mock Data for testing and implementation validation.)
 Run this in the Supabase SQL Editor to initialize a fresh database.
 */
 
@@ -235,3 +235,32 @@ values
 ('Plegarias', 'plegarias', '🕯️', 'Devotional prayers and sacred invocations.', (select id from groups where name = 'Spiritual Concepts')),
 ('Vocalization', 'vocalization', '🗣️', 'Songs focusing on the power of pure voice and tone.', (select id from groups where name = 'Spiritual Concepts')),
 ('Women', 'women', '♀️', 'Songs celebrating the divine feminine and sisterhood.', (select id from groups where name = 'Spiritual Concepts'));
+-- 7. TEST DATA (Mock Users & Songs) - OPTIONAL
+-- Run this section to populate the database with test users and songs for development.
+
+-- 7.1 Insert Mock Users (Member, Musician, Admin)
+INSERT INTO auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, created_at, updated_at)
+VALUES 
+    ('11111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'member@mock.com', '$2y$10$MockHashPassword............', now(), now(), now()),
+    ('22222222-2222-2222-2222-222222222222', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'musician@mock.com', '$2y$10$MockHashPassword............', now(), now(), now()),
+    ('33333333-3333-3333-3333-333333333333', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'admin@mock.com', '$2y$10$MockHashPassword............', now(), now(), now())
+ON CONFLICT (id) DO NOTHING;
+
+-- 7.2 Insert Mock Profiles
+INSERT INTO public.profiles (id, email, role)
+VALUES 
+    ('11111111-1111-1111-1111-111111111111', 'member@mock.com', 'member'),
+    ('22222222-2222-2222-2222-222222222222', 'musician@mock.com', 'musician'),
+    ('33333333-3333-3333-3333-333333333333', 'admin@mock.com', 'admin')
+ON CONFLICT (id) DO UPDATE SET role = EXCLUDED.role;
+
+-- 7.3 Update/Create Test Songs
+-- Ensure 'Victory Song' exists, or create it if not present, then assign to Mock Member
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM public.compositions WHERE title = 'Victory Song') THEN
+        UPDATE public.compositions
+        SET title = 'Victory Member Song', owner_id = '11111111-1111-1111-1111-111111111111'
+        WHERE title = 'Victory Song';
+    END IF;
+END $$;

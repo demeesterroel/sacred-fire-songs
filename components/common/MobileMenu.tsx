@@ -13,7 +13,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-    const { user, loading, mockRole, switchMockRole } = useAuth();
+    const { user, loading, mockRole, switchMockRole, logout } = useAuth();
     // Prevent body scrolling when menu is open
     useEffect(() => {
         if (isOpen) {

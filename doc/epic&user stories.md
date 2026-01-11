@@ -1,8 +1,8 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.6
+**Version:** 1.7
 **Status:** Draft
-**Date:** January 10, 2026
+**Date:** January 11, 2026
 
 ## Changelog
 
@@ -15,6 +15,7 @@
 | **1.4** | Jan 10, 2026 | Added Roles & Permissions Summary table. |
 | **1.5** | Jan 10, 2026 | Expanded song management stories (Members create, Owners edit). |
 | **1.6** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
+| **1.7** | Jan 11, 2026 | Implemented Edit Song (Story 2.2.1), Access Control, Mock Auth, and Logout. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -183,7 +184,7 @@ Scenario: Play Melody
 
 ### Epic 2.2: Rich Editing
 
-**Story 2.2.1:** As a User, I want to edit the lyrics of a song I uploaded so that I can fix typos.
+**Story 2.2.1: [Implemented]** As a User, I want to edit the lyrics of a song I uploaded so that I can fix typos.
 
 ```
 Scenario: Manual Edit
