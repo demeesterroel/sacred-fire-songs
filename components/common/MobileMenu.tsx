@@ -12,7 +12,7 @@ interface MobileMenuProps {
     onClose: () => void;
 }
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     const { user, loading, mockRole, switchMockRole, logout } = useAuth();
     // Prevent body scrolling when menu is open
     useEffect(() => {
@@ -134,7 +134,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             <option value="">-- Use Real Auth --</option>
                             <option value="guest">Guest</option>
                             <option value="mock-member">Mock Member</option>
-                            <option value="mock-musician">Mock Musician</option>
+                            <option value="mock-expert">Mock Expert</option>
                             <option value="mock-admin">Mock Admin</option>
                         </select>
                     </div>
@@ -143,3 +143,5 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
     );
 }
+
+export default MobileMenu;

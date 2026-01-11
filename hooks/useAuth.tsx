@@ -20,7 +20,7 @@ export interface AuthUser {
     role: UserRole;
 }
 
-export function useAuth() {
+export const useAuth = () => {
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
     const [mockRole, setMockRole] = useState<string | null>(null);
