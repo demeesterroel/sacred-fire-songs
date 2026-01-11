@@ -1,8 +1,8 @@
 # Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.15
+**Version:** 1.16
 **Status:** Living Document
-**Date:** January 10, 2026
+**Date:** January 11, 2026
 
 ## Changelog
 
@@ -12,6 +12,7 @@
 | **...** | ... | (Previous versions 1.1 - 1.13 retained in history) |
 | **1.14** | Dec 29, 2025 | **Major Update:** Aligned document with Day 9 Implementation. Added `TanStack Query` to architecture. Verified `compositions` and `song_versions` schema. Marked Phase 1 features as Implemented. |
 | **1.15** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. Updated references to community name. |
+| **1.16** | Jan 11, 2026 | Implemented Edit Song, Access Denied, Mock Auth & Logout. Updated Screen Inventory. |
 
 ## 1. Introduction
 
@@ -61,9 +62,9 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 * **[x] Navigation:** Persistent Header and Back Button integration.
 
 ### Phase 2: Minimal Lovable Product (MLP) - [IN PROGRESS]
-* **[ ] Transposition:** UI controls to shift keys.
-* **[ ] Melody:** ABC Notation rendering.
-* **[ ] Rich Editing:** Admin interface.
+* **[ ]** Transposition: UI controls to shift keys.
+* **[ ]** Melody: ABC Notation rendering.
+* **[x]** Rich Editing: Create/Edit Songs (Owner/Admin).
 
 ### Phase 3 & 4 (Future)
 * User Accounts, Favorites, Setlists, PDF Export.
@@ -117,5 +118,14 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 ### 7.3 Screen 3: Login
 * **Status:** Mockup Only (Doc). Implementation Pending.
 
-### 7.4 Screen 4: Upload
-* **Status:** Mockup Only (Doc). Implementation Pending.
+### 7.4 Screen 4: Add Song
+* **Status:** Implemented (`app/songs/add/page.tsx`).
+* **Features:** Reuseable `SongForm`, Client-Side Access Control.
+
+### 7.5 Screen 5: Edit Song
+* **Status:** Implemented (`app/songs/[id]/edit/page.tsx`).
+* **Features:** Route Protection (Owner/Admin), Data Prefill, Save Mutation.
+
+### 7.6 Screen 6: Access Denied
+* **Status:** Implemented (`components/common/AccessDenied.tsx`).
+* **Features:** Visual error page for unauthorized edit attempts.
