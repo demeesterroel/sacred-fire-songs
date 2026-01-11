@@ -134,7 +134,6 @@ Scenario: Display YouTube Video
   When I view the Song Detail page
   Then I should see an embedded YouTube player
 ```
-```
 
 **Story 1.3.3: [Implemented]** As a Guest, I want to navigate back to the home screen from any page so that I can easily browse more songs.
 
