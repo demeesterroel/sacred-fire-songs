@@ -207,7 +207,7 @@ Scenario: Filter by Category
   And songs tagged with "Fire" should be hidden
 ```
 
-**Story 2.3.2:** As a Guest, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
+**Story 2.3.2:** As a Guest & Authenticated Member, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
 
 ```
 Scenario: Open Filter Menu
@@ -220,15 +220,6 @@ Scenario: Open Filter Menu
 
 ```
 
-**Story 2.3.2:** As a User, I want to open a side menu (hamburger) to access filters easily without cluttering the main view.
-
-```
-Scenario: Open Filter Menu
-  Given I am on the Song List page
-  When I click the hamburger menu icon
-  Then a side drawer should slide in
-  And I should see filter options for "Theme", "Rhythm", etc.
-```
 
 ## Phase 3: Community & Evolution
 
