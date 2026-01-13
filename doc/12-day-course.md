@@ -54,7 +54,7 @@
 
 * **Action:**
 
-  * Analyze the generated `screen_1_home.html` code.
+  * Analyze the generated `doc/screens/screen1_home.html` code.
 
   * **Task:** Break Screen 1 into React Components: `Header.tsx`, `SearchBar.tsx`, `SongCard.tsx`.
 

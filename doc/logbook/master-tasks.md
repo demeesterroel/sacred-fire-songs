@@ -1,0 +1,119 @@
+# Tasks
+
+- [x] **Project Foundation (Dec 25-26)**
+    - [x] Initialize Next.js Project & Config.
+    - [x] Define Core Data Contract (`types.ts`).
+    - [x] Create UI Component Architecture (`Header`, `SearchBar`, `SongCard`).
+    - [x] Implement Tailwind CSS Design System (Dark Mode, Glassmorphism).
+- [x] **Core Feature Sprint (Dec 29)**
+    - [x] Implement Search Filter Logic (`useState`, `useEffect`).
+    - [x] Integrate Supabase Client & Initial Schema (`compositions`, `song_versions`).
+    - [x] Build ChordPro Parser & Renderer logic.
+    - [x] Create UX Polish Features (Skeletons, 404 Page, Animations).
+    - [x] Implement Offline Support with React Query.
+    - [x] Create "Add Song" Mutation Logic.
+- [x] **Infrastructure & Roles (Jan 04)**
+    - [x] Establish CI/CD Pipeline (`deploy-db.yml`).
+    - [x] Refactor Initial Roles (User->Member, Moderator->Musician).
+    - [x] Refactor Category Schema (Hierarchical Tree).
+- [x] Investigate local `supabase/migrations` directory and compare with reported missing timestamp. <!-- id: 0 -->
+- [x] Analyze `.github/workflows` to understand deployment configuration. <!-- id: 1 -->
+- [x] Formulate a plan to resolve the migration mismatch (syncing or repairing). <!-- id: 2 -->
+- [x] Guide user or apply fixes to local codebase if applicable. <!-- id: 3 -->
+- [x] Check if `doc/db-schema.sql` is up to date with recent migrations. <!-- id: 4 -->
+- [x] If outdated, generate a new full schema dump and update `doc/db-schema.sql`. <!-- id: 5 -->
+- [x] Document the process for fresh installs (using migrations vs schema file). <!-- id: 6 -->
+- [x] Create automation plan (Workflow). <!-- id: 7 -->
+- [x] Create `.agent/workflows/update-schema.md`. <!-- id: 8 -->
+- [x] Test workflow with detailed steps (Dummy migration -> Run Workflow -> Verify). <!-- id: 9 -->
+- [x] Create `.agent/rules/schema-migration-policy.md` to instruct agent behavior. <!-- id: 10 -->
+- [x] Verify the rule by performing a migration and observing agent behavior (optional/manual). <!-- id: 11 -->
+- [x] Resolve RLS warning for `public.setlist_items`. <!-- id: 12 -->
+    - [x] Create migration to enable RLS.
+    - [x] **RULE CHECK**: Update `doc/db-schema.sql` to reflect this.
+- [x] specific verified that this triggers a deploy-db workflow and resolves RLS warning (via push). <!-- id: 13 -->
+- [x] Resolve additional security warnings. <!-- id: 14 -->
+    - [x] Enable RLS on `setlists`.
+    - [x] Fix mutable search_path on `check_is_subcategory`.
+    - [x] Harden INSERT policies for `compositions` and `song_versions`.
+    - [x] Investigate/Fix SECURITY DEFINER on views.
+    - [x] **RULE CHECK**: Sync `doc/db-schema.sql`.
+- [x] Resolve 8 performance warnings. <!-- id: 15 -->
+    - [x] Optimize `auth.uid()` calls with `(select auth.uid())`.
+    - [x] Consolidate "Multiple Permissive Policies" (overlap between Public and Auth roles).
+    - [x] **RULE CHECK**: Sync `doc/db-schema.sql`.
+- [x] Resolve `setlists` "Multiple Permissive Policies" warning. <!-- id: 16 -->
+    - [x] Consolidate overlapping SELECT policies for `setlists`.
+    - [x] **RULE CHECK**: Sync `doc/db-schema.sql`.
+    - [x] **RE-FIX**: Apply specific Supabase suggestion (TO public / TO authenticated). <!-- id: 17 -->
+- [x] Create Roles & Permissions Summary Table. <!-- id: 18 -->
+    - [x] Analyze `doc/epic&user stories.md`.
+    - [x] Generate table and append to documentation.
+- [x] Setup Doc Changelog Automation. <!-- id: 19 -->
+    - [x] Analyze file headers in `doc/`.
+    - [x] Create `.agent/rules/doc-changelog-policy.md`.
+    - [x] Create `.agent/workflows/update-doc-changelog.md`.
+    - [x] **VERIFY**: Manually applied changelog update to `doc/epic&user stories.md` (Version 1.4). <!-- id: 20 -->
+- [x] Expand Song Management Permissions. <!-- id: 21 -->
+    - [x] Plan: Add `owner_id` to `compositions` and update policies.
+    - [x] Doc: Update `doc/epic&user stories.md` (Stories + Role Table).
+    - [x] Migration: Add column and update RLS.
+    - [x] **RULE CHECK**: Sync `doc/db-schema.sql`.
+- [x] **CORRECTION**: Apply `doc-changelog-policy` to files from Task 21. <!-- id: 22 -->
+    - [x] Update `doc/epic&user stories.md` (v1.5).
+    - [x] Update `doc/db-schema.sql` (v2.1).
+- [x] Sync Other Docs with Permission Changes. <!-- id: 23 -->
+    - [x] Review `test-cases.md`, `user-guide.md`, `screen4_song_upload.html`.
+    - [x] Update content to reflect "Users can Create" and "Owners can Edit".
+    - [x] **RULE CHECK**: Apply `doc-changelog-policy` to all updated files.
+- [x] Refactor "Song Upload" to "Add Song". <!-- id: 24 -->
+    - [x] Rename `doc/screen4_song_upload.html` to `doc/screen4_add_song.html`.
+    - [x] Update text in `doc/epic&user stories.md`.
+    - [x] Update text in `doc/test-cases.md`.
+    - [x] Update text in `doc/user-guide.md`.
+    - [x] Update text in `doc/screen1_home.html` (Dashboard links).
+    - [x] **RULE CHECK**: Apply `doc-changelog-policy` to all updated files.
+- [x] Implement "Edit Own Song" Feature. <!-- id: 25 -->
+    - [x] Create `components/song/SongForm.tsx` (Create/Edit modes).
+    - [x] Delete `components/admin/UploadForm.tsx`.
+    - [x] Refactor Route: `app/admin/upload` -> `app/songs/add`.
+    - [x] Create `app/songs/[id]/edit/page.tsx`.
+    - [x] Update `app/songs/[id]/page.tsx` (Edit Button).
+    - [x] Update Navigation Links (`/admin/upload` -> `/songs/add`).
+    - [ ] **RULE CHECK**: If docs/mockups are updated, apply changelog policy.
+- [x] Sync User Info in UI (Sidebar & MobileMenu). <!-- id: 26 -->
+    - [x] Update `Sidebar.tsx` to fetch and show real email.
+    - [x] Update `MobileMenu.tsx` to fetch and show real email & ID.
+- [x] Restrict Edit Access. <!-- id: 27 -->
+    - [x] Create `doc/screen5_access_denied.html` (HTML Mockup).
+    - [x] Create `components/common/AccessDenied.tsx` (React Component).
+    - [x] Implement server/client-side owner check in `edit/page.tsx`.
+    - [x] Implement server/client-side owner check in `edit/page.tsx`.
+    - [x] Show Denial page if user is guest or non-owner.
+- [x] Implement Mock Role Switcher (Test Feature). <!-- id: 28 -->
+    - [x] Create `hooks/useAuth.tsx` (Wraps Supabase + LocalStorage Mock).
+    - [x] Refactor `Sidebar.tsx`, `MobileMenu.tsx` to use `useAuth`.
+    - [x] Refactor `app/songs/[id]/page.tsx` (Detail) to use `useAuth`.
+    - [x] Refactor `app/songs/[id]/edit/page.tsx` (Edit) to use `useAuth`.
+    - [x] Refactor `app/songs/[id]/edit/page.tsx` (Edit) to use `useAuth`.
+    - [x] Add Role Switcher Dropdown to `Sidebar` and `MobileMenu`.
+    - [x] Rename Test users to Mock users and migration DB data. <!-- id: 29 -->
+- [x] Implement Logout Functionality. <!-- id: 30 -->
+    - [x] Update `useAuth` to include `logout` method.
+    - [x] Connect Logout button in `Sidebar` and `MobileMenu`.
+    - [x] Connect Logout button in `Sidebar` and `MobileMenu`.
+- [x] Refactor 'Musician' Role to 'Expert'. <!-- id: 31 -->
+    - [x] Update Documentation (`stories`, `analysis`, `schema`, `user-guide`).
+    - [x] Create Database Migration (Rename ENUM, Update Profiles).
+    - [x] Update Code (`useAuth`, Components, Types).
+    - [x] Update Seed Data (`seed_mock_data.sql`).
+- [x] Refactor Code to Next.js Guidelines. <!-- id: 32 -->
+    - [x] Convert `Sidebar`, `MobileMenu`, `SongForm`, `useAuth` to Arrow Functions.
+    - [x] Ensure event handlers start with `handle`.
+- [x] Move `doc/screen*.html` to `doc/screens/` folder.
+- [x] **GitHub Issue Migration (Jan 13)**
+    - [x] Create script to convert `doc/epic&user stories.md` to GitHub Issues.
+    - [x] Link historical commits to new issues.
+    - [x] Reconcile Stories vs Issues (Identified missing/duplicates).
+    - [x] Fix Duplicates (Removed dupes for 1.2.1 and 2.3.2).
+    - [x] **RULE CHECK**: Ensure `doc/epic&user stories.md` is updated (Version 1.7).
