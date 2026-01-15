@@ -167,11 +167,15 @@ create policy "Admins/Members can delete categories" on public.categories for de
 create policy "Authenticated users can create compositions" on public.compositions for insert to authenticated with check ((select auth.role()) = 'authenticated');
 create policy "Owners can update their songs" on public.compositions for update to authenticated using (owner_id = (select auth.uid()));
 create policy "Admins can update all songs" on public.compositions for update to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
+create policy "Admins can delete songs" on public.compositions for delete to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
+
 
 -- Song Versions: Strict contributor check + Admin Override
 create policy "Users can insert versions" on public.song_versions for insert with check ((select auth.uid()) = contributor_id);
 create policy "Contributors can update their versions" on public.song_versions for update to authenticated using (contributor_id = (select auth.uid()));
 create policy "Admins can update all versions" on public.song_versions for update to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
+create policy "Admins can delete versions" on public.song_versions for delete to authenticated using ((select role from public.profiles where id = (select auth.uid())) = 'admin');
+
 
 -- Setlist Policies (RLS enabled)
 create policy "Public setlists visible" on public.setlists for select to public using (is_public = true);
