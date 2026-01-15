@@ -112,15 +112,18 @@
     - [x] Ensure event handlers start with `handle`.
 - [x] Move `doc/screen*.html` to `doc/screens/` folder.
 - [x] **GitHub Issue Migration (Jan 13)**
-    - [x] Create script to convert `doc/epic&user stories.md` to GitHub Issues.
+    - [x] Create script to convert `doc/logbook/epic&user stories.md` to GitHub Issues.
     - [x] Link historical commits to new issues.
     - [x] Reconcile Stories vs Issues (Identified missing/duplicates).
     - [x] Fix Duplicates (Removed dupes for 1.2.1 and 2.3.2).
-    - [x] **RULE CHECK**: Ensure `doc/epic&user stories.md` is updated (Version 1.7).
+    - [x] **RULE CHECK**: Ensure `doc/logbook/epic&user stories.md` is updated (Version 1.7).
 - [x] Create Pull Request Template (`.github/pull_request_template.md`).
 - [x] **User Implementation (Jan 14)**
     - [x] Redesign Add Song Screen (Story 1.1.2).
-- [ ] **Story 1.1.3: Delete Song (Issue #2)**
+        - [x] Create Expandable Upload UI.
+        - [x] Implement File Parsing Logic (.cho).
+        - [x] Verify Import Flow (Browser Subagent).
+- [x] **Story 1.1.3: Delete Song (Issue #2)**
     - [x] Create Feature Branch.
     - [x] Create Implementation Plan.
     - [x] Implement Backend (Delete Action/API).
@@ -128,11 +131,18 @@
     - [x] Verify Access Control (Admin only).
     - [x] Verify with Test Case (Browser Subagent).
 
+- [ ] **Infrastructure Enhancements**
+    - [x] Create `code-review` skill.
+
 - [ ] **Critical Bugs**
     - [x] **Bug #30: RLS Violation on Add Song**
         - [x] Create Fix Branch (`fix/issue-30-rls-add-song`).
         - [x] Investigate RLS Policy for `INSERT` on `compositions`.
         - [x] Apply Fix (Created Migration `allow_public_inserts.sql`).
 
+    - [x] **Bug #31: Song Update Failure**
+        - [x] Create Issue & Branch.
+        - [x] Reproduce Bug (Confirmed RLS blocking Mock Mode).
+        - [x] Fix & Verify (Applied public update policy).
 
 
