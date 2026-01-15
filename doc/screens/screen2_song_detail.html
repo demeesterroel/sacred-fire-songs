@@ -71,26 +71,36 @@
 
         <!-- App Header (Navigation) -->
         <header
-            class="flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 ring-1 ring-white/5">
-            <div class="flex items-center gap-3">
+            class="flex justify-between items-center px-4 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 ring-1 ring-white/5">
+            <div class="flex items-center gap-3 overflow-hidden">
                 <!-- Logo -->
                 <div
-                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 transition-transform hover:scale-105 active:scale-95 cursor-pointer">
+                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
                     <i data-lucide="flame" class="text-white w-6 h-6 fill-current"></i>
                 </div>
-                <h1 class="font-bold text-xl tracking-tight text-white drop-shadow-sm">Sacred Fire Songs</h1>
+                <h1 class="font-bold text-lg tracking-tight text-white drop-shadow-sm truncate">Sacred Fire Songs</h1>
             </div>
 
-            <!-- Edit Song -->
-            <button
-                class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
-                <i data-lucide="edit" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-            </button>
-            <!-- Back Button -->
-            <a href="/"
-                class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10 group">
-                <i data-lucide="arrow-left" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-            </a>
+            <div class="flex items-center gap-2 shrink-0">
+                <!-- Delete Song (Admin) -->
+                <button
+                    class="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20"
+                    title="Delete Song (Admin Only)">
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Edit Song -->
+                <button
+                    class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10">
+                    <i data-lucide="edit-2" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Back Button -->
+                <a href="screen1_home.html"
+                    class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+            </div>
         </header>
 
         <!-- Song Metadata -->

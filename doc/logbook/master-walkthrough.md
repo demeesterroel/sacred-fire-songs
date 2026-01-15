@@ -66,6 +66,8 @@
 | **Deployment** | 🔄 Pending | CI/CD ready, Manual deploy needed |
 
 
+
+
 ## Session Update (Jan 13, 2026)
 
 ### Project Walkthrough & History
@@ -135,7 +137,10 @@
 | **Database** | ✅ Ready | Schema v2.1, RLS Enabled |
 | **Deployment** | 🔄 Pending | CI/CD ready, Manual deploy needed |
 
-# Session Update (Jan 13, 2026 - Part 2)
+
+## Session Update (Jan 13, 2026 - Part 2)
+
+
 
 ## 6. GitHub Issue Migration
 **Goal:** Professionalize project management by moving from Markdown to GitHub Issues.
@@ -156,3 +161,20 @@
 ## Current State
 -   **Issues**: 100% Synced (27 Unique Stories = 27 Issues).
 -   **Docs**: Validated and linked.
+
+
+# Session Update (Jan 15, 2026 - Delete Song)
+
+## 4. Delete Song (Admin Only)
+- **Problem**: Admins needed a way to remove duplicate or incorrect songs.
+- **Solution**: Added a "Trash" icon to the song detail header, protected by a confirmation modal.
+- **Safety**: 
+    - Visible only to `admin` role.
+    - Requires strict confirmation ("This action cannot be undone").
+    - RLS Policies enforce server-side security.
+
+![Delete Confirmation Modal](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
+
+## Verification
+
+

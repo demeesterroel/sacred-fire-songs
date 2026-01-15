@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Confirmation - Sacred Fire Songs</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen relative overflow-hidden">
+
+    <!-- Background Blur Simulation -->
+    <div
+        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511376777868-611b54f6c947?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 blur-sm">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/95 to-slate-950"></div>
+
+    <!-- Main Content (Blurred) -->
+    <div class="relative z-10 max-w-2xl mx-auto px-6 py-8 blur-sm pointer-events-none select-none">
+        <header class="flex justify-between items-start mb-8">
+            <div>
+                <a href="screen1_home.html"
+                    class="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Back to Library
+                </a>
+                <h1 class="text-4xl font-bold mb-2">Grandmother Earth</h1>
+                <p class="text-gray-400">Traditional</p>
+            </div>
+        </header>
+        <!-- Song Content -->
+        <!-- ... content obscured by blur ... -->
+    </div>
+
+    <!-- Modal Overlay -->
+    <div
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+        <!-- Modal Card -->
+        <div
+            class="bg-slate-900 border border-red-500/20 rounded-2xl p-6 max-w-md w-full shadow-2xl shadow-red-900/20 transform scale-100 animate-in zoom-in-95 duration-200">
+
+            <div class="flex items-center gap-4 mb-6 text-red-500">
+                <div class="p-3 bg-red-500/10 rounded-full">
+                    <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Delete Song?</h3>
+                    <p class="text-red-400 text-sm">This action cannot be undone.</p>
+                </div>
+            </div>
+
+            <p class="text-gray-300 mb-8 leading-relaxed">
+                Are you sure you want to delete <strong class="text-white">"Grandmother Earth"</strong> from the
+                library? This will permanently remove the song, all its versions, and associated history.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="window.location.href='screen2_song_detail.html'"
+                    class="px-4 py-3 rounded-xl font-semibold text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+                    Cancel
+                </button>
+                <button onclick="alert('Song Deleted!'); window.location.href='screen1_home.html'"
+                    class="px-4 py-3 rounded-xl font-bold bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-900/20 transition-all">
+                    Yes, Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

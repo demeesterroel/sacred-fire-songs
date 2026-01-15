@@ -117,3 +117,13 @@
     - [x] Reconcile Stories vs Issues (Identified missing/duplicates).
     - [x] Fix Duplicates (Removed dupes for 1.2.1 and 2.3.2).
     - [x] **RULE CHECK**: Ensure `doc/epic&user stories.md` is updated (Version 1.7).
+- [x] Create Pull Request Template (`.github/pull_request_template.md`).
+- [x] **User Implementation (Jan 14)**
+    - [x] Redesign Add Song Screen (Story 1.1.2).
+- [ ] **Story 1.1.3: Delete Song (Issue #2)**
+    - [x] Create Feature Branch.
+    - [x] Create Implementation Plan.
+    - [x] Implement Backend (Delete Action/API).
+    - [x] Implement UI (Delete Button + Confirmation Modal).
+    - [x] Verify Access Control (Admin only).
+    - [x] Verify with Test Case (Browser Subagent).
