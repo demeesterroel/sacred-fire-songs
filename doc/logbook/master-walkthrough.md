@@ -183,21 +183,6 @@
     -   Non-admin does not see "Delete" button.
     -   Confirmation modal works as expected.
 
-## 6. GitHub Issue Migration
-**Goal:** Professionalize project management by moving from Markdown to GitHub Issues.
-
--   **Migration Scripting**:
-    -   Created `migrate_stories.js` to parse `doc/epic&user stories.md`.
-    -   Used `gh` CLI to create issues with Gherkin scenarios as bodies.
-    -   Automatically linked historical git commits to issues where keywords matched.
--   **Reconciliation**:
-    -   Created `reconcile_stories.js` to cross-check Doc Stories vs GitHub Issues.
-    -   Identified and resolved mismatch (28 Stories vs 29 Issues).
-    -   Found duplicate IDs in documentation (Story 2.3.2 was listed twice).
-    -   Fixed missing implementation status for stories 1.1.1 and 1.2.1.
--   **Documentation Structure**:
-    -   Moved all `screen*.html` mockups to `doc/screens/` to clean up the root doc folder.
-    -   Updated references in `12-day-course.md` and `master-tasks.md`.
 
 ## Bug Fix #30: RLS Violation on Add Song
 - **Issue**: "Mock Mode" users couldn't add songs because they were effectively anonymous, and RLS expected `authenticated` users.
