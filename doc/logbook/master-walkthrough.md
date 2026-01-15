@@ -190,9 +190,19 @@
     -   Doc: Updated `db-schema.sql`
     -   Migration: `20260115132000_allow_public_deletes.sql` (Public Deletes)
 
+
+## Story 1.1.2: Import Song Metadata
+- **Objective**: Allow admins to upload `.cho` files to auto-fill the "Add Song" form.
+- **Implementation**:
+    -   Added an expandable "Or upload a file" section to `SongForm.tsx`.
+    -   Implemented client-side file reading and parsing for standard ChordPro directives (`{title}`, `{author}`).
+-   **Verification**:
+    -   Created mock `test_song.cho`.
+    -   Browser Subagent successfully uploaded the file and verified that Title, Author, and Content fields were populated correctly.
+
+![verify_file_upload_import](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_file_upload_import_1768493583266.webp)
+
 ## Current State
--   **Issues**: 100% Synced (27 Unique Stories = 27 Issues).
--   **Docs**: Validated and linked.
-
-
+-   **Issues**: 100% Synced.
+-   **Docs**: `epic&user stories.md` moved to `doc/logbook/` as a generated artifact.
 
