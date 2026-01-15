@@ -174,15 +174,13 @@
     - Requires strict confirmation ("This action cannot be undone").
     - RLS Policies enforce server-side security.
 
-![Delete Confirmation Modal](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
+![Delete Confirmation Modal](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
 
 ## Verification
--   **Method**: Used browser subagent to verify access control.
--   **Result**: 
-    -   Admin sees "Delete" button.
-    -   Non-admin does not see "Delete" button.
-    -   Confirmation modal works as expected.
+-   Automated Browser Test: Created "Survival Test" song, verified it existed, deleted it, and confirmed it disappeared from search results.
+-   Verified proper state reset and navigation home.
 
+![Verify Delete Persistence](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_delete_persistence_1768480202338.webp)
 
 ## Bug Fix #30: RLS Violation on Add Song
 - **Issue**: "Mock Mode" users couldn't add songs because they were effectively anonymous, and RLS expected `authenticated` users.
@@ -190,6 +188,7 @@
 - **Artifacts**:
     -   Migration: `20260115124500_allow_public_inserts.sql`
     -   Doc: Updated `db-schema.sql`
+    -   Migration: `20260115132000_allow_public_deletes.sql` (Public Deletes)
 
 ## Current State
 -   **Issues**: 100% Synced (27 Unique Stories = 27 Issues).
