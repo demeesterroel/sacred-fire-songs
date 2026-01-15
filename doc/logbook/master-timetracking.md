@@ -16,7 +16,9 @@
 | **Jan 11** | **Advanced Auth**: Mock Roles, Edit Rules | ~2.5 Hours | ✅ Completed |
 | **Jan 13** | **Admin**: Guidelines Refactor & Reporting | ~2.0 Hours | ✅ Completed |
 | **Jan 13** | **DevOps**: GitHub Issue Migration & Reconciliation | ~0.75 Hours | ✅ Completed |
-| **Total** | **Development + AI Collaboration** | **~27.75 Hours** | |
+| **Jan 14** | **Feature**: Redesign Add Song Screen (Story 1.1.2) | ~1.0 Hours | ✅ Completed |
+| **Jan 15** | **Feature**: Implement Delete Song (Story 1.1.3) | ~0.5 Hours | ✅ Completed |
+| **Total** | **Development + AI Collaboration** | **~29.25 Hours** | |
 
 > [!IMPORTANT]
 > **Collaboration Factor:** Previous estimates only counted "output" (commits). Including the "input" time (reading docs, formulating prompts, reviewing AI suggestions, and verifying changes) increases the total time by **~40%**. This is a more realistic reflection of the actual time spent on the project.
@@ -57,3 +59,11 @@
     -   Scripting migration from Markdown to GitHub Issues.
     -   Reconciling discrepancies and fixing duplicate stories.
     -   Refactoring documentation folder structure.
+
+- **Jan 14 (Manual Work)**:
+    -   Redesigned "Add Song" screen to handle **Story 1.1.2** (Import metadata).
+
+- **Jan 15**:
+    -   Implemented **Story 1.1.3**: Admin Delete Song.
+    -   Created Database Migration, Server Action, and UI (Modal).
+    -   Verified Access Control via Browser Subagent.
