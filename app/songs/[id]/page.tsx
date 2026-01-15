@@ -10,7 +10,7 @@ import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
 import YouTubeEmbed from '@/components/song/YouTubeEmbed';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { deleteSong } from '@/app/actions/deleteSong';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trash2, Edit2, ArrowLeft } from 'lucide-react';
 
 // Standalone fetch function
@@ -38,6 +38,7 @@ const fetchSong = async (id: string) => {
 
 export default function SongDetailPage() {
     const params = useParams();
+    const queryClient = useQueryClient();
     const router = useRouter();
     const id = typeof params.id === 'string' ? params.id : params.id?.[0]; // Safe type handling
 
@@ -77,7 +78,11 @@ export default function SongDetailPage() {
             return;
         }
 
+        // Invalidate the song list cache so it re-fetches
+        await queryClient.invalidateQueries({ queryKey: ['songs'] });
+
         // Success: Redirect to Home
+        router.refresh(); // Refresh Server Components if any
         router.push('/');
     };
 
