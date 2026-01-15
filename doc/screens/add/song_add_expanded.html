@@ -1,0 +1,187 @@
+<!-- Add New Song -->
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Add New Song</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5646e7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131121",
+                        "accent-blue": "#213363",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3f3d52;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-white font-display">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden">
+        <header
+            class="flex items-center bg-background-light dark:bg-background-dark border-b border-[#3f3d52]/30 p-4 sticky top-0 z-50">
+            <div class="flex size-10 shrink-0 items-center justify-start cursor-pointer">
+                <span class="material-symbols-outlined text-[#a19eb7]">close</span>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Add New Song</h2>
+            <div class="flex size-10 items-center justify-end cursor-pointer">
+                <p class="text-primary text-base font-bold leading-normal tracking-wide shrink-0">Save</p>
+            </div>
+        </header>
+        <main class="flex-1 overflow-y-auto pb-10">
+            <div class="max-w-[480px] mx-auto">
+                <section class="px-4 pt-6 pb-2">
+                    <div
+                        class="bg-accent-blue/20 border border-blue-500/30 rounded-xl p-4 mb-6 flex items-start gap-3 relative">
+                        <span class="material-symbols-outlined text-blue-400 mt-0.5">info</span>
+                        <p class="text-blue-100 text-xs leading-relaxed flex-1">
+                            Upload a <span class="bg-blue-500/30 px-1 rounded font-mono">.cho</span> or <span
+                                class="bg-blue-500/30 px-1 rounded font-mono">.txt</span> file. Title and author will be
+                            detected automatically.
+                        </p>
+                        <div class="cursor-pointer hover:bg-white/10 p-1 rounded-full transition-colors">
+                            <span class="material-symbols-outlined text-blue-400 text-lg">help</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full border-2 border-dashed border-[#3f3d52] hover:border-primary/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 transition-colors cursor-pointer bg-[#1d1c26]/50">
+                        <div class="bg-[#3f3d52]/30 p-4 rounded-full">
+                            <span class="material-symbols-outlined text-3xl text-[#a19eb7]">cloud_upload</span>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-white font-semibold">Tap to select file</p>
+                            <p class="text-[#a19eb7] text-xs mt-1">ChordPro files only</p>
+                        </div>
+                    </div>
+                </section>
+                <div class="px-4 py-4 flex items-center gap-4">
+                    <div class="h-px bg-[#3f3d52]/50 flex-1"></div>
+                    <span class="text-[#a19eb7] text-xs font-bold uppercase tracking-widest">or manual entry</span>
+                    <div class="h-px bg-[#3f3d52]/50 flex-1"></div>
+                </div>
+                <section>
+                    <div class="px-4 pb-2">
+                        <h3 class="text-white text-lg font-bold leading-tight tracking-tight">Song Details</h3>
+                    </div>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#a19eb7] text-sm font-medium leading-normal pb-2">Song Title</p>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#3f3d52] bg-[#1d1c26] focus:border-primary h-14 placeholder:text-[#a19eb7]/50 p-[15px] text-base font-normal leading-normal"
+                                placeholder="e.g. Morning Sunrise" />
+                        </label>
+                    </div>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#a19eb7] text-sm font-medium leading-normal pb-2">Author/Composer</p>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#3f3d52] bg-[#1d1c26] focus:border-primary h-14 placeholder:text-[#a19eb7]/50 p-[15px] text-base font-normal leading-normal"
+                                placeholder="Enter artist or composer" />
+                        </label>
+                    </div>
+                </section>
+                <section class="mt-6">
+                    <div class="px-4 pb-2 pt-4">
+                        <h3 class="text-white text-lg font-bold leading-tight tracking-tight">ChordPro Content</h3>
+                        <p class="text-[#a19eb7] text-xs font-normal mt-1">Use brackets for chords: <span
+                                class="font-mono text-primary">[Am]</span></p>
+                    </div>
+                    <div class="px-4 py-3">
+                        <textarea
+                            class="form-textarea block w-full rounded-lg border border-[#3f3d52] bg-[#1d1c26] text-white focus:ring-2 focus:ring-primary focus:border-primary min-h-[300px] p-4 text-base font-normal font-mono leading-relaxed placeholder:text-[#a19eb7]/30"
+                            placeholder="[Am] In the light of the [G] morning sun...
+[F] We rise to [E7] sing as one."></textarea>
+                    </div>
+                </section>
+                <section class="mt-6">
+                    <div class="px-4 pb-2 pt-4">
+                        <h3 class="text-white text-lg font-bold leading-tight tracking-tight">Links</h3>
+                    </div>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-2">
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <span class="material-symbols-outlined text-[#ff0000] text-xl">play_circle</span>
+                            </div>
+                            <input
+                                class="form-input block w-full pl-11 rounded-lg border border-[#3f3d52] bg-[#1d1c26] text-white focus:ring-2 focus:ring-primary focus:border-primary h-12 placeholder:text-[#a19eb7]/50 text-sm"
+                                placeholder="Paste YouTube link" />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-2">
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <span class="material-symbols-outlined text-[#1db954] text-xl">radio</span>
+                            </div>
+                            <input
+                                class="form-input block w-full pl-11 rounded-lg border border-[#3f3d52] bg-[#1d1c26] text-white focus:ring-2 focus:ring-primary focus:border-primary h-12 placeholder:text-[#a19eb7]/50 text-sm"
+                                placeholder="Paste Spotify link" />
+                        </div>
+                    </div>
+                </section>
+                <section class="mt-10 px-4">
+                    <button
+                        class="w-full flex items-center justify-center gap-2 py-4 rounded-xl border-2 border-dashed border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-primary/50 transition-all">
+                        <span class="material-symbols-outlined">visibility</span>
+                        <span class="font-bold">Preview Song Card</span>
+                    </button>
+                </section>
+            </div>
+        </main>
+        <footer
+            class="p-4 bg-background-light dark:bg-background-dark border-t border-[#3f3d52]/30 flex justify-center">
+            <button
+                class="w-full max-w-[480px] bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                Publish Song
+            </button>
+        </footer>
+    </div>
+
+</body>
+
+</html>
