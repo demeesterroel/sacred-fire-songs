@@ -133,3 +133,6 @@
         - [x] Create Fix Branch (`fix/issue-30-rls-add-song`).
         - [x] Investigate RLS Policy for `INSERT` on `compositions`.
         - [x] Apply Fix (Created Migration `allow_public_inserts.sql`).
+
+
+
