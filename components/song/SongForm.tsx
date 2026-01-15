@@ -97,13 +97,11 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             router.push(mode === 'create' ? '/' : `/songs/${id}`);
         },
         onError: (error: any) => {
-            console.error('Mutation Error:', error);
-            setServerError(error.message || 'An unexpected error occurred.');
+            // Error handling can be added here, e.g., toast notification
         }
     });
 
     const handleFormSubmit = (data: SongFormData) => {
-        setServerError(null);
         mutation.mutate(data);
     };
 

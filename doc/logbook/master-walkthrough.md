@@ -163,7 +163,8 @@
 -   **Docs**: Validated and linked.
 
 
-# Session Update (Jan 15, 2026 - Delete Song)
+
+# Session Update (Jan 15, 2026 - Delete Song & Bug Fixes)
 
 ## 4. Delete Song (Admin Only)
 - **Problem**: Admins needed a way to remove duplicate or incorrect songs.
@@ -176,5 +177,38 @@
 ![Delete Confirmation Modal](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
 
 ## Verification
+-   **Method**: Used browser subagent to verify access control.
+-   **Result**: 
+    -   Admin sees "Delete" button.
+    -   Non-admin does not see "Delete" button.
+    -   Confirmation modal works as expected.
+
+## 6. GitHub Issue Migration
+**Goal:** Professionalize project management by moving from Markdown to GitHub Issues.
+
+-   **Migration Scripting**:
+    -   Created `migrate_stories.js` to parse `doc/epic&user stories.md`.
+    -   Used `gh` CLI to create issues with Gherkin scenarios as bodies.
+    -   Automatically linked historical git commits to issues where keywords matched.
+-   **Reconciliation**:
+    -   Created `reconcile_stories.js` to cross-check Doc Stories vs GitHub Issues.
+    -   Identified and resolved mismatch (28 Stories vs 29 Issues).
+    -   Found duplicate IDs in documentation (Story 2.3.2 was listed twice).
+    -   Fixed missing implementation status for stories 1.1.1 and 1.2.1.
+-   **Documentation Structure**:
+    -   Moved all `screen*.html` mockups to `doc/screens/` to clean up the root doc folder.
+    -   Updated references in `12-day-course.md` and `master-tasks.md`.
+
+## Bug Fix #30: RLS Violation on Add Song
+- **Issue**: "Mock Mode" users couldn't add songs because they were effectively anonymous, and RLS expected `authenticated` users.
+- **Fix**: Relaxed RLS policies for `compositions` and `song_versions` to allow `public` inserts.
+- **Artifacts**:
+    -   Migration: `20260115124500_allow_public_inserts.sql`
+    -   Doc: Updated `db-schema.sql`
+
+## Current State
+-   **Issues**: 100% Synced (27 Unique Stories = 27 Issues).
+-   **Docs**: Validated and linked.
+
 
 
