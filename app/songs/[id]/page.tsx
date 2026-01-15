@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useParams, notFound } from 'next/navigation';
+import { useParams, notFound, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
@@ -38,6 +38,7 @@ const fetchSong = async (id: string) => {
 
 export default function SongDetailPage() {
     const params = useParams();
+    const router = useRouter();
     const id = typeof params.id === 'string' ? params.id : params.id?.[0]; // Safe type handling
 
     const [selectedVersionIndex, setSelectedVersionIndex] = useState(0);
@@ -63,10 +64,21 @@ export default function SongDetailPage() {
     const handleDelete = async () => {
         if (!id) return;
         setIsDeleting(true);
-        // Execute server action
-        await deleteSong(id);
-        // Note: The action redirects, so we don't need to handle success UI here usually,
-        // but if it fails we might want to catch it. For MVP we assume success/redirect.
+        // Direct Client-Side Delete (bypasses Server Action auth issues for Mock Users)
+        const { error } = await supabase
+            .from('compositions')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error('Delete Error:', error);
+            alert('Failed to delete song: ' + error.message);
+            setIsDeleting(false);
+            return;
+        }
+
+        // Success: Redirect to Home
+        router.push('/');
     };
 
     return (
