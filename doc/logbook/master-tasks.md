@@ -189,3 +189,8 @@
     - [x] Create reproduction/test case <!-- id: 53 -->
     - [x] Fix data fetching/permissions (Created Migration) <!-- id: 54 -->
     - [x] Verify fix (User executed SQL) <!-- id: 55 -->
+
+- [x] **Refinement: Paste Logic & Test Coverage** <!-- id: 56 -->
+    - [x] Add `DonneRicche` unit test (Chords over Lyrics) <!-- id: 57 -->
+    - [x] Fix `SongForm` paste detection (Allow multi-line without tags) <!-- id: 58 -->
+    - [x] Verify Fix <!-- id: 59 -->
