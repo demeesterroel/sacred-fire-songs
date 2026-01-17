@@ -105,7 +105,7 @@ Scenario: Paste "Chords over Lyrics" content
   And the "Title" and "Author" fields should be populated if present
 ```
 
-**Story 1.1.7:** As a User, I want to attach YouTube, Spotify, and SoundCloud links to a song so that I can listen to reference recordings directly on the song page.
+**Story 1.1.7: [Implemented]** As a User, I want to attach YouTube, Spotify, and SoundCloud links to a song so that I can listen to reference recordings directly on the song page.
 
 ```
 Scenario: Persist and Display Media Links
