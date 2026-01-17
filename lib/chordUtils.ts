@@ -1,8 +1,11 @@
 import ChordSheetJS from 'chordsheetjs';
 
-export function parseChordPro(content: string) {
+import { convertChordsOverLyricsToChordPro } from './chordProParsing';
+
+export function parseChordProForDisplay(content: string) {
     const parser = new ChordSheetJS.ChordProParser();
-    const song = parser.parse(content);
+    const chordProContent = convertChordsOverLyricsToChordPro(content);
+    const song = parser.parse(chordProContent);
 
     // We'll return the lines so we can map over them in React, but we filter out metadata
     // lines that are purely directives (like {title}) as they create empty space.
