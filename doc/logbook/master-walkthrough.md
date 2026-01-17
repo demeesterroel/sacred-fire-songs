@@ -275,3 +275,35 @@ I have verified the implementation by running the application and navigating to 
 -   Confirmed presence of Language selector, Tags input, Links section.
 -   Confirmed "Save Draft" button is clickable.
 -   Confirmed Layout matches the mockups.
+
+## Session Update (Jan 17, 2026 - Refactoring & Bug Fixes)
+
+## Refactoring: Move Code to Lib & Deduplication
+We improved the project structure by moving utilities to `lib/` and consolidating logic.
+
+### Changes
+*   **Moved**: `utils/chordProParsing.ts` -> `lib/chordProParsing.ts`.
+*   **Moved**: `utils/supabase/server.ts` -> `lib/supabase/server.ts`.
+*   **Created**: `lib/supabase/index.ts` re-exporting client for compatibility.
+*   **Moved Tests**: All backend unit tests are now in `lib/unit-tests/`.
+*   **Deduplication**: `lib/chordUtils.ts` (Viewer) now reuses the "Chords over Lyrics" conversion logic from `lib/chordProParsing.ts` (Editor), ensuring consistent behavior across the app.
+
+### Verification
+*   **Unit Tests**: All tests passed in their new location (`lib/unit-tests/`).
+*   **Linting**: Fixed lint errors in `songUtils.test.ts` regarding missing IDs in mock data.
+
+## Bug Fix: "Error loading song" on Edit Page
+Users reported permission/not found errors when editing songs. This was traced to a database schema mismatch.
+
+### Root Cause
+The code expected a `spotify_url` column in `song_versions` (added in docs v2.3), but the database migration had not been applied.
+
+### Resolution
+*   Created migration `supabase/migrations/20260117232000_add_spotify_url.sql`.
+*   Renamed existing `audio_url` column to `soundcloud_url` to match new schema.
+*   Added missing `spotify_url` column.
+*   User executed the migration manually via Supabase Dashboard.
+
+### Verification
+*   User confirmed successful execution of SQL.
+*   Schema documents (`db-schema.sql`) are now fully in sync with the live database.
