@@ -307,3 +307,6 @@ The code expected a `spotify_url` column in `song_versions` (added in docs v2.3)
 ### Verification
 *   User confirmed successful execution of SQL.
 *   Schema documents (`db-schema.sql`) are now fully in sync with the live database.
+
+### UI Polish
+*   **Standardized Button**: Updated the primary action button on `SongForm` to always read **"Publish Song"** (previously "Save Changes" in edit mode) to ensure consistency.
