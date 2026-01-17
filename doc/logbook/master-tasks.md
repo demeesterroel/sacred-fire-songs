@@ -194,3 +194,7 @@
     - [x] Add `DonneRicche` unit test (Chords over Lyrics) <!-- id: 57 -->
     - [x] Fix `SongForm` paste detection (Allow multi-line without tags) <!-- id: 58 -->
     - [x] Verify Fix <!-- id: 59 -->
+- [x] **UI Polish: Standardize Submit Button** <!-- id: 60 -->
+    - [x] Create branch `ui/standardize-button-text` <!-- id: 61 -->
+    - [x] Update `SongForm.tsx` to use "Publish Song" <!-- id: 62 -->
+    - [x] Merge to main <!-- id: 63 -->
