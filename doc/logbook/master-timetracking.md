@@ -86,3 +86,8 @@
     -   **Planning**: Created **Story 1.1.6** (Auto-convert "Chords over Lyrics" to ChordPro) and synced with GitHub Issues.
 
 
+
+- **Jan 17 (Late)**:
+    -   **Refactoring**: Moved utilities to `lib/`, consolidated tests, and deduplicated chord parsing logic (temp branches merged).
+    -   **Bug Fix**: Fixed "Error loading song" on Edit Page by adding `spotify_url` migration and renaming `audio_url`.
+    -   **Sync**: Restored logbook history and updated workflows to use append logic.
