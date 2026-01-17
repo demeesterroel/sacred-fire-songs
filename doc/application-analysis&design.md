@@ -1,18 +1,17 @@
 # Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.16
+**Version:** 1.17
 **Status:** Living Document
-**Date:** January 11, 2026
+**Date:** January 17, 2026
 
 ## Changelog
 
 | Version | Date | Description of Changes | 
 | ----- | ----- | ----- | 
 | **1.0** | Oct 26, 2023 | Initial Document Creation. Defined User Personas, Core Requirements, Domain Model, and Tech Stack. | 
-| **...** | ... | (Previous versions 1.1 - 1.13 retained in history) |
-| **1.14** | Dec 29, 2025 | **Major Update:** Aligned document with Day 9 Implementation. Added `TanStack Query` to architecture. Verified `compositions` and `song_versions` schema. Marked Phase 1 features as Implemented. |
-| **1.15** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. Updated references to community name. |
+| **...** | ... | (Previous versions 1.1 - 1.15 retained in history) |
 | **1.16** | Jan 11, 2026 | Implemented Edit Song, Access Denied, Mock Auth & Logout. Updated Screen Inventory. |
+| **1.17** | Jan 17, 2026 | Updated "Add Song" definition to include Metadata (Language, Tags, Links). Added `spotify_url` to schema definition. |
 
 ## 1. Introduction
 
@@ -85,6 +84,11 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 * `version_name`: text (e.g., "Standard", "Capo 2")
 * `content_chordpro`: text (The raw lyrics/chords)
 * `key`: text (e.g., "Am")
+* `capo`: integer
+* `soundcloud_url`: text (Renamed from audio_url)
+* `youtube_url`: text
+* `spotify_url`: text
+* `contributor_id`: uuid
 * `created_at`: timestamptz
 
 *(Categories and Setlists tables are designing but not yet implemented).*
@@ -120,7 +124,7 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 
 ### 7.4 Screen 4: Add Song
 * **Status:** Implemented (`app/songs/add/page.tsx`).
-* **Features:** Reuseable `SongForm`, Client-Side Access Control.
+* **Features:** Reuseable `SongForm` with Metadata support (Language, Tags, YouTube/Spotify/SoundCloud links), File Upload import, and Client-Side Access Control.
 
 ### 7.5 Screen 5: Edit Song
 * **Status:** Implemented (`app/songs/[id]/edit/page.tsx`).
