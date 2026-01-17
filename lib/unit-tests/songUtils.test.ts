@@ -3,9 +3,9 @@ import { filterSongs } from '../songUtils';
 
 describe('filterSongs', () => {
     const mockSongs = [
-        { title: "Grandmother Earth", author: "Traditional", songKey: "Am", color: "red" },
-        { title: "Aguita de la Vida", author: "Danit", songKey: "Em", color: "orange" },
-        { title: "Pachamama", author: "Medicine Family", songKey: "G", color: "yellow" },
+        { id: "1", title: "Grandmother Earth", author: "Traditional", songKey: "Am", color: "red" },
+        { id: "2", title: "Aguita de la Vida", author: "Danit", songKey: "Em", color: "orange" },
+        { id: "3", title: "Pachamama", author: "Medicine Family", songKey: "G", color: "yellow" },
     ];
     it('filters by title (case insensitive)', () => {
         const result = filterSongs(mockSongs, 'GRAND');
