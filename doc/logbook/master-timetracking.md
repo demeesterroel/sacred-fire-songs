@@ -95,3 +95,7 @@
 - **Jan 17 (End)**:
     -   **Refinement**: Fixed `SongForm` paste logic (support raw text) and added `DonneRicche` unit test.
     -   **Cleanup**: Merged all feature branches to `main` and synced documentation.
+
+- **Jan 18 (Start)**:
+    - **Feature**: Implemented Story 1.1.7 (Media Links) with `MediaEmbeds.tsx` and persistence.
+    - **UI**: Fixed Publish button styling (red-600) and verified/merged into main.

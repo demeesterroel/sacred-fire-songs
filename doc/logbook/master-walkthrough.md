@@ -310,3 +310,18 @@ The code expected a `spotify_url` column in `song_versions` (added in docs v2.3)
 
 ### UI Polish
 *   **Standardized Button**: Updated the primary action button on `SongForm` to always read **"Publish Song"** (previously "Save Changes" in edit mode) to ensure consistency.
+
+## Feature: Media Links (Story 1.1.7)
+Implemented persistence and display for YouTube, Spotify, and SoundCloud links.
+
+### Changes
+*   **Database**: Utilized existing columns `youtube_url`, `spotify_url`, `soundcloud_url`.
+*   **Form**: Updated `SongForm` to save these fields during Create/Update.
+*   **UI**: Created `MediaEmbeds` component to render:
+    *   YouTube (Smart ID extraction)
+    *   Spotify (Iframe)
+    *   SoundCloud (Iframe with visual widget)
+
+### Verification
+*   **Persistence**: Verified data saves correctly via `EditSongPage` logic.
+*   **Display**: Confirmed `SongDetailPage` fetches and renders the embeds.
