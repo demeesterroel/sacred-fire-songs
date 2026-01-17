@@ -91,3 +91,7 @@
     -   **Refactoring**: Moved utilities to `lib/`, consolidated tests, and deduplicated chord parsing logic (temp branches merged).
     -   **Bug Fix**: Fixed "Error loading song" on Edit Page by adding `spotify_url` migration and renaming `audio_url`.
     -   **Sync**: Restored logbook history and updated workflows to use append logic.
+
+- **Jan 17 (End)**:
+    -   **Refinement**: Fixed `SongForm` paste logic (support raw text) and added `DonneRicche` unit test.
+    -   **Cleanup**: Merged all feature branches to `main` and synced documentation.
