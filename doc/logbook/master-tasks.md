@@ -145,4 +145,21 @@
         - [x] Reproduce Bug (Confirmed RLS blocking Mock Mode).
         - [x] Fix & Verify (Applied public update policy).
 
+- [x] **Session Jan 17: SongForm Styling & Sync**
+    - [x] Update SoundCloud icon in `song_add_expanded.html`
+    - [x] Add "Save Draft" button to Footer
+    - [x] Align Cancel/Upload buttons right
+    - [x] Sync `song_add_collapsed.html`
+    - [x] Update `SongForm.tsx`:
+        - [x] Add Language, Tags, Links fields
+        - [x] Add Save Draft button
+    - [x] Fix Styling Regressions:
+        - [x] Update mockups primary color to Red
+        - [x] Verify global CSS and Tailwind config
+        - [x] Restore exact colors from mockup
+    - [x] **Documentation Sync**:
+        - [x] Run `/sync-artifacts` (Task Restore)
+        - [x] Run `/sync-doc-and-code` (Audit & Rectify)
+
+
 

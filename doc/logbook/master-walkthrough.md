@@ -206,3 +206,72 @@
 -   **Issues**: 100% Synced.
 -   **Docs**: `epic&user stories.md` moved to `doc/logbook/` as a generated artifact.
 
+## Session Update (Jan 17, 2026 - Bidirectional Sync & SongForm)
+
+I have updated the `song_add_expanded.html` mockup with the following changes:
+1.  Updated the SoundCloud icon.
+2.  Added a "Save Draft" button to the footer.
+3.  Right-aligned the Cancel/Upload buttons in the upload section.
+4.  Synchronized visual changes to `song_add_collapsed.html`.
+5.  Added "Language" and "Categories/Tags" to `song_add_expanded.html`.
+6.  Added "Links" section to `song_add_collapsed.html`.
+
+## Changes
+
+### [song_add_expanded.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
+
+#### SoundCloud Icon
+- Replaced the generic Material Symbol `radio` icon with the official SoundCloud SVG logo.
+- Updated the icon color to SoundCloud Orange (`#ff5500`).
+
+#### Footer Actions
+- Added a "Save Draft" button as a secondary action on the left.
+- existing "Publish Song" button remains as the primary action on the right.
+- Both buttons share the available width equally.
+
+## Verification Results
+
+### Visual Inspection
+- **SoundCloud Icon**: Confirmed correct SVG path and `#ff5500` fill color.
+- **Footer Buttons**:
+    - "Save Draft" has an outlined style with `#3f3d52` border and `#a19eb7` text, turning white on hover.
+    - "Publish Song" retains its primary filled style.
+    - Layout uses a flex container with `gap-3` and `max-w-[480px]`.
+
+#### Upload Section Buttons
+- The "Cancel" and "Upload" buttons are now aligned to the right side of their container.
+- Their sizes remain unchanged.
+
+### [song_add_collapsed.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_collapsed.html)
+
+#### Synchronization
+- Updated footer to match the new "Save Draft" / "Publish Song" button layout.
+- Renamed "ChordPro Content" section to "Lyrics & chords" and updated help text style.
+- Removed the "Preview Layout" button.
+- Added the "Links" section (YouTube, Spotify, SoundCloud) to match the expanded view.
+
+### [song_add_expanded.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
+### [SongForm.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)
+
+#### New Features
+-   Added **Language Selector**: Buttons for English, Sanskrit, Spanish, Portuguese.
+-   Added **Tags Input**: Interactive tag management with removable pills.
+-   Added **Links Section**: Inputs for YouTube, Spotify, and SoundCloud.
+-   Updated **Footer**: Added "Save Draft" button and styled "Publish Song" as primary action.
+-   **State Management**: Updated form state to handle new fields (although not persisted to backend yet).
+
+#### Synchronization
+- Added "Language" and "Categories/Tags" sections to match the collapsed view.
+
+### Verification
+I have verified the implementation by running the application and navigating to the "Add Song" page.
+
+**Visual Verification:**
+![Song Form Verification](file:///home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/song_form_verification.png)
+
+**Browser Session:**
+![Browser Verification Session](file:///home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/verify_song_form_fields_1768663123194.webp)
+
+-   Confirmed presence of Language selector, Tags input, Links section.
+-   Confirmed "Save Draft" button is clickable.
+-   Confirmed Layout matches the mockups.
