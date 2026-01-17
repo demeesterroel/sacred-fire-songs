@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { filterSongs } from './songUtils';
+import { filterSongs } from '../songUtils';
 
 describe('filterSongs', () => {
     const mockSongs = [

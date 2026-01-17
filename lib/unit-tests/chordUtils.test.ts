@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseChordPro } from './chordUtils';
+import { parseChordPro } from '../chordUtils';
 
 describe('parseChordPro', () => {
     it('parses a basic ChordPro string', () => {
