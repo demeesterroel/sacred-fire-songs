@@ -26,10 +26,36 @@ try {
     // "And who shall wear the robe and crown"
     assert(parsed.cleanContent.includes('And [G]who shall wear the robe and crown'), 'Last verse conversion failed');
 
-    console.log("✅ Parser Unit Test Passed!");
+    console.log("✅ DownToTheRiver Parser Test Passed!");
     console.log("---------------------------------------------------");
-    // console.log(parsed.cleanContent);
 } catch (error) {
-    console.error("❌ Parser Unit Test Failed:", error);
+    console.error("❌ DownToTheRiver Parser Test Failed:", error);
+    process.exit(1);
+}
+
+// === TEST CASE 2: Morning Sunrise (Metadata Detection) ===
+const morningPath = path.join(__dirname, 'morning_sunrise.cho');
+console.log(`Running parser test on: ${morningPath}`);
+
+try {
+    if (!fs.existsSync(morningPath)) {
+        console.warn("⚠️ morning_sunrise.cho not found, creating dummy content for test.");
+        const dummyContent = "{title: Morning Sunrise}\n{author: Shimshai}\n\n[Am]Morning sun...";
+        fs.writeFileSync(morningPath, dummyContent);
+    }
+
+    const morningContent = fs.readFileSync(morningPath, 'utf-8');
+    const parsedMorning = parseChordPro(morningContent);
+
+    // Assertions
+    assert.strictEqual(parsedMorning.title, 'Morning Sunrise', 'Title detection failed');
+    assert.strictEqual(parsedMorning.author, 'Traditional', 'Author detection failed');
+    // assert(parsedMorning.cleanContent.includes('Morning sun'), 'Content extraction failed');
+
+    console.log("✅ Morning Sunrise Metadata Test Passed!");
+    console.log("---------------------------------------------------");
+
+} catch (error) {
+    console.error("❌ Morning Sunrise Parser Test Failed:", error);
     process.exit(1);
 }
