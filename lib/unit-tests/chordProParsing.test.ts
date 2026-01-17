@@ -1,10 +1,10 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseChordPro } from './chordProParsing';
+import { parseChordPro } from '../chordProParsing';
 import assert from 'assert';
 
-const filePath = path.join(__dirname, '..', 'DownToTheRiver-chordsOverLyrics.txt');
+const filePath = path.join(__dirname, 'DownToTheRiver-chordsOverLyrics.txt');
 const downToTheRiver = fs.readFileSync(filePath, 'utf-8');
 
 console.log(`Running parser test on: ${filePath}`);
