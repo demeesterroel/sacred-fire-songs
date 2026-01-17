@@ -18,7 +18,7 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#5646e7",
+                        "primary": "#dc2626",
                         "background-light": "#f6f6f8",
                         "background-dark": "#131121",
                         "accent-blue": "#213363",
@@ -95,16 +95,23 @@
                             <span class="material-symbols-outlined text-3xl text-[#a19eb7]">cloud_upload</span>
                         </div>
                         <div class="text-center">
-                            <p class="text-white font-semibold">Tap to select file</p>
-                            <p class="text-[#a19eb7] text-xs mt-1">ChordPro files only</p>
+                            <p class="text-white font-semibold">Upload Lyrics File</p>
+                            <p class="text-[#a19eb7] text-xs mt-1"> Select a lyrics/chords file (.cho, .txt) to
+                                auto-fill details</p>
                         </div>
                     </div>
+                    <div class="flex items-center justify-end gap-3 mt-2">
+                        <label
+                            class="cursor-pointer flex min-w-[100px] items-center justify-center rounded-lg h-11 px-6 border border-slate-300 dark:border-[#674d32] text-slate-600 dark:text-[#c9ad92] text-sm font-bold hover:bg-slate-50 dark:hover:bg-[#332619]"
+                            for="upload-toggle">
+                            Cancel
+                        </label>
+                        <button
+                            class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-11 px-8 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 active:bg-primary/90">
+                            Upload
+                        </button>
+                    </div>
                 </section>
-                <div class="px-4 py-4 flex items-center gap-4">
-                    <div class="h-px bg-[#3f3d52]/50 flex-1"></div>
-                    <span class="text-[#a19eb7] text-xs font-bold uppercase tracking-widest">or manual entry</span>
-                    <div class="h-px bg-[#3f3d52]/50 flex-1"></div>
-                </div>
                 <section>
                     <div class="px-4 pb-2">
                         <h3 class="text-white text-lg font-bold leading-tight tracking-tight">Song Details</h3>
@@ -127,16 +134,58 @@
                     </div>
                 </section>
                 <section class="mt-6">
+                    <div class="px-4 pb-4">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-[#a19eb7] text-sm font-medium leading-normal pb-2">Language</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <button
+                                        class="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium border border-primary">English</button>
+                                    <button
+                                        class="px-4 py-1.5 rounded-full bg-[#1d1c26] text-[#a19eb7] text-xs font-medium border border-[#3f3d52]">Sanskrit</button>
+                                    <button
+                                        class="px-4 py-1.5 rounded-full bg-[#1d1c26] text-[#a19eb7] text-xs font-medium border border-[#3f3d52]">Spanish</button>
+                                    <button
+                                        class="px-4 py-1.5 rounded-full bg-[#1d1c26] text-[#a19eb7] text-xs font-medium border border-[#3f3d52]">Portuguese</button>
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-full bg-[#1d1c26] border border-[#3f3d52] text-[#a19eb7]">
+                                        <span class="material-symbols-outlined text-sm">add</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-[#a19eb7] text-sm font-medium leading-normal pb-2">Categories / Tags</p>
+                                <div class="relative">
+                                    <div
+                                        class="flex flex-wrap gap-2 p-2 min-h-[48px] rounded-lg border border-[#3f3d52] bg-[#1d1c26] items-center">
+                                        <span
+                                            class="flex items-center gap-1 bg-[#3f3d52]/50 text-white text-xs px-2 py-1 rounded">Healing
+                                            <span
+                                                class="material-symbols-outlined text-[14px] cursor-pointer">close</span></span>
+                                        <span
+                                            class="flex items-center gap-1 bg-[#3f3d52]/50 text-white text-xs px-2 py-1 rounded">Mantra
+                                            <span
+                                                class="material-symbols-outlined text-[14px] cursor-pointer">close</span></span>
+                                        <input
+                                            class="bg-transparent border-none focus:ring-0 p-0 text-xs text-[#a19eb7] ml-1 flex-1 min-w-[100px]"
+                                            placeholder="Add tags..." />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mt-6">
                     <div class="px-4 pb-2 pt-4">
-                        <h3 class="text-white text-lg font-bold leading-tight tracking-tight">ChordPro Content</h3>
-                        <p class="text-[#a19eb7] text-xs font-normal mt-1">Use brackets for chords: <span
+                        <h3 class="text-white text-lg font-bold leading-tight tracking-tight">Lyrics & chords </h3>
+                        <p class="text-[#a19eb7] text-xs font-normal mt-1">Use brackets [] for chords: eg.<span
                                 class="font-mono text-primary">[Am]</span></p>
                     </div>
                     <div class="px-4 py-3">
                         <textarea
                             class="form-textarea block w-full rounded-lg border border-[#3f3d52] bg-[#1d1c26] text-white focus:ring-2 focus:ring-primary focus:border-primary min-h-[300px] p-4 text-base font-normal font-mono leading-relaxed placeholder:text-[#a19eb7]/30"
-                            placeholder="[Am] In the light of the [G] morning sun...
-[F] We rise to [E7] sing as one."></textarea>
+                            placeholder="[Am]In the light of the [G]morning sun...
+[F]We rise to [E7]sing as one."></textarea>
                     </div>
                 </section>
                 <section class="mt-6">
@@ -163,22 +212,35 @@
                                 placeholder="Paste Spotify link" />
                         </div>
                     </div>
-                </section>
-                <section class="mt-10 px-4">
-                    <button
-                        class="w-full flex items-center justify-center gap-2 py-4 rounded-xl border-2 border-dashed border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-primary/50 transition-all">
-                        <span class="material-symbols-outlined">visibility</span>
-                        <span class="font-bold">Preview Song Card</span>
-                    </button>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-2">
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg role="img" viewBox="0 0 24 24" class="w-6 h-6 fill-[#ff5500]"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M23.999 14.165c-.052 1.796-1.612 3.169-3.4 3.169h-8.18a.68.68 0 0 1-.675-.683V7.862a.747.747 0 0 1 .452-.724s.75-.513 2.333-.513a5.364 5.364 0 0 1 2.763.755 5.433 5.433 0 0 1 2.57 3.54c.282-.08.574-.121.868-.12.884 0 1.73.358 2.347.992s.948 1.49.922 2.373ZM10.721 8.421c.247 2.98.427 5.697 0 8.672a.264.264 0 0 1-.53 0c-.395-2.946-.22-5.718 0-8.672a.264.264 0 0 1 .53 0ZM9.072 9.448c.285 2.659.37 4.986-.006 7.655a.277.277 0 0 1-.55 0c-.331-2.63-.256-5.02 0-7.655a.277.277 0 0 1 .556 0Zm-1.663-.257c.27 2.726.39 5.171 0 7.904a.266.266 0 0 1-.532 0c-.38-2.69-.257-5.21 0-7.904a.266.266 0 0 1 .532 0Zm-1.647.77a26.108 26.108 0 0 1-.008 7.147.272.272 0 0 1-.542 0 27.955 27.955 0 0 1 0-7.147.275.275 0 0 1 .55 0Zm-1.67 1.769c.421 1.865.228 3.5-.029 5.388a.257.257 0 0 1-.514 0c-.21-1.858-.398-3.549 0-5.389a.272.272 0 0 1 .543 0Zm-1.655-.273c.388 1.897.26 3.508-.01 5.412-.026.28-.514.283-.54 0-.244-1.878-.347-3.54-.01-5.412a.283.283 0 0 1 .56 0Zm-1.668.911c.4 1.268.257 2.292-.026 3.572a.257.257 0 0 1-.514 0c-.241-1.262-.354-2.312-.023-3.572a.283.283 0 0 1 .563 0Z" />
+                                </svg>
+                            </div>
+                            <input
+                                class="form-input block w-full pl-11 rounded-lg border border-[#3f3d52] bg-[#1d1c26] text-white focus:ring-2 focus:ring-primary focus:border-primary h-12 placeholder:text-[#a19eb7]/50 text-sm"
+                                placeholder="Paste Soundcloud link" />
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
         <footer
             class="p-4 bg-background-light dark:bg-background-dark border-t border-[#3f3d52]/30 flex justify-center">
-            <button
-                class="w-full max-w-[480px] bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
-                Publish Song
-            </button>
+            <div class="w-full max-w-[480px] flex gap-3">
+                <button
+                    class="flex-1 bg-transparent border-2 border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-white/20 font-bold py-4 rounded-xl active:scale-[0.98] transition-all">
+                    Save Draft
+                </button>
+                <button
+                    class="flex-1 bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                    Publish Song
+                </button>
+            </div>
         </footer>
     </div>
 
