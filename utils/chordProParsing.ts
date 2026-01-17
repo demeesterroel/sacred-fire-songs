@@ -18,11 +18,17 @@ function isChordLine(line: string): boolean {
     // Split by whitespace
     const tokens = trimmed.split(/\s+/);
 
-    // If more than 50% of tokens look like chords, treat as chord line
-    // Also allow common separators like "|"
-    const validChords = tokens.filter(t => chordPattern.test(t) || t === '|').length;
+    // Filter out tokens that are effectively comments (in parentheses)
+    // e.g. "G (intro)" -> "G" is the only relevant token
+    const relevantTokens = tokens.filter(t => !t.startsWith('(') && !t.endsWith(')'));
 
-    return validChords > tokens.length * 0.5;
+    if (relevantTokens.length === 0) return false;
+
+    // If more than 50% of *relevant* tokens look like chords, treat as chord line
+    // Also allow common separators like "|"
+    const validChords = relevantTokens.filter(t => chordPattern.test(t) || t === '|').length;
+
+    return validChords > relevantTokens.length * 0.5;
 }
 
 function convertChordsOverLyricsToChordPro(text: string): string {
