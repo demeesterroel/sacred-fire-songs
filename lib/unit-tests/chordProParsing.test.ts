@@ -59,3 +59,29 @@ try {
     console.error("❌ Morning Sunrise Parser Test Failed:", error);
     process.exit(1);
 }
+
+// === TEST CASE 3: Donne Ricche (Chords over Lyrics Italian) ===
+const donnePath = path.join(__dirname, 'DonneRiccheChordsOverLyrics.txt');
+console.log(`Running parser test on: ${donnePath}`);
+
+try {
+    const donneContent = fs.readFileSync(donnePath, 'utf-8');
+    const parsedDonne = parseChordPro(donneContent);
+
+    // Assertions
+    // "Gbmaj7" over "Mia nonna..." -> "[Gbmaj7]Mia nonna quando è morta"
+    assert(parsedDonne.cleanContent.includes('[Gbmaj7]Mia nonna quando è morta'), 'Verse 1 conversion failed');
+
+    // "Db" over "Non mi ha lasciato niente" -> "[Db]Non mi ha lasciato niente"
+    assert(parsedDonne.cleanContent.includes('[Db]Non mi ha lasciato niente'), 'Verse 1 line 2 conversion failed');
+
+    // "Gbmaj7" over "Comprami-" -> "[Gbmaj7]Comprami-"
+    assert(parsedDonne.cleanContent.includes('[Gbmaj7]Comprami-'), 'Bridge conversion failed');
+
+    console.log("✅ Donne Ricche Parser Test Passed!");
+    console.log("---------------------------------------------------");
+
+} catch (error) {
+    console.error("❌ Donne Ricche Parser Test Failed:", error);
+    process.exit(1);
+}
