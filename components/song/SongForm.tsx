@@ -448,7 +448,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                             Saving...
                         </>
                     ) : (
-                        'Publish Song'
+                        mode === 'create' ? 'Publish Song' : 'Save Changes'
                     )}
                 </button>
             </div>
