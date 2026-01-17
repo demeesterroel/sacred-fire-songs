@@ -31,7 +31,7 @@ function isChordLine(line: string): boolean {
     return validChords > relevantTokens.length * 0.5;
 }
 
-function convertChordsOverLyricsToChordPro(text: string): string {
+export function convertChordsOverLyricsToChordPro(text: string): string {
     const lines = text.split('\n');
     let outputLines: string[] = [];
 
