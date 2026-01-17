@@ -15,10 +15,14 @@ const fetchSongForEdit = async (id: string) => {
           id,
           title,
           original_author,
+          primary_language,
           owner_id,
           song_versions!inner (
             id,
-            content_chordpro
+            content_chordpro,
+            youtube_url,
+            spotify_url,
+            soundcloud_url
           )
         `)
         .eq('id', id)
@@ -66,7 +70,12 @@ export default function EditSongPage() {
     const initialData = {
         title: song.title,
         author: song.original_author || '',
-        content: song.song_versions[0]?.content_chordpro || ''
+        content: song.song_versions[0]?.content_chordpro || '',
+        language: song.primary_language || 'English',
+        tags: [], // Tags fetching not yet implemented in edit mode
+        youtubeLink: song.song_versions[0]?.youtube_url || '',
+        spotifyLink: song.song_versions[0]?.spotify_url || '',
+        soundcloudLink: song.song_versions[0]?.soundcloud_url || ''
     };
 
     return (
