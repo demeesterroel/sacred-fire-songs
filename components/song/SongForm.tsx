@@ -445,7 +445,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                 <button
                     type="submit"
                     disabled={mutation.isPending}
-                    className="flex-1 bg-primary text-white font-bold py-3 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                    className="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 active:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                 >
                     {mutation.isPending ? (
                         <>
