@@ -1,8 +1,8 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.7
-**Status:** Draft
-**Date:** January 11, 2026
+**Version:** 1.8
+**Status:** Living Document
+**Date:** January 17, 2026
 
 ## Changelog
 
@@ -16,6 +16,7 @@
 | **1.5** | Jan 10, 2026 | Expanded song management stories (Members create, Owners edit). |
 | **1.6** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 | **1.7** | Jan 11, 2026 | Implemented Edit Song (Story 2.2.1), Access Control, Mock Auth, and Logout. |
+| **1.8** | Jan 17, 2026 | Added Story 1.1.6 (Auto-convert Chords) and Story 1.1.2-bis (Smart Paste). |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -38,7 +39,7 @@ Scenario: Admin uploads via Form
   And I should be redirected to the Home page
 ```
 
-**Story 1.1.2:** As an Admin, I want to upload a raw `.cho` file via an expandable upload section to auto-fill the form so that I don't have to type metadata manually.
+**Story 1.1.2: [Implemented]** As an Admin, I want to upload a raw `.cho` file via an expandable upload section to auto-fill the form so that I don't have to type metadata manually.
 
 ```
 Scenario: Import metadata from File via Expandable Section
@@ -50,7 +51,18 @@ Scenario: Import metadata from File via Expandable Section
   And the "Content" field should be filled with the file body
 ```
 
-**Story 1.1.3:** As an Admin, I want to delete a song so that I can remove duplicate or incorrect entries.
+**Story 1.1.2-bis: [Implemented]** As an Admin, I want pasted metadata (title/author) in the lyrics field to populate the form fields automatically so that I can copy-paste full song files easily.
+
+```
+Scenario: Smart Paste
+  Given I am on the Add Song page
+  When I paste content containing "{title: Grandmother Earth} {author: Traditional}" into the "Lyrics & chords" textarea
+  Then the "Title" field should be filled with "Grandmother Earth"
+  And the "Author" field should be filled with "Traditional"
+  And the "Lyrics & chords" field should contain only the song content
+```
+
+**Story 1.1.3: [Implemented]** As an Admin, I want to delete a song so that I can remove duplicate or incorrect entries.
 
 ```
 Scenario: Admin deletes a song
@@ -80,6 +92,17 @@ Scenario: Guest clicks Upload
   When I click the "Add Song" icon in the header
   Then I should see a modal or page saying "Please join our circle to share medicine."
   And I should be offered options to "Log In" or "Create Account"
+```
+
+**Story 1.1.6:** As a Content Contributor, I want the system to automatically detect and convert songs formatted with "Chords over Lyrics" into standard ChordPro format, so that I don't have to manually reformat existing song sheets when adding them to the library.
+
+```
+Scenario: Paste "Chords over Lyrics" content
+  Given I am on the "Add Song" page
+  When I paste text with chords over lyrics into the "Lyrics & chords" textarea
+  Then the system should detect the format
+  And the content should automatically convert to ChordPro format
+  And the "Title" and "Author" fields should be populated if present
 ```
 
 ### Epic 1.2: Public Library & Discovery
