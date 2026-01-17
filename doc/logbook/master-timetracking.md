@@ -19,7 +19,8 @@
 | **Jan 14** | **Feature**: Redesign Add Song Screen (Story 1.1.2) | ~1.0 Hours | ✅ Completed |
 | **Jan 15** | **Feature**: Implement Delete Song (Story 1.1.3) | ~1.5 Hours | ✅ Completed |
 | **Jan 15** | **Bug Fix**: RLS Violation on Add Song (Bug #30) | ~0.5 Hours | ✅ Completed |
-| **Total** | **Development + AI Collaboration** | **~30.75 Hours** | |
+| **Jan 17** | **UI/Docs**: SongForm Styling & Artifact Sync | ~1.5 Hours | ✅ Completed |
+| **Total** | **Development + AI Collaboration** | **~32.25 Hours** | |
 
 > [!IMPORTANT]
 > **Collaboration Factor:** Previous estimates only counted "output" (commits). Including the "input" time (reading docs, formulating prompts, reviewing AI suggestions, and verifying changes) increases the total time by **~40%**. This is a more realistic reflection of the actual time spent on the project.
@@ -71,5 +72,12 @@
     -   Resolved **Bug #30**: RLS Violation on Add Song.
         -   Debugged Mock Auth failure.
         -   Relaxed RLS to allow Public Inserts for Mock Mode compatibility.
+
+- **Jan 17**:
+    -   **Mockups**: Updated "Add Song" mockups (Expanded & Collapsed) to reflect new design.
+    -   **Styling**: Improved styling by establishing Red as the primary color across the app.
+    -   **Feature**: Added Collapsible Upload Field (Story 1.1.2) for importing `.cho` files.
+    -   **Refinement**: Added metadata fields (Language, Tags, Links) to `SongForm`.
+    -   **Docs**: Synchronized artifacts and schema (Added `soundcloud_url`).
 
 
