@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
 import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
-import YouTubeEmbed from '@/components/song/YouTubeEmbed';
+import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { deleteSong } from '@/app/actions/deleteSong';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -26,7 +26,9 @@ const fetchSong = async (id: string) => {
             version_name,
             content_chordpro,
             key,
-            youtube_url
+            youtube_url,
+            spotify_url,
+            soundcloud_url
           )
         `)
         .eq('id', id)
@@ -171,10 +173,12 @@ export default function SongDetailPage() {
                     )}
                     <SongDisplay key={currentVersion?.id || 'empty'} content={currentVersion?.content_chordpro || ''} />
 
-                    {/* YouTube Embed */}
-                    {currentVersion?.youtube_url && (
-                        <YouTubeEmbed videoId={currentVersion.youtube_url} />
-                    )}
+                    {/* Media Embeds */}
+                    <MediaEmbeds
+                        youtubeUrl={currentVersion?.youtube_url}
+                        spotifyUrl={currentVersion?.spotify_url}
+                        soundcloudUrl={currentVersion?.soundcloud_url}
+                    />
                 </div>
 
                 {/* Bottom spacing */}

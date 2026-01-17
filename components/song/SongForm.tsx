@@ -168,8 +168,10 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                         version_name: 'Standard',
                         content_chordpro: data.content,
                         capo: 0,
-                        vote_count: 0
-                        // Note: links and other metadata not yet persisted as per instruction
+                        vote_count: 0,
+                        youtube_url: data.youtubeLink,
+                        spotify_url: data.spotifyLink,
+                        soundcloud_url: data.soundcloudLink,
                     });
 
                 if (versionError) throw versionError;
@@ -193,6 +195,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .from('song_versions')
                     .update({
                         content_chordpro: data.content,
+                        youtube_url: data.youtubeLink,
+                        spotify_url: data.spotifyLink,
+                        soundcloud_url: data.soundcloudLink,
                     })
                     .eq('id', versionId);
 

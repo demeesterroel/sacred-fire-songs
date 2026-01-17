@@ -105,6 +105,18 @@ Scenario: Paste "Chords over Lyrics" content
   And the "Title" and "Author" fields should be populated if present
 ```
 
+**Story 1.1.7:** As a User, I want to attach YouTube, Spotify, and SoundCloud links to a song so that I can listen to reference recordings directly on the song page.
+
+```
+Scenario: Persist and Display Media Links
+  Given I am on the "Add Song" or "Edit Song" page
+  When I paste a valid URL into the YouTube, Spotify, or SoundCloud fields
+  And I save the song
+  Then the links should be persisted in the database
+  And when I view the song details
+  Then I should see the corresponding embedded player(s) for the provided links
+```
+
 ### Epic 1.2: Public Library & Discovery
 
 **Story 1.2.1: [Implemented]** As a Guest, I want to view a list of all songs so that I can see what is available in the songbook.
