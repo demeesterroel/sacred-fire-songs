@@ -1,13 +1,13 @@
 'use client';
 
-import { parseChordPro } from '@/lib/chordUtils';
+import { parseChordProForDisplay } from '@/lib/chordUtils';
 
 interface SongDisplayProps {
     content: string;
 }
 
 export default function SongDisplay({ content }: SongDisplayProps) {
-    const lines = parseChordPro(content);
+    const lines = parseChordProForDisplay(content);
 
     return (
         <div className="space-y-6 font-mono" >

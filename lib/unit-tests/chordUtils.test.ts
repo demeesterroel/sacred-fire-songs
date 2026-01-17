@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { parseChordPro } from '../chordUtils';
+import { parseChordProForDisplay } from '../chordUtils';
 
 describe('parseChordPro', () => {
     it('parses a basic ChordPro string', () => {
         const chordPro = "{title: Test Song}\n[Am]Hello [G]World";
-        const lines = parseChordPro(chordPro);
+        const lines = parseChordProForDisplay(chordPro);
 
         // Let's verify we have lines
         expect(lines.length).toBe(1);
