@@ -61,20 +61,24 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
         try {
             const text = await file.text();
 
-            // Extract Title
+            // 1. Extract Title
             const titleMatch = text.match(/{(?:title|t):\s*(.*?)}/i);
             if (titleMatch) {
                 setValue('title', titleMatch[1].trim());
             }
 
-            // Extract Author
+            // 2. Extract Author
             const authorMatch = text.match(/{(?:author|a|artist):\s*(.*?)}/i);
             if (authorMatch) {
                 setValue('author', authorMatch[1].trim());
             }
 
-            // Set Content
-            setValue('content', text.trim());
+            // 3. Set Content (Stripped of metadata tags)
+            // Global regex to remove all title/author tags from the body
+            const metadataRegex = /{(?:title|t|author|a|artist):\s*.*?}\s*/gi;
+            const cleanContent = text.replace(metadataRegex, '').trim();
+
+            setValue('content', cleanContent);
 
             // Auto-collapse after success
             setShowUpload(false);
