@@ -198,3 +198,8 @@
     - [x] Create branch `ui/standardize-button-text` <!-- id: 61 -->
     - [x] Update `SongForm.tsx` to use "Publish Song" <!-- id: 62 -->
     - [x] Merge to main <!-- id: 63 -->
+- [x] **Story 1.1.7: Media Links** <!-- id: 64 -->
+    - [x] Create `MediaEmbeds.tsx` <!-- id: 65 -->
+    - [x] Update `SongForm.tsx` persistence <!-- id: 66 -->
+    - [x] Update `app/songs/[id]/page.tsx` fetching & display <!-- id: 67 -->
+    - [x] Merge fix `ui/publish-button-color` <!-- id: 68 -->
