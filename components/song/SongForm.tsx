@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { parseChordPro } from '@/utils/chordProParsing';
+import { parseChordPro } from '@/lib/chordProParsing';
 
 type SongFormData = {
     title: string;
