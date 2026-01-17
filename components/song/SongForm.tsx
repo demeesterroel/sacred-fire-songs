@@ -78,10 +78,17 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
         // Get pasted data
         const text = e.clipboardData.getData('text');
 
-        // Check if it looks like it has metadata
-        const hasMetadata = /{(?:title|t|author|a|artist):/i.test(text);
+        // Check if it looks like it has metadata OR is Chords over Lyrics
+        // Simple heuristic: tags OR looks like lyrics with chords?
+        // Actually, why restrict it? If user pastes text, we should probably try to parse it?
+        // But we don't want to interfere with editing a single line.
+        // However, if it's a multiline paste, it's likely a whole song or block.
 
-        if (hasMetadata) {
+        // Fix: Allow if metadata present OR if it contains multiple lines (heuristic for block paste)
+        const hasMetadata = /{(?:title|t|author|a|artist):/i.test(text);
+        const isMultiLine = text.trim().split('\n').length > 1;
+
+        if (hasMetadata || isMultiLine) {
             e.preventDefault(); // Prevent default paste
 
             const { title, author, cleanContent } = parseChordPro(text);
