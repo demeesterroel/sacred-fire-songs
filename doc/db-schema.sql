@@ -1,12 +1,12 @@
 /*
-**Version:** 2.3
+**Version:** 2.4
 **Status:** Current
-**Date:** January 17, 2026
+**Date:** January 25, 2026
 
 ## Usage
 This script provides a complete setup for the "Sacred Fire Songs" database. 
-It consolidates the initial schema and all subsequent migrations up to Jan 17, 2026.
-(v2.3: Added spotify_url to song_versions).
+It consolidates the initial schema and all subsequent migrations up to Jan 25, 2026.
+(v2.4: Added tuning to song_versions).
 Run this in the Supabase SQL Editor to initialize a fresh database.
 */
 
@@ -63,6 +63,7 @@ create table public.song_versions (
   melody_notation text, -- ABC Notation
   key text,
   capo integer default 0,
+  tuning text default 'Standard', -- Added v2.4
   soundcloud_url text, -- Renamed from audio_url (v2.3)
   youtube_url text, -- Video ID or URL for YouTube embed
   spotify_url text, -- Added v2.3
