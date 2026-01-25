@@ -13,9 +13,9 @@ type SongFormData = {
     content: string;
     language: string;
     tags: string[];
-    key: string;
-    capo: string;
-    tuning: string;
+    key?: string;
+    capo?: string;
+    tuning?: string;
     youtubeLink: string;
     spotifyLink: string;
     soundcloudLink: string;
@@ -43,9 +43,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             ...initialData,
             language: initialData?.language || 'English',
             tags: initialData?.tags || [],
-            key: initialData?.key || 'C',
-            capo: initialData?.capo || '0',
-            tuning: initialData?.tuning || 'Standard',
+            key: initialData?.key || '',
+            capo: initialData?.capo ? String(initialData.capo) : '',
+            tuning: initialData?.tuning || '',
             youtubeLink: initialData?.youtubeLink || '',
             spotifyLink: initialData?.spotifyLink || '',
             soundcloudLink: initialData?.soundcloudLink || '',
@@ -56,6 +56,15 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     const router = useRouter();
     const [serverError, setServerError] = useState<string | null>(null);
     const [showUpload, setShowUpload] = useState(false);
+
+    // Auto-expand metadata if fields are populated (Edit Mode or after Parsing)
+    const hasMetadata = !!(initialData?.key || initialData?.capo || (initialData?.tuning && initialData.tuning !== 'Standard'));
+    const [isMetadataExpanded, setIsMetadataExpanded] = useState(hasMetadata);
+
+    // Update expansion when parsing finds metadata
+    const expandMetadata = (foundData: boolean) => {
+        if (foundData) setIsMetadataExpanded(true);
+    };
 
     // Watch fields for UI updates
     const currentTags = watch('tags') || [];
@@ -71,7 +80,10 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             if (title) setValue('title', title);
             if (author) setValue('author', author);
             if (key) setValue('key', key);
+            if (key) setValue('key', key);
             if (capo) setValue('capo', capo);
+
+            if (key || capo) expandMetadata(true);
             setValue('content', cleanContent);
 
             // Auto-collapse after success
@@ -116,6 +128,8 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             if (capo) {
                 setValue('capo', capo);
             }
+
+            if (key || capo) expandMetadata(true);
 
             // For content, we insert the CLEANED content at the cursor position?
             // Or replace entire content? 
@@ -180,9 +194,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                         composition_id: composition.id,
                         content_chordpro: data.content,
                         version_name: 'Standard',
-                        key: data.key,
-                        capo: parseInt(data.capo) || 0,
-                        tuning: data.tuning,
+                        key: data.key || null,
+                        capo: data.capo ? parseInt(data.capo) : null,
+                        tuning: data.tuning || null,
                         vote_count: 0,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
@@ -210,9 +224,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .from('song_versions')
                     .update({
                         content_chordpro: data.content,
-                        key: data.key,
-                        capo: parseInt(data.capo) || 0,
-                        tuning: data.tuning,
+                        key: data.key || null,
+                        capo: data.capo ? parseInt(data.capo) : null,
+                        tuning: data.tuning || null,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
                         soundcloud_url: data.soundcloudLink,
@@ -337,7 +351,11 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
 
                         {/* Extended Metadata Section (Collapsible) */}
                         <div className="pt-2">
-                            <details className="group bg-[#1d1c26]/50 border border-[#3f3d52] rounded-xl overflow-hidden transition-all duration-300 open:bg-[#1d1c26]">
+                            <details
+                                className="group bg-[#1d1c26]/50 border border-[#3f3d52] rounded-xl overflow-hidden transition-all duration-300 open:bg-[#1d1c26]"
+                                open={isMetadataExpanded}
+                                onToggle={(e) => setIsMetadataExpanded(e.currentTarget.open)}
+                            >
                                 <summary className="w-full flex items-center justify-between p-4 hover:bg-[#3f3d52]/30 cursor-pointer select-none list-none">
                                     <div className="flex items-center gap-2">
                                         <h3 className="text-blue-400 font-semibold text-sm">Add Key, Capo and Tuning</h3>
@@ -354,6 +372,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                                                 {...register('key')}
                                                 className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
                                             >
+                                                <option value="">(Select Key)</option>
                                                 {['C', 'Cm', 'C#', 'Db', 'D', 'Dm', 'Eb', 'E', 'Em', 'F', 'Fm', 'F#', 'Gb', 'G', 'Gm', 'G#', 'Ab', 'A', 'Am', 'Bb', 'B', 'Bm'].map(k => (
                                                     <option key={k} value={k}>{k}</option>
                                                 ))}
@@ -370,7 +389,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                                                 {...register('capo')}
                                                 className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
                                             >
-                                                <option value="0">No Capo</option>
+                                                <option value="">(No Capo)</option>
                                                 {Array.from({ length: 12 }, (_, i) => i + 1).map(i => (
                                                     <option key={i} value={i}>{i === 1 ? '1st Fret' : i === 2 ? '2nd Fret' : i === 3 ? '3rd Fret' : `${i}th Fret`}</option>
                                                 ))}
@@ -387,6 +406,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                                                 {...register('tuning')}
                                                 className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
                                             >
+                                                <option value="">(Select Tuning)</option>
                                                 <option value="Standard">Standard</option>
                                                 <option value="Drop D">Drop D</option>
                                                 <option value="Open G">Open G</option>
