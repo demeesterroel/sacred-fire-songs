@@ -44,6 +44,7 @@ export interface SongVersion {
     melody_notation?: string | null; // ABC Notation (Phase 2)
     key?: string | null; // e.g., 'Am'
     capo: number;
+    tuning?: string | null; // Added v2.4 (e.g. 'Standard', 'Drop D')
     audio_url?: string | null;
     youtube_url?: string | null;
     contributor_id?: string | null; // Foreign Key -> UserProfile
