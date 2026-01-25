@@ -203,3 +203,38 @@
     - [x] Update `SongForm.tsx` persistence <!-- id: 66 -->
     - [x] Update `app/songs/[id]/page.tsx` fetching & display <!-- id: 67 -->
     - [x] Merge fix `ui/publish-button-color` <!-- id: 68 -->
+- [x] Initialize Time Tracking Log <!-- id: 0 -->
+- [x] Refactor Base Path from `/songbook` to `/` <!-- id: 1 -->
+    - [x] Search for hardcoded `/songbook` strings <!-- id: 2 -->
+    - [x] Update documentation links if necessary <!-- id: 3 -->
+    - [x] Verify `middleware.ts` logic <!-- id: 4 -->
+    - [x] Verify `next.config.ts` correctness <!-- id: 5 -->
+- [x] Push changes to remote `main` <!-- id: 6 -->
+- [x] Audit Active Branches <!-- id: 7 -->
+    - [x] List all branches <!-- id: 8 -->
+    - [x] Check merged status of each branch <!-- id: 9 -->
+    - [x] Report findings to user <!-- id: 10 -->
+- [x] Verify Story 1.1.6 (Auto-convert Chords) Implementation <!-- id: 11 -->
+- [x] Plan Extended Metadata Feature (Story 1.1.7) <!-- id: 12 -->
+    - [x] Analyze Schema & UI gaps <!-- id: 13 -->
+    - [x] Create GitHub Issue Draft <!-- id: 14 -->
+    - [x] Plan UI Mockup Updates <!-- id: 15 -->
+    - [x] Present Plan to User <!-- id: 16 -->
+- [x] Create GitHub Issue [Story 1.1.7] <!-- id: 17 -->
+- [x] Create UI Mockup for Validation <!-- id: 18 -->
+    - [x] Consolidate into `song_add.html` <!-- id: 21 -->
+    - [x] Replicate 'Upload' UI inside details <!-- id: 22 -->
+    - [x] Reorder: Key, Capo, Tuning <!-- id: 23 -->
+- [x] Create Workflow: `create-issue` <!-- id: 19 -->
+- [x] Create Feature Branch `feat/extended-metadata-1.1.7` <!-- id: 29 -->
+- [x] Commit & Push `.agent` configuration <!-- id: 20 -->
+- [x] Database Migration (Add `tuning` column) <!-- id: 24 -->
+    - [x] Create migration file <!-- id: 25 -->
+    - [x] Update `doc/db-schema.sql` <!-- id: 26 -->
+- [x] Frontend Implementation (`SongForm.tsx`) <!-- id: 27 -->
+- [x] Refine Dashboard Display Logic (Dynamic Key) <!-- id: 30 -->
+- [x] Enhance ChordPro Parsing (Extract Key/Capo) <!-- id: 31 -->
+- [x] Update Unit Tests for Parsing (Refactored to Vitest) <!-- id: 32 -->
+- [x] Refine Metadata Logic (Defaults & Edit Mode) <!-- id: 33 -->
+- [x] Polish UI (Left-align Metadata) <!-- id: 34 -->
+- [x] Verify Implementation <!-- id: 28 -->
