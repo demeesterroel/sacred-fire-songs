@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: '/songbook',
+  basePath: '',
 };
 
 export default nextConfig;
