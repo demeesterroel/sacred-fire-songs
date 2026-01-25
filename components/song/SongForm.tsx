@@ -67,10 +67,11 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
 
         try {
             const text = await file.text();
-            const { title, author, cleanContent } = parseChordPro(text);
-
+            const { title, author, key, capo, cleanContent } = parseChordPro(text);
             if (title) setValue('title', title);
             if (author) setValue('author', author);
+            if (key) setValue('key', key);
+            if (capo) setValue('capo', capo);
             setValue('content', cleanContent);
 
             // Auto-collapse after success
@@ -97,7 +98,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
         if (hasMetadata || isMultiLine) {
             e.preventDefault(); // Prevent default paste
 
-            const { title, author, cleanContent } = parseChordPro(text);
+            const { title, author, key, capo, cleanContent } = parseChordPro(text);
 
             // Only update fields if we found something, to be safe? 
             // Actually spec says "if it contains title and author", but let's be generous.
@@ -108,6 +109,12 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             }
             if (author) {
                 setValue('author', author);
+            }
+            if (key) {
+                setValue('key', key);
+            }
+            if (capo) {
+                setValue('capo', capo);
             }
 
             // For content, we insert the CLEANED content at the cursor position?
