@@ -21,6 +21,7 @@
 | **Jan 15** | **Bug Fix**: RLS Violation on Add Song (Bug #30) | ~0.5 Hours | ✅ Completed |
 | **Jan 17** | **UI/Docs**: SongForm Styling & Artifact Sync | ~1.5 Hours | ✅ Completed |
 | **Jan 17** | **Feature**: Smart Paste (Story 1.1.2-bis) & New Story | ~0.75 Hours | ✅ Completed |
+| **Jan 25** | **Session Start**: Planning & Setup | TBD | ⏳ In Progress |
 | **Total** | **Development + AI Collaboration** | **~33.0 Hours** | |
 
 > [!IMPORTANT]
