@@ -1,115 +1,64 @@
 
+import { describe, it, expect } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseChordPro } from '../chordProParsing';
-import assert from 'assert';
 
-const filePath = path.join(__dirname, 'DownToTheRiver-chordsOverLyrics.txt');
-const downToTheRiver = fs.readFileSync(filePath, 'utf-8');
+describe('ChordPro Parsing', () => {
 
-console.log(`Running parser test on: ${filePath}`);
+    it('should parse "Down to the River" (chords over lyrics)', () => {
+        const filePath = path.join(__dirname, 'DownToTheRiver-chordsOverLyrics.txt');
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const parsed = parseChordPro(content);
 
-try {
-    const parsed = parseChordPro(downToTheRiver);
+        expect(parsed.cleanContent).toContain('As I went [G]down in the river to pray');
+        expect(parsed.cleanContent).toContain('[D]Studying about that [G]good old way');
+        expect(parsed.cleanContent).toContain('[D]O sisters, [G]let\'s go down');
+        expect(parsed.cleanContent).toContain('Page 1/3');
+        expect(parsed.cleanContent).toContain('And [G]who shall wear the robe and crown');
+    });
 
-    // Assertions
-    // 1. Check for specific converted lines
-    assert(parsed.cleanContent.includes('As I went [G]down in the river to pray'), 'First verse conversion failed');
-    assert(parsed.cleanContent.includes('[D]Studying about that [G]good old way'), 'Second verse conversion failed');
-    assert(parsed.cleanContent.includes('[D]O sisters, [G]let\'s go down'), 'Chorus conversion failed');
+    it('should extract metadata from "Morning Sunrise" (.cho)', () => {
+        const filePath = path.join(__dirname, 'morning_sunrise.cho');
 
-    // 2. Check that "Page 1/3" is NOT erroneously merged (it should remain as text)
-    // Note: Our current logic leaves "Page 1/3" on its own line because it's not a chord line.
-    assert(parsed.cleanContent.includes('Page 1/3'), 'Pagination text should be preserved (or preserved on its own line)');
+        // Ensure file exists (setup)
+        if (!fs.existsSync(filePath)) {
+            const dummyContent = "{title: Morning Sunrise}\n{author: Shimshai}\n\n[Am]Morning sun...";
+            fs.writeFileSync(filePath, dummyContent);
+        }
 
-    // 3. Check for the problematic last verse (Verse 4? or Reprise)
-    // "And who shall wear the robe and crown"
-    assert(parsed.cleanContent.includes('And [G]who shall wear the robe and crown'), 'Last verse conversion failed');
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const parsed = parseChordPro(content);
 
-    console.log("✅ DownToTheRiver Parser Test Passed!");
-    console.log("---------------------------------------------------");
-} catch (error) {
-    console.error("❌ DownToTheRiver Parser Test Failed:", error);
-    process.exit(1);
-}
+        expect(parsed.title).toBe('Morning Sunrise');
+        expect(parsed.author).toBe('Traditional'); // Note: Test looked for 'Traditional', verifying logic
+    });
 
-// === TEST CASE 2: Morning Sunrise (Metadata Detection) ===
-const morningPath = path.join(__dirname, 'morning_sunrise.cho');
-console.log(`Running parser test on: ${morningPath}`);
+    it('should parse "Donne Ricche" (Italian chords over lyrics)', () => {
+        const filePath = path.join(__dirname, 'DonneRiccheChordsOverLyrics.txt');
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const parsed = parseChordPro(content);
 
-try {
-    if (!fs.existsSync(morningPath)) {
-        console.warn("⚠️ morning_sunrise.cho not found, creating dummy content for test.");
-        const dummyContent = "{title: Morning Sunrise}\n{author: Shimshai}\n\n[Am]Morning sun...";
-        fs.writeFileSync(morningPath, dummyContent);
-    }
+        expect(parsed.cleanContent).toContain('[Gbmaj7]Mia nonna quando è morta');
+        expect(parsed.cleanContent).toContain('[Db]Non mi ha lasciato niente');
+        expect(parsed.cleanContent).toContain('[Gbmaj7]Comprami-');
+    });
 
-    const morningContent = fs.readFileSync(morningPath, 'utf-8');
-    const parsedMorning = parseChordPro(morningContent);
-
-    // Assertions
-    assert.strictEqual(parsedMorning.title, 'Morning Sunrise', 'Title detection failed');
-    assert.strictEqual(parsedMorning.author, 'Traditional', 'Author detection failed');
-    // assert(parsedMorning.cleanContent.includes('Morning sun'), 'Content extraction failed');
-
-    console.log("✅ Morning Sunrise Metadata Test Passed!");
-    console.log("---------------------------------------------------");
-
-} catch (error) {
-    console.error("❌ Morning Sunrise Parser Test Failed:", error);
-    process.exit(1);
-}
-
-// === TEST CASE 3: Donne Ricche (Chords over Lyrics Italian) ===
-const donnePath = path.join(__dirname, 'DonneRiccheChordsOverLyrics.txt');
-console.log(`Running parser test on: ${donnePath}`);
-
-try {
-    const donneContent = fs.readFileSync(donnePath, 'utf-8');
-    const parsedDonne = parseChordPro(donneContent);
-
-    // Assertions
-    // "Gbmaj7" over "Mia nonna..." -> "[Gbmaj7]Mia nonna quando è morta"
-    assert(parsedDonne.cleanContent.includes('[Gbmaj7]Mia nonna quando è morta'), 'Verse 1 conversion failed');
-
-    // "Db" over "Non mi ha lasciato niente" -> "[Db]Non mi ha lasciato niente"
-    assert(parsedDonne.cleanContent.includes('[Db]Non mi ha lasciato niente'), 'Verse 1 line 2 conversion failed');
-
-    // "Gbmaj7" over "Comprami-" -> "[Gbmaj7]Comprami-"
-    assert(parsedDonne.cleanContent.includes('[Gbmaj7]Comprami-'), 'Bridge conversion failed');
-
-    console.log("✅ Donne Ricche Parser Test Passed!");
-    console.log("---------------------------------------------------");
-
-} catch (error) {
-    console.error("❌ Donne Ricche Parser Test Failed:", error);
-    process.exit(1);
-}
-
-// === TEST CASE 4: Key and Capo Extraction ===
-console.log("Running parser test for Key and Capo Extraction...");
-
-const keyCapoContent = `
+    it('should extract Key and Capo directives', () => {
+        const keyCapoContent = `
 {title: Test Key Capo}
 {author: Tester}
 {key: Em}
 {capo: 3}
 [Em]Testing [G]Key and Capo
 `;
+        const parsed = parseChordPro(keyCapoContent);
 
-try {
-    const parsedKeyCapo = parseChordPro(keyCapoContent);
+        expect(parsed.key).toBe('Em');
+        expect(parsed.capo).toBe('3');
+        expect(parsed.title).toBe('Test Key Capo');
+        expect(parsed.cleanContent).not.toContain('{key:');
+        expect(parsed.cleanContent).not.toContain('{capo:');
+    });
 
-    // Assertions
-    assert.strictEqual(parsedKeyCapo.key, 'Em', 'Key extraction failed');
-    assert.strictEqual(parsedKeyCapo.capo, '3', 'Capo extraction failed');
-    assert.strictEqual(parsedKeyCapo.title, 'Test Key Capo', 'Title extraction failed in Key/Capo test');
-    assert(!parsedKeyCapo.cleanContent.includes('{key:'), 'cleanContent contains key tag');
-    assert(!parsedKeyCapo.cleanContent.includes('{capo:'), 'cleanContent contains capo tag');
-
-    console.log("✅ Key and Capo Extraction Test Passed!");
-    console.log("---------------------------------------------------");
-} catch (error) {
-    console.error("❌ Key/Capo Parser Test Failed:", error);
-    process.exit(1);
-}
+});
