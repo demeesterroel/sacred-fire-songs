@@ -1,6 +1,8 @@
 export interface ParsedChordPro {
     title?: string;
     author?: string;
+    key?: string;
+    capo?: string;
     cleanContent: string;
 }
 
@@ -126,6 +128,8 @@ export function convertChordsOverLyricsToChordPro(text: string): string {
 export function parseChordPro(text: string): ParsedChordPro {
     let title: string | undefined;
     let author: string | undefined;
+    let key: string | undefined;
+    let capo: string | undefined;
 
     // 0. Pre-process: Detect and convert "Chords over Lyrics" if present
     // This allows us to handle mixed formats or pure "OnSong" style
@@ -145,10 +149,24 @@ export function parseChordPro(text: string): ParsedChordPro {
         author = authorMatch[1].trim();
     }
 
-    // 3. Set Content (Stripped of metadata tags)
-    // Global regex to remove all title/author tags from the body
-    const metadataRegex = /{(?:title|t|author|a|artist):\s*.*?}\s*/gi;
+    // 3. Extract Key
+    const keyRegex = /{(?:key|k):\s*(.*?)}/i;
+    const keyMatch = convertedText.match(keyRegex);
+    if (keyMatch) {
+        key = keyMatch[1].trim();
+    }
+
+    // 4. Extract Capo
+    const capoRegex = /{(?:capo|c):\s*(.*?)}/i;
+    const capoMatch = convertedText.match(capoRegex);
+    if (capoMatch) {
+        capo = capoMatch[1].trim();
+    }
+
+    // 5. Set Content (Stripped of metadata tags)
+    // Global regex to remove all title/author/key/capo tags from the body
+    const metadataRegex = /{(?:title|t|author|a|artist|key|k|capo|c):\s*.*?}\s*/gi;
     const cleanContent = convertedText.replace(metadataRegex, '').trim();
 
-    return { title, author, cleanContent };
+    return { title, author, key, capo, cleanContent };
 }
