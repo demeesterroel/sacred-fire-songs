@@ -325,3 +325,46 @@ Implemented persistence and display for YouTube, Spotify, and SoundCloud links.
 ### Verification
 *   **Persistence**: Verified data saves correctly via `EditSongPage` logic.
 *   **Display**: Confirmed `SongDetailPage` fetches and renders the embeds.
+
+## Session Update (Jan 25, 2026 - Extended Metadata)
+
+# Walkthrough - Extended Metadata (Story 1.1.7)
+
+We have implemented the ability for musicians to define Key, Capo, and Tuning when adding or editing a song.
+
+## Changes
+
+### Database
+- Added `tuning` column (text) to `song_versions` table.
+- Updated schema documentation (`doc/db-schema.sql`) to version 2.4.
+
+### Frontend (`SongForm.tsx`)
+- Updated `SongFormData` to include `key`, `capo`, and `tuning`.
+- Added a new collapsible **"Add Key, Capo and Tuning"** section to the form.
+- Configured data persistence to Supabase.
+
+## Verification
+
+### Automated
+- **TS Check:** Ensure no type errors in `SongForm.tsx`.
+- **Lint:** Run `npm run lint`.
+
+### Manual Verification
+1.  Navigate to **Add Song** page (e.g., http://localhost:3000/add).
+2.  **Test File Upload:**
+    - Create a test file `test.cho` with content:
+      ```
+      {title: Test Parse}
+      {author: Agent}
+      {key: D}
+      {capo: 3}
+      [D]Test content
+      ```
+    - Upload it. Verify Title="Test Parse", Author="Agent", Key="D", Capo="3rd Fret" (if mapped correctly).
+3.  **Test Paste:**
+    - Paste the same content into the lyrics box. Verify fields populate.
+4.  **Verify Persistence:**
+    - Save song. Check Dashboard for "Key: D" badge.
+
+> [!IMPORTANT]
+> Use `render_diffs(file:///home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)` to see code changes.
