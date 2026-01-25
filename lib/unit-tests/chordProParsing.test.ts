@@ -85,3 +85,31 @@ try {
     console.error("❌ Donne Ricche Parser Test Failed:", error);
     process.exit(1);
 }
+
+// === TEST CASE 4: Key and Capo Extraction ===
+console.log("Running parser test for Key and Capo Extraction...");
+
+const keyCapoContent = `
+{title: Test Key Capo}
+{author: Tester}
+{key: Em}
+{capo: 3}
+[Em]Testing [G]Key and Capo
+`;
+
+try {
+    const parsedKeyCapo = parseChordPro(keyCapoContent);
+
+    // Assertions
+    assert.strictEqual(parsedKeyCapo.key, 'Em', 'Key extraction failed');
+    assert.strictEqual(parsedKeyCapo.capo, '3', 'Capo extraction failed');
+    assert.strictEqual(parsedKeyCapo.title, 'Test Key Capo', 'Title extraction failed in Key/Capo test');
+    assert(!parsedKeyCapo.cleanContent.includes('{key:'), 'cleanContent contains key tag');
+    assert(!parsedKeyCapo.cleanContent.includes('{capo:'), 'cleanContent contains capo tag');
+
+    console.log("✅ Key and Capo Extraction Test Passed!");
+    console.log("---------------------------------------------------");
+} catch (error) {
+    console.error("❌ Key/Capo Parser Test Failed:", error);
+    process.exit(1);
+}
