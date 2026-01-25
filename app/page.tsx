@@ -12,18 +12,22 @@ import { useQuery } from '@tanstack/react-query'; // The new superpower
 const fetchSongs = async () => {
   const { data, error } = await supabase
     .from('compositions')
-    .select('*')
+    .select('*, song_versions(key)')
     .order('title');
 
   if (error) throw error;
 
-  return data.map(item => ({
-    id: item.id,
-    title: item.title,
-    author: item.original_author || "Unknown",
-    songKey: "Am",
-    color: "red"
-  }));
+  return data.map(item => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const version = (item.song_versions as any[])?.[0];
+    return {
+      id: item.id,
+      title: item.title,
+      author: item.original_author || "Unknown",
+      songKey: version?.key || null,
+      color: "red"
+    };
+  });
 };
 
 export default function Home() {
