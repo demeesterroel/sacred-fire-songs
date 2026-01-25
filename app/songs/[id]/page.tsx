@@ -25,7 +25,10 @@ const fetchSong = async (id: string) => {
             id,
             version_name,
             content_chordpro,
+            content_chordpro,
             key,
+            capo,
+            tuning,
             youtube_url,
             spotify_url,
             soundcloud_url
@@ -163,12 +166,24 @@ export default function SongDetailPage() {
                 )}
 
                 <div className="mt-6 p-4 bg-gray-800 rounded-xl border border-white/5 font-mono text-sm whitespace-pre-wrap transition-all duration-300 shadow-xl">
-                    {/* Key Badge */}
-                    {currentVersion?.key && (
-                        <div className="flex justify-end mb-4">
-                            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
-                                Key: {currentVersion.key}
-                            </span>
+                    {/* Metadata Row */}
+                    {(currentVersion?.key || currentVersion?.capo || currentVersion?.tuning) && (
+                        <div className="flex justify-end gap-2 mb-4">
+                            {currentVersion?.key && (
+                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
+                                    Key: {currentVersion.key}
+                                </span>
+                            )}
+                            {currentVersion?.capo > 0 && (
+                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
+                                    Capo: {currentVersion.capo}
+                                </span>
+                            )}
+                            {currentVersion?.tuning && currentVersion.tuning !== 'Standard' && (
+                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
+                                    Tuning: {currentVersion.tuning}
+                                </span>
+                            )}
                         </div>
                     )}
                     <SongDisplay key={currentVersion?.id || 'empty'} content={currentVersion?.content_chordpro || ''} />

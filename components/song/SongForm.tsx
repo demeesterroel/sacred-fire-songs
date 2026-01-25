@@ -13,6 +13,9 @@ type SongFormData = {
     content: string;
     language: string;
     tags: string[];
+    key: string;
+    capo: string;
+    tuning: string;
     youtubeLink: string;
     spotifyLink: string;
     soundcloudLink: string;
@@ -40,6 +43,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             ...initialData,
             language: initialData?.language || 'English',
             tags: initialData?.tags || [],
+            key: initialData?.key || 'C',
+            capo: initialData?.capo || '0',
+            tuning: initialData?.tuning || 'Standard',
             youtubeLink: initialData?.youtubeLink || '',
             spotifyLink: initialData?.spotifyLink || '',
             soundcloudLink: initialData?.soundcloudLink || '',
@@ -165,9 +171,11 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .from('song_versions')
                     .insert({
                         composition_id: composition.id,
-                        version_name: 'Standard',
                         content_chordpro: data.content,
-                        capo: 0,
+                        version_name: 'Standard',
+                        key: data.key,
+                        capo: parseInt(data.capo) || 0,
+                        tuning: data.tuning,
                         vote_count: 0,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
@@ -195,6 +203,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .from('song_versions')
                     .update({
                         content_chordpro: data.content,
+                        key: data.key,
+                        capo: parseInt(data.capo) || 0,
+                        tuning: data.tuning,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
                         soundcloud_url: data.soundcloudLink,
@@ -315,6 +326,71 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                                 placeholder="e.g. Traditional or Artist Name"
                             />
                             {errors.author && <p className="text-red-400 text-sm">{errors.author.message}</p>}
+                        </div>
+
+                        {/* Extended Metadata Section (Collapsible) */}
+                        <div className="pt-2">
+                            <details className="group bg-[#1d1c26]/50 border border-[#3f3d52] rounded-xl overflow-hidden transition-all duration-300 open:bg-[#1d1c26]">
+                                <summary className="w-full flex items-center justify-between p-4 hover:bg-[#3f3d52]/30 cursor-pointer select-none list-none">
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="text-blue-400 font-semibold text-sm">Add Key, Capo and Tuning</h3>
+                                    </div>
+                                    <span className="material-symbols-outlined text-gray-400 transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+
+                                <div className="p-4 pt-0 grid grid-cols-3 gap-3 border-t border-[#3f3d52]/50 mt-1 pt-4">
+                                    {/* Key */}
+                                    <div className="space-y-1.5">
+                                        <label className="block text-xs font-medium text-gray-400">Key</label>
+                                        <div className="relative">
+                                            <select
+                                                {...register('key')}
+                                                className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
+                                            >
+                                                {['C', 'Cm', 'C#', 'Db', 'D', 'Dm', 'Eb', 'E', 'Em', 'F', 'Fm', 'F#', 'Gb', 'G', 'Gm', 'G#', 'Ab', 'A', 'Am', 'Bb', 'B', 'Bm'].map(k => (
+                                                    <option key={k} value={k}>{k}</option>
+                                                ))}
+                                            </select>
+                                            <span className="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Capo */}
+                                    <div className="space-y-1.5">
+                                        <label className="block text-xs font-medium text-gray-400">Capo</label>
+                                        <div className="relative">
+                                            <select
+                                                {...register('capo')}
+                                                className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
+                                            >
+                                                <option value="0">No Capo</option>
+                                                {Array.from({ length: 12 }, (_, i) => i + 1).map(i => (
+                                                    <option key={i} value={i}>{i === 1 ? '1st Fret' : i === 2 ? '2nd Fret' : i === 3 ? '3rd Fret' : `${i}th Fret`}</option>
+                                                ))}
+                                            </select>
+                                            <span className="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Tuning */}
+                                    <div className="space-y-1.5">
+                                        <label className="block text-xs font-medium text-gray-400">Tuning</label>
+                                        <div className="relative">
+                                            <select
+                                                {...register('tuning')}
+                                                className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
+                                            >
+                                                <option value="Standard">Standard</option>
+                                                <option value="Drop D">Drop D</option>
+                                                <option value="Open G">Open G</option>
+                                                <option value="DADGAD">DADGAD</option>
+                                                <option value="Open D">Open D</option>
+                                            </select>
+                                            <span className="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
                         </div>
 
                         {/* Language Section */}

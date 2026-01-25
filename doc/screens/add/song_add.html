@@ -1,4 +1,4 @@
-<!-- Add New Song -->
+<!-- Add New Song (Consolidated Mockup) -->
 <!DOCTYPE html>
 <html class="dark" lang="en">
 
@@ -44,17 +44,11 @@
             font-family: 'Inter', sans-serif;
             min-height: max(884px, 100dvh);
         }
-        ::-webkit-scrollbar {
-            width: 4px;
+        details > summary {
+            list-style: none;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #3f3d52;
-            border-radius: 10px;
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
+        details > summary::-webkit-details-marker {
+            display: none;
         }
     </style>
 </head>
@@ -72,13 +66,51 @@
         </header>
         <main class="flex-1 overflow-y-auto pb-10">
             <div class="max-w-[480px] mx-auto">
-                <div class="px-4 pt-4 flex justify-end">
-                    <button
-                        class="text-primary text-xs font-semibold flex items-center gap-1 opacity-80 hover:opacity-100 transition-opacity">
+                <details class="group">
+                    <summary
+                        class="list-none text-primary text-xs font-semibold flex items-center gap-1 opacity-80 hover:opacity-100 transition-opacity cursor-pointer justify-end mb-4">
                         <span class="material-symbols-outlined text-sm">attachment</span>
                         Or upload a file (.cho, .txt)
-                    </button>
-                </div>
+                    </summary>
+                    <div class="bg-accent-blue/20 border border-blue-500/30 rounded-xl p-4 mb-6 relative">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-blue-400 mt-0.5">info</span>
+                            <p class="text-blue-100 text-xs leading-relaxed flex-1">
+                                Upload a <span class="bg-blue-500/30 px-1 rounded font-mono">.cho</span> or <span
+                                    class="bg-blue-500/30 px-1 rounded font-mono">.txt</span> file. Title and author
+                                will be
+                                detected automatically.
+                            </p>
+                            <div class="cursor-pointer hover:bg-white/10 p-1 rounded-full transition-colors"
+                                onclick="this.closest('details').removeAttribute('open')">
+                                <span class="material-symbols-outlined text-gray-400 hover:text-white">close</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-4 w-full border-2 border-dashed border-[#3f3d52] hover:border-primary/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 transition-colors cursor-pointer bg-[#1d1c26]/50">
+                            <div class="bg-[#3f3d52]/30 p-4 rounded-full">
+                                <span class="material-symbols-outlined text-3xl text-[#a19eb7]">cloud_upload</span>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-white font-semibold">Upload Lyrics File</p>
+                                <p class="text-[#a19eb7] text-xs mt-1"> Select a lyrics/chords file (.cho, .txt) to
+                                    auto-fill details</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-3 mt-4">
+                            <button onclick="this.closest('details').removeAttribute('open')"
+                                class="cursor-pointer flex min-w-[100px] items-center justify-center rounded-lg h-11 px-6 border border-slate-300 dark:border-[#674d32] text-slate-600 dark:text-[#c9ad92] text-sm font-bold hover:bg-slate-50 dark:hover:bg-[#332619]">
+                                Cancel
+                            </button>
+                            <button
+                                class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-11 px-8 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 active:bg-primary/90">
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                </details>
                 <section class="px-4 pt-2">
                     <div class="space-y-4">
                         <div class="flex flex-col">
@@ -95,6 +127,76 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- NEW: Collapsible Metadata Section -->
+                <section class="px-4 mt-6">
+                    <details
+                        class="group bg-[#1d1c26]/50 border border-[#3f3d52] rounded-xl overflow-hidden transition-all duration-300 open:bg-[#1d1c26]">
+                        <summary
+                            class="w-full flex items-center justify-between p-4 hover:bg-[#3f3d52]/30 cursor-pointer select-none">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-blue-400 font-semibold text-sm">Add Key, Capo and Tuning</h3>
+                                <!-- Badge (Hidden by default, shown via JS logic in real app, or hardcoded here as example) -->
+                                <!-- <span class="bg-gray-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span> -->
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-400 transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+
+                        <div class="p-4 pt-0 grid grid-cols-3 gap-3 border-t border-[#3f3d52]/50 mt-1 pt-4">
+                            <!-- Key -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-medium text-gray-400">Key</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none">
+                                        <option>C</option>
+                                        <option>D</option>
+                                        <option>Em</option>
+                                        <option>Am</option>
+                                        <option>G</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                </div>
+                            </div>
+
+                            <!-- Capo -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-medium text-gray-400">Capo</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none">
+                                        <option>No Capo</option>
+                                        <option>1st Fret</option>
+                                        <option>2nd Fret</option>
+                                        <option>3rd Fret</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                </div>
+                            </div>
+
+                            <!-- Tuning -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-medium text-gray-400">Tuning</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none">
+                                        <option>Standard</option>
+                                        <option>Drop D</option>
+                                        <option>Open G</option>
+                                        <option>DADGAD</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-1 top-2 text-gray-500 pointer-events-none text-base">arrow_drop_down</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+
                 <section class="px-4 mt-6">
                     <div class="space-y-4">
                         <div>
