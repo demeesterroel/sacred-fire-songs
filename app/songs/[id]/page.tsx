@@ -168,7 +168,7 @@ export default function SongDetailPage() {
                 <div className="mt-6 p-4 bg-gray-800 rounded-xl border border-white/5 font-mono text-sm whitespace-pre-wrap transition-all duration-300 shadow-xl">
                     {/* Metadata Row */}
                     {(currentVersion?.key || currentVersion?.capo || currentVersion?.tuning) && (
-                        <div className="flex justify-end gap-2 mb-4">
+                        <div className="flex gap-2 mb-4">
                             {currentVersion?.key && (
                                 <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
                                     Key: {currentVersion.key}
