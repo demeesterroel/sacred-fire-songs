@@ -6,7 +6,7 @@ interface SongCardProps {
     id: string;
     title: string;
     author: string;
-    songKey: string;
+    songKey?: string | null;
     accentColor?: string;
 }
 
@@ -48,10 +48,14 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                         </p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
-                        <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
-                        <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
-                            {songKey}
-                        </span>
+                        {songKey && (
+                            <>
+                                <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
+                                <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
+                                    {songKey}
+                                </span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
