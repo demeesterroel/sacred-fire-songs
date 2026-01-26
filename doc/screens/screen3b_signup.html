@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Sacred Fire Songbook</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #141821;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center md:p-4">
+  <div
+    class="relative w-full max-w-[420px] bg-[#1c222d] md:border md:border-[#2d3545] md:rounded-3xl p-6 md:p-8 md:shadow-2xl transition-all duration-300 min-h-screen md:min-h-0 flex flex-col justify-center md:block">
+
+    <!-- Close Button -->
+    <button class="absolute right-4 top-4 md:right-6 md:top-6 text-[#5a657a] hover:text-white transition-colors">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Header -->
+    <div class="flex flex-row md:flex-col items-center md:items-center gap-4 md:gap-0 mb-8 md:mb-8 mt-4 md:mt-0">
+      <div
+        class="w-12 h-12 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[#d9481e] to-[#f45d1a] flex items-center justify-center shadow-[0_0_20px_rgba(217,72,30,0.3)] md:mb-6 flex-shrink-0">
+        <i data-lucide="flame" class="text-white w-6 h-6 md:w-10 md:h-10 fill-current"></i>
+      </div>
+      <div class="text-left md:text-center">
+        <h1 class="text-white text-xl md:text-3xl font-bold md:mb-2 leading-tight">Sacred Fire Songbook</h1>
+        <p class="text-[#8e99aa] text-xs md:text-sm">Join our community of songkeepers</p>
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <form class="space-y-3 md:space-y-4">
+      <div class="relative group">
+        <div
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-[#5a657a] group-focus-within:text-[#d9481e] transition-colors">
+          <i data-lucide="mail" class="w-5 h-5"></i>
+        </div>
+        <input type="email" placeholder="email address"
+          class="w-full bg-transparent border border-[#2d3545] rounded-xl py-3.5 md:py-4 pl-12 pr-4 text-white placeholder-[#5a657a] focus:outline-none focus:border-[#d9481e] transition-all text-[14px] md:text-[15px]">
+      </div>
+
+      <div class="relative group">
+        <div
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-[#5a657a] group-focus-within:text-[#d9481e] transition-colors">
+          <i data-lucide="user" class="w-5 h-5"></i>
+        </div>
+        <input type="text" placeholder="username"
+          class="w-full bg-transparent border border-[#2d3545] rounded-xl py-3.5 md:py-4 pl-12 pr-4 text-white placeholder-[#5a657a] focus:outline-none focus:border-[#d9481e] transition-all text-[14px] md:text-[15px]">
+      </div>
+
+      <div class="relative group">
+        <div
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-[#5a657a] group-focus-within:text-[#d9481e] transition-colors">
+          <i data-lucide="lock" class="w-5 h-5"></i>
+        </div>
+        <input type="password" placeholder="password"
+          class="w-full bg-transparent border border-[#2d3545] rounded-xl py-3.5 md:py-4 pl-12 pr-4 text-white placeholder-[#5a657a] focus:outline-none focus:border-[#d9481e] transition-all text-[14px] md:text-[15px]">
+      </div>
+
+      <div class="relative group">
+        <div
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-[#5a657a] group-focus-within:text-[#d9481e] transition-colors">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+        <input type="password" placeholder="confirm password"
+          class="w-full bg-transparent border border-[#2d3545] rounded-xl py-3.5 md:py-4 pl-12 pr-4 text-white placeholder-[#5a657a] focus:outline-none focus:border-[#d9481e] transition-all text-[14px] md:text-[15px]">
+      </div>
+
+      <button type="submit"
+        class="w-full bg-gradient-to-r from-[#d9481e] to-[#f45d1a] hover:brightness-110 active:scale-[0.98] text-white font-bold py-3.5 md:py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_4px_15px_rgba(217,72,30,0.4)] mt-2">
+        Create Account
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="flex items-center my-6 md:my-8">
+      <div class="flex-1 border-t border-[#2d3545]"></div>
+      <span class="px-4 text-[#8e99aa] text-[10px] md:text-xs uppercase tracking-widest font-semibold">Or</span>
+      <div class="flex-1 border-t border-[#2d3545]"></div>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="flex flex-col space-y-2 md:space-y-3">
+      <button
+        class="w-full bg-white hover:bg-gray-50 active:scale-[0.99] transition-all h-[48px] md:h-[54px] rounded-lg px-4 md:px-6 flex items-center justify-between shadow-md">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5 md:w-6 md:h-6"
+          alt="Google">
+        <span
+          class="flex-grow text-center text-[#1c222d] font-bold text-[11px] md:text-[13px] tracking-wide uppercase">Continue
+          with Google</span>
+        <div class="w-8"></div>
+      </button>
+      <button
+        class="w-full bg-[#1877F2] hover:bg-[#166fe5] active:scale-[0.99] transition-all h-[48px] md:h-[54px] rounded-lg px-4 md:px-6 flex items-center justify-between shadow-md">
+        <svg class="w-5 h-5 md:w-6 md:h-6" fill="white" viewBox="0 0 24 24">
+          <path
+            d="M24 12.0735C24 5.4051 18.6274 0 12 0C5.37258 0 0 5.4051 0 12.0735C0 18.1009 4.38823 23.0978 10.125 24V15.5633H7.07812V12.0735H10.125V9.4125C10.125 6.3875 11.9161 4.71661 14.6578 4.71661C15.9705 4.71661 17.3438 4.95252 17.3438 4.95252V7.92576H15.8273C14.3384 7.92576 13.875 8.8559 13.875 9.80932V12.0735H17.2031L16.6711 15.5633H13.875V24C19.6118 23.0978 24 18.1009 24 12.0735Z" />
+        </svg>
+        <span
+          class="flex-grow text-center text-white font-bold text-[11px] md:text-[13px] tracking-wide uppercase">Continue
+          with Facebook</span>
+        <div class="w-8"></div>
+      </button>
+      <button
+        class="w-full bg-black hover:bg-gray-900 active:scale-[0.99] transition-all h-[48px] md:h-[54px] rounded-lg px-4 md:px-6 flex items-center justify-between shadow-md">
+        <svg class="w-5 h-5 md:w-6 md:h-6" fill="white" viewBox="0 0 24 24">
+          <path
+            d="M17.082 20.21C16.031 21.758 14.887 23.332 13.141 23.365C11.455 23.398 10.911 22.368 8.974 22.368C7.038 22.368 6.425 23.332 4.839 23.401C3.093 23.47 1.83 21.71 0.778 20.19C-1.371 17.1 -0.62 12.181 1.464 9.176C2.5 7.683 4.029 6.741 5.7 6.712C7.304 6.684 8.818 7.79 9.805 7.79C10.792 7.79 12.636 6.467 14.566 6.666C15.372 6.699 17.636 6.99 19.1 9.143C18.981 9.215 16.273 10.798 16.302 14.01C16.335 17.809 19.528 19.083 19.561 19.096C19.531 19.175 19.033 20.902 17.082 20.21ZM13.064 4.437C13.923 3.397 14.505 1.954 14.346 0.5C13.1 0.551 11.583 1.336 10.686 2.391C9.882 3.331 9.179 4.811 9.371 6.241C10.763 6.347 12.204 5.477 13.064 4.437Z" />
+        </svg>
+        <span
+          class="flex-grow text-center text-white font-bold text-[11px] md:text-[13px] tracking-wide uppercase">Continue
+          with Apple</span>
+        <div class="w-8"></div>
+      </button>
+    </div>
+
+    <!-- Terms and Privacy Footer -->
+    <div class="mt-6 text-left">
+      <p class="text-[#8e99aa] text-[12px] leading-relaxed">
+        By signing in, you confirm that you agree to our <a href="#" class="text-white font-bold hover:underline">Terms
+          Of Service</a> and have read and understood our <a href="#"
+          class="text-white font-bold hover:underline">Privacy Policy</a>
+      </p>
+    </div>
+
+    <!-- Toggle View Link -->
+    <div class="mt-8 text-center pb-4 md:pb-0 border-t border-[#2d3545] pt-6">
+      <p class="text-[#a0aec0] text-sm">
+        Already have an account?
+        <a href="screen3a_login.html"
+          class="text-[#f4b400] hover:text-[#ffd700] underline font-medium transition-colors">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
