@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { X, Flame, LayoutGrid, Music, CloudUpload, Settings, LogOut } from 'lucide-react';
 import { useEffect } from 'react';
 
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 
 interface MobileMenuProps {
@@ -114,13 +114,21 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                                 {user ? `ID: ${user.id.slice(0, 8)}...` : 'Not Logged In'}
                             </p>
                         </div>
-                        {user && (
+                        {user ? (
                             <button
                                 onClick={logout}
                                 className="p-1 hover:bg-white/10 rounded-full transition-colors"
                             >
                                 <LogOut className="w-4 h-4 text-gray-500 hover:text-white" />
                             </button>
+                        ) : (
+                            <Link
+                                href="/auth/login"
+                                onClick={onClose}
+                                className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-md transition-colors"
+                            >
+                                Sign In
+                            </Link>
                         )}
                     </div>
 

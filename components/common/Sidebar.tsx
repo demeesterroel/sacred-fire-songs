@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Flame, LayoutGrid, Music, CloudUpload, Settings, LogOut } from 'lucide-react';
 import { useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/client';
 import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
 
 const Sidebar = () => {
@@ -94,7 +94,7 @@ const Sidebar = () => {
                             {user ? `ID: ${user.id.slice(0, 8)}...` : 'Not Logged In'}
                         </p>
                     </div>
-                    {user && (
+                    {user ? (
                         <button
                             onClick={logout}
                             title="Log Out"
@@ -102,6 +102,14 @@ const Sidebar = () => {
                         >
                             <LogOut className="w-4 h-4 text-gray-500 hover:text-white" />
                         </button>
+                    ) : (
+                        <Link
+                            href="/auth/login"
+                            title="Sign In"
+                            className="p-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-md transition-colors"
+                        >
+                            Sign In
+                        </Link>
                     )}
                 </div>
 

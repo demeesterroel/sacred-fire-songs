@@ -238,3 +238,10 @@
 - [x] Refine Metadata Logic (Defaults & Edit Mode) <!-- id: 33 -->
 - [x] Polish UI (Left-align Metadata) <!-- id: 34 -->
 - [x] Verify Implementation <!-- id: 28 -->
+- [x] **Story 1.1.4: Advanced Authentication (Issue #3)** <!-- id: 69 -->
+    - [x] Implement Auth Routes (/login, /signup, etc.) <!-- id: 70 -->
+    - [x] Implement Auth Proxy for secure session validation <!-- id: 71 -->
+    - [x] Harden RLS policies for Compositions and Profiles <!-- id: 72 -->
+    - [x] Optimize Middleware for performance <!-- id: 73 -->
+    - [x] Implement glassmorphism UI for all Auth forms <!-- id: 74 -->
+    - [x] Documentation Sync & Time Tracking <!-- id: 75 -->
