@@ -33,6 +33,20 @@ function isChordLine(line: string): boolean {
     return validChords > relevantTokens.length * 0.5;
 }
 
+/**
+ * Checks if the text contains any chords (either via [] brackets or heuristic)
+ */
+export function hasChords(text: string): boolean {
+    if (!text) return false;
+
+    // 1. Check for ChordPro style brackets [Am]
+    if (/\[[A-G]/.test(text)) return true;
+
+    // 2. Check for Chords-over-Lyrics heuristic
+    const lines = text.split('\n');
+    return lines.some(line => isChordLine(line));
+}
+
 export function convertChordsOverLyricsToChordPro(text: string): string {
     const lines = text.split('\n');
     let outputLines: string[] = [];

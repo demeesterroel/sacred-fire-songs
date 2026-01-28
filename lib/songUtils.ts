@@ -8,6 +8,8 @@ export interface Song {
     songKey: string | null;
     color: string;
     isPublic?: boolean;
+    hasChords?: boolean;
+    hasMelody?: boolean;
     content?: string; // ChordPro content for searching
     createdAt: string;
 }
@@ -54,6 +56,10 @@ export const fetchSongs = async (limit?: number) => {
             content: version?.content_chordpro || "",
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             isPublic: (item as any).is_public ?? true,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hasChords: (item as any).has_chords ?? false,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hasMelody: (item as any).has_melody ?? false,
             createdAt: item.created_at,
             color: "red"
         } as Song;
