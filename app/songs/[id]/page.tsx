@@ -11,7 +11,7 @@ import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { deleteSong } from '@/app/actions/deleteSong';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon } from 'lucide-react';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
@@ -22,10 +22,10 @@ const fetchSong = async (id: string) => {
           title,
           original_author,
           owner_id,
+          is_public,
           song_versions (
             id,
             version_name,
-            content_chordpro,
             content_chordpro,
             key,
             capo,
@@ -144,8 +144,13 @@ export default function SongDetailPage() {
 
             <div className="p-6">
                 <div>
-                    <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
-                    <p className="text-gray-400 mt-1 font-medium">by {song.original_author || 'Traditional'}</p>
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
+                        {!song.is_public && (
+                            <LockIcon className="w-5 h-5 text-gray-500" />
+                        )}
+                    </div>
+                    <p className="text-gray-400 mt-2 font-medium">by {song.original_author || 'Traditional'}</p>
                 </div>
 
                 {/* Version Selector Pills */}
