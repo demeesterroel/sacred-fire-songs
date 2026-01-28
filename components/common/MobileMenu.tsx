@@ -63,7 +63,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                         Dashboard
                     </Link>
                     <Link
-                        href="/"
+                        href="/songs"
                         onClick={onClose}
                         className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-colors"
                     >

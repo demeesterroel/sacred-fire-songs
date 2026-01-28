@@ -26,7 +26,7 @@ const Sidebar = () => {
                         <LayoutGrid className="w-5 h-5 text-red-500" />
                         Dashboard
                     </Link>
-                    <Link href="/" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <Link href="/songs" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
                         <Music className="w-5 h-5" />
                         Browse Songs
                     </Link>
