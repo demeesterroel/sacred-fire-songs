@@ -23,5 +23,7 @@
 | **Jan 17** | **Feature**: Smart Paste (Story 1.1.2-bis) & New Story | ~0.75 Hours | ✅ Completed |
 | **Jan 25** | **Admin**: Branch Cleanup, Artifact Sync, Rule Check | ~0.5 Hours | ✅ Completed |
 | **Jan 25** | **Feature**: Story 1.1.7 (Extended Metadata & Parsing) | ~1.0 Hours | ✅ Completed |
+| **Jan 27** | **Story 1.1.4**: Auth Implementation & Base Routes | ~2.0 Hours | ✅ Completed |
+| **Jan 28** | **Story 1.1.4**: Auth Proxy, RLS hardening, & Page Optimization | ~6.0 Hours | ✅ Completed |
 
-| **Total** | **Development + AI Collaboration** | **~34.5 Hours** | |
+| **Total** | **Development + AI Collaboration** | **~42.5 Hours** | |

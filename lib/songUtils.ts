@@ -3,8 +3,9 @@ export interface Song {
     id: string;
     title: string;
     author: string;
-    songKey: string;
+    songKey: string | null;
     color: string;
+    isPublic?: boolean;
 }
 /**
  * Filters a list of songs by title or author (case-insensitive)

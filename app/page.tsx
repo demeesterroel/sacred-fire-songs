@@ -5,11 +5,13 @@ import SongCard from "@/components/home/SongCard";
 import SongCardSkeleton from "@/components/home/SongCardSkeleton";
 import { useState } from "react";
 import { filterSongs } from "@/lib/songUtils";
-import { supabase } from "@/lib/supabase";
-import { useQuery } from '@tanstack/react-query'; // The new superpower
+import { createClient } from "@/lib/supabase/client";
+import { useQuery } from '@tanstack/react-query';
+import { useAuth } from "@/hooks/useAuth";
 
 // Pure async function, reusable and testable
 const fetchSongs = async () => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from('compositions')
     .select('*, song_versions(key)')
@@ -25,21 +27,39 @@ const fetchSongs = async () => {
       title: item.title,
       author: item.original_author || "Unknown",
       songKey: version?.key || null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      isPublic: (item as any).is_public ?? true, // Default to true if missing
       color: "red"
     };
   });
 };
 
+type FilterType = 'all' | 'public' | 'private';
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const { user } = useAuth();
 
-  // 1 line of code handles: loading, data, caching, background updates
   const { data: songs = [], isLoading } = useQuery({
-    queryKey: ['songs'], // The unique ID for this cache
+    queryKey: ['songs'],
     queryFn: fetchSongs,
   });
 
-  const filteredSongs = filterSongs(songs, searchQuery);
+  // 1. Text Search Filter
+  let displaySongs = filterSongs(songs, searchQuery);
+
+  // 2. Tab Filter
+  if (user) {
+    if (activeFilter === 'public') {
+      displaySongs = displaySongs.filter(song => song.isPublic);
+    } else if (activeFilter === 'private') {
+      displaySongs = displaySongs.filter(song => !song.isPublic);
+    }
+  } else {
+    // Guest: Always filter out private songs
+    displaySongs = displaySongs.filter(song => song.isPublic);
+  }
 
   return (
     <main className="flex-1 min-h-0 bg-gray-950">
@@ -49,7 +69,34 @@ export default function Home() {
 
         {/* Header & Search */}
         <div className="space-y-6">
-          <h2 className="text-3xl font-bold text-white tracking-tight hidden md:block">Dashboard</h2>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <h2 className="text-3xl font-bold text-white tracking-tight hidden md:block">Dashboard</h2>
+
+            {/* Auth-only Filters */}
+            {user && (
+              <div className="flex p-1 bg-gray-900 rounded-lg border border-gray-800 self-start md:self-auto">
+                <button
+                  onClick={() => setActiveFilter('all')}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${activeFilter === 'all' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                >
+                  All
+                </button>
+                <button
+                  onClick={() => setActiveFilter('public')}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${activeFilter === 'public' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Public
+                </button>
+                <button
+                  onClick={() => setActiveFilter('private')}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${activeFilter === 'private' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Private
+                </button>
+              </div>
+            )}
+          </div>
+
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
 
@@ -102,8 +149,8 @@ export default function Home() {
                   <SongCardSkeleton key={i} />
                 ))}
               </>
-            ) : filteredSongs.length > 0 ? (
-              filteredSongs.map((song, index) => (
+            ) : displaySongs.length > 0 ? (
+              displaySongs.map((song, index) => (
                 <SongCard
                   key={index}
                   id={song.id}
@@ -114,7 +161,7 @@ export default function Home() {
                 />
               ))
             ) : (
-              <p className="col-span-full text-center text-gray-400 pt-10">No songs found</p>
+              <p className="col-span-full text-center text-gray-400 pt-10">No songs found for this filter.</p>
             )}
           </div>
         </section>
