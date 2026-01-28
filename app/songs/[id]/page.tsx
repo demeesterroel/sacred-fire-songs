@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useParams, notFound, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
@@ -15,6 +15,7 @@ import { Trash2, Edit2, ArrowLeft } from 'lucide-react';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
+    const supabase = createClient();
     const { data, error } = await supabase
         .from('compositions')
         .select(`
@@ -70,6 +71,7 @@ export default function SongDetailPage() {
     const handleDelete = async () => {
         if (!id) return;
         setIsDeleting(true);
+        const supabase = createClient();
         // Direct Client-Side Delete (bypasses Server Action auth issues for Mock Users)
         const { error } = await supabase
             .from('compositions')

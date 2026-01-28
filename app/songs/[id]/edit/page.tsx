@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams, notFound } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/client';
 import SongForm from '@/components/song/SongForm';
 import AccessDenied from '@/components/common/AccessDenied';
 import { useQuery } from '@tanstack/react-query';
@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 
 // Similar fetch to detail page, but we just need basic data
 const fetchSongForEdit = async (id: string) => {
+    const supabase = createClient();
     const { data, error } = await supabase
         .from('compositions')
         .select(`
@@ -17,6 +18,7 @@ const fetchSongForEdit = async (id: string) => {
           original_author,
           primary_language,
           owner_id,
+          is_public,
           song_versions!inner (
             id,
             content_chordpro,
@@ -81,7 +83,8 @@ export default function EditSongPage() {
         tuning: song.song_versions[0]?.tuning,
         youtubeLink: song.song_versions[0]?.youtube_url || '',
         spotifyLink: song.song_versions[0]?.spotify_url || '',
-        soundcloudLink: song.song_versions[0]?.soundcloud_url || ''
+        soundcloudLink: song.song_versions[0]?.soundcloud_url || '',
+        isPublic: song.is_public ?? true
     };
 
     return (

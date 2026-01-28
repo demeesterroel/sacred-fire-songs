@@ -2,10 +2,12 @@
 
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { parseChordPro } from '@/lib/chordProParsing';
+import { useAuth } from '@/hooks/useAuth';
 
 type SongFormData = {
     title: string;
@@ -19,6 +21,7 @@ type SongFormData = {
     youtubeLink: string;
     spotifyLink: string;
     soundcloudLink: string;
+    isPublic: boolean;
 };
 
 interface SongFormProps {
@@ -49,8 +52,11 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             youtubeLink: initialData?.youtubeLink || '',
             spotifyLink: initialData?.spotifyLink || '',
             soundcloudLink: initialData?.soundcloudLink || '',
+            isPublic: initialData?.isPublic ?? true,
         }
     });
+
+    const { user } = useAuth();
 
     const queryClient = useQueryClient();
     const router = useRouter();
@@ -173,41 +179,41 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     const mutation = useMutation({
         mutationFn: async (data: SongFormData) => {
             if (mode === 'create') {
-                // 1. Insert Composition
+                const supabase = createClient();
                 const { data: composition, error: compError } = await supabase
                     .from('compositions')
                     .insert({
                         title: data.title,
                         original_author: data.author,
-                        primary_language: 'es', // Default for now, ideally use data.language map
+                        primary_language: data.language,
+                        owner_id: user?.id,
+                        is_public: data.isPublic
                     })
                     .select()
                     .single();
 
                 if (compError) throw compError;
-                if (!composition) throw new Error('Failed to create composition');
 
-                // 2. Insert Version
                 const { error: versionError } = await supabase
                     .from('song_versions')
                     .insert({
                         composition_id: composition.id,
-                        content_chordpro: data.content,
                         version_name: 'Standard',
-                        key: data.key || null,
-                        capo: data.capo ? parseInt(data.capo) : null,
-                        tuning: data.tuning || null,
-                        vote_count: 0,
+                        content_chordpro: data.content,
+                        key: data.key,
+                        capo: data.capo ? parseInt(data.capo) : 0,
+                        tuning: data.tuning,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
                         soundcloud_url: data.soundcloudLink,
+                        contributor_id: user?.id
                     });
 
                 if (versionError) throw versionError;
 
                 return composition.id;
             } else {
-                // UPDATE MODE code remains same as persist logic is unchanged
+                const supabase = createClient();
                 if (!songId || !versionId) throw new Error('Missing ID for update');
 
                 const { error: compError } = await supabase
@@ -215,6 +221,8 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .update({
                         title: data.title,
                         original_author: data.author,
+                        primary_language: data.language,
+                        is_public: data.isPublic,
                     })
                     .eq('id', songId);
 
@@ -224,9 +232,9 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .from('song_versions')
                     .update({
                         content_chordpro: data.content,
-                        key: data.key || null,
-                        capo: data.capo ? parseInt(data.capo) : null,
-                        tuning: data.tuning || null,
+                        key: data.key,
+                        capo: data.capo ? parseInt(data.capo) : 0,
+                        tuning: data.tuning,
                         youtube_url: data.youtubeLink,
                         spotify_url: data.spotifyLink,
                         soundcloud_url: data.soundcloudLink,
@@ -243,12 +251,16 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
             queryClient.invalidateQueries({ queryKey: ['song', id] });
             router.push(mode === 'create' ? '/' : `/songs/${id}`);
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
             setServerError(error.message);
         }
     });
 
     const handleFormSubmit = (data: SongFormData) => {
+        if (!user) {
+            router.push('/auth/login?message=Please log in to save songs');
+            return;
+        }
         mutation.mutate(data);
     };
 
@@ -537,6 +549,28 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     Error: {serverError}
                 </div>
             )}
+
+            {/* Visibility Toggle */}
+            <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg ${watch('isPublic') ? 'bg-green-500/20 text-green-400' : 'bg-amber-500/20 text-amber-400'}`}>
+                        <span className="material-symbols-outlined">{watch('isPublic') ? 'public' : 'lock'}</span>
+                    </div>
+                    <div>
+                        <p className="text-white font-medium text-sm">{watch('isPublic') ? 'Public Song' : 'Private Song'}</p>
+                        <p className="text-gray-400 text-xs">{watch('isPublic') ? 'Visible to everyone in the community' : 'Only visible to you'}</p>
+                    </div>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                        type="checkbox"
+                        className="sr-only peer"
+                        checked={watch('isPublic')}
+                        onChange={(e) => setValue('isPublic', e.target.checked)}
+                    />
+                    <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                </label>
+            </div>
 
             <div className="flex gap-3">
                 <button

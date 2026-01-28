@@ -1,6 +1,6 @@
 'use client';
 
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/client';
 import { useEffect, useState } from 'react';
 
 export type UserRole = 'admin' | 'musician' | 'member' | 'guest';
@@ -23,26 +23,12 @@ export interface AuthUser {
 export const useAuth = () => {
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
-    const [mockRole, setMockRole] = useState<string | null>(null);
-
-    // Initialize state
-    useEffect(() => {
-        // 1. Check LocalStorage for Mock Override
-        const storedMock = typeof window !== 'undefined' ? localStorage.getItem('mockUserRole') : null;
-        setMockRole(storedMock);
-
-        loadUser(storedMock);
-
-        // Listen for custom event to trigger re-render on role switch
-        const handleRoleChange = () => {
-            const newRole = localStorage.getItem('mockUserRole');
-            setMockRole(newRole);
-            loadUser(newRole);
-        };
-
-        window.addEventListener('auth-role-change', handleRoleChange);
-        return () => window.removeEventListener('auth-role-change', handleRoleChange);
-    }, []);
+    const [mockRole, setMockRole] = useState<string | null>(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('mockUserRole');
+        }
+        return null;
+    });
 
     const loadUser = async (currentMockRole: string | null) => {
         setLoading(true);
@@ -63,13 +49,14 @@ export const useAuth = () => {
         }
 
         // C. Fallback to Real Supabase Auth
+        const supabase = createClient();
         const { data: { user: supabaseUser } } = await supabase.auth.getUser();
 
         if (supabaseUser) {
             // Fetch real role
             const { data: profile } = await supabase
                 .from('profiles')
-                .select('role')
+                .select('*')
                 .eq('id', supabaseUser.id)
                 .single();
 
@@ -83,6 +70,25 @@ export const useAuth = () => {
         }
         setLoading(false);
     };
+
+    // Initialize state
+    useEffect(() => {
+        const storedMock = mockRole;
+
+        loadUser(storedMock);
+
+        // Listen for custom event to trigger re-render on role switch
+        const handleRoleChange = () => {
+            const newRole = localStorage.getItem('mockUserRole');
+            setMockRole(newRole);
+            loadUser(newRole);
+        };
+
+        window.addEventListener('auth-role-change', handleRoleChange);
+        return () => window.removeEventListener('auth-role-change', handleRoleChange);
+    }, []);
+
+
 
     const switchMockRole = (roleKey: string | null) => {
         if (roleKey) {
@@ -99,6 +105,7 @@ export const useAuth = () => {
         localStorage.removeItem('mockUserRole');
 
         // 2. Clear Real Auth
+        const supabase = createClient();
         await supabase.auth.signOut();
 
         // 3. Force "guest" state
