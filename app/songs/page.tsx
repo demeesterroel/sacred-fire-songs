@@ -3,6 +3,7 @@
 import SearchBar from "@/components/home/SearchBar";
 import SongCard from "@/components/home/SongCard";
 import SongCardSkeleton from "@/components/home/SongCardSkeleton";
+import { Music, Guitar, ChevronUp, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { filterSongs, fetchSongs } from "@/lib/songUtils";
 import { useQuery } from '@tanstack/react-query';
@@ -15,12 +16,25 @@ export default function SongsPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeFilter, setActiveFilter] = useState<FilterType>('all');
     const [sortBy, setSortBy] = useState<SortByType>('title');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [showOnlyChords, setShowOnlyChords] = useState(false);
+    const [showOnlyMelody, setShowOnlyMelody] = useState(false);
     const { user } = useAuth();
 
     const { data: songs = [], isLoading } = useQuery({
         queryKey: ['songs', 'all'],
         queryFn: () => fetchSongs(), // Fetch all songs
     });
+
+    const handleSortClick = (newSortBy: SortByType) => {
+        if (newSortBy === sortBy) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortBy(newSortBy);
+            // Default to 'asc' for title, 'desc' for newest
+            setSortOrder(newSortBy === 'newest' ? 'desc' : 'asc');
+        }
+    };
 
     // 1. Text Search Filter (includes Title, Author, and Content)
     let displaySongs = filterSongs(songs, searchQuery);
@@ -37,12 +51,43 @@ export default function SongsPage() {
         displaySongs = displaySongs.filter(song => song.isPublic);
     }
 
-    // 3. Sorting Logic
+    // 3. Chord & Melody Filters
+    if (showOnlyChords) {
+        displaySongs = displaySongs.filter(song => song.hasChords);
+    }
+    if (showOnlyMelody) {
+        displaySongs = displaySongs.filter(song => song.hasMelody);
+    }
+
+    // 4. Sorting Logic
     displaySongs = [...displaySongs].sort((a, b) => {
+        let result = 0;
         if (sortBy === 'title') {
-            return a.title.localeCompare(b.title);
+            result = a.title.localeCompare(b.title);
         } else {
-            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            result = new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            // Since default for 'newest' is DESC (b-a), we invert logic for the multiplier
+            // but actually let's keep it simple: 
+            // if we want 'newest' (DESC) by default, and result is (b - a):
+            // 'asc' order means b - a > 0 (b is newer, stays at top) -> this is DESC naturally.
+            // Let's redefine: sortBy 'newest' normally means latest at top.
+        }
+
+        const multiplier = sortOrder === 'asc' ? 1 : -1;
+
+        // For 'newest', the base comparison (b-a) is already descending.
+        // If sortOrder is 'asc', we want newest at top (the default b-a result).
+        // If sortOrder is 'desc', we want oldest at top.
+        // Wait, standard convention: ASC = Oldest first, DESC = Newest first.
+        // Let's fix the comparison to be a-b (ASC), then multiply.
+
+        if (sortBy === 'title') {
+            return a.title.localeCompare(b.title) * multiplier;
+        } else {
+            // Newest: a-b is Oldest First (ASC)
+            const timeA = new Date(a.createdAt).getTime();
+            const timeB = new Date(b.createdAt).getTime();
+            return (timeA - timeB) * multiplier;
         }
     });
 
@@ -60,16 +105,22 @@ export default function SongsPage() {
                                 <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sort by:</span>
                                 <div className="flex p-1 bg-gray-900 rounded-lg border border-gray-800">
                                     <button
-                                        onClick={() => setSortBy('title')}
-                                        className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${sortBy === 'title' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                        onClick={() => handleSortClick('title')}
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${sortBy === 'title' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
                                     >
                                         Title
+                                        {sortBy === 'title' && (
+                                            sortOrder === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                                        )}
                                     </button>
                                     <button
-                                        onClick={() => setSortBy('newest')}
-                                        className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${sortBy === 'newest' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                        onClick={() => handleSortClick('newest')}
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${sortBy === 'newest' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
                                     >
                                         Newest
+                                        {sortBy === 'newest' && (
+                                            sortOrder === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                                        )}
                                     </button>
                                 </div>
                             </div>
@@ -93,12 +144,41 @@ export default function SongsPage() {
                                     </button>
                                     <button
                                         onClick={() => setActiveFilter('private')}
-                                        className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${activeFilter === 'private' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                        className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeFilter === 'private'
+                                            ? 'bg-black/40 border border-dashed border-white/20 text-gray-300 shadow-sm'
+                                            : 'text-gray-400 hover:text-white'
+                                            }`}
                                     >
                                         Private
                                     </button>
                                 </div>
                             )}
+                            {/* Chord & Melody Filter Toggles */}
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setShowOnlyChords(!showOnlyChords)}
+                                    className={`flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all border ${showOnlyChords
+                                        ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+                                        : 'bg-gray-900 text-gray-400 border-gray-800 hover:text-gray-200'
+                                        }`}
+                                >
+                                    <Guitar className={`w-3.5 h-3.5 ${showOnlyChords ? 'text-amber-400' : 'text-gray-500'}`} />
+                                    Chords
+                                </button>
+
+                                <button
+                                    onClick={() => setShowOnlyMelody(!showOnlyMelody)}
+                                    className={`flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all border ${showOnlyMelody
+                                        ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+                                        : 'bg-gray-900 text-gray-400 border-gray-800 hover:text-gray-200'
+                                        }`}
+                                >
+                                    <Music className={`w-3.5 h-3.5 ${showOnlyMelody ? 'text-emerald-400' : 'text-gray-500'}`} />
+                                    Melody
+                                </button>
+                            </div>
+
+                            <div className="h-4 w-px bg-gray-800 hidden lg:block"></div>
                         </div>
                     </div>
 
@@ -124,6 +204,8 @@ export default function SongsPage() {
                                     songKey={song.songKey}
                                     accentColor={song.color}
                                     isPublic={song.isPublic}
+                                    hasChords={song.hasChords}
+                                    hasMelody={song.hasMelody}
                                 />
                             ))
                         ) : (

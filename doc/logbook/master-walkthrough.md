@@ -41,15 +41,15 @@
 **Goal:** Fine-grained access control and developer experience.
 
 -   **Edit Own Songs**:
-    -   Refactored `UploadForm` to a reusable `SongForm` (Create/Edit).
-    -   Implemented strict "Access Denied" logic for non-owners.
+	-   Refactored `UploadForm` to a reusable `SongForm` (Create/Edit).
+	-   Implemented strict "Access Denied" logic for non-owners.
 -   **Mock Authentication**:
-    -   Built a **Role Switcher** (Guest/Member/Expert/Admin) for rapid local testing.
-    -   Implemented functionality to Logout and switch personas instantly.
+	-   Built a **Role Switcher** (Guest/Member/Expert/Admin) for rapid local testing.
+	-   Implemented functionality to Logout and switch personas instantly.
 -   **Role Refactoring**:
-    -   Globally renamed the 'Musician' role to **'Expert'** to better reflect the domain domain.
+	-   Globally renamed the 'Musician' role to **'Expert'** to better reflect the domain domain.
 -   **Code Quality**:
-    -   Refactored critical components (`Sidebar`, `SongForm`) to strictly follow Next.js Guidelines (Arrow functions, Event naming).
+	-   Refactored critical components (`Sidebar`, `SongForm`) to strictly follow Next.js Guidelines (Arrow functions, Event naming).
 
 ---
 
@@ -113,15 +113,15 @@
 **Goal:** Fine-grained access control and developer experience.
 
 -   **Edit Own Songs**:
-    -   Refactored `UploadForm` to a reusable `SongForm` (Create/Edit).
-    -   Implemented strict "Access Denied" logic for non-owners.
+	-   Refactored `UploadForm` to a reusable `SongForm` (Create/Edit).
+	-   Implemented strict "Access Denied" logic for non-owners.
 -   **Mock Authentication**:
-    -   Built a **Role Switcher** (Guest/Member/Expert/Admin) for rapid local testing.
-    -   Implemented functionality to Logout and switch personas instantly.
+	-   Built a **Role Switcher** (Guest/Member/Expert/Admin) for rapid local testing.
+	-   Implemented functionality to Logout and switch personas instantly.
 -   **Role Refactoring**:
-    -   Globally renamed the 'Musician' role to **'Expert'** to better reflect the domain domain.
+	-   Globally renamed the 'Musician' role to **'Expert'** to better reflect the domain domain.
 -   **Code Quality**:
-    -   Refactored critical components (`Sidebar`, `SongForm`) to strictly follow Next.js Guidelines (Arrow functions, Event naming).
+	-   Refactored critical components (`Sidebar`, `SongForm`) to strictly follow Next.js Guidelines (Arrow functions, Event naming).
 
 ---
 
@@ -146,17 +146,17 @@
 **Goal:** Professionalize project management by moving from Markdown to GitHub Issues.
 
 -   **Migration Scripting**:
-    -   Created `migrate_stories.js` to parse `doc/epic&user stories.md`.
-    -   Used `gh` CLI to create issues with Gherkin scenarios as bodies.
-    -   Automatically linked historical git commits to issues where keywords matched.
+	-   Created `migrate_stories.js` to parse `doc/epic&user stories.md`.
+	-   Used `gh` CLI to create issues with Gherkin scenarios as bodies.
+	-   Automatically linked historical git commits to issues where keywords matched.
 -   **Reconciliation**:
-    -   Created `reconcile_stories.js` to cross-check Doc Stories vs GitHub Issues.
-    -   Identified and resolved mismatch (28 Stories vs 29 Issues).
-    -   Found duplicate IDs in documentation (Story 2.3.2 was listed twice).
-    -   Fixed missing implementation status for stories 1.1.1 and 1.2.1.
+	-   Created `reconcile_stories.js` to cross-check Doc Stories vs GitHub Issues.
+	-   Identified and resolved mismatch (28 Stories vs 29 Issues).
+	-   Found duplicate IDs in documentation (Story 2.3.2 was listed twice).
+	-   Fixed missing implementation status for stories 1.1.1 and 1.2.1.
 -   **Documentation Structure**:
-    -   Moved all `screen*.html` mockups to `doc/screens/` to clean up the root doc folder.
-    -   Updated references in `12-day-course.md` and `master-tasks.md`.
+	-   Moved all `screen*.html` mockups to `doc/screens/` to clean up the root doc folder.
+	-   Updated references in `12-day-course.md` and `master-tasks.md`.
 
 ## Current State
 -   **Issues**: 100% Synced (27 Unique Stories = 27 Issues).
@@ -170,9 +170,9 @@
 - **Problem**: Admins needed a way to remove duplicate or incorrect songs.
 - **Solution**: Added a "Trash" icon to the song detail header, protected by a confirmation modal.
 - **Safety**: 
-    - Visible only to `admin` role.
-    - Requires strict confirmation ("This action cannot be undone").
-    - RLS Policies enforce server-side security.
+	- Visible only to `admin` role.
+	- Requires strict confirmation ("This action cannot be undone").
+	- RLS Policies enforce server-side security.
 
 ![Delete Confirmation Modal](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
 
@@ -186,19 +186,19 @@
 - **Issue**: "Mock Mode" users couldn't add songs because they were effectively anonymous, and RLS expected `authenticated` users.
 - **Fix**: Relaxed RLS policies for `compositions` and `song_versions` to allow `public` inserts.
 - **Artifacts**:
-    -   Migration: `20260115124500_allow_public_inserts.sql`
-    -   Doc: Updated `db-schema.sql`
-    -   Migration: `20260115132000_allow_public_deletes.sql` (Public Deletes)
+	-   Migration: `20260115124500_allow_public_inserts.sql`
+	-   Doc: Updated `db-schema.sql`
+	-   Migration: `20260115132000_allow_public_deletes.sql` (Public Deletes)
 
 
 ## Story 1.1.2: Import Song Metadata
 - **Objective**: Allow admins to upload `.cho` files to auto-fill the "Add Song" form.
 - **Implementation**:
-    -   Added an expandable "Or upload a file" section to `SongForm.tsx`.
-    -   Implemented client-side file reading and parsing for standard ChordPro directives (`{title}`, `{author}`).
+	-   Added an expandable "Or upload a file" section to `SongForm.tsx`.
+	-   Implemented client-side file reading and parsing for standard ChordPro directives (`{title}`, `{author}`).
 -   **Verification**:
-    -   Created mock `test_song.cho`.
-    -   Browser Subagent successfully uploaded the file and verified that Title, Author, and Content fields were populated correctly.
+	-   Created mock `test_song.cho`.
+	-   Browser Subagent successfully uploaded the file and verified that Title, Author, and Content fields were populated correctly.
 
 ![verify_file_upload_import](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_file_upload_import_1768493583266.webp)
 
@@ -234,9 +234,9 @@ I have updated the `song_add_expanded.html` mockup with the following changes:
 ### Visual Inspection
 - **SoundCloud Icon**: Confirmed correct SVG path and `#ff5500` fill color.
 - **Footer Buttons**:
-    - "Save Draft" has an outlined style with `#3f3d52` border and `#a19eb7` text, turning white on hover.
-    - "Publish Song" retains its primary filled style.
-    - Layout uses a flex container with `gap-3` and `max-w-[480px]`.
+	- "Save Draft" has an outlined style with `#3f3d52` border and `#a19eb7` text, turning white on hover.
+	- "Publish Song" retains its primary filled style.
+	- Layout uses a flex container with `gap-3` and `max-w-[480px]`.
 
 #### Upload Section Buttons
 - The "Cancel" and "Upload" buttons are now aligned to the right side of their container.
@@ -318,9 +318,9 @@ Implemented persistence and display for YouTube, Spotify, and SoundCloud links.
 *   **Database**: Utilized existing columns `youtube_url`, `spotify_url`, `soundcloud_url`.
 *   **Form**: Updated `SongForm` to save these fields during Create/Update.
 *   **UI**: Created `MediaEmbeds` component to render:
-    *   YouTube (Smart ID extraction)
-    *   Spotify (Iframe)
-    *   SoundCloud (Iframe with visual widget)
+	*   YouTube (Smart ID extraction)
+	*   Spotify (Iframe)
+	*   SoundCloud (Iframe with visual widget)
 
 ### Verification
 *   **Persistence**: Verified data saves correctly via `EditSongPage` logic.
@@ -352,19 +352,19 @@ We have implemented the ability for musicians to define Key, Capo, and Tuning wh
 ### Manual Verification
 1.  Navigate to **Add Song** page (e.g., http://localhost:3000/add).
 2.  **Test File Upload:**
-    - Create a test file `test.cho` with content:
-      ```
-      {title: Test Parse}
-      {author: Agent}
-      {key: D}
-      {capo: 3}
-      [D]Test content
-      ```
-    - Upload it. Verify Title="Test Parse", Author="Agent", Key="D", Capo="3rd Fret" (if mapped correctly).
+	- Create a test file `test.cho` with content:
+	  ```
+	  {title: Test Parse}
+	  {author: Agent}
+	  {key: D}
+	  {capo: 3}
+	  [D]Test content
+	  ```
+	- Upload it. Verify Title="Test Parse", Author="Agent", Key="D", Capo="3rd Fret" (if mapped correctly).
 3.  **Test Paste:**
-    - Paste the same content into the lyrics box. Verify fields populate.
+	- Paste the same content into the lyrics box. Verify fields populate.
 4.  **Verify Persistence:**
-    - Save song. Check Dashboard for "Key: D" badge.
+	- Save song. Check Dashboard for "Key: D" badge.
 
 > [!IMPORTANT]
 > Use `render_diffs(file:///home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)` to see code changes.
@@ -380,15 +380,15 @@ I have completed the core implementation for Story 1.1.4 (Advanced Authenticatio
 - **Form Components**: Created reusable, high-quality form components with glassmorphism styling and validation.
 - **Auth Proxy**: Implemented `lib/supabase/proxy.ts` for secure session handling and authentication redirects.
 - **Database Hardening**:
-    - Added RLS to `compositions` and `profiles`.
-    - Added `is_public` flag to compositions for guest access control.
-    - Consolidated security fixes into migrations.
+	- Added RLS to `compositions` and `profiles`.
+	- Added `is_public` flag to compositions for guest access control.
+	- Consolidated security fixes into migrations.
 - **Middleware Optimization**: Updated middleware to significantly improve performance by bypassing session checks for public assets and auth routes.
 
 #### Documentation & Management
 - **Time Tracking**: Updated `master-timetracking.md` with:
-    - Jan 27: 2.0 Hours
-    - Jan 28: 6.0 Hours
+	- Jan 27: 2.0 Hours
+	- Jan 28: 6.0 Hours
 - **Task Tracking**: Updated `master-tasks.md` to include Story 1.1.4 progress and marked relevant tasks as completed.
 - **Git Commit**: Staged and committed all changes to `feat/story-1-1-4-auth`.
 
@@ -401,5 +401,41 @@ nothing to commit, working tree clean
 ```
 
 #### Time Tracking Summary
-- **Current Total**: ~42.5 Hours
-- **Session Focus**: Story 1.1.4 (Auth)
+- **Current Total**: ~45.0 Hours
+- **Session Focus**: Browsing, Visibility & Sorting
+
+## Session Update (Jan 28, 2026 - P2 - Browsing & Visibility)
+
+I have completed the supplementary implementation for the Song Library, focusing on user experience and content privacy.
+## Session: Jan 28 - Chords, Melodies, and Advanced Filters
+ ---
+### Changes Made
+
+#### Song Browsing & Library Management
+- **Dedicated Browse Page**: Implemented `/songs` with a full library listing, decoupled from the dashboard.
+- **Enhanced Search**: Upgraded search utility to allow looking inside song lyrics (ChordPro content).
+- **Sorting Options**: Added a toggle to switch between Alphabetical (Title) and Chronological (Newest) sort orders.
+
+#### Privacy & Interaction Design
+- **Strict Private Visibility**:
+	- Restricted the Homepage "Recent Additions" to public content only.
+	- Implemented `Lock` icon indicators in `SongCard` and the Detail view for private songs.
+- **Streamlined Save Flow**:
+	- Replaced the manual checkbox toggle in `SongForm` with two explicit actions: "Save as Private" and "Publish Song".
+	- Added contextual feedback to the submission process.
+
+### Final Verification Results
+
+- **Homepage**: Confirmed only public songs appear.
+- **Sorting**: Verified alphabetical default and newest first options function correctly.
+- **Auth Flow**: Verified guests only see public content, while authenticated users can access their private songs with clear visual markers.
+
+### Chord & Melody Badges
+- **Icon Refresh**: Updated the "Chords" badge to use a **Guitar** icon to better distinguish it from future musical scores.
+- **Melody Support**: Reserved the **Music** icon for a new `has_melody` flag, allowing songs with musical notation to be highlighted in green.
+- **Persistent Metadata**: Both badges are backed by new columns in the `compositions` table, ensuring fast loading and filtering across the site.
+- **Smart Filtering**: Added dual toggles for **Chords** and **Melody** on the browse page to quickly isolate content.
+- **Advanced Sorting**: Implemented ASC/DESC toggling for sorting. Clicking an active sort option (Title or Newest) now switches direction, with clear arrow indicators.
+- **Site-wide Visibility**: Enabled badges on the Dashboard, Browse page, and the individual **Song Detail view** for consistent navigation.
+- **Private Song Aesthetics**: Implemented a sophisticated visual style for private songs, featuring a **darker neutral background** and a **dashed border** across BOTH song cards and filter tabs. This clearly separates personal repertoire without relying on loud colors.
+

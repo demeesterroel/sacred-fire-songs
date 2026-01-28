@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Lock } from 'lucide-react';
+import { Lock, Music, Guitar } from 'lucide-react';
 
 interface SongCardProps {
     id: string;
@@ -10,9 +10,11 @@ interface SongCardProps {
     songKey?: string | null;
     accentColor?: string;
     isPublic?: boolean;
+    hasChords?: boolean;
+    hasMelody?: boolean;
 }
 
-export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true }: SongCardProps) {
+export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true, hasChords = false, hasMelody = false }: SongCardProps) {
     // Mapping color name to Tailwind class
     const borderColors: Record<string, string> = {
         red: 'bg-red-500',
@@ -32,9 +34,15 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
 
     return (
         <Link href={`/songs/${id}`} className="block">
-            <div className="bg-gray-800/30 p-4 rounded-2xl border border-white/5 active:scale-[0.98] transition-all duration-300 cursor-pointer group relative overflow-hidden backdrop-blur-sm hover:bg-gray-800/50 hover:border-white/10 hover:shadow-2xl hover:shadow-black/50">
+            <div className={`
+                relative p-4 rounded-2xl transition-all duration-300 backdrop-blur-sm group overflow-hidden
+                ${isPublic
+                    ? 'bg-gray-800/30 border border-white/5 hover:bg-gray-800/50 hover:border-white/10 hover:shadow-2xl hover:shadow-black/50'
+                    : 'bg-black/40 border border-dashed border-white/10 hover:bg-black/60 hover:border-white/20 opacity-70 hover:opacity-100'}
+                active:scale-[0.98] cursor-pointer
+            `}>
                 {/* Glow Effect */}
-                <div className={`absolute -inset-1 ${borderColors[accentColor]} opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-500`}></div>
+                <div className={`absolute -inset-1 ${borderColors[accentColor]} ${isPublic ? 'opacity-0 group-hover:opacity-10' : 'opacity-0'} blur-2xl transition-opacity duration-500`}></div>
 
                 <div
                     className={`absolute left-0 top-0 bottom-0 w-1.5 ${borderColors[accentColor]} rounded-l-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-y-110`}
@@ -50,9 +58,23 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                                 <Lock className="w-3.5 h-3.5 text-gray-500 shrink-0" />
                             )}
                         </div>
-                        <p className="text-sm text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
-                            {author}
-                        </p>
+                        <div className="flex flex-wrap items-center gap-2">
+                            <p className={`text-sm font-medium transition-colors ${isPublic ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-500'}`}>
+                                {author}
+                            </p>
+                            {hasChords && (
+                                <div className="flex items-center gap-1 bg-amber-500/10 text-amber-400 px-1.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border border-amber-500/20">
+                                    <Guitar className="w-2.5 h-2.5" />
+                                    Chords
+                                </div>
+                            )}
+                            {hasMelody && (
+                                <div className="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">
+                                    <Music className="w-2.5 h-2.5" />
+                                    Melody
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex flex-col items-end gap-1.5 shrink-0">
                         {songKey && (

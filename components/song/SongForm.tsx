@@ -6,7 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { parseChordPro } from '@/lib/chordProParsing';
+import { parseChordPro, hasChords } from '@/lib/chordProParsing';
 import { useAuth } from '@/hooks/useAuth';
 
 type SongFormData = {
@@ -187,7 +187,8 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                         original_author: data.author,
                         primary_language: data.language,
                         owner_id: user?.id,
-                        is_public: data.isPublic
+                        is_public: data.isPublic,
+                        has_chords: hasChords(data.content)
                     })
                     .select()
                     .single();
@@ -223,6 +224,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                         original_author: data.author,
                         primary_language: data.language,
                         is_public: data.isPublic,
+                        has_chords: hasChords(data.content),
                     })
                     .eq('id', songId);
 

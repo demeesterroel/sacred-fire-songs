@@ -98,6 +98,8 @@ export default function Home() {
                   songKey={song.songKey}
                   accentColor={song.color}
                   isPublic={song.isPublic}
+                  hasChords={song.hasChords}
+                  hasMelody={song.hasMelody}
                 />
               ))
             ) : (

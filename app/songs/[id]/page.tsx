@@ -11,7 +11,7 @@ import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { deleteSong } from '@/app/actions/deleteSong';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft, Lock as LockIcon } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Guitar } from 'lucide-react';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
@@ -23,6 +23,8 @@ const fetchSong = async (id: string) => {
           original_author,
           owner_id,
           is_public,
+          has_chords,
+          has_melody,
           song_versions (
             id,
             version_name,
@@ -144,10 +146,22 @@ export default function SongDetailPage() {
 
             <div className="p-6">
                 <div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
                         <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
                         {!song.is_public && (
                             <LockIcon className="w-5 h-5 text-gray-500" />
+                        )}
+                        {song.has_chords && (
+                            <div className="flex items-center gap-1.5 bg-amber-500/10 text-amber-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-amber-500/20">
+                                <Guitar className="w-3.5 h-3.5" />
+                                Chords
+                            </div>
+                        )}
+                        {song.has_melody && (
+                            <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-emerald-500/20">
+                                <Music className="w-3.5 h-3.5" />
+                                Melody
+                            </div>
                         )}
                     </div>
                     <p className="text-gray-400 mt-2 font-medium">by {song.original_author || 'Traditional'}</p>

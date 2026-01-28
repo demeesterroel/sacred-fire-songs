@@ -245,3 +245,15 @@
     - [x] Optimize Middleware for performance <!-- id: 73 -->
     - [x] Implement glassmorphism UI for all Auth forms <!-- id: 74 -->
     - [x] Documentation Sync & Time Tracking <!-- id: 75 -->
+
+- [x] **Chord Detection & Melody Feature (Issue #5)** <!-- id: 84 -->
+    - [x] Implement `hasChords` detection logic in `lib/chordProParsing.ts` <!-- id: 85 -->
+    - [x] Add `has_chords` and `has_melody` SQL migration and backfill <!-- id: 86 -->
+    - [x] Update `Song` interface and `fetchSongs` utility <!-- id: 87 -->
+    - [x] Implement auto-detection in `SongForm.tsx` <!-- id: 88 -->
+    - [x] Add vibrant badges to `SongCard.tsx` (Guitar & Music icons) <!-- id: 89 -->
+    - [x] Implement dual filters (Chords & Melody) on `/songs` page <!-- id: 90 -->
+    - [x] Enhance Song Detail page with badges <!-- id: 91 -->
+- [x] **Private Song Aesthetic Polish (Issue #6)** <!-- id: 92 -->
+    - [x] Implement dashed-border and dark theme for private song cards <!-- id: 93 -->
+    - [x] Apply consistent dashed styling to library filter tabs <!-- id: 94 -->
