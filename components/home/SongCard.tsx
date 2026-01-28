@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Lock } from 'lucide-react';
 
 interface SongCardProps {
     id: string;
@@ -8,9 +9,10 @@ interface SongCardProps {
     author: string;
     songKey?: string | null;
     accentColor?: string;
+    isPublic?: boolean;
 }
 
-export default function SongCard({ id, title, author, songKey, accentColor = 'red' }: SongCardProps) {
+export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true }: SongCardProps) {
     // Mapping color name to Tailwind class
     const borderColors: Record<string, string> = {
         red: 'bg-red-500',
@@ -39,15 +41,20 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                 ></div>
 
                 <div className="relative flex justify-between items-center z-10">
-                    <div>
-                        <h3 className={`text-[17px] font-bold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors group-hover:translate-x-1 duration-300`}>
-                            {title}
-                        </h3>
-                        <p className="text-sm text-gray-400 mt-1 font-medium group-hover:text-gray-300 transition-colors">
+                    <div className="flex-1 min-w-0 pr-2">
+                        <div className="flex items-center gap-2 mb-0.5">
+                            <h3 className={`text-[17px] font-bold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors group-hover:translate-x-1 duration-300 truncate`}>
+                                {title}
+                            </h3>
+                            {!isPublic && (
+                                <Lock className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                            )}
+                        </div>
+                        <p className="text-sm text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
                             {author}
                         </p>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5">
+                    <div className="flex flex-col items-end gap-1.5 shrink-0">
                         {songKey && (
                             <>
                                 <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>

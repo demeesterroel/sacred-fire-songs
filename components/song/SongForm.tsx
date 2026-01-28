@@ -550,44 +550,32 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                 </div>
             )}
 
-            {/* Visibility Toggle */}
-            <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-                <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${watch('isPublic') ? 'bg-green-500/20 text-green-400' : 'bg-amber-500/20 text-amber-400'}`}>
-                        <span className="material-symbols-outlined">{watch('isPublic') ? 'public' : 'lock'}</span>
-                    </div>
-                    <div>
-                        <p className="text-white font-medium text-sm">{watch('isPublic') ? 'Public Song' : 'Private Song'}</p>
-                        <p className="text-gray-400 text-xs">{watch('isPublic') ? 'Visible to everyone in the community' : 'Only visible to you'}</p>
-                    </div>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                        type="checkbox"
-                        className="sr-only peer"
-                        checked={watch('isPublic')}
-                        onChange={(e) => setValue('isPublic', e.target.checked)}
-                    />
-                    <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
-                </label>
-            </div>
-
-            <div className="flex gap-3">
-                <button
-                    type="button"
-                    className="flex-1 bg-transparent border-2 border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-white/20 font-bold py-3 rounded-xl active:scale-[0.98] transition-all"
-                >
-                    Save Draft
-                </button>
+            <div className="flex gap-3 mt-8">
                 <button
                     type="submit"
+                    onClick={() => setValue('isPublic', false)}
                     disabled={mutation.isPending}
-                    className="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 active:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                    className="flex-1 bg-transparent border-2 border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-white/20 font-bold py-3 rounded-xl active:scale-[0.98] transition-all disabled:opacity-50 flex justify-center items-center gap-2"
                 >
-                    {mutation.isPending ? (
+                    {mutation.isPending && watch('isPublic') === false ? (
                         <>
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             Saving...
+                        </>
+                    ) : (
+                        'Save as Private'
+                    )}
+                </button>
+                <button
+                    type="submit"
+                    onClick={() => setValue('isPublic', true)}
+                    disabled={mutation.isPending}
+                    className="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 active:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                >
+                    {mutation.isPending && watch('isPublic') === true ? (
+                        <>
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Publishing...
                         </>
                     ) : (
                         'Publish Song'
