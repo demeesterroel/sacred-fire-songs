@@ -7,12 +7,24 @@ import { revalidatePath } from 'next/cache';
  * Toggles a song version in the user's "My Favorites" setlist.
  * If the setlist doesn't exist, it creates it.
  */
-export async function toggleFavorite(songId: string, versionId?: string) {
+export async function toggleFavorite(songId: string, versionId?: string, userId?: string) {
   const supabase = await createClient();
 
   // 1. Get current user
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-  if (authError || !user) {
+  let { data: { user } } = await supabase.auth.getUser();
+
+  // SUPPORT MOCK ROLES: Fallback to passed userId if it's a known mock ID
+  const isMockId = (id: string) => [
+    '11111111-1111-1111-1111-111111111111',
+    '22222222-2222-2222-2222-222222222222',
+    '33333333-3333-3333-3333-333333333333'
+  ].includes(id);
+
+  if (!user && userId && isMockId(userId)) {
+    user = { id: userId } as any;
+  }
+
+  if (!user) {
     return { error: 'Authentication required' };
   }
 

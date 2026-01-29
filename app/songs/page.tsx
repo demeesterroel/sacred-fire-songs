@@ -19,11 +19,12 @@ export default function SongsPage() {
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [showOnlyChords, setShowOnlyChords] = useState(false);
     const [showOnlyMelody, setShowOnlyMelody] = useState(false);
+    const [showFavorites, setShowFavorites] = useState(false);
     const { user } = useAuth();
 
     const { data: songs = [], isLoading } = useQuery({
-        queryKey: ['songs', 'all'],
-        queryFn: () => fetchSongs(), // Fetch all songs
+        queryKey: ['songs', 'all', user?.id],
+        queryFn: () => fetchSongs(undefined, user?.id), // Fetch all songs with user favorites
     });
 
     const handleSortClick = (newSortBy: SortByType) => {
@@ -57,6 +58,9 @@ export default function SongsPage() {
     }
     if (showOnlyMelody) {
         displaySongs = displaySongs.filter(song => song.hasMelody);
+    }
+    if (showFavorites) {
+        displaySongs = displaySongs.filter(song => song.isFavorite);
     }
 
     // 4. Sorting Logic
@@ -153,8 +157,21 @@ export default function SongsPage() {
                                     </button>
                                 </div>
                             )}
-                            {/* Chord & Melody Filter Toggles */}
+                            {/* Chord, Melody & Favorites Filter Toggles */}
                             <div className="flex items-center gap-2">
+                                {user && (
+                                    <button
+                                        onClick={() => setShowFavorites(!showFavorites)}
+                                        className={`flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all border ${showFavorites
+                                            ? 'bg-red-500/20 text-red-500 border-red-500/30'
+                                            : 'bg-gray-900 text-gray-400 border-gray-800 hover:text-gray-200'
+                                            }`}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill={showFavorites ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
+                                        Favorites
+                                    </button>
+                                )}
+
                                 <button
                                     onClick={() => setShowOnlyChords(!showOnlyChords)}
                                     className={`flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all border ${showOnlyChords
@@ -206,6 +223,7 @@ export default function SongsPage() {
                                     isPublic={song.isPublic}
                                     hasChords={song.hasChords}
                                     hasMelody={song.hasMelody}
+                                    isFavorite={song.isFavorite}
                                 />
                             ))
                         ) : (

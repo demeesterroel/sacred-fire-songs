@@ -276,3 +276,11 @@
     - [x] Update `SongCard` with optimistic Heart toggle.
     - [x] Update `SongDetailPage` with Heart toggle in header.
     - [x] Update `fetchSongs` and `fetchSong` to include favorite status.
+
+- [x] **Favorites Performance Optimization (Issue #36)**
+    - [x] Singleton Supabase Client for resilience.
+    - [x] Optimized `fetchSongs` with join queries for performance.
+    - [x] Added "Favorites" Filter Toggle to Library.
+    - [x] UI Polish: Fixed layout overlap in Song Cards.
+- [x] **Infrastructure**
+    - [x] Implement Vercel Speed Insights.

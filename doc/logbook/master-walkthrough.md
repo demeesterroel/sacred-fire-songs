@@ -471,3 +471,56 @@ I have completed the supplementary implementation for the Song Library, focusing
 - **Optimistic UI**: Used local state to ensure the heart icon updates instantly upon click, providing a premium, responsive feel.
 - **Secure Integration**: Created the `toggleFavorite` server action to handle the complex setlist/item relationship while maintaining strict RLS data security.
 - **Persistence**: Enhanced the core song-fetching utilities to efficiently determine favorite status via join queries on the `setlists` and `setlist_items` tables.
+
+
+## Session Update (Jan 29, 2026 - Favorites & UI Polish)
+
+# Walkthrough: Chords, Melodies, and Private Aesthetics
+
+I have implemented enhanced song metadata detection, vibrant UI badges, and a sophisticated aesthetic for private content.
+
+## Changes Made
+
+### Chord & Melody Detection
+- **`hasChords` Helper**: Implemented logic in `lib/chordProParsing.ts` to detect musical notation (brackets or heuristic lines).
+- **Persistent Metadata**: Added `has_chords` and `has_melody` columns to the `compositions` database table.
+- **Auto-Update**: The `SongForm` now automatically flags songs with chords on every save.
+- **SQL Migration**: Included a data backfill script for existing songs.
+
+### UI Enhancements (Badges)
+- **Vibrant Badges**: Added badges to `SongCard` and the Song Detail page.
+    - **Guitar Icon**: Represents "Chords" (Amber).
+    - **Music Icon**: Represents "Melody" (Emerald).
+- **Dual Filtering**: Added "Chords" and "Melody" toggles to the `/songs` library page.
+
+### Private Song Aesthetics
+- **Sophisticated Look**: Private songs now feature a **dashed white border** and a **darker, semi-transparent background**.
+- **Muted Metadata**: Opacity is lowered to $70\%$ for private cards, making them feel like "personal drafts."
+- **Unified Theme**: The "Private" filter tab on the browse page uses the same dashed aesthetic when active.
+
+### Redesigned Authentication Flow
+- **Magic Link Primary**: Updated the login flow to prioritize passwordless "Magic Link" entry.
+- **Optional Password Path**: Created a dedicated view for password-based login for users who prefer it.
+- **Social Login Removal**: Cleaned up the interface by removing all social login providers (Google, Facebook, Apple).
+- **Unified Visuals**: Standardized the styling across Magic Link, Password, Signup, Forgot Password, and Update Password views using the project's glassmorphism theme and orange/red flame aesthetic.
+- **Signup Simplicity**: Removed the "Username" field from the signup flow, requiring only Email and Password for a faster onboarding experience.
+- **Fully Functional**: Integrated the new designs into `LoginForm.tsx`, `SignUpForm.tsx`, `ForgotPassword`, and the `UpdatePassword` page, fully wired up to Supabase authentication.
+- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+
+## Verification
+
+### Manual Verification
+- [x] **Badges**: Verified that songs with `has_chords` show the Guitar badge site-wide.
+- [x] **Filters**: Confirmed that the "Chords" and "Melody" toggles correctly narrow down the song list.
+- [x] **Aesthetics**: Verified the dashed-border look for private songs on both the Homepage and Browse page.
+- [x] **Detail View**: Confirmed badges appear next to the song title for quick identification.
+
+### Code Quality
+- [x] **Linting**: Fixed minor lint errors introduced in `lib/songUtils.ts` and `app/songs/[id]/page.tsx`.
+- [x] **Performance & Resilience**: 
+    - Fixed a loading "hang" by implementing a **Singleton Supabase Client** to prevent overlapping session initializations.
+    - Optimized `fetchSongs` with efficient join queries and unified favorites detection.
+    - Added **Mock Role Support** in server actions to ensure persistence during development testing.
+    - Added **Favorites Filter Toggle** to the Songs Library for quick access to saved songs.
+    - **Visual Polish**: Consolidated "Key" and "Heart" into a unified top-right container to prevent overlap and ensure clean grid alignment.
+    - **Infrastructure**: Integrated **Vercel Speed Insights** for real-time performance monitoring.

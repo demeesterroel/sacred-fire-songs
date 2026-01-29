@@ -1,6 +1,7 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
+import { AuthChangeEvent, Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 
 export type UserRole = 'admin' | 'musician' | 'member' | 'guest';
@@ -73,11 +74,70 @@ export const useAuth = () => {
 
     // Initialize state
     useEffect(() => {
-        const storedMock = mockRole;
+        const supabase = createClient();
 
-        loadUser(storedMock);
+        // Initial session check
+        const initAuth = async () => {
+            if (mockRole && mockRole !== 'guest') {
+                await loadUser(mockRole);
+                return;
+            }
 
-        // Listen for custom event to trigger re-render on role switch
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session?.user) {
+                // If we have a session, we still might need the profile for the role
+                // But for the sake of speed, we set the user immediately and fetch role in background
+                setUser({
+                    id: session.user.id,
+                    email: session.user.email,
+                    role: 'member' // Default until profile loads
+                });
+
+                // Load full profile
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('role')
+                    .eq('id', session.user.id)
+                    .single();
+
+                if (profile) {
+                    setUser({
+                        id: session.user.id,
+                        email: session.user.email,
+                        role: profile.role
+                    });
+                }
+            }
+            setLoading(false);
+        };
+
+        initAuth();
+
+        // Listen for Auth Changes (e.g. login, logout)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event: AuthChangeEvent, session: Session | null) => {
+            if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+                if (session?.user) {
+                    const { data: profile } = await supabase
+                        .from('profiles')
+                        .select('role')
+                        .eq('id', session.user.id)
+                        .single();
+
+                    setUser({
+                        id: session.user.id,
+                        email: session.user.email,
+                        role: profile?.role || 'member'
+                    });
+                }
+            } else if (event === 'SIGNED_OUT') {
+                setUser(null);
+                setMockRole(null);
+                localStorage.removeItem('mockUserRole');
+            }
+            setLoading(false);
+        });
+
+        // Listen for custom event to trigger re-render on role switch (Mock)
         const handleRoleChange = () => {
             const newRole = localStorage.getItem('mockUserRole');
             setMockRole(newRole);
@@ -85,7 +145,11 @@ export const useAuth = () => {
         };
 
         window.addEventListener('auth-role-change', handleRoleChange);
-        return () => window.removeEventListener('auth-role-change', handleRoleChange);
+
+        return () => {
+            subscription.unsubscribe();
+            window.removeEventListener('auth-role-change', handleRoleChange);
+        };
     }, []);
 
 

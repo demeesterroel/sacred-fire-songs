@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Lock, Music, Guitar, Heart } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toggleFavorite } from '@/app/actions/toggleFavorite';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -39,6 +39,11 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
     const { user } = useAuth();
     const [isFav, setIsFav] = useState(isFavorite);
 
+    // Sync with prop changes (e.g. after re-fetch)
+    useEffect(() => {
+        setIsFav(isFavorite);
+    }, [isFavorite]);
+
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -51,7 +56,7 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
         // Optimistic update
         setIsFav(!isFav);
 
-        const result = await toggleFavorite(id);
+        const result = await toggleFavorite(id, undefined, user.id);
         if (result.error) {
             console.error('Favorite error:', result.error);
             setIsFav(isFav); // Revert on error
@@ -75,8 +80,8 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                     className={`absolute left-0 top-0 bottom-0 w-1.5 ${borderColors[accentColor]} rounded-l-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-y-110`}
                 ></div>
 
-                <div className="relative flex justify-between items-center z-10">
-                    <div className="flex-1 min-w-0 pr-2">
+                <div className="relative z-10">
+                    <div className="pr-16">
                         <div className="flex items-center gap-2 mb-0.5">
                             <h3 className={`text-[17px] font-bold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors group-hover:translate-x-1 duration-300 truncate`}>
                                 {title}
@@ -103,7 +108,17 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                             )}
                         </div>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5 shrink-0">
+
+                    {/* Absolute Actions & Badges (Top Right) */}
+                    <div className="absolute top-0 right-0 flex items-start gap-1 p-1">
+                        {songKey && (
+                            <div className="flex flex-col items-end pointer-events-none mt-1">
+                                <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1.5 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
+                                    {songKey}
+                                </span>
+                            </div>
+                        )}
+
                         {user && (
                             <button
                                 onClick={handleToggleFavorite}
@@ -115,14 +130,6 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                             >
                                 <Heart className={`w-5 h-5 transition-transform duration-300 ${isFav ? 'fill-current scale-110' : 'scale-100 hover:scale-110'}`} />
                             </button>
-                        )}
-                        {songKey && (
-                            <>
-                                <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
-                                <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
-                                    {songKey}
-                                </span>
-                            </>
                         )}
                     </div>
                 </div>
