@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import QueryProvider from "@/components/providers/QueryProvider";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
               {/* Page Content */}
               {children}
+              <SpeedInsights />
             </div>
           </div>
         </QueryProvider>
