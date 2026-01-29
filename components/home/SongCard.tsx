@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Lock, Music, Guitar, Heart } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toggleFavorite } from '@/app/actions/toggleFavorite';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -39,6 +39,11 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
     const { user } = useAuth();
     const [isFav, setIsFav] = useState(isFavorite);
 
+    // Sync with prop changes (e.g. after re-fetch)
+    useEffect(() => {
+        setIsFav(isFavorite);
+    }, [isFavorite]);
+
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -51,7 +56,7 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
         // Optimistic update
         setIsFav(!isFav);
 
-        const result = await toggleFavorite(id);
+        const result = await toggleFavorite(id, undefined, user.id);
         if (result.error) {
             console.error('Favorite error:', result.error);
             setIsFav(isFav); // Revert on error

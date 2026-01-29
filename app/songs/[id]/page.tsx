@@ -15,7 +15,7 @@ import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Guitar, Heart } from
 import { toggleFavorite } from '@/app/actions/toggleFavorite';
 
 // Standalone fetch function
-const fetchSong = async (id: string) => {
+const fetchSong = async (id: string, userId?: string) => {
     const supabase = createClient();
     const { data, error } = await supabase
         .from('compositions')
@@ -44,20 +44,17 @@ const fetchSong = async (id: string) => {
     if (error) throw error;
 
     // Fetch favorite status
-    const { data: { user } } = await supabase.auth.getUser();
     let isFavorite = false;
-    if (user) {
+    if (userId) {
         const { data: favorites } = await supabase
-            .from('setlists')
-            .select('setlist_items(song_version_id)')
-            .eq('owner_id', user.id)
-            .eq('title', 'My Favorites')
-            .maybeSingle();
+            .from('setlist_items')
+            .select('song_version_id, setlists!inner(title, owner_id)')
+            .eq('setlists.title', 'My Favorites')
+            .eq('setlists.owner_id', userId);
 
-        if (favorites?.setlist_items) {
+        if (favorites) {
             const versionIds = (data.song_versions as any[]).map(v => v.id);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            isFavorite = (favorites.setlist_items as any[]).some(item =>
+            isFavorite = (favorites as any[]).some(item =>
                 versionIds.includes(item.song_version_id)
             );
         }
@@ -81,8 +78,8 @@ export default function SongDetailPage() {
 
     // The Query Hook
     const { data: song, isLoading: songLoading } = useQuery({
-        queryKey: ['song', id],
-        queryFn: () => fetchSong(id!),
+        queryKey: ['song', id, user?.id],
+        queryFn: () => fetchSong(id!, user?.id),
         enabled: !!id,
     });
 
@@ -137,7 +134,7 @@ export default function SongDetailPage() {
                     {user && (
                         <button
                             onClick={async () => {
-                                const result = await toggleFavorite(id!);
+                                const result = await toggleFavorite(id!, undefined, user?.id);
                                 if (!result.error) {
                                     queryClient.invalidateQueries({ queryKey: ['song', id] });
                                 } else {

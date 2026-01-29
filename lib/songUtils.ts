@@ -30,60 +30,79 @@ export function filterSongs(songs: Song[], query: string) {
 
 /**
  * Shared song fetching logic
+ * Optimized for performance and resilience.
  */
 export const fetchSongs = async (limit?: number, userId?: string) => {
     const supabase = createClient();
-    let query = supabase
-        .from('compositions')
-        .select('*, song_versions(key, content_chordpro)')
-        .order('created_at', { ascending: false });
 
-    if (limit) {
-        query = query.limit(limit);
-    }
+    try {
+        // Fetch Compositions and Versions
+        // Note: For large libraries, we might want to exclude 'content_chordpro' in the list view
+        // but for now we keep it to support client-side lyric search.
+        const { data: compositions, error } = await supabase
+            .from('compositions')
+            .select(`
+                id,
+                title,
+                original_author,
+                is_public,
+                has_chords,
+                has_melody,
+                created_at,
+                song_versions (
+                    id,
+                    key,
+                    content_chordpro
+                )
+            `)
+            .order('created_at', { ascending: false })
+            .limit(limit || 100);
 
-    const { data: compositions, error } = await query;
+        if (error) throw error;
+        if (!compositions) return [];
 
-    if (error) throw error;
+        // 2. Fetch favorites for current user if applicable
+        let favoriteVersionIds: Set<string> = new Set();
 
-    // Fetch favorites for current user if applicable
-    let favoriteVersionIds: Set<string> = new Set();
+        if (userId) {
+            const { data: favorites } = await supabase
+                .from('setlist_items')
+                .select('song_version_id, setlists!inner(title, owner_id)')
+                .eq('setlists.title', 'My Favorites')
+                .eq('setlists.owner_id', userId);
 
-    if (userId) {
-        // Optimized: Fetch all favorite version IDs in one flat join query
-        const { data: favorites } = await supabase
-            .from('setlist_items')
-            .select('song_version_id, setlists!inner(title, owner_id)')
-            .eq('setlists.title', 'My Favorites')
-            .eq('setlists.owner_id', userId);
-
-        if (favorites) {
-            favorites.forEach(item => {
-                favoriteVersionIds.add(item.song_version_id);
-            });
+            if (favorites) {
+                (favorites as any[]).forEach(item => {
+                    if (item.song_version_id) {
+                        favoriteVersionIds.add(item.song_version_id);
+                    }
+                });
+            }
         }
+
+        // 3. Map to Song interface
+        return (compositions as any[]).map(item => {
+            const versions = item.song_versions || [];
+            const version = Array.isArray(versions) ? versions[0] : versions;
+            const isFav = version?.id ? favoriteVersionIds.has(version.id) : false;
+
+            return {
+                id: item.id,
+                title: item.title,
+                author: item.original_author || "Unknown",
+                songKey: version?.key || null,
+                content: version?.content_chordpro || "",
+                isPublic: item.is_public ?? true,
+                hasChords: item.has_chords ?? false,
+                hasMelody: item.has_melody ?? false,
+                createdAt: item.created_at,
+                isFavorite: isFav,
+                color: "red"
+            } as Song;
+        });
+
+    } catch (err) {
+        console.error("[fetchSongs] Fatal error:", err);
+        return [];
     }
-
-    return (compositions as any[]).map(item => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const version = (item.song_versions as any[])?.[0];
-        const isFav = version ? favoriteVersionIds.has(version.id) : false;
-
-        return {
-            id: item.id,
-            title: item.title,
-            author: item.original_author || "Unknown",
-            songKey: version?.key || null,
-            content: version?.content_chordpro || "",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            isPublic: item.is_public ?? true,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            hasChords: item.has_chords ?? false,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            hasMelody: item.has_melody ?? false,
-            createdAt: item.created_at,
-            isFavorite: isFav,
-            color: "red"
-        } as Song;
-    });
 };
