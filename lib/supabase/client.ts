@@ -15,7 +15,6 @@ export function createClient() {
 
     if (supabase) return supabase;
 
-    console.log("[Supabase Client] Creating new browser instance");
     supabase = createBrowserClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
