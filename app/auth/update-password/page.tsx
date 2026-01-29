@@ -32,7 +32,19 @@ function UpdatePasswordContent() {
         setError(null);
 
         try {
-            const { error } = await supabase.auth.updateUser({ password });
+            // Create a timeout promise to prevent hanging indefinitely
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Request timed out. Please try again.')), 10000)
+            );
+
+            const updatePromise = supabase.auth.updateUser({ password });
+
+            // Race the update against the timeout
+            const { error } = await Promise.race([
+                updatePromise,
+                timeoutPromise
+            ]) as { error: any };
+
             if (error) throw error;
 
             // Notify other components like Sidebar to refresh auth state
@@ -40,6 +52,7 @@ function UpdatePasswordContent() {
 
             router.push("/?message=Password updated successfully");
         } catch (error: unknown) {
+            console.error("Update password error:", error);
             setError(error instanceof Error ? error.message : "An error occurred");
         } finally {
             setIsLoading(false);
