@@ -271,3 +271,43 @@
         - [x] Implement secure environment variable loading for scripts.
 - [ ] **Verification**
     - [ ] Perform full E2E test of magic link flow in production.
+# Task: Redesigned Login Flow
+
+- [x] **Email Templates**
+    - [x] Design email-safe patterns for dark theme & flame aesthetic.
+    - [x] Generate templates for Magic Link, Signup, and Password Reset.
+    - [x] Persist templates to `doc/emails/` as standalone HTML files.
+
+- [x] **Migration Cleanup**
+    - [x] Identify correct creation times for today's migrations.
+    - [x] Rename files to use standard `YYYYMMDDHHMMSS` format (17:57 slot).
+
+- [x] **Planning & Design**
+    - [x] Research existing screen mockups.
+    - [x] Create design proposal for Magic Link & Password flow.
+    - [x] Update `app/auth/forgot-password/page.tsx`:
+        - Match `screen3d_forgot_password.html` design.
+        - Use the same glassmorphism design and icons.
+    - [x] Update `app/auth/update-password/page.tsx`:
+        - Match `screen3e_update_password.html` design.
+        - Add confirm password field.
+    - [ ] Update logout logic/UI if needed.
+- [ ] **Favorites Feature (Rolled Back)**
+    - [ ] Re-implement `toggleFavorite` server action.
+    - [ ] Update `SongCard` with heart icon.
+    - [ ] Update `app/songs/[id]/page.tsx` toggle.
+    - [ ] Add "Favorites" filter to Library.
+- [ ] **Infrastructure**
+    - [x] Implement Vercel Speed Insights.
+- [x] **Debug: Persistent Loading Hang**
+    - [x] Investigate cause (Supabase client/session stall).
+    - [x] Implement request timeout in `fetchSongs` to prevent UI freeze.
+- [ ] **Debug: Update Password Stall**
+    - [ ] Investigate `update-password/page.tsx`.
+    - [ ] Add safety timeout and error handling.
+- [ ] **Verification**
+    - [x] Verify heart icons load promptly in song lists.
+    - [ ] Perform full E2E test of magic link flow in production.
+    - [ ] Verify Magic Link sends email.
+    - [ ] Verify Password login works.
+    - [ ] Verify Signup works with just Email/Password.
