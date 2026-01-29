@@ -257,3 +257,17 @@
 - [x] **Private Song Aesthetic Polish (Issue #6)** <!-- id: 92 -->
     - [x] Implement dashed-border and dark theme for private song cards <!-- id: 93 -->
     - [x] Apply consistent dashed styling to library filter tabs <!-- id: 94 -->
+- [x] **Session Jan 29: Auth Redesign & Rate Limits**
+    - [x] **Email Templates**
+        - [x] Design email-safe patterns for dark theme & flame aesthetic.
+        - [x] Generate templates for Magic Link, Signup, and Password Reset.
+        - [x] Persist templates to `doc/emails/` as standalone HTML files.
+    - [x] **Auth UI Redesign**
+        - [x] Create mockups for Login (Magic/Password), Signup, and Forgot/Update Password.
+        - [x] Implement glassmorphism & flame aesthetic across all auth pages.
+        - [x] Add password confirmation validation to Signup and Update Password.
+    - [x] **Infrastructure & Scripts**
+        - [x] Create `supabase_rate_limits.sh` helper script.
+        - [x] Implement secure environment variable loading for scripts.
+- [ ] **Verification**
+    - [ ] Perform full E2E test of magic link flow in production.
