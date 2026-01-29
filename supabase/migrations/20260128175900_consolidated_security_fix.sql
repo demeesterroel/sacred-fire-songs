@@ -14,12 +14,14 @@ DROP POLICY IF EXISTS "Allow public delete compositions" ON public.compositions;
 
 -- 3. Re-establish SECURE Compositions Policies
 -- Public SELECT: ONLY public songs
+DROP POLICY IF EXISTS "Public songs are viewable by everyone" ON public.compositions;
 CREATE POLICY "Public songs are viewable by everyone" 
 ON public.compositions FOR SELECT 
 TO public 
 USING (is_public = true);
 
 -- Auth SELECT: Public songs + Own songs + (Admin: All)
+DROP POLICY IF EXISTS "Authenticated users can view appropriate songs" ON public.compositions;
 CREATE POLICY "Authenticated users can view appropriate songs" 
 ON public.compositions FOR SELECT 
 TO authenticated 
@@ -30,6 +32,7 @@ USING (
 );
 
 -- Manage: Owners can update/delete their own
+DROP POLICY IF EXISTS "Owners can manage their songs" ON public.compositions;
 CREATE POLICY "Owners can manage their songs" 
 ON public.compositions FOR ALL 
 TO authenticated 
@@ -37,6 +40,7 @@ USING (owner_id = (select auth.uid()))
 WITH CHECK (owner_id = (select auth.uid()));
 
 -- Admins: Full access
+DROP POLICY IF EXISTS "Admins can manage all songs" ON public.compositions;
 CREATE POLICY "Admins can manage all songs" 
 ON public.compositions FOR ALL 
 TO authenticated 
@@ -49,6 +53,7 @@ DROP POLICY IF EXISTS "Allow public update versions" ON public.song_versions;
 DROP POLICY IF EXISTS "Allow public insert versions" ON public.song_versions;
 DROP POLICY IF EXISTS "Allow public delete versions" ON public.song_versions;
 
+DROP POLICY IF EXISTS "Respect composition privacy for versions" ON public.song_versions;
 CREATE POLICY "Respect composition privacy for versions" 
 ON public.song_versions FOR SELECT 
 TO public 
@@ -60,6 +65,7 @@ USING (
   )
 );
 
+DROP POLICY IF EXISTS "Authenticated users can view appropriate versions" ON public.song_versions;
 CREATE POLICY "Authenticated users can view appropriate versions" 
 ON public.song_versions FOR SELECT 
 TO authenticated 
