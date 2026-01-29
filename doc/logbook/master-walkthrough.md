@@ -439,3 +439,29 @@ I have completed the supplementary implementation for the Song Library, focusing
 - **Site-wide Visibility**: Enabled badges on the Dashboard, Browse page, and the individual **Song Detail view** for consistent navigation.
 - **Private Song Aesthetics**: Implemented a sophisticated visual style for private songs, featuring a **darker neutral background** and a **dashed border** across BOTH song cards and filter tabs. This clearly separates personal repertoire without relying on loud colors.
 
+## Session Update (Jan 29, 2026 - Auth Redesign & Email Templates)
+
+### Authentication Flow Overhaul
+- **Aesthetic Shift**: Implemented a consistent **glassmorphism** theme with vibrant **orange/red flame accents** across all authentication screens.
+- **Magic Link Primary**: Promoted Magic Link as the primary login method to simplify onboarding.
+- **Improved Password Flow**: Redesigned the password login and signup views, adding **confirm password** fields and validation.
+- **Forgot & Update Password**: Created full-page experiences for password recovery and updates, matching the project's premium design.
+- **Mockups Created**:
+    - `screen3a_login_magic.html`
+    - `screen3b_login_password.html`
+    - `screen3c_signup.html`
+    - `screen3d_forgot_password.html`
+    - `screen3e_update_password.html`
+
+### Email Branding
+- **Custom Templates**: Designed and implemented three responsive HTML email templates:
+    - **Magic Link** (Login/Signup)
+    - **Signup Confirmation**
+    - **Password Reset**
+- **Fire Branding**: Used the 🔥 emoji for a consistent, cross-platform aesthetic that matches the app's logo.
+- **Persistence**: Saved templates as standalone assets in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+
+### Developer Tools
+- **Rate Limit Management**: Created a `supabase_rate_limits.sh` script to manage authentication rate limits via the Supabase Management API.
+- **Secret Hygiene**: Configured the script to load secrets from `.env.local`, preventing exposure of management tokens on GitHub.
+
