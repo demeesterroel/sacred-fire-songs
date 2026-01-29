@@ -282,3 +282,5 @@
     - [x] Optimized `fetchSongs` with join queries for performance.
     - [x] Added "Favorites" Filter Toggle to Library.
     - [x] UI Polish: Fixed layout overlap in Song Cards.
+- [x] **Infrastructure**
+    - [x] Implement Vercel Speed Insights.
