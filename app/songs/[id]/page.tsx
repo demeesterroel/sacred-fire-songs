@@ -11,7 +11,8 @@ import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { deleteSong } from '@/app/actions/deleteSong';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Guitar } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Guitar, Heart } from 'lucide-react';
+import { toggleFavorite } from '@/app/actions/toggleFavorite';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
@@ -41,7 +42,28 @@ const fetchSong = async (id: string) => {
         .single();
 
     if (error) throw error;
-    return data;
+
+    // Fetch favorite status
+    const { data: { user } } = await supabase.auth.getUser();
+    let isFavorite = false;
+    if (user) {
+        const { data: favorites } = await supabase
+            .from('setlists')
+            .select('setlist_items(song_version_id)')
+            .eq('owner_id', user.id)
+            .eq('title', 'My Favorites')
+            .maybeSingle();
+
+        if (favorites?.setlist_items) {
+            const versionIds = (data.song_versions as any[]).map(v => v.id);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            isFavorite = (favorites.setlist_items as any[]).some(item =>
+                versionIds.includes(item.song_version_id)
+            );
+        }
+    }
+
+    return { ...data, isFavorite };
 };
 
 export default function SongDetailPage() {
@@ -111,6 +133,27 @@ export default function SongDetailPage() {
 
                 {/* Action Bar */}
                 <div className="flex items-center gap-2 ml-auto">
+                    {/* Favorite Button */}
+                    {user && (
+                        <button
+                            onClick={async () => {
+                                const result = await toggleFavorite(id!);
+                                if (!result.error) {
+                                    queryClient.invalidateQueries({ queryKey: ['song', id] });
+                                } else {
+                                    alert(result.error);
+                                }
+                            }}
+                            className={`p-2.5 rounded-full transition-all border active:scale-95 ${song.isFavorite
+                                ? 'text-red-500 bg-red-500/10 border-red-500/20'
+                                : 'text-gray-400 hover:text-white hover:bg-white/5 border-transparent hover:border-white/10'
+                                }`}
+                            title={song.isFavorite ? "Remove from favorites" : "Add to favorites"}
+                        >
+                            <Heart className={`w-5 h-5 ${song.isFavorite ? 'fill-current' : ''}`} />
+                        </button>
+                    )}
+
                     {/* Delete Button (Admin Only) */}
                     {isAdmin && (
                         <button

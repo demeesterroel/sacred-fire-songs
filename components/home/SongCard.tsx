@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Lock, Music, Guitar } from 'lucide-react';
+import { Lock, Music, Guitar, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { toggleFavorite } from '@/app/actions/toggleFavorite';
+import { useAuth } from '@/hooks/useAuth';
 
 interface SongCardProps {
     id: string;
@@ -12,9 +15,10 @@ interface SongCardProps {
     isPublic?: boolean;
     hasChords?: boolean;
     hasMelody?: boolean;
+    isFavorite?: boolean;
 }
 
-export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true, hasChords = false, hasMelody = false }: SongCardProps) {
+export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true, hasChords = false, hasMelody = false, isFavorite = false }: SongCardProps) {
     // Mapping color name to Tailwind class
     const borderColors: Record<string, string> = {
         red: 'bg-red-500',
@@ -30,6 +34,29 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
         yellow: 'group-hover:text-yellow-400',
         blue: 'group-hover:text-blue-400',
         purple: 'group-hover:text-purple-400',
+    };
+
+    const { user } = useAuth();
+    const [isFav, setIsFav] = useState(isFavorite);
+
+    const handleToggleFavorite = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!user) {
+            alert('Please log in to favorite songs');
+            return;
+        }
+
+        // Optimistic update
+        setIsFav(!isFav);
+
+        const result = await toggleFavorite(id);
+        if (result.error) {
+            console.error('Favorite error:', result.error);
+            setIsFav(isFav); // Revert on error
+            alert(result.error);
+        }
     };
 
     return (
@@ -77,6 +104,18 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-1.5 shrink-0">
+                        {user && (
+                            <button
+                                onClick={handleToggleFavorite}
+                                className={`p-2 rounded-full transition-all duration-300 ${isFav
+                                    ? 'text-red-500 bg-red-500/10 hover:bg-red-500/20'
+                                    : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                                    }`}
+                                title={isFav ? "Remove from favorites" : "Add to favorites"}
+                            >
+                                <Heart className={`w-5 h-5 transition-transform duration-300 ${isFav ? 'fill-current scale-110' : 'scale-100 hover:scale-110'}`} />
+                            </button>
+                        )}
                         {songKey && (
                             <>
                                 <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
