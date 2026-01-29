@@ -14,8 +14,8 @@ export default function Home() {
   const { user } = useAuth();
 
   const { data: songs = [], isLoading } = useQuery({
-    queryKey: ['songs', 'latest'],
-    queryFn: () => fetchSongs(10), // Limit to 10 latest
+    queryKey: ['songs', 'latest', user?.id],
+    queryFn: () => fetchSongs(10, user?.id), // Limit to 10 latest with user favorites
   });
 
   // Home page only shows public songs
@@ -100,6 +100,7 @@ export default function Home() {
                   isPublic={song.isPublic}
                   hasChords={song.hasChords}
                   hasMelody={song.hasMelody}
+                  isFavorite={song.isFavorite}
                 />
               ))
             ) : (

@@ -31,7 +31,7 @@ export function filterSongs(songs: Song[], query: string) {
 /**
  * Shared song fetching logic
  */
-export const fetchSongs = async (limit?: number) => {
+export const fetchSongs = async (limit?: number, userId?: string) => {
     const supabase = createClient();
     let query = supabase
         .from('compositions')
@@ -47,22 +47,19 @@ export const fetchSongs = async (limit?: number) => {
     if (error) throw error;
 
     // Fetch favorites for current user if applicable
-    let favoriteSongIds: Set<string> = new Set();
-    const { data: authData } = await supabase.auth.getUser();
-    const user = authData?.user;
+    let favoriteVersionIds: Set<string> = new Set();
 
-    if (user) {
+    if (userId) {
+        // Optimized: Fetch all favorite version IDs in one flat join query
         const { data: favorites } = await supabase
-            .from('setlists')
-            .select('setlist_items(song_version_id)')
-            .eq('owner_id', user.id)
-            .eq('title', 'My Favorites')
-            .maybeSingle();
+            .from('setlist_items')
+            .select('song_version_id, setlists!inner(title, owner_id)')
+            .eq('setlists.title', 'My Favorites')
+            .eq('setlists.owner_id', userId);
 
-        if (favorites?.setlist_items) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (favorites.setlist_items as any[]).forEach(item => {
-                favoriteSongIds.add(item.song_version_id);
+        if (favorites) {
+            favorites.forEach(item => {
+                favoriteVersionIds.add(item.song_version_id);
             });
         }
     }
@@ -70,7 +67,7 @@ export const fetchSongs = async (limit?: number) => {
     return (compositions as any[]).map(item => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const version = (item.song_versions as any[])?.[0];
-        const isFav = version ? favoriteSongIds.has(version.id) : false;
+        const isFav = version ? favoriteVersionIds.has(version.id) : false;
 
         return {
             id: item.id,

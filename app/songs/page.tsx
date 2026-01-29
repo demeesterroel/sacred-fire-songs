@@ -22,8 +22,8 @@ export default function SongsPage() {
     const { user } = useAuth();
 
     const { data: songs = [], isLoading } = useQuery({
-        queryKey: ['songs', 'all'],
-        queryFn: () => fetchSongs(), // Fetch all songs
+        queryKey: ['songs', 'all', user?.id],
+        queryFn: () => fetchSongs(undefined, user?.id), // Fetch all songs with user favorites
     });
 
     const handleSortClick = (newSortBy: SortByType) => {
@@ -206,6 +206,7 @@ export default function SongsPage() {
                                     isPublic={song.isPublic}
                                     hasChords={song.hasChords}
                                     hasMelody={song.hasMelody}
+                                    isFavorite={song.isFavorite}
                                 />
                             ))
                         ) : (
