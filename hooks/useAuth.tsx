@@ -1,6 +1,7 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
+import { AuthChangeEvent, Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 
 export type UserRole = 'admin' | 'musician' | 'member' | 'guest';
@@ -113,7 +114,7 @@ export const useAuth = () => {
         initAuth();
 
         // Listen for Auth Changes (e.g. login, logout)
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event: AuthChangeEvent, session: Session | null) => {
             if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
                 if (session?.user) {
                     const { data: profile } = await supabase
