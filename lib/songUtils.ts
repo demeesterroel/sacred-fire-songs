@@ -36,10 +36,9 @@ export const fetchSongs = async (limit?: number, userId?: string) => {
     const supabase = createClient();
 
     try {
-        // Fetch Compositions and Versions
-        // Note: For large libraries, we might want to exclude 'content_chordpro' in the list view
-        // but for now we keep it to support client-side lyric search.
-        const { data: compositions, error } = await supabase
+        // Fetch Compositions and Versions with a 5s Warning Timeout
+        // The Supabase client can sometimes hang if the session is stale/corrupt
+        const databasePromise = supabase
             .from('compositions')
             .select(`
                 id,
@@ -57,6 +56,15 @@ export const fetchSongs = async (limit?: number, userId?: string) => {
             `)
             .order('created_at', { ascending: false })
             .limit(limit || 100);
+
+        const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Fetch timeout')), 8000)
+        );
+
+        const { data: compositions, error } = await Promise.race([
+            databasePromise,
+            timeoutPromise
+        ]) as any;
 
         if (error) throw error;
         if (!compositions) return [];
