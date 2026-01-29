@@ -1,7 +1,7 @@
 -- Add has_chords and has_melody columns to compositions
 ALTER TABLE public.compositions
-ADD COLUMN has_chords boolean DEFAULT false,
-ADD COLUMN has_melody boolean DEFAULT false;
+ADD COLUMN IF NOT EXISTS has_chords boolean DEFAULT false,
+ADD COLUMN IF NOT EXISTS has_melody boolean DEFAULT false;
 
 -- Data Backfill: Update existing compositions for chords
 -- A composition is flagged as 'has_chords' if any of its versions contains 

@@ -17,6 +17,7 @@ ON public.compositions FOR SELECT
 USING (is_public = true);
 
 -- Add: Owners can view their own private songs
+DROP POLICY IF EXISTS "Owners can view their own songs" ON public.compositions;
 CREATE POLICY "Owners can view their own songs" 
 ON public.compositions FOR SELECT 
 TO authenticated 
@@ -41,6 +42,8 @@ USING (
     and c.is_public = true
   )
 );
+
+DROP POLICY IF EXISTS "Owners can view their own song versions" ON public.song_versions;
 
 CREATE POLICY "Owners can view their own song versions" 
 ON public.song_versions FOR SELECT 
