@@ -271,3 +271,8 @@
         - [x] Implement secure environment variable loading for scripts.
 - [ ] **Verification**
     - [ ] Perform full E2E test of magic link flow in production.
+- [x] **Favorites Feature (Issue #14/Story 3.1.2)**
+    - [x] Implement `toggleFavorite` server action with setlist creation.
+    - [x] Update `SongCard` with optimistic Heart toggle.
+    - [x] Update `SongDetailPage` with Heart toggle in header.
+    - [x] Update `fetchSongs` and `fetchSong` to include favorite status.

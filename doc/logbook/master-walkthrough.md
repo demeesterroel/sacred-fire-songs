@@ -465,3 +465,9 @@ I have completed the supplementary implementation for the Song Library, focusing
 - **Rate Limit Management**: Created a `supabase_rate_limits.sh` script to manage authentication rate limits via the Supabase Management API.
 - **Secret Hygiene**: Configured the script to load secrets from `.env.local`, preventing exposure of management tokens on GitHub.
 
+### Favorites Management
+- **Heart Toggle**: Implemented a "Heart" toggle for medicine songs, accessible both in the library (Song Cards) and the Song Detail page.
+- **My Favorites Setlist**: Developed behind-the-scenes logic to automatically create and manage a default "My Favorites" setlist for each authenticated user.
+- **Optimistic UI**: Used local state to ensure the heart icon updates instantly upon click, providing a premium, responsive feel.
+- **Secure Integration**: Created the `toggleFavorite` server action to handle the complex setlist/item relationship while maintaining strict RLS data security.
+- **Persistence**: Enhanced the core song-fetching utilities to efficiently determine favorite status via join queries on the `setlists` and `setlist_items` tables.
