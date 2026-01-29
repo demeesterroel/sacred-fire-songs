@@ -8,7 +8,9 @@
 -- The existing policies are "TO authenticated".
 -- Adding a "TO public" policy is sufficient.
 
+drop policy if exists "Allow public update compositions" on public.compositions;
 create policy "Allow public update compositions" on public.compositions for update to public using (true);
 
 -- 2. Song Versions
+drop policy if exists "Allow public update versions" on public.song_versions;
 create policy "Allow public update versions" on public.song_versions for update to public using (true);
