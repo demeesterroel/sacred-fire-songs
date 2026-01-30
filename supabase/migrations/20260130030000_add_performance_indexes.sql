@@ -19,4 +19,4 @@ CREATE INDEX IF NOT EXISTS idx_song_category_map_category_id ON public.song_cate
 -- 6. Compositions (owner_id)
 -- Identified via grep: 20260110180000_expand_permissions.sql added owner_id references profiles(id)
 CREATE INDEX IF NOT EXISTS idx_compositions_owner_id ON public.compositions(owner_id);
--- End of migration
+-- End of migrationhe 
