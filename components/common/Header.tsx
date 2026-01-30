@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import MobileMenu from './MobileMenu';
 
+import { getSiteTitle } from '@/lib/env';
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,7 +19,7 @@ export default function Header() {
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </Link>
                     <Link href="/" className="font-bold text-xl tracking-tight text-white hover:opacity-80 transition-opacity">
-                        🔥Sacred Fire Songs
+                        {getSiteTitle()}
                     </Link>
                 </div>
 

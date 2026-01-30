@@ -355,3 +355,13 @@
     - [ ] Verify Magic Link sends email.
     - [ ] Verify Password login works.
     - [ ] Verify Signup works with just Email/Password.
+
+- [x] **Session Jan 30: Environment & Deployment Fixes**
+    - [x] Implement dynamic Environment Banner & Tab Title Logic.
+    - [x] Detect Vercel `preview` vs `production` environments.
+    - [x] Automate `public.profiles` creation via Auth Triggers.
+    - [x] Fix RLS policies blocking `song_versions` insertions.
+    - [x] Restore "Trash" icon visibility for song owners.
+    - [x] Link orphaned songs to correct user UIDs.
+    - [x] Finalize `change-email.html` template variables.
+    - [x] Cleanup documentation (mockups deletion).
