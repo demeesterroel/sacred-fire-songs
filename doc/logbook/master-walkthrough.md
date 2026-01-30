@@ -592,3 +592,14 @@ I have finalized the environment indicator, authentication trigger, and various 
 - [x] **Auth Automation**: Confirmed profiles are created on signup.
 - [x] **Song Creation**: Verified that "Add Song" now works without RLS errors.
 - [x] **Permissions**: Confirmed owners can now delete their own songs.
+
+- **Refactor (Review Follow-up)**:
+    - Centralized environment detection logic into [lib/env.ts](file:///home/roeland/Projects/sacred-fire-songs/lib/env.ts) to resolve PR comments.
+    - Updated Root Layout, Header, and Sidebar to use the new `getSiteTitle()` utility.
+
+- **Documentation Update**:
+    - Extensively updated [user-guide.md](file:///home/roeland/Projects/sacred-fire-songs/doc/guides/user-guide.md) (v2.0).
+    - Added sections for Magic Link & Password authentication.
+    - Documented advanced song creation: ChordPro parsing, .cho/.txt file imports, and metadata handling.
+    - Explained the new **Public vs Private** saving logic and its impact on visibility.
+    - Updated library features: Sorting and Advanced Filtering (Chords/Melody/Private).
