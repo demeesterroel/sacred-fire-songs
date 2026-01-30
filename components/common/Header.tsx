@@ -17,7 +17,7 @@ export default function Header() {
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </Link>
                     <Link href="/" className="font-bold text-xl tracking-tight text-white hover:opacity-80 transition-opacity">
-                        🔥Sacred Fire Songs
+                        🔥Sacred Fire Songs{process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' ? ' (Preview)' : process.env.NODE_ENV === 'development' ? ' (Local)' : ''}
                     </Link>
                 </div>
 

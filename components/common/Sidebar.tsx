@@ -7,6 +7,10 @@ import { useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
 
+const isPreview = process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview';
+const isLocal = process.env.NODE_ENV === 'development';
+const suffix = isPreview ? ' (Preview)' : isLocal ? ' (Local)' : '';
+
 const Sidebar = () => {
     const { user, loading, mockRole, switchMockRole, logout } = useAuth();
     const pathname = usePathname();
@@ -24,7 +28,7 @@ const Sidebar = () => {
                         className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </div>
-                    <h1 className="font-bold text-xl tracking-tight text-white">🔥Sacred Fire Songs (Preview)</h1>
+                    <h1 className="font-bold text-xl tracking-tight text-white">🔥Sacred Fire Songs{suffix}</h1>
                 </div>
 
                 {/* Main Menu */}
