@@ -1,5 +1,6 @@
--- Migration: Fix Missing RLS Policies for Song Versions
--- Date: 2026-01-30
+-- Migration: Fix Song Versions RLS
+-- Triggering CI push to main
+Policies for Song Versions -- Date: 2026-01-30
 -- Description: Restores INSERT, UPDATE, and DELETE policies for song_versions that were accidentally dropped.
 -- 1. INSERT Policy
 -- Allow authenticated users to insert versions if they are the contributor
