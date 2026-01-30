@@ -559,3 +559,36 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
     - Optimized `fetchSongs` with efficient join queries.
     - Added **Mock Role Support** in server actions to ensure persistence during development testing.
     - **Infrastructure**: Integrated **Vercel Speed Insights** for real-time performance monitoring.
+
+---
+
+## Session Update (Jan 30, 2026 - Environment & Final Fixes)
+
+I have finalized the environment indicator, authentication trigger, and various permission/RLS fixes.
+
+### Changes Made
+
+- **Environment Indicator**:
+    - Implemented a dynamic `EnvironmentBanner` component (Amber for Preview, Blue for Local).
+    - Added automatic detection of `preview` vs `production` via Vercel env variables.
+    - Standardized browser tab titles: `🔥Sacred Fire Songs (Preview)` or `(Local)`.
+    - Integrated into Sidebar and Header for high visibility.
+
+- **Authentication & Profiles**:
+    - **Automatic Profile Trigger**: Created a PostgreSQL function and trigger to ensure every new Auth user instantly gets a record in the `public.profiles` table.
+    - **Backfill**: Migrated existing Auth users who were missing profiles to the `member` role.
+    - **Linking**: Executed SQL to correctly link orphaned compositions to specific user emails.
+
+- **Security & RLS**:
+    - **Policy Restoration**: Restored `INSERT`, `UPDATE`, and `DELETE` policies for `song_versions` which were blocking song creation.
+    - **Owner Permissions**: Fixed an inconsistency where song owners could see the edit pencil but not the trash icon.
+
+- **Email Branding**:
+    - Finalized `change-email.html` with correct Supabase variable formatting.
+    - Cleaned up documentation by removing temporary mockup assets now that features are live.
+
+### Verification
+- [x] **Preview Detection**: Verified that "(Preview)" appears correctly in the tab and banner.
+- [x] **Auth Automation**: Confirmed profiles are created on signup.
+- [x] **Song Creation**: Verified that "Add Song" now works without RLS errors.
+- [x] **Permissions**: Confirmed owners can now delete their own songs.
