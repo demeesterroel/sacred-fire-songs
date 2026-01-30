@@ -14,12 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const isPreview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
-const isLocal = process.env.NODE_ENV === "development";
-const suffix = isPreview ? " (Preview)" : isLocal ? " (Local)" : "";
+import { getSiteTitle } from "@/lib/env";
 
 export const metadata: Metadata = {
-  title: `🔥Sacred Fire Songs${suffix}`,
+  title: getSiteTitle(),
   description: "A digital songbook for medicine music ceremonies.",
   icons: {
     icon: "/favicon.svg",
