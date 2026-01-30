@@ -1,2 +1,0 @@
--- Empty migration to trigger CI/CD pipeline verification
--- Date: 2026-01-30
