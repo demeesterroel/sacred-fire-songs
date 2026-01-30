@@ -1,8 +1,8 @@
 # User Guide: Sacred Fire Songs
 
-**Version:** 1.3
-**Status:** Draft
-**Date:** January 10, 2026
+**Version:** 2.0
+**Status:** Published
+**Date:** January 30, 2026
 
 ## Changelog
 
@@ -12,55 +12,69 @@
 | **1.1** | Jan 10, 2026 | Changed project name to Sacred Fire Songs. |
 | **1.2** | Jan 10, 2026 | Moved "Adding New Songs" to Member section. |
 | **1.3** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
-
+| **2.0** | Jan 30, 2026 | Major update: Magic Link auth, .cho/.txt imports, Public/Private songs, and Advanced Filters. |
 
 Welcome to **Sacred Fire Songs**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
 
 ---
 
-## 1. For Guests & Musicians
+## 1. Authentication & Roles
 
-### 1.1 Browsing the Library
-The **Home Page** lists all available songs.
-- **Search**: Use the search bar to find songs by title or by specific words in the lyrics.
-- **Infinite Scroll**: Simply scroll down to load more songs from the tradition.
+### 1.1 Fast Sign-In (Magic Link)
+The easiest way to sign in is via **Magic Link**. 
+1. Enter your email addressed on the Sign In page.
+2. Check your inbox for an email from "🔥 Sacred Fire Songs".
+3. Click the link to be instantly logged in—no password required.
 
-### 1.2 Learning a Song
-Click on any song to open the **Detail View**.
-- **Navigation**: Click the **Back Arrow** in the top-right header to return to the library at any time.
-- **Chords & Lyrics**: Chords are displayed directly above the lyrics for easy playing.
-- **Key Transposition (Phase 2)**: Use the `+` and `-` buttons to shift the song into a key that suits your voice.
-- **Listen**: If available, use the embedded player to hear a reference recording.
-- **Sheet Music (Phase 2)**: View the melody in musical notation and use the "Play Melody" button to hear the synthesized notes.
+### 1.2 Password Access
+If you prefer, you can also sign up or log in using a tradition **Email & Password** combination. You can manage your password or reset it via the "Forgot Password" link if needed.
 
-### 1.3 Offline Use
-Sacred Fire Songs is a Progressive Web App (PWA). If you have viewed a song once while online, it will be cached on your device. You can access these songs even when you are in remote ceremony locations without internet access.
+### 1.3 User Roles
+- **Guest**: Can browse and view all **Public** songs.
+- **Member**: Can add their own songs, save songs as **Private**, and edit/delete songs they own.
+- **Admin**: Full access to manage all songs, users, and categories.
 
 ---
 
-## 2. For Members (Phase 3+)
+## 2. Using the Library
 
-### 2.1 Favorites
-Once logged in, click the **Heart** icon on any song to add it to your personal library for quick access.
+### 2.1 Browsing & Searching
+The **Library** page allows you to find songs quickly:
+- **Search**: Search by title, author, or even words within the lyrics.
+- **Sorting**: Toggle between **Alphabetical** (Title) or **Chronological** (Newest) order.
 
-### 2.2 Adding New Songs
-As a Member, you can add songs in two ways:
-1.  **File Upload**: Upload a `.cho` (ChordPro) file. The system will automatically extract the title and metadata.
-2.  **Manual Entry (Phase 2)**: Use the built-in editor to type or paste lyrics and chords directly.
+### 2.2 Advanced Filters
+Use the filter tabs at the top to narrow down your selection:
+- **🎸 Chords**: Show only songs that include musical chords.
+- **🎵 Melody**: Show only songs that have a melody/audio reference.
+- **🔒 Private**: (Members only) View your personal drafts and unpublish songs.
 
-### 2.2 Setlists (Phase 4)
-Build custom setlists for ceremonies.
-- **Manage**: Create a named list (e.g., "Full Moon Oct 2025") and add songs to it.
-- **Order**: Drag and drop songs to match the flow of the ceremony.
-- **Export**: Generate a PDF to print or share with other musicians.
+### 2.3 Song Detail View
+Click any song to view its lyrics and musical data:
+- **Badges**: High-visibility badges tell you if a song has Chords or Melody.
+- **Metadata**: See the **Key**, **Capo position**, and **Tuning** at a glance.
+- **Media**: Listen to YouTube, Spotify, or SoundCloud recordings directly on the page.
 
 ---
 
-## 3. For Administrators
+## 3. Managing Songs (Members & Admins)
 
+### 3.1 Adding a Song
+Click **"Add Song"** in the sidebar to contribute to the library:
+- **Smart Import**: Drag and drop a `.cho` (ChordPro) or `.txt` file. The system will automatically detect the **Title**, **Author**, **Key**, and **Capo**.
+- **Manual Formatting**: Use standard brackets like `[Am]` for chords. The system will automatically align them above the lyrics for you.
 
+### 3.2 Public vs Private
+When saving a song, you have two choices:
+1. **Publish Song**: Makes the song visible to everyone in the community.
+2. **Save as Private**: Keeps the song hidden from others. Only you (and Admins) can see it in your "Private" filter.
 
-### 3.2 Managing the Library
-- **Edit**: Correct typos or update chords on existing songs.
-- **Categorize (Phase 2)**: Tag songs with themes (Water, Fire, Air, Earth) to help users filter the library.
-- **Delete**: Remove duplicate or incorrect song entries.
+### 3.3 Editing & Deleting
+If you own a song (or are an Admin), you will see icons at the top of the detail page:
+- **✏️ Pencil**: Edit the song details, lyrics, or visibility.
+- **🗑️ Trash**: Permanently remove the song from the library (requires confirmation).
+
+---
+
+## 4. Offline Access (PWA)
+Sacred Fire Songs is a Progressive Web App. Any song you view while online will be saved to your device automatically. This ensures you can access your music in remote ceremony locations without a data connection.
