@@ -111,8 +111,8 @@ export default function SongDetailPage() {
 
                 {/* Action Bar */}
                 <div className="flex items-center gap-2 ml-auto">
-                    {/* Delete Button (Admin Only) */}
-                    {isAdmin && (
+                    {/* Delete Button (Owner or Admin) */}
+                    {(song.owner_id === user?.id || isAdmin) && (
                         <button
                             onClick={() => setIsDeleteModalOpen(true)}
                             className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20 active:scale-95"

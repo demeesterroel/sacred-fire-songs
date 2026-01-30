@@ -36,10 +36,10 @@ Go to **Vercel -> Settings -> Environment Variables**:
 
 1.  **Production Environment**:
     *   `NEXT_PUBLIC_SUPABASE_URL`: (Your **PROD** URL)
-    *   `NEXT_PUBLIC_SUPABASE_ANON_KEY`: (Your **PROD** Key)
+    *   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: (Your **PROD** Key)
 2.  **Preview Environment** (Uncheck Production/Development):
     *   `NEXT_PUBLIC_SUPABASE_URL`: (Your **STAGING** URL)
-    *   `NEXT_PUBLIC_SUPABASE_ANON_KEY`: (Your **STAGING** Key)
+    *   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: (Your **STAGING** Key)
 
 ## 3. Automated CI/CD Pipelines
 

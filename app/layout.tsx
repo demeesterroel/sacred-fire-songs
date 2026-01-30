@@ -14,9 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { getSiteTitle } from "@/lib/env";
 
 export const metadata: Metadata = {
-  title: "🔥Sacred Fire Songs",
+  title: getSiteTitle(),
   description: "A digital songbook for medicine music ceremonies.",
   icons: {
     icon: "/favicon.svg",
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import QueryProvider from "@/components/providers/QueryProvider";
+import EnvironmentBanner from "@/components/common/EnvironmentBanner";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
@@ -37,6 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
+        <EnvironmentBanner />
         <QueryProvider>
           <div className="min-h-screen bg-black text-gray-100 font-sans flex flex-col md:flex-row selection:bg-red-500/30">
 

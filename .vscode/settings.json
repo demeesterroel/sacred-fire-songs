@@ -1,4 +1,26 @@
 {
   "diffEditor.codeLens": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "db.REDACTED_STAGING_PROJECT_ID.supabase.co",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "Sacred Fire (Staging)",
+      "database": "postgres",
+      "username": "postgres"
+    }
+  ],
+  "chat.mcp.serverSampling": {
+    "sacred-fire-songs/.vscode/mcp.json: supabase": {
+      "allowedModels": []
+    }
+  }
 }

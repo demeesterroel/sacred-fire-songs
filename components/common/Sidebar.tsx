@@ -1,13 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Flame, LayoutGrid, Music, CloudUpload, Settings, LogOut } from 'lucide-react';
 import { useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
 
+import { getSiteTitle } from '@/lib/env';
+
 const Sidebar = () => {
     const { user, loading, mockRole, switchMockRole, logout } = useAuth();
+    const pathname = usePathname();
+
+    const isActive = (path: string) => {
+        if (path === '/') return pathname === '/';
+        return pathname?.startsWith(path);
+    };
 
     return (
         <aside className="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
@@ -17,25 +26,43 @@ const Sidebar = () => {
                         className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </div>
-                    <h1 className="font-bold text-xl tracking-tight text-white">🔥Sacred Fire Songs</h1>
+                    <h1 className="font-bold text-xl tracking-tight text-white">{getSiteTitle()}</h1>
                 </div>
 
                 {/* Main Menu */}
                 <nav className="space-y-1 mb-8">
-                    <Link href="/" className="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
-                        <LayoutGrid className="w-5 h-5 text-red-500" />
+                    <Link
+                        href="/"
+                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/') && pathname === '/'
+                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
+                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                            }`}
+                    >
+                        <LayoutGrid className={`w-5 h-5 ${isActive('/') && pathname === '/' ? 'text-red-500' : 'text-gray-500'}`} />
                         Dashboard
                     </Link>
-                    <Link href="/songs" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                        <Music className="w-5 h-5" />
+                    <Link
+                        href="/songs"
+                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/songs') && pathname !== '/songs/add'
+                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
+                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                            }`}
+                    >
+                        <Music className={`w-5 h-5 ${isActive('/songs') && pathname !== '/songs/add' ? 'text-red-500' : 'text-gray-500'}`} />
                         Browse Songs
                     </Link>
-                    <Link href="/songs/add" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                        <CloudUpload className="w-5 h-5" />
+                    <Link
+                        href="/songs/add"
+                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/songs/add')
+                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
+                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                            }`}
+                    >
+                        <CloudUpload className={`w-5 h-5 ${isActive('/songs/add') ? 'text-red-500' : 'text-gray-500'}`} />
                         Add Song
                     </Link>
                     <Link href="#" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                        <Settings className="w-5 h-5" />
+                        <Settings className="w-5 h-5 text-gray-500" />
                         Settings
                     </Link>
                 </nav>
