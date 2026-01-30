@@ -365,3 +365,81 @@
     - [x] Link orphaned songs to correct user UIDs.
     - [x] Finalize `change-email.html` template variables.
     - [x] Cleanup documentation (mockups deletion).
+# Task: Redesigned Login Flow
+
+- [x] **Email Templates**
+    - [x] Design email-safe patterns for dark theme & flame aesthetic.
+    - [x] Generate templates for Magic Link, Signup, and Password Reset.
+    - [x] Persist templates to `doc/emails/` as standalone HTML files.
+
+- [x] **Verification & Output**
+    - [x] Create Walkthrough Artifact
+    - [x] Synchronize Logbook
+    - [x] Prepare Pull Request (`feat/test-preview` -> `main`)
+
+- [x] **Migration Cleanup**
+    - [x] Identify correct creation times for today's migrations.
+    - [x] Rename files to use standard `YYYYMMDDHHMMSS` format (17:57 slot).
+
+## Maintenance & Optimization
+- [x] Generate TypeScript Types (`types/supabase.ts`)
+- [x] Database Performance Analysis
+    - [x] Check for Index Advisor
+    - [x] Analyze Missing Foreign Key Indexes
+    - [x] Apply Foreign Key Indexes (`compositions`, `song_versions`, etc.)
+    - [x] Check Cache Hit Ratios
+
+## Bug Fixes (Preview)
+- [x] Debug "Invalid API Key" on Signup
+    - [x] Verify Client Initialization (`lib/supabase/client.ts`)
+    - [x] Check Vercel Environment Variables for Preview
+    - [x] Fix: Reverted to strict `PUBLISHABLE_KEY` (User confirmed `ANON_KEY` is deprecated)
+
+- [x] Debug Redirect URL (Preview)
+    - [x] Informed user about Supabase Redirect URL Allow List requirement.
+- [x] **Environment Indicator**
+    - [x] Create `components/common/EnvironmentBanner.tsx`
+    - [x] Integrate into `app/layout.tsx`
+    - [x] Integrate into `Sidebar.tsx` and `Header.tsx`
+    - [x] Verify detection of `preview` vs `production`
+
+- [x] **Planning & Design**
+    - [x] Research existing screen mockups.
+    - [x] Create design proposal for Magic Link & Password flow.
+    - [x] Update `app/auth/forgot-password/page.tsx`:
+        - Match `screen3d_forgot_password.html` design.
+        - Use the same glassmorphism design and icons.
+    - [x] Update `app/auth/update-password/page.tsx`:
+        - Match `screen3e_update_password.html` design.
+        - Add confirm password field.
+    - [ ] Update logout logic/UI if needed.
+- [ ] **Favorites Feature (Rolled Back)**
+    - [ ] Re-implement `toggleFavorite` server action.
+    - [ ] Update `SongCard` with heart icon.
+    - [ ] Update `app/songs/[id]/page.tsx` toggle.
+    - [ ] Add "Favorites" filter to Library.
+- [ ] **Infrastructure**
+    - [x] Implement Vercel Speed Insights.
+- [x] **Infrastructure: 3-Tier Environment**
+    - [x] Define strategy: Local (dev), Staging (Preview), Prod (Live).
+    - [x] Create `doc/guides/environment-setup.md` for manual user steps.
+    - [x] Update `deploy-db.yml` to support Staging vs Prod deployments.
+- [x] **Debug: Persistent Loading Hang**
+    - [x] Investigate cause (Supabase client/session stall).
+    - [x] Implement request timeout in `fetchSongs` to prevent UI freeze.
+- [ ] **Debug: Update Password Stall**
+    - [ ] Investigate `update-password/page.tsx`.
+    - [ ] Add safety timeout and error handling.
+- [x] **Fix: Migration Payload**
+    - [x] Split `rename_musician_to_expert.sql` to avoid enum transaction error.
+    - [x] Make policy migrations idempotent (`DROP POLICY IF EXISTS`).
+    - [x] Fix idempotency for `add_is_public` and subsequent migrations.
+- [x] **Fix: UI bugs**
+    - [x] Sidebar active state for `/songs` and `/songs/add`.
+- [x] **Fix: Song Deletion Permissions** (Added during execution)
+- [ ] **Verification**
+    - [x] Verify heart icons load promptly in song lists.
+    - [x] Verify Magic Link flow.
+    - [x] Verify Password login works.
+    - [x] Verify Signup works with automatic Profile creation.
+    - [x] Verify song owners can edit/delete their songs.
