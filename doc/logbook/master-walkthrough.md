@@ -603,3 +603,69 @@ I have finalized the environment indicator, authentication trigger, and various 
     - Documented advanced song creation: ChordPro parsing, .cho/.txt file imports, and metadata handling.
     - Explained the new **Public vs Private** saving logic and its impact on visibility.
     - Updated library features: Sorting and Advanced Filtering (Chords/Melody/Private).
+# Walkthrough: Chords, Melodies, and Private Aesthetics
+
+I have implemented enhanced song metadata detection, vibrant UI badges, and a sophisticated aesthetic for private content.
+
+## Changes Made
+
+### Chord & Melody Detection
+- **`hasChords` Helper**: Implemented logic in `lib/chordProParsing.ts` to detect musical notation (brackets or heuristic lines).
+- **Persistent Metadata**: Added `has_chords` and `has_melody` columns to the `compositions` database table.
+- **Auto-Update**: The `SongForm` now automatically flags songs with chords on every save.
+- **SQL Migration**: Included a data backfill script for existing songs.
+
+### UI Enhancements (Badges)
+- **Vibrant Badges**: Added badges to `SongCard` and the Song Detail page.
+    - **Guitar Icon**: Represents "Chords" (Amber).
+    - **Music Icon**: Represents "Melody" (Emerald).
+- **Dual Filtering**: Added "Chords" and "Melody" toggles to the `/songs` library page.
+
+### Private Song Aesthetics
+- **Sophisticated Look**: Private songs now feature a **dashed white border** and a **darker, semi-transparent background**.
+- **Muted Metadata**: Opacity is lowered to $70\%$ for private cards, making them feel like "personal drafts."
+- **Unified Theme**: The "Private" filter tab on the browse page uses the same dashed aesthetic when active.
+
+### Redesigned Authentication Flow
+- **Magic Link Primary**: Updated the login flow to prioritize passwordless "Magic Link" entry.
+- **Optional Password Path**: Created a dedicated view for password-based login for users who prefer it.
+- **Social Login Removal**: Cleaned up the interface by removing all social login providers (Google, Facebook, Apple).
+- **Unified Visuals**: Standardized the styling across Magic Link, Password, Signup, Forgot Password, and Update Password views using the project's glassmorphism theme and orange/red flame aesthetic.
+- **Signup Simplicity**: Removed the "Username" field from the signup flow, requiring only Email and Password for a faster onboarding experience.
+- **Fully Functional**: Integrated the new designs into `LoginForm.tsx`, `SignUpForm.tsx`, `ForgotPassword`, and the `UpdatePassword` page, fully wired up to Supabase authentication.
+- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+
+## Verification
+
+### Manual Verification
+- [x] **Badges**: Verified that songs with `has_chords` show the Guitar badge site-wide.
+- [x] **Filters**: Confirmed that the "Chords" and "Melody" toggles correctly narrow down the song list.
+- [x] **Aesthetics**: Verified the dashed-border look for private songs on both the Homepage and Browse page.
+- [x] **Detail View**: Confirmed badges appear next to the song title for quick identification.
+
+### Code Quality
+- [x] **Linting**: Fixed minor lint errors introduced in `lib/songUtils.ts` and `app/songs/[id]/page.tsx`.
+- [x] **Performance & Resilience**: 
+    - Fixed a loading "hang" by implementing a **Singleton Supabase Client** to prevent overlapping session initializations.
+    - Optimized `fetchSongs` with efficient join queries.
+    - Added **Mock Role Support** in server actions to ensure persistence during development testing.
+    - **Infrastructure**: Integrated **Vercel Speed Insights** for real-time performance monitoring.
+
+### Maintenance & Performance (Jan 30)
+- **Local Infra**: Established a secure way to connect to Staging/Prod via `scripts/check-schema.sh` and `.env.infrastructure`.
+- **TypeScript**: Generated fully up-to-date type definitions (`types/supabase.ts`) from the Production database using `pg-to-ts` (Docker-free).
+- **Database Indexing**:
+    - Analyzed the Staging/Production database for performance bottlenecks.
+    - Identified multiple missing indexes on Foreign Keys (`compositions.owner_id`, `song_versions.composition_id`, `setlist_items.setlist_id`, etc.).
+    - Created and applied migration [20260130040000_fix_compositions_index.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260130040000_fix_compositions_index.sql) to fix these issues.
+
+- **Environment Indicator**:
+    - Implemented `EnvironmentBanner` component to show a persistent bar in Vercel Preview and local development.
+    - Added dynamic browser tab title: `🔥Sacred Fire Songs (Preview)` or `(Local)`.
+
+- **Database Automation & Permissions**:
+    - **Auth Trigger**: Implemented a PostgreSQL trigger to automatically create a `public.profiles` record whenever a new user signs up via Supabase Auth.
+    - **Ownership Fixes**: Restored missing `INSERT`, `UPDATE`, and `DELETE` policies for the `song_versions` table, which were blocking users from saving songs.
+    - **Permission UI**: Updated the song detail page to ensure song owners can see the "Trash" (delete) button.
+    - **Data Migration**: Applied a script to correctly link legacy songs to specific user emails (correcting UID mismatches).
+
