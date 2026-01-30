@@ -15,7 +15,7 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.profiles (id, email, role)
 VALUES 
     ('11111111-1111-1111-1111-111111111111', 'member@mock.com', 'member'),
-    ('22222222-2222-2222-2222-222222222222', 'expert@mock.com', 'expert'),
+    ('22222222-2222-2222-2222-222222222222', 'expert@mock.com', 'musician'),
     ('33333333-3333-3333-3333-333333333333', 'admin@mock.com', 'admin')
 ON CONFLICT (id) DO UPDATE SET role = EXCLUDED.role;
 
