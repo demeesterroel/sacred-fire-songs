@@ -1,6 +1,7 @@
 -- Comprehensive Seed Data for Local Development
 -- Consolidates users, songs, and YouTube links.
--- 1. Setup Dev Test Users
+-- 1. Setup Dev Test Users (Persistent UUIDs for local dev)
+-- Password for all is 'sacred-fire-dev'
 INSERT INTO auth.users (
     id,
     instance_id,
@@ -10,7 +11,10 @@ INSERT INTO auth.users (
     encrypted_password,
     email_confirmed_at,
     created_at,
-    updated_at
+    updated_at,
+    raw_app_meta_data,
+    raw_user_meta_data,
+    is_super_admin
   )
 VALUES (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
@@ -18,10 +22,13 @@ VALUES (
     'authenticated',
     'authenticated',
     'roel.de.meester+admin@gmail.com',
-    '$2a$10$7EqJtq78GzEX9G13Cq4U.uF3A..',
+    crypt('sacred-fire-dev', gen_salt('bf')),
     now(),
     now(),
-    now()
+    now(),
+    '{"provider":"email","providers":["email"]}',
+    '{}',
+    false
   ),
   (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
@@ -29,10 +36,13 @@ VALUES (
     'authenticated',
     'authenticated',
     'roel.de.meester+musician@gmail.com',
-    '$2a$10$7EqJtq78GzEX9G13Cq4U.uF3A..',
+    crypt('sacred-fire-dev', gen_salt('bf')),
     now(),
     now(),
-    now()
+    now(),
+    '{"provider":"email","providers":["email"]}',
+    '{}',
+    false
   ),
   (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
@@ -40,11 +50,16 @@ VALUES (
     'authenticated',
     'authenticated',
     'roel.de.meester+member@gmail.com',
-    '$2a$10$7EqJtq78GzEX9G13Cq4U.uF3A..',
+    crypt('sacred-fire-dev', gen_salt('bf')),
     now(),
     now(),
-    now()
-  ) ON CONFLICT (id) DO NOTHING;
+    now(),
+    '{"provider":"email","providers":["email"]}',
+    '{}',
+    false
+  ) ON CONFLICT (id) DO
+UPDATE
+SET encrypted_password = EXCLUDED.encrypted_password;
 -- 2. Ensure Profiles exist with correct roles
 INSERT INTO public.profiles (id, email, role)
 VALUES (
