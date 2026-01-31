@@ -14,7 +14,13 @@ INSERT INTO auth.users (
     updated_at,
     raw_app_meta_data,
     raw_user_meta_data,
-    is_super_admin
+    is_super_admin,
+    confirmation_token,
+    recovery_token,
+    email_change_token_new,
+    email_change_token_current,
+    phone_change_token,
+    reauthentication_token
   )
 VALUES (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
@@ -28,7 +34,13 @@ VALUES (
     now(),
     '{"provider":"email","providers":["email"]}',
     '{}',
-    false
+    false,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
   ),
   (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
@@ -42,7 +54,13 @@ VALUES (
     now(),
     '{"provider":"email","providers":["email"]}',
     '{}',
-    false
+    false,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
   ),
   (
     'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
@@ -56,7 +74,13 @@ VALUES (
     now(),
     '{"provider":"email","providers":["email"]}',
     '{}',
-    false
+    false,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
   ) ON CONFLICT (id) DO
 UPDATE
 SET encrypted_password = EXCLUDED.encrypted_password;
