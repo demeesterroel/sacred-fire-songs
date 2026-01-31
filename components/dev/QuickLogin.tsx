@@ -7,9 +7,9 @@ export default function QuickLogin() {
   const { quickLogin, loading } = useAuth();
 
   const testUsers = [
-    { email: 'admin@test.com', label: 'Admin', role: 'admin', icon: ShieldCheck, color: 'text-red-500' },
-    { email: 'musician@test.com', label: 'Musician', role: 'musician', icon: Music, color: 'text-orange-500' },
-    { email: 'member@test.com', label: 'Member', role: 'member', icon: Users, color: 'text-blue-500' },
+    { email: 'roel.de.meester+admin@gmail.com', label: 'Admin', role: 'admin', icon: ShieldCheck, color: 'text-red-500' },
+    { email: 'roel.de.meester+musician@gmail.com', label: 'Musician', role: 'musician', icon: Music, color: 'text-orange-500' },
+    { email: 'roel.de.meester+member@gmail.com', label: 'Member', role: 'member', icon: Users, color: 'text-blue-500' },
   ];
 
   return (
