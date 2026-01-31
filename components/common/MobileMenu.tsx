@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
+import DevTools from '../dev/DevTools';
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -13,7 +14,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
-    const { user, loading, mockRole, switchMockRole, logout } = useAuth();
+    const { user, loading, logout } = useAuth();
     // Prevent body scrolling when menu is open
     useEffect(() => {
         if (isOpen) {
@@ -132,20 +133,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                         )}
                     </div>
 
-                    {/* Mock Role Switcher (Test Only) */}
-                    <div className="pt-2 border-t border-gray-800/50">
-                        <select
-                            className="w-full bg-gray-800 text-xs text-gray-400 rounded px-2 py-1 border border-gray-700 focus:outline-none focus:border-red-500"
-                            value={mockRole || ''}
-                            onChange={(e) => switchMockRole(e.target.value || null)}
-                        >
-                            <option value="">-- Use Real Auth --</option>
-                            <option value="guest">Guest</option>
-                            <option value="mock-member">Mock Member</option>
-                            <option value="mock-expert">Mock Expert</option>
-                            <option value="mock-admin">Mock Admin</option>
-                        </select>
-                    </div>
+                    <DevTools />
                 </div>
             </div>
         </div>

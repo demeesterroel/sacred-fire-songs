@@ -443,3 +443,20 @@
     - [x] Verify Password login works.
     - [x] Verify Signup works with automatic Profile creation.
     - [x] Verify song owners can edit/delete their songs.
+
+## Session Jan 31, 2026 (Auth Fixes & Role Switcher)
+
+# Task: Address PR Feedback (Role Switcher)
+
+## Repository State
+- **Branch**: `chore/role-switcher`
+- **Current Status**: All changes verified, including local Quick Login, Database Identities, and Redirects.
+
+- [x] Fix "Connection Refused" by updating site_url to localhost <!-- id: 9 -->
+- [x] Research PR comments (Check emails and security concerns) <!-- id: 0 -->
+- [x] Configure Supabase email settings (Confirmations & Rate limits) <!-- id: 8 -->
+- [x] Fix GoTrue Scan errors (NULL tokens) in `seed.sql` <!-- id: 7 -->
+- [x] Fix "Database error querying schema" by linking auth identities <!-- id: 6 -->
+- [x] Refactor mock data to `supabase/seed.sql` with randomization <!-- id: 3 -->
+- [x] Create permanent cleanup migration for Production <!-- id: 4 -->
+- [x] Verify localized dev tools and DB state <!-- id: 5 -->

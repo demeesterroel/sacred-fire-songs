@@ -100,6 +100,41 @@ export const useAuth = () => {
         window.dispatchEvent(new Event('auth-role-change'));
     };
 
+    const quickLogin = async (email: string) => {
+        setLoading(true);
+        const supabase = createClient();
+
+        // 1. Clear any existing mock roles
+        localStorage.removeItem('mockUserRole');
+        setMockRole(null);
+
+        // 2. Perform real sign in
+        const devPassword = process.env.NEXT_PUBLIC_DEV_TEST_PASSWORD;
+
+        if (!devPassword) {
+            console.error('Quick login failed: NEXT_PUBLIC_DEV_TEST_PASSWORD not set in environment.');
+            setLoading(false);
+            return;
+        }
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password: devPassword
+        });
+
+        if (error) {
+            console.error('Quick login failed:', error.message);
+            setLoading(false);
+            return;
+        }
+
+        // 3. Reload user data
+        await loadUser(null);
+
+        // 4. Notify other components
+        window.dispatchEvent(new Event('auth-role-change'));
+    };
+
     const logout = async () => {
         // 1. Clear Mock Role
         localStorage.removeItem('mockUserRole');
@@ -119,5 +154,5 @@ export const useAuth = () => {
         // (The hook logic will reloadUser(null) effectively)
     };
 
-    return { user, loading, mockRole, switchMockRole, logout };
+    return { user, loading, mockRole, switchMockRole, quickLogin, logout };
 }
