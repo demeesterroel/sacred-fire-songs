@@ -60,6 +60,43 @@ VALUES (
   ) ON CONFLICT (id) DO
 UPDATE
 SET encrypted_password = EXCLUDED.encrypted_password;
+-- 1b. Linked Identities (Required by GoTrue for login)
+INSERT INTO auth.identities (
+    id,
+    user_id,
+    identity_data,
+    provider,
+    provider_id,
+    created_at,
+    updated_at
+  )
+VALUES (
+    gen_random_uuid(),
+    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
+    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11","email":"roel.de.meester+admin@gmail.com"}',
+    'email',
+    'roel.de.meester+admin@gmail.com',
+    now(),
+    now()
+  ),
+  (
+    gen_random_uuid(),
+    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
+    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12","email":"roel.de.meester+musician@gmail.com"}',
+    'email',
+    'roel.de.meester+musician@gmail.com',
+    now(),
+    now()
+  ),
+  (
+    gen_random_uuid(),
+    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
+    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13","email":"roel.de.meester+member@gmail.com"}',
+    'email',
+    'roel.de.meester+member@gmail.com',
+    now(),
+    now()
+  ) ON CONFLICT (provider_id, provider) DO NOTHING;
 -- 2. Ensure Profiles exist with correct roles
 INSERT INTO public.profiles (id, email, role)
 VALUES (
