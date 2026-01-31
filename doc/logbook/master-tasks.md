@@ -464,9 +464,11 @@
 
 # Task: Design Explore by Category Screen (#44)
 
-- [x] Research existing design system from `screen1_home.html` <!-- id: 0 -->
 - [x] Create `screen7_explore_categories.html` with category grid <!-- id: 1 -->
 - [x] Implement glassmorphism and flame aesthetic in the mockup <!-- id: 2 -->
 - [x] Add subcategory tag cloud for each category <!-- id: 3 -->
 - [x] Verify responsivity and visual consistency <!-- id: 4 -->
+- [x] Create `screen8_category_detail.html` for filtered song list <!-- id: 6 -->
+- [x] Implement category-specific header and active filter pills <!-- id: 7 -->
+- [x] Integrate SongCard grid for results <!-- id: 8 -->
 - [x] Run `/sync-artifacts` to update logbook <!-- id: 5 -->

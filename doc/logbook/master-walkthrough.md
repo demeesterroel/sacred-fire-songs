@@ -712,10 +712,15 @@ I have created a high-fidelity mockup for the new **Explore by Category** page, 
 
 ## Visual Verification
 
-![Explore Categories Grid](file:///home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/explore_categories_grid_1769903170937.png)
+````carousel
+![Explore Categories Grid](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/explore_categories_grid_1769903170937.png)
+<!-- slide -->
+![Category Detail View](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/category_detail_screen_1769903306940.png)
+````
 
 ## Files Created
-- **[[screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: The complete HTML/Tailwind mockup.
+- **[[screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Main category navigation grid.
+- **[[screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Results view for a selected category/subcategory.
 
 ## Repository State
 - **Issue**: [#44](https://github.com/demeesterroel/sacred-fire-songs/issues/44)
