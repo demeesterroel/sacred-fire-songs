@@ -18,6 +18,7 @@ INSERT INTO auth.users (
     confirmation_token,
     recovery_token,
     email_change_token_new,
+    email_change,
     email_change_token_current,
     phone_change_token,
     reauthentication_token
@@ -35,6 +36,7 @@ VALUES (
     '{"provider":"email","providers":["email"]}',
     '{}',
     false,
+    '',
     '',
     '',
     '',
@@ -60,6 +62,7 @@ VALUES (
     '',
     '',
     '',
+    '',
     ''
   ),
   (
@@ -75,6 +78,7 @@ VALUES (
     '{"provider":"email","providers":["email"]}',
     '{}',
     false,
+    '',
     '',
     '',
     '',
