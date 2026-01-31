@@ -669,3 +669,33 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
     - **Permission UI**: Updated the song detail page to ensure song owners can see the "Trash" (delete) button.
     - **Data Migration**: Applied a script to correctly link legacy songs to specific user emails (correcting UID mismatches).
 
+
+
+## Session Jan 31, 2026 (Auth Fixes & Role Switcher)
+
+# Role Switcher & Dev Tools
+
+I have consolidated the Role Switcher refinements and the new Quick Login features into a single, clean branch. All developer tools are now componentized and automatically hidden in production.
+
+## New Architecture
+I've decentralized the dev tools from the Sidebar into a modular structure:
+- **[DevTools.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/DevTools.tsx)**: The main container in the Sidebar that hides everything if `NODE_ENV !== 'development'`.
+- **[MockRoleSwitcher.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/MockRoleSwitcher.tsx)**: Extracted component for simulating UI roles (Local storage based). Now uses the correct **"Musician"** labels.
+- **[QuickLogin.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/QuickLogin.tsx)**: A powerful component for real Supabase authentication switching.
+
+## Database Cleanup & Quality
+I've implemented a robust database setup to keep your Production environment clean:
+- **Seed Architecture**: Moved all local testing data (users and demo songs) to **[seed.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/seed.sql)**. This data only loads locally during development.
+- **Permanent Cleanup**: Added a migration **[20260131110000_permanent_cleanup_mock_users.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260131110000_permanent_cleanup_mock_users.sql)** that purges all `@mock.com` users from Production and Preview.
+- **Email/Mailpit**: Configured `config.toml` to increase email rate limits and enabled confirmations for local testing. Emails are caught by **Mailpit**.
+
+## How to Verify
+1. Run `supabase db reset` locally.
+2. Verify that `seed.sql` populated your local DB with the demo users/songs.
+3. Check the Sidebar for the **"Developer Tools"** (Real Quick Login).
+4. **Email Testing**: Check [http://127.0.0.1:54324](http://127.0.0.1:54324) for any auth emails.
+5. Deploy to Preview/Production and verify that mock users are automatically deleted.
+
+## Repository State
+- **Branch**: `chore/role-switcher`
+- **Current Status**: All changes verified, including local Quick Login, Database Identities, and Email flow.
