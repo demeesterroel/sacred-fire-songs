@@ -444,7 +444,6 @@
     - [x] Verify Signup works with automatic Profile creation.
     - [x] Verify song owners can edit/delete their songs.
 
-
 ## Session Jan 31, 2026 (Auth Fixes & Role Switcher)
 
 # Task: Address PR Feedback (Role Switcher)
