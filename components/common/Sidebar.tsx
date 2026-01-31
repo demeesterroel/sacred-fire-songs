@@ -140,20 +140,22 @@ const Sidebar = () => {
                     )}
                 </div>
 
-                {/* Mock Role Switcher (Test Only) */}
-                <div className="pt-2 border-t border-gray-800/50">
-                    <select
-                        className="w-full bg-gray-800 text-xs text-gray-400 rounded px-2 py-1 border border-gray-700 focus:outline-none focus:border-red-500"
-                        value={mockRole || ''}
-                        onChange={(e) => switchMockRole(e.target.value || null)}
-                    >
-                        <option value="">-- Use Real Auth --</option>
-                        <option value="guest">Guest</option>
-                        <option value="mock-member">Mock Member</option>
-                        <option value="mock-expert">Mock Expert</option>
-                        <option value="mock-admin">Mock Admin</option>
-                    </select>
-                </div>
+                {/* Mock Role Switcher (Test Only - Development only) */}
+                {process.env.NODE_ENV === 'development' && (
+                    <div className="pt-2 border-t border-gray-800/50">
+                        <select
+                            className="w-full bg-gray-800 text-xs text-gray-400 rounded px-2 py-1 border border-gray-700 focus:outline-none focus:border-red-500"
+                            value={mockRole || ''}
+                            onChange={(e) => switchMockRole(e.target.value || null)}
+                        >
+                            <option value="">-- Use Real Auth --</option>
+                            <option value="guest">Guest</option>
+                            <option value="mock-member">Mock Member</option>
+                            <option value="mock-musician">Mock Musician</option>
+                            <option value="mock-admin">Mock Admin</option>
+                        </select>
+                    </div>
+                )}
             </div>
         </aside>
     );
