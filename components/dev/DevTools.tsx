@@ -1,6 +1,5 @@
 'use client';
 
-import MockRoleSwitcher from './MockRoleSwitcher';
 import QuickLogin from './QuickLogin';
 
 export default function DevTools() {
@@ -16,7 +15,6 @@ export default function DevTools() {
       </h2>
       <div className="space-y-4">
         <QuickLogin />
-        <MockRoleSwitcher />
       </div>
     </div>
   );
