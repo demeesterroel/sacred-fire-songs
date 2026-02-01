@@ -97,74 +97,63 @@ export default function SongDetailPage() {
 
     return (
         <main className="flex-1 min-h-0 bg-gray-900">
-            {/* Mobile-Friendly Header with Action Bar */}
-            <div className="flex justify-between items-center px-4 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-sm">
-                <div className="flex items-center gap-3 overflow-hidden">
-                    {/* Simplified Logo/Title for context, or just Title if standard header is separate */}
-                    {/* Note: The main app shell likely has a header, but this view typically takes over content. 
-                         Based on mockup, we show Title in body, and Actions in header? 
-                         Actually mockup shows Logo in header. We will stick to the page layout which seems to not have the global header inside main.
-                         Wait, previous code had `Header` imported but not used in the return? 
-                         Let's align with the previous structure but adding the buttons.
-                     */}
-                </div>
-
-                {/* Action Bar */}
-                <div className="flex items-center gap-2 ml-auto">
-                    {/* Delete Button (Owner or Admin) */}
-                    {(song.owner_id === user?.id || isAdmin) && (
-                        <button
-                            onClick={() => setIsDeleteModalOpen(true)}
-                            className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20 active:scale-95"
-                            title="Delete Song"
-                        >
-                            <Trash2 className="w-5 h-5" />
-                        </button>
-                    )}
-
-                    {/* Edit Button (Owner or Admin) */}
-                    {(song.owner_id === user?.id || isAdmin) && (
-                        <Link
-                            href={`/songs/${id}/edit`}
-                            className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
-                            title="Edit Song"
-                        >
-                            <Edit2 className="w-5 h-5" />
-                        </Link>
-                    )}
-
-                    {/* Back Button */}
-                    <Link
-                        href="/"
-                        className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
-                        title="Back to Library"
-                    >
-                        <ArrowLeft className="w-5 h-5" />
-                    </Link>
-                </div>
-            </div>
-
             <div className="p-6">
-                <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                        <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
-                        {!song.is_public && (
-                            <LockIcon className="w-5 h-5 text-gray-500" />
-                        )}
-                        {song.has_chords && (
-                            <div className="flex items-center gap-1.5 bg-amber-500/10 text-amber-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-amber-500/20">
-                                <Guitar className="w-3.5 h-3.5" />
-                                Chords
-                            </div>
-                        )}
-                        {song.has_melody && (
-                            <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-emerald-500/20">
-                                <Music className="w-3.5 h-3.5" />
-                                Melody
-                            </div>
-                        )}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                            <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
+                            {!song.is_public && (
+                                <LockIcon className="w-5 h-5 text-gray-500" />
+                            )}
+                            {song.has_chords && (
+                                <div className="flex items-center gap-1.5 bg-amber-500/10 text-amber-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-amber-500/20">
+                                    <Guitar className="w-3.5 h-3.5" />
+                                    Chords
+                                </div>
+                            )}
+                            {song.has_melody && (
+                                <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-emerald-500/20">
+                                    <Music className="w-3.5 h-3.5" />
+                                    Melody
+                                </div>
+                            )}
+                        </div>
+                        <p className="text-gray-400 mt-2 font-medium">by {song.original_author || 'Traditional'}</p>
                     </div>
-                    <p className="text-gray-400 mt-2 font-medium">by {song.original_author || 'Traditional'}</p>
+
+                    {/* Action Buttons (Right Aligned) */}
+                    <div className="flex items-center gap-2 shrink-0">
+                        {/* Delete Button (Owner or Admin) */}
+                        {(song.owner_id === user?.id || isAdmin) && (
+                            <button
+                                onClick={() => setIsDeleteModalOpen(true)}
+                                className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20 active:scale-95"
+                                title="Delete Song"
+                            >
+                                <Trash2 className="w-5 h-5" />
+                            </button>
+                        )}
+
+                        {/* Edit Button (Owner or Admin) */}
+                        {(song.owner_id === user?.id || isAdmin) && (
+                            <Link
+                                href={`/songs/${id}/edit`}
+                                className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
+                                title="Edit Song"
+                            >
+                                <Edit2 className="w-5 h-5" />
+                            </Link>
+                        )}
+
+                        {/* Back Button */}
+                        <Link
+                            href="/"
+                            className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
+                            title="Back to Library"
+                        >
+                            <ArrowLeft className="w-5 h-5" />
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Version Selector Pills */}

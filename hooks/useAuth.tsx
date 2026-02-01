@@ -5,19 +5,38 @@ import { useEffect, useState } from 'react';
 
 export type UserRole = 'admin' | 'musician' | 'member' | 'guest';
 
-// Mock Users Configuration
-// Mock Users Configuration (using valid UUIDs for DB compatibility)
+// For Local Dev - Mock Users Configuration (using valid UUIDs for DB compatibility)
 export const MOCK_USERS = {
     'guest': null,
-    'mock-member': { id: '11111111-1111-1111-1111-111111111111', email: 'member@mock.com', role: 'member' as UserRole },
-    'mock-musician': { id: '22222222-2222-2222-2222-222222222222', email: 'musician@mock.com', role: 'musician' as UserRole },
-    'mock-admin': { id: '33333333-3333-3333-3333-333333333333', email: 'admin@mock.com', role: 'admin' as UserRole },
+    'mock-member': {
+        id: '11111111-1111-1111-1111-111111111111',
+        email: 'member@mock.com',
+        role: 'member' as UserRole,
+        full_name: 'Mock Member',
+        avatar_url: undefined
+    },
+    'mock-musician': {
+        id: '22222222-2222-2222-2222-222222222222',
+        email: 'musician@mock.com',
+        role: 'musician' as UserRole,
+        full_name: 'Mock Musician',
+        avatar_url: undefined
+    },
+    'mock-admin': {
+        id: '33333333-3333-3333-3333-333333333333',
+        email: 'admin@mock.com',
+        role: 'admin' as UserRole,
+        full_name: 'Mock Admin',
+        avatar_url: undefined
+    },
 };
 
 export interface AuthUser {
     id: string;
     email?: string;
     role: UserRole;
+    full_name?: string;
+    avatar_url?: string;
 }
 
 export const useAuth = () => {
@@ -36,7 +55,7 @@ export const useAuth = () => {
         // A. If Mock Role is active and valid, use it
         if (currentMockRole && MOCK_USERS[currentMockRole as keyof typeof MOCK_USERS]) {
             const mockData = MOCK_USERS[currentMockRole as keyof typeof MOCK_USERS];
-            setUser(mockData);
+            setUser(mockData as AuthUser);
             setLoading(false);
             return;
         }
@@ -53,17 +72,19 @@ export const useAuth = () => {
         const { data: { user: supabaseUser } } = await supabase.auth.getUser();
 
         if (supabaseUser) {
-            // Fetch real role
+            // Fetch real profile data
             const { data: profile } = await supabase
                 .from('profiles')
-                .select('*')
+                .select('role, full_name, avatar_url')
                 .eq('id', supabaseUser.id)
                 .single();
 
             setUser({
                 id: supabaseUser.id,
                 email: supabaseUser.email,
-                role: profile?.role || 'member'
+                role: profile?.role || 'member',
+                full_name: profile?.full_name,
+                avatar_url: profile?.avatar_url
             });
         } else {
             setUser(null);
