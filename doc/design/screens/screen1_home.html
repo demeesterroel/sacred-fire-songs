@@ -62,15 +62,24 @@
 
     <!-- Sidebar (Desktop Navigation & Filters) -->
     <aside
-        class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
-        <div class="p-6">
-            <div class="flex items-center gap-3 mb-8">
+        class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20 transition-all">
+
+        <!-- User Profile (Now at Top of Sidebar) -->
+        <div class="p-4 border-b border-gray-800/50 bg-gray-800/30 mb-4">
+            <div class="flex items-center gap-3">
                 <div
-                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
-                    <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner">
+                    AG</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-[11px] font-bold text-white truncate">Admin Guest</p>
+                    <p class="text-[9px] text-gray-500 truncate">admin@sacredfire.com</p>
                 </div>
-                <h1 class="font-bold text-xl tracking-tight text-white">Sacred Fire Songs</h1>
+                <button title="Logout" class="group"><i data-lucide="log-out"
+                        class="w-4 h-4 text-gray-600 group-hover:text-red-400 transition-colors"></i></button>
             </div>
+        </div>
+
+        <div class="px-6 py-2">
 
             <!-- Main Menu -->
             <nav class="space-y-1 mb-8">
@@ -147,28 +156,35 @@
             </div>
         </div>
 
-        <!-- User Profile (Bottom Sidebar) -->
-        <div class="mt-auto p-4 border-t border-gray-800 bg-gray-900/50">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">
-                    AG</div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-white truncate">Admin Guest</p>
-                    <p class="text-xs text-gray-500 truncate">admin@sacredfire.com</p>
-                </div>
-                <button><i data-lucide="log-out" class="w-4 h-4 text-gray-500 hover:text-white"></i></button>
-            </div>
+        <!-- Sidebar Footer (Empty for Balance) -->
+        <div class="mt-auto p-4 border-t border-gray-800/30 opacity-20">
+            <p class="text-[9px] text-center font-mono uppercase tracking-[0.2em]">Sacred Fire v1.2</p>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-1 min-w-0 overflow-y-auto">
 
-        <!-- Desktop Header (Search) -->
+        <!-- Desktop Header (Now contains Logo and Name) -->
         <div
-            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800/50 px-6 py-4 hidden md:flex justify-between items-center">
-            <h2 class="text-xl font-bold text-white">Dashboard</h2>
+            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-4 hidden md:flex justify-between items-center transition-all">
+            <div class="flex items-center gap-6">
+                <button class="p-2 text-gray-400 hover:text-white transition-colors cursor-not-allowed opacity-30"><i
+                        data-lucide="arrow-left" class="w-5 h-5"></i></button>
+
+                <!-- Logo and Site Name (Moved from Sidebar) -->
+                <div class="flex items-center gap-4 border-l border-gray-800/50 pl-6">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="font-bold text-lg tracking-tight text-white leading-none">Sacred Fire Songs</h1>
+                        <span
+                            class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Dashboard</span>
+                    </div>
+                </div>
+            </div>
             <div class="relative w-96">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>

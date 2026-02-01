@@ -64,15 +64,24 @@
 
     <!-- Sidebar (Desktop Navigation & Filters) -->
     <aside
-        class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
-        <div class="p-6">
-            <div class="flex items-center gap-3 mb-8">
+        class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20 transition-all">
+
+        <!-- User Profile (Now at Top of Sidebar) -->
+        <div class="p-4 border-b border-gray-800/50 bg-gray-800/30 mb-4">
+            <div class="flex items-center gap-3">
                 <div
-                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
-                    <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400 ring-1 ring-white/10 shadow-inner">
+                    G</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-[11px] font-bold text-white truncate">Guest Explorer</p>
+                    <p class="text-[9px] text-gray-500 truncate">Join the circle</p>
                 </div>
-                <h1 class="font-bold text-xl tracking-tight text-white">Sacred Fire Songs</h1>
+                <button title="Login" class="group"><i data-lucide="log-in"
+                        class="w-4 h-4 text-gray-600 group-hover:text-red-400 transition-colors"></i></button>
             </div>
+        </div>
+
+        <div class="px-6 py-2">
 
             <nav class="space-y-1 mb-8">
                 <a href="screen1_home.html"
@@ -97,33 +106,37 @@
             </nav>
         </div>
 
-        <div class="mt-auto p-4 border-t border-gray-800 bg-gray-900/50">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">
-                    G</div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-white truncate">Guest Explorer</p>
-                    <p class="text-xs text-gray-500 truncate">Join the circle</p>
-                </div>
-                <button><i data-lucide="log-in" class="w-4 h-4 text-gray-500 hover:text-white"></i></button>
-            </div>
+        <!-- Sidebar Footer (Empty for Balance) -->
+        <div class="mt-auto p-4 border-t border-gray-800/30 opacity-20">
+            <p class="text-[9px] text-center font-mono uppercase tracking-[0.2em]">Sacred Fire v1.0</p>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-1 min-w-0 overflow-y-auto">
 
-        <!-- Header Area -->
+        <!-- Header Area (Now contains Logo and Name) -->
         <div
-            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800/50 px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <button onclick="window.history.back()" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-4 flex justify-between items-center transition-all">
+            <div class="flex items-center gap-6">
+                <button onclick="window.history.back()" class="p-2 text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
                 </button>
-                <h2 class="text-2xl font-bold text-white tracking-tight">Explore Categories</h2>
+
+                <!-- Logo and Site Name (Moved from Sidebar) -->
+                <div class="flex items-center gap-4 border-l border-gray-800/50 pl-6">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="font-bold text-lg tracking-tight text-white leading-none">Sacred Fire Songs</h1>
+                        <span class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Explore
+                            Categories</span>
+                    </div>
+                </div>
             </div>
-            
+
             <div class="relative w-72 hidden lg:block">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
@@ -135,140 +148,228 @@
         </div>
 
         <div class="p-6 md:p-10 space-y-12 max-w-7xl mx-auto">
-            
+
             <!-- Category Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- 1. The Elements -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-blue-500/40 transition-all h-full shadow-2xl shadow-blue-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-blue-500/40 transition-all h-full shadow-2xl shadow-blue-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 transition-transform duration-300">
                                 <i data-lucide="waves" class="w-8 h-8"></i>
                             </div>
                             <span class="text-3xl">🌀</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">The Elements</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs honoring the core forces of existence.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">The
+                            Elements</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs honoring the core forces of
+                            existence.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">💧 Water</button>
-                            <button class="px-3 py-1.5 rounded-full bg-slate-500/10 text-slate-300 text-xs font-medium border border-slate-500/20 hover:bg-slate-500/20 transition-all">🌬️ Air</button>
-                            <button class="px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🔥 Fire</button>
-                            <button class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🌎 Earth</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">💧
+                                Water</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-slate-500/10 text-slate-300 text-xs font-medium border border-slate-500/20 hover:bg-slate-500/20 transition-all">🌬️
+                                Air</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🔥
+                                Fire</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🌎
+                                Earth</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2. Nature -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-green-500/40 transition-all h-full shadow-2xl shadow-green-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-green-500/40 transition-all h-full shadow-2xl shadow-green-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 transition-transform duration-300">
                                 <i data-lucide="leaf" class="w-8 h-8"></i>
                             </div>
                             <span class="text-3xl">🌿</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">Nature</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Connecting with the flora, fauna, and celestial cycles.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
+                            Nature</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Connecting with the flora, fauna, and
+                            celestial cycles.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20">🐾 Animales</button>
-                            <button class="px-3 py-1.5 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20">🦅 Bird</button>
-                            <button class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20">🍃 Plantas</button>
-                            <button class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20">🌙 Moon</button>
-                            <button class="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20">☀️ Sun</button>
-                            <button class="px-3 py-1.5 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50">🏔️ Mountain</button>
-                            <button class="px-3 py-1.5 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30">🌳 Selva</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20">🐾
+                                Animales</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20">🦅
+                                Bird</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20">🍃
+                                Plantas</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20">🌙
+                                Moon</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20">☀️
+                                Sun</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50">🏔️
+                                Mountain</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30">🌳
+                                Selva</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 3. Languages -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-purple-500/40 transition-all h-full shadow-2xl shadow-purple-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-purple-500/40 transition-all h-full shadow-2xl shadow-purple-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 transition-transform duration-300">
                                 <i data-lucide="languages" class="w-8 h-8"></i>
                             </div>
                             <span class="text-3xl">🗣️</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Languages</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs from diverse linguistic and native traditions.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                            Languages</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs from diverse linguistic and native
+                            traditions.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20">🇪🇸 Spanish</button>
-                            <button class="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20">🇬🇧 English</button>
-                            <button class="px-3 py-1.5 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20">🏔️ Quechua</button>
-                            <button class="px-3 py-1.5 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20">🇧🇷 Portuguese</button>
-                            <button class="px-3 py-1.5 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20">🏹 Nahuatl</button>
-                            <button class="px-3 py-1.5 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20">🐍 Huni Kuin</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20">🇪🇸
+                                Spanish</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20">🇬🇧
+                                English</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20">🏔️
+                                Quechua</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20">🇧🇷
+                                Portuguese</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20">🏹
+                                Nahuatl</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20">🐍
+                                Huni Kuin</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 4. Lineage & Tradition -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-amber-500/40 transition-all h-full shadow-2xl shadow-amber-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-amber-500/40 transition-all h-full shadow-2xl shadow-amber-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 transition-transform duration-300">
                                 <i data-lucide="history" class="w-8 h-8"></i>
                             </div>
                             <span class="text-3xl">🌳</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Lineage & Tradition</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ancestral wisdom and specialized spiritual lineages.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+                            Lineage & Tradition</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ancestral wisdom and specialized spiritual
+                            lineages.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30">🧣 Andean</button>
-                            <button class="px-3 py-1.5 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30">🏹 Amazonian</button>
-                            <button class="px-3 py-1.5 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30">🪶 Native American</button>
-                            <button class="px-3 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30">🌟 Santo Daime</button>
-                            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700">📜 Traditional</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30">🧣
+                                Andean</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30">🏹
+                                Amazonian</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30">🪶
+                                Native American</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30">🌟
+                                Santo Daime</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700">📜
+                                Traditional</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 5. Medicine & Healing -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-red-500/40 transition-all h-full shadow-2xl shadow-red-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-red-500/40 transition-all h-full shadow-2xl shadow-red-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 transition-transform duration-300">
                                 <i data-lucide="heart" class="w-8 h-8 fill-current"></i>
                             </div>
                             <span class="text-3xl">🦅</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">Medicine & Healing</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ritual songs for cleansing, protection, and transformation.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
+                            Medicine & Healing</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ritual songs for cleansing, protection,
+                            and transformation.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20">🧪 Medicine Songs</button>
-                            <button class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20">🎶 Icaros</button>
-                            <button class="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">🌿 Healing</button>
-                            <button class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">🛡️ Protection</button>
-                            <button class="px-3 py-1.5 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50">🔑 Opening/Closing</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20">🧪
+                                Medicine Songs</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20">🎶
+                                Icaros</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">🌿
+                                Healing</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">🛡️
+                                Protection</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50">🔑
+                                Opening/Closing</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 6. Spiritual Concepts -->
                 <div class="category-card group flex flex-col">
-                    <div class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-yellow-500/40 transition-all h-full shadow-2xl shadow-yellow-900/10">
+                    <div
+                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-yellow-500/40 transition-all h-full shadow-2xl shadow-yellow-900/10">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="category-icon w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 transition-transform duration-300">
+                            <div
+                                class="category-icon w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 transition-transform duration-300">
                                 <i data-lucide="sparkles" class="w-8 h-8"></i>
                             </div>
                             <span class="text-3xl">✨</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Spiritual Concepts</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs centered on profound themes of the soul.</p>
-                        
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                            Spiritual Concepts</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs centered on profound themes of the
+                            soul.</p>
+
                         <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20">🙏 Gratitude</button>
-                            <button class="px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20">💖 Love</button>
-                            <button class="px-3 py-1.5 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20">🕯️ Plegarias</button>
-                            <button class="px-3 py-1.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20">🗣️ Vocalization</button>
-                            <button class="px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">♀️ Women</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20">🙏
+                                Gratitude</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20">💖
+                                Love</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20">🕯️
+                                Plegarias</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20">🗣️
+                                Vocalization</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">♀️
+                                Women</button>
                         </div>
                     </div>
                 </div>
@@ -276,12 +377,15 @@
             </div>
 
             <!-- Suggestion / Call to Action -->
-            <div class="glass-panel p-8 rounded-[2rem] text-center border border-gray-800/50 mt-12 bg-gradient-to-r from-gray-900/20 to-red-900/10">
+            <div
+                class="glass-panel p-8 rounded-[2rem] text-center border border-gray-800/50 mt-12 bg-gradient-to-r from-gray-900/20 to-red-900/10">
                 <div class="max-w-2xl mx-auto space-y-4">
                     <h3 class="text-xl font-bold text-white">Don't see what you're looking for?</h3>
-                    <p class="text-gray-400 text-sm">Help us grow the medicinal library. Join the community to contribute new songs and categories.</p>
+                    <p class="text-gray-400 text-sm">Help us grow the medicinal library. Join the community to
+                        contribute new songs and categories.</p>
                     <div class="pt-4">
-                        <button class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-red-900/20 hover:scale-105 transition-transform">
+                        <button
+                            class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-red-900/20 hover:scale-105 transition-transform">
                             Join the Circle
                         </button>
                     </div>

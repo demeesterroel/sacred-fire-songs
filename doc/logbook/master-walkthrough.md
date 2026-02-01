@@ -842,3 +842,31 @@ I have adjusted the layout of the **Song Detail** mockup (`screen2_song_detail.h
 
 ## Repository State
 - **Status**: Navigation Layout Optimized.
+
+## Session Feb 1, 2026 (Part 6 - Global Navigation Standardization)
+
+# Walkthrough - Navigation Layout Standardization
+
+Standardized the administrative navigation layout across all main functional screens to ensure consistency and a premium feel.
+
+- **Unified Structural Pattern**: Applied the same header/sidebar architecture across Home, Explore Categories, and Category Detail screens.
+- **Improved Hierarchy**: 
+  - Moved **User Profile** (Badge, Name, Logout) to the top of the sidebar for immediate identification.
+  - Integrated the **Sacred Fire Songs Logo & Title** into the main desktop header for better brand visibility.
+  - Maintained clear interaction paths with consistent back button placement and breadcrumb styling.
+
+````carousel
+![Home Standardized Layout](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/home_standardized_layout_1769908725206.png)
+<!-- slide -->
+![Explore Categories Standardized Layout](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/explore_categories_standardized_layout_1769908737336.png)
+<!-- slide -->
+![Category Detail Standardized Layout](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/category_detail_standardized_layout_retry_1769908783124.png)
+````
+
+## Files Modified
+- **[[screen1_home.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html)]**: Layout standardization and brand integration.
+- **[[screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Layout standardization and brand integration.
+- **[[screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Layout standardization and brand integration.
+
+## Repository State
+- **Status**: Navigation Layout Standardized site-wide.
