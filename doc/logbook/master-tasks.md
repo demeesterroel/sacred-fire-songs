@@ -616,3 +616,34 @@
     - [x] Reset hardcoded highlighting in `screen17_category_library.html`.
     - [x] Implement "Match Any" badge in the sidebar header to explain OR logic.
 - [x] **Artifact Sync**: Update logbooks and commit.
+
+# Task: Align Mobile and Desktop design
+- [x] Adapt Sidebar Menu Structure
+    - [x] Rename "Browse Songs" to "Library"
+    - [x] Add "Explore", "Playlist", "Add Song" links
+    - [x] Correct Icons (Compass, Library, ListMusic, PlusCircle)
+    - [x] Move User Profile to top (matching Design)
+- [x] Enhance Library Hub (`/songs`)
+    - [x] Implement Tag display in SongCards as colored pills
+    - [x] Ensure Dynamic Filters appear in sidebar
+    - [x] Pass category data to SongCard
+- [x] Implement Static Playlists Page (`/playlists`)
+    - [x] Create page with static placeholder data
+    - [x] Apply consistent Fire/Water/Heart icons logic
+- [x] Refine UI Styling
+    - [x] Centralize category styling in `lib/uiUtils.ts`
+    - [x] Update SongCard layout to match layout in Design
+- [x] **Library Filter Design Refinement (Feb 1, 2026)**
+    - [x] Implement Sticky Header with centered search bar.
+    - [x] Implement multi-pill filter display for categories and tags.
+    - [x] Add individual removal logic for filter pills.
+    - [x] Restructure controls row with Sort, Visibility, and Chords/Melody filters.
+    - [x] Remove notification bell from header.
+- [x] **Simplified Navigation Refinement (Feb 1, 2026)**
+    - [x] Implement fixed-width (260px) desktop sidebar.
+    - [x] Remove collapse toggle for consistent identity.
+    - [x] Hide site title on mobile header (logo only).
+    - [x] Update mobile drawer to hover over content.
+    - [x] Add close icon (PanelLeftClose) to mobile drawer.
+    - [x] Adjust breakpoint from `md` to `lg` for navigation transition.
+    - [x] Verify responsive transitions and song grid alignment.

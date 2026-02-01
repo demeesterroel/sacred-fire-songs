@@ -1,8 +1,8 @@
 # Test Cases: Sacred Fire Songs
 
-**Version:** 1.8
+**Version:** 1.9
 **Status:** Draft
-**Date:** January 10, 2026
+**Date:** February 1, 2026
 
 ## Changelog
 
@@ -17,6 +17,7 @@
 | **1.6** | Jan 10, 2026 | Updated cases for Member Uploads and Owner Editing. |
 | **1.7** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 | **1.8** | Jan 10, 2026 | Added test cases for Non-Owner restriction and Admin override. |
+| **1.9** | Feb 1, 2026 | Added comprehensive test cases for unified header, environment labels, navigation refactoring, mobile menu, and dynamic filtering. |
 
 This document contains the test cases derived from the project's Epics and User Stories. These cases are intended for both manual verification and as a blueprint for future automated testing.
 
@@ -215,5 +216,223 @@ This document contains the test cases derived from the project's Epics and User 
 - **Expected Results**:
     - Grid layout or multi-column view.
     - Permanent sidebar navigation.
+
+
+### 2.5 Navigation & UI Components
+
+#### TC-2.5.1: Unified Header Display
+- **User Story**: Navigation Refactoring
+- **Pre-conditions**: User is on any page of the application.
+- **Steps**:
+    1. Navigate to Dashboard (`/`).
+    2. Navigate to Library (`/songs`).
+    3. Navigate to Explore (`/explore`).
+- **Expected Results**:
+    - Header displays "Sacred Fire Songs" logo and title on all pages.
+    - Dynamic subtitle changes based on current page (e.g., "DASHBOARD", "LIBRARY", "EXPLORE").
+    - Header is responsive and visible on both desktop and mobile.
+
+#### TC-2.5.2: Environment Label Display
+- **User Story**: Environment Awareness
+- **Pre-conditions**: Application running in development or preview environment.
+- **Steps**:
+    1. Run application locally (`npm run dev`).
+    2. Check header and mobile menu.
+- **Expected Results**:
+    - Blue pill with "(local)" label appears next to site title in development.
+    - Amber pill with "(preview)" label appears in Vercel preview deployments.
+    - No label appears in production environment.
+
+#### TC-2.5.3: Desktop Sidebar Navigation
+- **User Story**: Navigation Refactoring
+- **Pre-conditions**: Desktop viewport (width > 768px), user is logged in.
+- **Steps**:
+    1. View the sidebar on the left side of the screen.
+    2. Click each navigation item (Dashboard, Explore, Library, Playlist, Add Song).
+- **Expected Results**:
+    - User profile (avatar, email, logout button) is visible at the top of sidebar.
+    - All navigation items are visible with correct icons.
+    - Active navigation item is highlighted with red icon and gray background.
+    - Clicking each item navigates to the correct page.
+    - LibrarySidebar filters appear when on `/songs` or `/explore` pages.
+
+#### TC-2.5.4: Mobile Menu Navigation
+- **User Story**: Mobile Menu Synchronization
+- **Pre-conditions**: Mobile viewport (width ≤ 768px), user is logged in.
+- **Steps**:
+    1. Click the hamburger menu icon in the header.
+    2. Verify menu contents.
+    3. Click each navigation item.
+- **Expected Results**:
+    - Mobile menu slides in from the right.
+    - User profile is visible at the top of the menu.
+    - Environment label appears next to "Menu" title.
+    - All navigation items match desktop sidebar (same icons, labels, order).
+    - Active item is highlighted consistently with desktop.
+    - Menu closes after clicking a navigation item.
+
+#### TC-2.5.5: User Profile Display
+- **User Story**: Navigation Refactoring
+- **Pre-conditions**: User is logged in.
+- **Steps**:
+    1. View user profile in desktop sidebar.
+    2. View user profile in mobile menu.
+- **Expected Results**:
+    - Avatar displays first letter of user's email in uppercase.
+    - User's email (or username) is displayed.
+    - Logout button is visible and functional.
+    - Profile appearance is consistent between desktop and mobile.
+
+#### TC-2.5.6: Navigation Active State
+- **User Story**: Navigation Refactoring
+- **Pre-conditions**: User navigates between pages.
+- **Steps**:
+    1. Navigate to Dashboard (`/`).
+    2. Navigate to Library (`/songs`).
+    3. Navigate to Add Song (`/songs/add`).
+    4. Navigate to a specific song detail page.
+- **Expected Results**:
+    - Dashboard is active only on `/` (exact match).
+    - Library is active on `/songs` but NOT on `/songs/add`.
+    - Add Song is active on `/songs/add`.
+    - Library remains active when viewing song detail pages.
+
+### 2.6 Dynamic Filtering & Taxonomy
+
+#### TC-2.6.1: Category Filter (OR Logic)
+- **User Story**: 2.3.1
+- **Pre-conditions**: User is on Library (`/songs`) or Explore (`/explore`) page.
+- **Steps**:
+    1. Click "Nature" category in the LibrarySidebar.
+    2. Verify URL updates to `?category=nature`.
+    3. Click a different category (e.g., "The Elements").
+- **Expected Results**:
+    - Only songs with the selected category are displayed.
+    - URL updates to reflect the active category.
+    - Selecting a new category replaces the previous one (OR logic).
+    - Active category is highlighted in the sidebar.
+
+#### TC-2.6.2: Tag Filter (AND Logic)
+- **User Story**: 2.3.1
+- **Pre-conditions**: User is on Library (`/songs`) page with category selected.
+- **Steps**:
+    1. Select "Nature" category.
+    2. Click "Water" tag.
+    3. Click "Plantas" tag.
+- **Expected Results**:
+    - URL updates to `?category=nature&tag=water,plantas`.
+    - Only songs matching the category AND all selected tags are displayed.
+    - Multiple tags can be selected (AND logic).
+    - Active tags are highlighted as pills in the sidebar.
+
+#### TC-2.6.3: Clear Filters
+- **User Story**: 2.3.1
+- **Pre-conditions**: User has active category and tag filters.
+- **Steps**:
+    1. Click the "X" button on an active filter pill in the main content area.
+    2. Click "Clear All" if available.
+- **Expected Results**:
+    - Clicking "X" on a category pill clears the category filter.
+    - Clicking "X" on a tag pill removes that specific tag.
+    - URL updates to reflect removed filters.
+    - All songs are displayed when all filters are cleared.
+
+#### TC-2.6.4: Filter Persistence Across Navigation
+- **User Story**: 2.3.1
+- **Pre-conditions**: User has active filters on Library page.
+- **Steps**:
+    1. Apply category "Nature" and tag "Water" filters.
+    2. Navigate to a song detail page.
+    3. Click back to Library.
+- **Expected Results**:
+    - Filters are preserved in the URL.
+    - Same filtered results are displayed upon return.
+    - LibrarySidebar shows the same active filters.
+
+#### TC-2.6.5: Explore Page Category Grid
+- **User Story**: 2.3.1
+- **Pre-conditions**: User is on Explore (`/explore`) page.
+- **Steps**:
+    1. View the category grid.
+    2. Click on a category card (e.g., "The Elements").
+- **Expected Results**:
+    - All top-level categories are displayed as cards with icons and colors.
+    - Clicking a category navigates to `/songs?category=the-elements`.
+    - LibrarySidebar appears showing subcategories and tags.
+
+#### TC-2.6.6: LibrarySidebar Visibility
+- **User Story**: 2.3.2
+- **Pre-conditions**: User navigates between different pages.
+- **Steps**:
+    1. Navigate to Dashboard (`/`).
+    2. Navigate to Library (`/songs`).
+    3. Navigate to Explore (`/explore`).
+    4. Navigate to Playlists (`/playlists`).
+- **Expected Results**:
+    - LibrarySidebar is NOT visible on Dashboard.
+    - LibrarySidebar IS visible on Library page.
+    - LibrarySidebar IS visible on Explore page.
+    - LibrarySidebar is NOT visible on Playlists page.
+
+#### TC-2.6.7: Filter Pills Styling
+- **User Story**: UI/UX Consistency
+- **Pre-conditions**: User has active filters.
+- **Steps**:
+    1. Apply multiple category and tag filters.
+    2. Observe the visual styling of active vs inactive filters.
+- **Expected Results**:
+    - Active filters have colored backgrounds matching their category color.
+    - Active filters have white text and are more prominent.
+    - Inactive filters have transparent backgrounds with colored borders.
+    - Hover states provide visual feedback.
+
+### 2.7 Responsive Design & Mobile Experience
+
+#### TC-2.7.1: Mobile Header Responsiveness
+- **User Story**: Header Unification
+- **Pre-conditions**: Mobile viewport (width ≤ 768px).
+- **Steps**:
+    1. View header on mobile device.
+    2. Navigate between pages.
+- **Expected Results**:
+    - Logo and title are visible and properly sized.
+    - Hamburger menu icon is visible on the right.
+    - Dynamic subtitle updates based on current page.
+    - Environment label is visible if in dev/preview mode.
+
+#### TC-2.7.2: Desktop Sidebar Persistence
+- **User Story**: Desktop Experience
+- **Pre-conditions**: Desktop viewport (width > 768px).
+- **Steps**:
+    1. Navigate between different pages.
+    2. Scroll down on a long page.
+- **Expected Results**:
+    - Sidebar remains visible and sticky on the left.
+    - Sidebar does not scroll with page content.
+    - Navigation items remain accessible at all times.
+
+#### TC-2.7.3: Mobile Menu Overlay
+- **User Story**: Mobile Menu
+- **Pre-conditions**: Mobile viewport, menu is open.
+- **Steps**:
+    1. Open mobile menu.
+    2. Click on the backdrop (dark overlay).
+    3. Click the X button.
+- **Expected Results**:
+    - Dark backdrop appears behind the menu.
+    - Clicking backdrop closes the menu.
+    - Clicking X button closes the menu.
+    - Body scroll is disabled when menu is open.
+
+#### TC-2.7.4: Suspense Boundaries
+- **User Story**: Performance & UX
+- **Pre-conditions**: User navigates to pages with dynamic data.
+- **Steps**:
+    1. Navigate to Library (`/songs`) page.
+    2. Observe loading states.
+- **Expected Results**:
+    - "Loading filters..." message appears briefly while LibrarySidebar loads.
+    - Page content loads without blocking on filter data.
+    - No console errors related to useSearchParams.
 
 ## Phase 3: Community & Evolution
