@@ -100,16 +100,24 @@
 
     <!-- Sidebar (Desktop Navigation & Filters) - Mirrored from Home Screen -->
     <aside
-        class="hidden md:flex flex-col w-64 bg-[#0d121f] border-r border-gray-800/50 sticky top-0 h-screen overflow-y-auto z-20 shadow-xl">
-        <div class="p-6">
-            <div class="flex items-center gap-3 mb-8">
+        class="hidden md:flex flex-col w-64 bg-[#0d121f] border-r border-gray-800/50 sticky top-0 h-screen overflow-y-auto z-20 shadow-xl transition-all">
+
+        <!-- User Profile (Now at Top of Sidebar) -->
+        <div class="p-4 border-b border-gray-800/50 bg-gray-900/30 mb-4">
+            <div class="flex items-center gap-3">
                 <div
-                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
-                    <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner">
+                    RM</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-[11px] font-bold text-white truncate">roel.de.meester+4</p>
+                    <p class="text-[9px] text-gray-500 truncate">ID: 89c4850e...</p>
                 </div>
-                <h1 class="font-bold text-xl tracking-tight text-white leading-none">Sacred Fire<br><span
-                        class="text-lg opacity-80">Songs</span></h1>
+                <button title="Logout" class="group"><i data-lucide="log-out"
+                        class="w-4 h-4 text-gray-600 group-hover:text-red-400 transition-colors"></i></button>
             </div>
+        </div>
+
+        <div class="px-6 py-2">
 
             <nav class="space-y-1 mb-8">
                 <a href="screen1_home.html"
@@ -177,17 +185,9 @@
             </div>
         </div>
 
-        <div class="mt-auto p-4 border-t border-gray-800/50 bg-gray-900/30">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20">
-                    RM</div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-[11px] font-bold text-white truncate">roel.de.meester+4</p>
-                    <p class="text-[9px] text-gray-500 truncate">ID: 89c4850e...</p>
-                </div>
-                <button><i data-lucide="log-out" class="w-4 h-4 text-gray-600 hover:text-white"></i></button>
-            </div>
+        <!-- Sidebar Footer (Empty for Balance) -->
+        <div class="mt-auto p-4 border-t border-gray-800/30 opacity-20">
+            <p class="text-[9px] text-center font-mono uppercase tracking-[0.2em]">Sacred Fire v1.2</p>
         </div>
     </aside>
 
@@ -197,10 +197,22 @@
         <!-- Desktop Page Header (Visible only on desktop) -->
         <div
             class="hidden md:flex justify-between items-center px-8 py-4 border-b border-gray-800/50 bg-[#0d121f]/50 sticky top-0 backdrop-blur-md z-10 transition-all">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-6">
                 <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors"><i
                         data-lucide="arrow-left" class="w-5 h-5"></i></a>
-                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Song Detail</h2>
+
+                <!-- Logo and Site Name (Moved from Sidebar) -->
+                <div class="flex items-center gap-4 border-l border-gray-800/50 pl-6">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="font-bold text-lg tracking-tight text-white leading-none">Sacred Fire Songs</h1>
+                        <span class="text-[10px] uppercase font-black text-fire tracking-[0.3em] opacity-80">Song
+                            Detail</span>
+                    </div>
+                </div>
             </div>
             <div class="flex items-center gap-3">
                 <button

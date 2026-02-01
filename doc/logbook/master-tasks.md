@@ -481,3 +481,46 @@
 - [x] Add "Path Lost" copy and navigation back to home <!-- id: 3 -->
 - [x] Verify visual consistency with the error screen set <!-- id: 4 -->
 - [x] Run `/sync-artifacts` to update logbook <!-- id: 5 -->
+
+# Task: Design Error Suite Mockups
+
+- [x] Planning & Background Research <!-- id: 0 -->
+    - [x] Analyze `screen9_404_not_found.html` for reusable components <!-- id: 1 -->
+    - [x] Define thematic copy for each error state <!-- id: 2 -->
+- [x] Implement Error Screens (Mockups) <!-- id: 3 -->
+    - [x] `screen10_500_server_error.html` ("The Fire has Flickered") <!-- id: 4 -->
+    - [x] `screen11_401_unauthorized.html` ("Approach the Hearth") <!-- id: 5 -->
+    - [x] `screen12_429_too_many_requests.html` ("The Winds are Too Strong") <!-- id: 6 -->
+    - [x] `screen13_503_maintenance.html` ("Tending the Sacred Fire") <!-- id: 7 -->
+    - [x] `screen14_offline.html` ("Lost in the Wilderness") <!-- id: 8 -->
+- [x] Verification & Documentation <!-- id: 9 -->
+    - [x] Visually verify each screen via browser subagent <!-- id: 10 -->
+    - [x] Update `master-walkthrough.md` with the new suite <!-- id: 11 -->
+    - [x] Run `/sync-artifacts` <!-- id: 12 -->
+
+# Task: Refine Song Detail Mockup
+
+- [x] Planning & UI Analysis <!-- id: 13 -->
+    - [x] Compare `screen2_song_detail.html` with provided screenshot <!-- id: 14 -->
+    - [x] Create implementation plan for responsive layout <!-- id: 15 -->
+- [x] Implement UI Updates <!-- id: 16 -->
+    - [x] Create responsive container (sidebar + content) <!-- id: 17 -->
+    - [x] Update title and badge styling <!-- id: 18 -->
+    - [x] Add metadata (Key, Capo, Tuning) <!-- id: 19 -->
+    - [x] Refine lyrics/chord display <!-- id: 20 -->
+- [x] Verification & Documentation <!-- id: 21 -->
+    - [x] Verify widescreen vs mobile view <!-- id: 22 -->
+    - [x] Update walkthrough and sync artifacts <!-- id: 23 -->
+
+# Task: Refine Song Detail Layout (Admin Navigation)
+
+- [x] Planning & UI Adjustment <!-- id: 24 -->
+    - [x] Analyze current header/sidebar structure <!-- id: 25 -->
+    - [x] Update implementation plan for layout swap <!-- id: 26 -->
+- [x] Implement Structural Changes <!-- id: 27 -->
+    - [x] Move User Badge section to top of sidebar <!-- id: 28 -->
+    - [x] Move Logo/Site Title to main page header <!-- id: 29 -->
+    - [x] Clean up sidebar footer and mobile header alignment <!-- id: 30 -->
+- [x] Verification <!-- id: 31 -->
+    - [x] Verify layout on widescreen and mobile <!-- id: 32 -->
+    - [x] Sync walkthrough and logbook <!-- id: 33 -->

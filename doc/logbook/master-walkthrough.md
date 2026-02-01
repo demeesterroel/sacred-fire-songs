@@ -747,3 +747,98 @@ I have implemented a high-fidelity mockup for the **404 Not Found** page, mirror
 
 ## Repository State
 - **Status**: Implementation Ready.
+
+## Session Feb 1, 2026 (Part 3 - Error Suite)
+
+# Walkthrough - Comprehensive Error Suite
+
+I have designed and implemented a suite of five additional error screens (500, 401, 429, 503, and Offline) to provide a premium, thematic user experience across all edge cases.
+
+## Design Highlights
+- **Thematic Consistency**: All screens follow the "Sacred Fire Songs" dark theme with orange/red accents and animated embers.
+- **Differentiated Aesthetics**: 
+    - **Fire/Hearth Themes**: Used for 500, 401, 429, and 503 (Orange/Red glow).
+    - **Cold/Wilderness Theme**: Used for the **Offline** screen (Bluish/Foggy glow) to represent a loss of connection to the hearth.
+- **Narrative Messaging**: Each error is framed through the project's spiritual narrative (e.g., "The Fire has Flickered" for 500, "The Winds are Too Strong" for 429).
+
+## Visual Verification
+
+````carousel
+![500 Server Error](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen10_500_server_error_1769907145713.png)
+<!-- slide -->
+![401 Unauthorized](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen11_401_unauthorized_verification_1769907159623.png)
+<!-- slide -->
+![429 Too Many Requests](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen12_429_verification_1769907172876.png)
+<!-- slide -->
+![503 Service Maintenance](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen13_503_maintenance_verification_1769907187237.png)
+<!-- slide -->
+![Offline Wilderness View](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/offline_screen_verification_1769907202608.png)
+````
+
+## Files Created
+- **[[screen10_500_server_error.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen10_500_server_error.html)]**
+- **[[screen11_401_unauthorized.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen11_401_unauthorized.html)]**
+- **[[screen12_429_too_many_requests.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen12_429_too_many_requests.html)]**
+- **[[screen13_503_maintenance.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen13_503_maintenance.html)]**
+- **[[screen14_offline.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen14_offline.html)]**
+
+## Repository State
+- **Status**: Implementation Ready.
+
+## Session Feb 1, 2026 (Part 4 - Song Detail Refinement)
+
+# Walkthrough - Song Detail Screen Refinement
+
+I have refined the **Song Detail** mockup (`screen2_song_detail.html`) to be fully responsive and match the aesthetic provided in the recent screenshot.
+
+## Design Highlights
+- **Responsive Layout**: 
+    - **Widescreen**: Features a persistent sidebar for navigation and filtering, mirroring the system dashboard.
+    - **Mobile**: Transitions to a clean mobile header with a flame logo and collapsible navigation elements.
+- **Aesthetics**:
+    - Title "Caboclo" in fire red with updated font weight.
+    - Premium [CHORDS] and [MELODY] badges with distinct borders and icons.
+    - Refined Metadata section for Key, Capo, and Tuning.
+- **Improved Readability**:
+    - Verse and Chorus sections are clearly labeled with secondary vertical text on widescreen and primary labels on mobile.
+    - Chords are styled in fire red for high contrast against lyrics.
+
+## Visual Verification
+
+````carousel
+![Widescreen Song Detail](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/song_detail_verification_1769908051362.png)
+<!-- slide -->
+![Mobile Song Detail](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/mobile_view_initial_1769908071254.png)
+````
+
+## Files Modified
+- **[[screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Comprehensive refinement for cross-device support and aesthetic alignment.
+
+## Repository State
+- **Status**: Visual Refinement Complete.
+
+## Session Feb 1, 2026 (Part 5 - Navigation & Layout Refinement)
+
+# Walkthrough - Song Detail Layout Adjustment
+
+I have adjusted the layout of the **Song Detail** mockup (`screen2_song_detail.html`) to improve navigation flow and brand visibility.
+
+## Design Highlights
+- **User Profile**: Moved the user badge (RM), name, and logout action to the **top of the sidebar**, making it immediately accessible.
+- **Brand Integration**: Moved the **Sacred Fire Songs** logo and site title from the sidebar to the **main desktop header**.
+- **Page Context**: The "Song Detail" text now serves as a secondary label below the main site title in the header, clarifying the current view while maintaining brand identity.
+- **Structural Balance**: Cleaned up the sidebar footer and ensured consistent spacing across the dashboard elements.
+
+## Visual Verification
+
+````carousel
+![Desktop Layout Adjustment](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/song_detail_layout_desktop_1769908492147.png)
+<!-- slide -->
+![Mobile Layout Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/song_detail_mobile_view_1769908452556.png)
+````
+
+## Files Modified
+- **[[screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Structural update for improved administrative navigation flow.
+
+## Repository State
+- **Status**: Navigation Layout Optimized.
