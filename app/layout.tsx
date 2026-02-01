@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import QueryProvider from "@/components/providers/QueryProvider";
+import { SidebarProvider } from "@/context/SidebarContext";
 import EnvironmentBanner from "@/components/common/EnvironmentBanner";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -40,24 +41,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         suppressHydrationWarning
       >
         <EnvironmentBanner />
-        <QueryProvider>
-          <div className="min-h-screen bg-black text-gray-100 font-sans flex flex-col md:flex-row selection:bg-red-500/30">
+        <SidebarProvider>
+          <QueryProvider>
+            <div className="min-h-screen bg-black text-gray-100 font-sans flex flex-col lg:flex-row selection:bg-red-500/30">
 
-            {/* Desktop Sidebar */}
-            <Sidebar />
+              {/* Sidebar (Responsive Mini/Full) */}
+              <Sidebar />
 
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col min-w-0 bg-gray-950 relative">
-              {/* Mobile Header */}
-              <Header />
+              {/* Main Content Area */}
+              <div className="flex-1 flex flex-col min-w-0 bg-gray-950 relative">
+                {/* Global Header */}
+                <Header />
 
-              {/* Page Content */}
-              {children}
+                {/* Page Content */}
+                {children}
+              </div>
             </div>
-          </div>
-        </QueryProvider>
+          </QueryProvider>
+        </SidebarProvider>
         <SpeedInsights />
       </body>
-    </html >
+    </html>
   );
 }

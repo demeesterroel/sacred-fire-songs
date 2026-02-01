@@ -1058,3 +1058,51 @@ I have transitioned the design specifications into the Next.js application, focu
 The following recording demonstrates the updated sidebar layout, the display of category tags on song cards, and the new Playlists page.
 
 ![Sidebar and Library Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/verify_sidebar_and_songs_1769922292158.webp)
+
+## Session Feb 1, 2026 (Part 5 - Library Filter Refinement)
+**Goal:** Finalize the Library Hub UI, matching `screen15_library.html`.
+
+- **Sticky Header**: Implemented with logo, title, and centered search bar.
+- **Dynamic Filter Pills**:
+    - Multi-pill support for Categories and Tags (split by commas).
+    - Individual removal logic with router sync.
+    - Dynamic coloring using `getCategoryColor`.
+- **Controls Area**:
+    - Restructured sort dropdown (Newest First, Title A-Z).
+    - Visibility tabs (All, Public, Private) enabled for authenticated users.
+    - Chords/Melody toggles with active indicator states.
+- **Polish**: Removed the notification bell from the header as per user request.
+- **Verification**: Confirmed behavior via browser subagent, including responsive header and multi-pill removal.
+
+![Refined Library Hub with Multi-Pills](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/final_pill_color_check_library_1769922847913.webp)
+
+## Session Update (Feb 1, 2026 - Navigation Refinement)
+
+### 8. Simplified Navigation Refinement
+Based on further feedback, I have simplified the navigation system to be more robust and streamlined across all devices.
+
+- **Fixed Desktop Sidebar**: The sidebar is now a permanent, fixed-width (260px) column on desktop. The collapse/mini-state has been removed to ensure the full site identity is always visible on large screens.
+- **Logo-Only Mobile Header**: On mobile, the site title is hidden in the top header, which now shows only the hamburger trigger and the Flame logo icon, creating a cleaner look.
+- **Refined Mobile Drawer**: When opened, the mobile drawer hides the "Sacred Fire Songs" text and features a dedicated "PanelLeftClose" icon at the top right for a clearer exit path, matching modern mobile UI patterns.
+- **Responsive Breakpoint Alignment**: Updated the sidebar/header transition breakpoint from `md` (768px) to `lg` (1024px). This ensures the mobile drawer logic kicks in precisely when the main dashboard grid drops from 3 columns to 2, providing a smoother visual transition.
+
+## Simplified Navigation Verification
+
+The final implementation provides a stable desktop architecture and a minimalist mobile experience.
+
+````carousel
+![Desktop Fixed Sidebar (3 Cols)](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/desktop_view_verification_1769955995245.png)
+Desktop view (>=1024px) with a stable sidebar and 3-column song grid.
+<!-- slide -->
+![Mobile Mode (2 Cols)](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/layout_1050px_failure_1769957002371.png)
+Mobile mode (<1024px) triggered automatically when the song grid drops to 2 columns.
+<!-- slide -->
+![Refined Mobile Drawer](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/mobile_drawer_final_attempt_1769956553809.png)
+Mobile drawer showing the logo and the new close icon at the top right.
+````
+
+#### Final Result:
+1. **Desktop Stability**: Fixed 260px width prevents content shifting and maintains brand focus.
+2. **Mobile Minimalist**: Header and Drawer are optimized for small screens, hiding secondary text in favor of icons.
+3. **Transition Alignment**: Breakpoints are now synchronized with page content (3 -> 2 columns).
+4. **Consistency**: The "Mighty Networks" feel is maintained while adding requested simplicity.

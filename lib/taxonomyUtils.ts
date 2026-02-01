@@ -6,6 +6,7 @@ export interface TaxonomyNode {
   name: string;
   slug: string;
   emoji: string | null;
+  icon_name: string | null;
   children: TaxonomyNode[];
 }
 
@@ -15,7 +16,7 @@ export async function fetchCategoryTree(): Promise<TaxonomyNode[]> {
   // Fetch all categories
   const { data: categories, error } = await supabase
     .from('categories')
-    .select('id, name, slug, emoji, parent_id')
+    .select('id, name, slug, emoji, icon_name, parent_id')
     .order('name');
 
   if (error) {

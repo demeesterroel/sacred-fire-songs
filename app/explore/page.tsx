@@ -2,17 +2,9 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { fetchCategoryTree } from '@/lib/taxonomyUtils';
+import { renderCategoryIcon } from '@/lib/iconUtils';
 import Link from 'next/link';
-import { Waves, Leaf, MessageCircle, TreePine, FlaskConical, Sparkles, Loader2, Compass } from 'lucide-react';
-
-const iconMap: Record<string, any> = {
-  'the-elements': Waves,
-  'nature': Leaf,
-  'languages': MessageCircle,
-  'lineage-tradition': TreePine,
-  'medicine-healing': FlaskConical,
-  'spiritual-concepts': Sparkles
-};
+import { Loader2 } from 'lucide-react';
 
 const getColorClass = (slug: string) => {
   if (slug === 'the-elements') return 'blue';
@@ -52,22 +44,11 @@ export default function ExplorePage() {
 
   return (
     <main className="flex-1 min-h-0 bg-gray-950 overflow-y-auto">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-6">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-gray-900 rounded-lg border border-gray-800">
-              <Compass className="w-5 h-5 text-gray-400" />
-            </div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">Explore Categories</h2>
-          </div>
-        </div>
-      </div>
+
 
       <div className="p-6 md:p-10 space-y-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedTree.map(category => {
-            const Icon = iconMap[category.slug] || Compass;
             const color = getColorClass(category.slug);
 
             // Dynamic tailwind class construction is tricky without safelist, 
@@ -107,11 +88,10 @@ export default function ExplorePage() {
             return (
               <div key={category.id} className="category-card group flex flex-col h-full">
                 <div className={`glass-panel relative p-6 rounded-3xl border border-gray-800/50 transition-all h-full shadow-2xl ${bgClass}`}>
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-center mb-6">
                     <div className={`category-icon w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-300 ${iconBgClass}`}>
-                      <Icon className="w-8 h-8" />
+                      {renderCategoryIcon(category.icon_name, category.emoji, 'w-8 h-8', 'text-3xl')}
                     </div>
-                    <span className="text-3xl">{category.emoji || '📂'}</span>
                   </div>
 
                   <Link href={`/songs?category=${category.slug}`} className="before:absolute before:inset-0 z-0 block">

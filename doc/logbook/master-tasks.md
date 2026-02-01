@@ -632,3 +632,17 @@
 - [x] Refine UI Styling
     - [x] Centralize category styling in `lib/uiUtils.ts`
     - [x] Update SongCard layout to match layout in Design
+- [x] **Library Filter Design Refinement (Feb 1, 2026)**
+    - [x] Implement Sticky Header with centered search bar.
+    - [x] Implement multi-pill filter display for categories and tags.
+    - [x] Add individual removal logic for filter pills.
+    - [x] Restructure controls row with Sort, Visibility, and Chords/Melody filters.
+    - [x] Remove notification bell from header.
+- [x] **Simplified Navigation Refinement (Feb 1, 2026)**
+    - [x] Implement fixed-width (260px) desktop sidebar.
+    - [x] Remove collapse toggle for consistent identity.
+    - [x] Hide site title on mobile header (logo only).
+    - [x] Update mobile drawer to hover over content.
+    - [x] Add close icon (PanelLeftClose) to mobile drawer.
+    - [x] Adjust breakpoint from `md` to `lg` for navigation transition.
+    - [x] Verify responsive transitions and song grid alignment.

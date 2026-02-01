@@ -10,7 +10,23 @@ import { useEffect, useState } from 'react';
 // Helper to map slugs to approximate colors (mimicking the design)
 import { getCategoryColor, getCategoryStyles } from '@/lib/uiUtils';
 
-const ColorPill = ({ slug, name, isActive, type = 'tag' }: { slug: string, name: string, isActive: boolean, type?: 'header' | 'tag' }) => {
+import { renderCategoryIcon } from '@/lib/iconUtils';
+
+const ColorPill = ({
+  slug,
+  name,
+  isActive,
+  type = 'tag',
+  icon_name,
+  emoji
+}: {
+  slug: string,
+  name: string,
+  isActive: boolean,
+  type?: 'header' | 'tag',
+  icon_name?: string | null,
+  emoji?: string | null
+}) => {
   const color = getCategoryColor(slug);
   const style = getCategoryStyles(color);
 
@@ -21,22 +37,33 @@ const ColorPill = ({ slug, name, isActive, type = 'tag' }: { slug: string, name:
     if (isActive) {
       return (
         <div className={`${baseClass} text-white bg-gray-800 border-gray-700 shadow-sm`}>
-          <span>{name}</span>
+          <div className="flex items-center gap-2">
+            {renderCategoryIcon(icon_name, emoji, 'w-3.5 h-3.5', 'text-sm')}
+            <span>{name}</span>
+          </div>
           <span className="text-[9px] font-normal normal-case bg-gray-700 text-white px-1.5 py-0.5 rounded ml-2 border border-gray-600">Match Any</span>
         </div>
       );
     }
     return (
       <div className={`${baseClass} text-gray-400 border-transparent hover:text-white hover:bg-gray-800/50`}>
-        <span>{name}</span>
+        <div className="flex items-center gap-2">
+          {renderCategoryIcon(icon_name, emoji, 'w-3.5 h-3.5 opacity-50 group-hover:opacity-100', 'text-sm opacity-50 group-hover:opacity-100')}
+          <span>{name}</span>
+        </div>
       </div>
     );
   }
 
   // Tag Style (Pill)
-  const finalClass = `px-2.5 py-1 rounded-full text-xs font-medium border transition-all ${isActive ? style.active : style.inactive}`;
+  const finalClass = `flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-all ${isActive ? style.active : style.inactive}`;
 
-  return <span className={finalClass}>{name}</span>;
+  return (
+    <span className={finalClass}>
+      {emoji && <span className="opacity-70">{emoji}</span>}
+      {name}
+    </span>
+  );
 }
 
 export default function LibrarySidebar() {
@@ -103,6 +130,8 @@ export default function LibrarySidebar() {
                 name={group.name}
                 isActive={isGroupActive}
                 type="header"
+                icon_name={group.icon_name}
+                emoji={group.emoji}
               />
             </Link>
 
@@ -116,6 +145,7 @@ export default function LibrarySidebar() {
                       slug={child.slug}
                       name={child.name}
                       isActive={isTagActive}
+                      emoji={child.emoji}
                     />
                   </Link>
                 );

@@ -6,27 +6,12 @@ import Link from 'next/link';
 export default function PlaylistsPage() {
   return (
     <main className="flex-1 min-w-0 overflow-y-auto">
-      {/* Header */}
-      <div className="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-6 w-full transition-all">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-4 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
-                <Flame className="text-white w-5 h-5 fill-current" />
-              </div>
-              <div className="flex flex-col">
-                <h1 className="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-500 transition-colors">
-                  Sacred Fire Songs</h1>
-                <span className="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Playlists</span>
-              </div>
-            </Link>
-          </div>
-
-          <button className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95">
-            <Plus className="w-4 h-4" />
-            Create Playlist
-          </button>
-        </div>
+      {/* Page Actions */}
+      <div className="px-8 py-4 max-w-5xl mx-auto flex justify-end">
+        <button className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95">
+          <Plus className="w-4 h-4" />
+          Create Playlist
+        </button>
       </div>
 
       <div className="p-8 max-w-5xl mx-auto">
