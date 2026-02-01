@@ -174,13 +174,13 @@
 	- Requires strict confirmation ("This action cannot be undone").
 	- RLS Policies enforce server-side security.
 
-![Delete Confirmation Modal](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
+![Delete Confirmation Modal](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/delete_confirmation_modal_1768475204142.png)
 
 ## Verification
 -   Automated Browser Test: Created "Survival Test" song, verified it existed, deleted it, and confirmed it disappeared from search results.
 -   Verified proper state reset and navigation home.
 
-![Verify Delete Persistence](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_delete_persistence_1768480202338.webp)
+![Verify Delete Persistence](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_delete_persistence_1768480202338.webp)
 
 ## Bug Fix #30: RLS Violation on Add Song
 - **Issue**: "Mock Mode" users couldn't add songs because they were effectively anonymous, and RLS expected `authenticated` users.
@@ -200,7 +200,7 @@
 	-   Created mock `test_song.cho`.
 	-   Browser Subagent successfully uploaded the file and verified that Title, Author, and Content fields were populated correctly.
 
-![verify_file_upload_import](file:///home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_file_upload_import_1768493583266.webp)
+![verify_file_upload_import](/home/roeland/.gemini/antigravity/brain/081d65dc-089e-4f40-9cf9-e3ce3e76804e/verify_file_upload_import_1768493583266.webp)
 
 ## Current State
 -   **Issues**: 100% Synced.
@@ -218,7 +218,7 @@ I have updated the `song_add_expanded.html` mockup with the following changes:
 
 ## Changes
 
-### [song_add_expanded.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
+### [song_add_expanded.html](/home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
 
 #### SoundCloud Icon
 - Replaced the generic Material Symbol `radio` icon with the official SoundCloud SVG logo.
@@ -242,7 +242,7 @@ I have updated the `song_add_expanded.html` mockup with the following changes:
 - The "Cancel" and "Upload" buttons are now aligned to the right side of their container.
 - Their sizes remain unchanged.
 
-### [song_add_collapsed.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_collapsed.html)
+### [song_add_collapsed.html](/home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_collapsed.html)
 
 #### Synchronization
 - Updated footer to match the new "Save Draft" / "Publish Song" button layout.
@@ -250,8 +250,8 @@ I have updated the `song_add_expanded.html` mockup with the following changes:
 - Removed the "Preview Layout" button.
 - Added the "Links" section (YouTube, Spotify, SoundCloud) to match the expanded view.
 
-### [song_add_expanded.html](file:///home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
-### [SongForm.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)
+### [song_add_expanded.html](/home/roeland/Projects/sacred-fire-songs/doc/screens/add/song_add_expanded.html)
+### [SongForm.tsx](/home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)
 
 #### New Features
 -   Added **Language Selector**: Buttons for English, Sanskrit, Spanish, Portuguese.
@@ -267,10 +267,10 @@ I have updated the `song_add_expanded.html` mockup with the following changes:
 I have verified the implementation by running the application and navigating to the "Add Song" page.
 
 **Visual Verification:**
-![Song Form Verification](file:///home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/song_form_verification.png)
+![Song Form Verification](/home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/song_form_verification.png)
 
 **Browser Session:**
-![Browser Verification Session](file:///home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/verify_song_form_fields_1768663123194.webp)
+![Browser Verification Session](/home/roeland/.gemini/antigravity/brain/1bbf5538-f4d1-4c2a-ac27-e24a9822562e/verify_song_form_fields_1768663123194.webp)
 
 -   Confirmed presence of Language selector, Tags input, Links section.
 -   Confirmed "Save Draft" button is clickable.
@@ -367,7 +367,7 @@ We have implemented the ability for musicians to define Key, Capo, and Tuning wh
 	- Save song. Check Dashboard for "Key: D" badge.
 
 > [!IMPORTANT]
-> Use `render_diffs(file:///home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)` to see code changes.
+> Use `render_diffs(/home/roeland/Projects/sacred-fire-songs/components/song/SongForm.tsx)` to see code changes.
 
 ## Session Update (Jan 28, 2026 - Story 1.1.4 Auth & Performance)
 
@@ -459,7 +459,7 @@ I have completed the supplementary implementation for the Song Library, focusing
     - **Signup Confirmation**
     - **Password Reset**
 - **Fire Branding**: Used the 🔥 emoji for a consistent, cross-platform aesthetic that matches the app's logo.
-- **Persistence**: Saved templates as standalone assets in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+- **Persistence**: Saved templates as standalone assets in [doc/emails/](/home/roeland/Projects/sacred-fire-songs/doc/emails/).
 
 ### Developer Tools
 - **Rate Limit Management**: Created a `supabase_rate_limits.sh` script to manage authentication rate limits via the Supabase Management API.
@@ -495,7 +495,7 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
 - **Unified Visuals**: Standardized the styling across Magic Link, Password, Signup, Forgot Password, and Update Password views using the project's glassmorphism theme and orange/red flame aesthetic.
 - **Signup Simplicity**: Removed the "Username" field from the signup flow, requiring only Email and Password for a faster onboarding experience.
 - **Fully Functional**: Integrated the new designs into `LoginForm.tsx`, `SignUpForm.tsx`, `ForgotPassword`, and the `UpdatePassword` page, fully wired up to Supabase authentication.
-- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](/home/roeland/Projects/sacred-fire-songs/doc/emails/).
 
 ## Verification
 
@@ -542,7 +542,7 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
 - **Unified Visuals**: Standardized the styling across Magic Link, Password, Signup, Forgot Password, and Update Password views using the project's glassmorphism theme and orange/red flame aesthetic.
 - **Signup Simplicity**: Removed the "Username" field from the signup flow, requiring only Email and Password for a faster onboarding experience.
 - **Fully Functional**: Integrated the new designs into `LoginForm.tsx`, `SignUpForm.tsx`, `ForgotPassword`, and the `UpdatePassword` page, fully wired up to Supabase authentication.
-- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](/home/roeland/Projects/sacred-fire-songs/doc/emails/).
 
 ## Verification
 
@@ -594,11 +594,11 @@ I have finalized the environment indicator, authentication trigger, and various 
 - [x] **Permissions**: Confirmed owners can now delete their own songs.
 
 - **Refactor (Review Follow-up)**:
-    - Centralized environment detection logic into [lib/env.ts](file:///home/roeland/Projects/sacred-fire-songs/lib/env.ts) to resolve PR comments.
+    - Centralized environment detection logic into [lib/env.ts](/home/roeland/Projects/sacred-fire-songs/lib/env.ts) to resolve PR comments.
     - Updated Root Layout, Header, and Sidebar to use the new `getSiteTitle()` utility.
 
 - **Documentation Update**:
-    - Extensively updated [user-guide.md](file:///home/roeland/Projects/sacred-fire-songs/doc/guides/user-guide.md) (v2.0).
+    - Extensively updated [user-guide.md](/home/roeland/Projects/sacred-fire-songs/doc/guides/user-guide.md) (v2.0).
     - Added sections for Magic Link & Password authentication.
     - Documented advanced song creation: ChordPro parsing, .cho/.txt file imports, and metadata handling.
     - Explained the new **Public vs Private** saving logic and its impact on visibility.
@@ -633,7 +633,7 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
 - **Unified Visuals**: Standardized the styling across Magic Link, Password, Signup, Forgot Password, and Update Password views using the project's glassmorphism theme and orange/red flame aesthetic.
 - **Signup Simplicity**: Removed the "Username" field from the signup flow, requiring only Email and Password for a faster onboarding experience.
 - **Fully Functional**: Integrated the new designs into `LoginForm.tsx`, `SignUpForm.tsx`, `ForgotPassword`, and the `UpdatePassword` page, fully wired up to Supabase authentication.
-- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](file:///home/roeland/Projects/sacred-fire-songs/doc/emails/).
+- **Custom Email Templates**: Created three styled email templates (Magic Link, Confirmation, and Reset) using the 🔥 emoji and project branding. Persisted as standalone HTML files in [doc/emails/](/home/roeland/Projects/sacred-fire-songs/doc/emails/).
 
 ## Verification
 
@@ -657,7 +657,7 @@ I have implemented enhanced song metadata detection, vibrant UI badges, and a so
 - **Database Indexing**:
     - Analyzed the Staging/Production database for performance bottlenecks.
     - Identified multiple missing indexes on Foreign Keys (`compositions.owner_id`, `song_versions.composition_id`, `setlist_items.setlist_id`, etc.).
-    - Created and applied migration [20260130040000_fix_compositions_index.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260130040000_fix_compositions_index.sql) to fix these issues.
+    - Created and applied migration [20260130040000_fix_compositions_index.sql](/home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260130040000_fix_compositions_index.sql) to fix these issues.
 
 - **Environment Indicator**:
     - Implemented `EnvironmentBanner` component to show a persistent bar in Vercel Preview and local development.
@@ -678,14 +678,14 @@ I have consolidated the Role Switcher refinements and the new Quick Login featur
 
 ## New Architecture
 I've decentralized the dev tools from the Sidebar into a modular structure:
-- **[DevTools.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/DevTools.tsx)**: The main container in the Sidebar that hides everything if `NODE_ENV !== 'development'`.
-- **[MockRoleSwitcher.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/MockRoleSwitcher.tsx)**: Extracted component for simulating UI roles (Local storage based). Now uses the correct **"Musician"** labels.
-- **[QuickLogin.tsx](file:///home/roeland/Projects/sacred-fire-songs/components/dev/QuickLogin.tsx)**: A powerful component for real Supabase authentication switching.
+- **[DevTools.tsx](/home/roeland/Projects/sacred-fire-songs/components/dev/DevTools.tsx)**: The main container in the Sidebar that hides everything if `NODE_ENV !== 'development'`.
+- **[MockRoleSwitcher.tsx](/home/roeland/Projects/sacred-fire-songs/components/dev/MockRoleSwitcher.tsx)**: Extracted component for simulating UI roles (Local storage based). Now uses the correct **"Musician"** labels.
+- **[QuickLogin.tsx](/home/roeland/Projects/sacred-fire-songs/components/dev/QuickLogin.tsx)**: A powerful component for real Supabase authentication switching.
 
 ## Database Cleanup & Quality
 I've implemented a robust database setup to keep your Production environment clean:
-- **Seed Architecture**: Moved all local testing data (users and demo songs) to **[seed.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/seed.sql)**. This data only loads locally during development.
-- **Permanent Cleanup**: Added a migration **[20260131110000_permanent_cleanup_mock_users.sql](file:///home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260131110000_permanent_cleanup_mock_users.sql)** that purges all `@mock.com` users from Production and Preview.
+- **Seed Architecture**: Moved all local testing data (users and demo songs) to **[seed.sql](/home/roeland/Projects/sacred-fire-songs/supabase/seed.sql)**. This data only loads locally during development.
+- **Permanent Cleanup**: Added a migration **[20260131110000_permanent_cleanup_mock_users.sql](/home/roeland/Projects/sacred-fire-songs/supabase/migrations/20260131110000_permanent_cleanup_mock_users.sql)** that purges all `@mock.com` users from Production and Preview.
 - **Email/Mailpit**: Configured `config.toml` to increase email rate limits and enabled confirmations for local testing. Emails are caught by **Mailpit**.
 
 ## How to Verify
@@ -719,8 +719,8 @@ I have created a high-fidelity mockup for the new **Explore by Category** page, 
 ````
 
 ## Files Created
-- **[[screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Main category navigation grid.
-- **[[screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Results view for a selected category/subcategory.
+- **[[screen7_explore_categories.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Main category navigation grid.
+- **[[screen8_category_detail.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Results view for a selected category/subcategory.
 
 ## Repository State
 - **Issue**: [#44](https://github.com/demeesterroel/sacred-fire-songs/issues/44)
@@ -743,7 +743,7 @@ I have implemented a high-fidelity mockup for the **404 Not Found** page, mirror
 ![404 Error Screen](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen9_404_not_found_view_1769906797648.png)
 
 ## Files Created
-- **[[screen9_404_not_found.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen9_404_not_found.html)]**: Premium 404 error page mockup.
+- **[[screen9_404_not_found.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen9_404_not_found.html)]**: Premium 404 error page mockup.
 
 ## Repository State
 - **Status**: Implementation Ready.
@@ -776,11 +776,11 @@ I have designed and implemented a suite of five additional error screens (500, 4
 ````
 
 ## Files Created
-- **[[screen10_500_server_error.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen10_500_server_error.html)]**
-- **[[screen11_401_unauthorized.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen11_401_unauthorized.html)]**
-- **[[screen12_429_too_many_requests.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen12_429_too_many_requests.html)]**
-- **[[screen13_503_maintenance.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen13_503_maintenance.html)]**
-- **[[screen14_offline.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen14_offline.html)]**
+- **[[screen10_500_server_error.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen10_500_server_error.html)]**
+- **[[screen11_401_unauthorized.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen11_401_unauthorized.html)]**
+- **[[screen12_429_too_many_requests.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen12_429_too_many_requests.html)]**
+- **[[screen13_503_maintenance.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen13_503_maintenance.html)]**
+- **[[screen14_offline.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen14_offline.html)]**
 
 ## Repository State
 - **Status**: Implementation Ready.
@@ -812,7 +812,7 @@ I have refined the **Song Detail** mockup (`screen2_song_detail.html`) to be ful
 ````
 
 ## Files Modified
-- **[[screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Comprehensive refinement for cross-device support and aesthetic alignment.
+- **[[screen2_song_detail.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Comprehensive refinement for cross-device support and aesthetic alignment.
 
 ## Repository State
 - **Status**: Visual Refinement Complete.
@@ -838,7 +838,7 @@ I have adjusted the layout of the **Song Detail** mockup (`screen2_song_detail.h
 ````
 
 ## Files Modified
-- **[[screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Structural update for improved administrative navigation flow.
+- **[[screen2_song_detail.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)]**: Structural update for improved administrative navigation flow.
 
 ## Repository State
 - **Status**: Navigation Layout Optimized.
@@ -864,9 +864,96 @@ Standardized the administrative navigation layout across all main functional scr
 ````
 
 ## Files Modified
-- **[[screen1_home.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html)]**: Layout standardization and brand integration.
-- **[[screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Layout standardization and brand integration.
-- **[[screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Layout standardization and brand integration.
+- **[[screen1_home.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html)]**: Layout standardization and brand integration.
+- **[[screen7_explore_categories.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)]**: Layout standardization and brand integration.
+- **[[screen8_category_detail.html](/home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)]**: Layout standardization and brand integration.
+
+
+## Session Feb 1, 2026 (Part 7 - Interlinking and Refining Administrative Screens)
+
+# Walkthrough - Interlinking and Refining Administrative Screens
+
+Standardized navigation and inter-linked key administrative screens for a seamless user experience.
+
+- **Standardized Sidebar**: Added "Playlists" (with `list-music` icon) to all sidebars and ensured consistent menu items across Home, Song Detail, Explore Categories, and Category Detail screens.
+- **Inter-linked Headers**: All Logo/Site Title headers (now located in the main header) link back to the Dashboard (`screen1_home.html`).
+- **Seamless Cross-Navigation**:
+    - **Home**: Recent Song additions link to their respective Detail screens. Browse Songs grid links to Explore.
+    - **Explore Categories**: Category badges link to their filtered Detail view.
+    - **Category Detail**: Song results link to their respective Detail screens. Breadcrumbs link back to Explore.
+- **Labeling consistency**: Renamed "Settings" to "Playlists" site-wide to better align with the core music-centric mission of the application.
+
+## Visual Verification
+
+````carousel
+![Home Screen Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen1_home_verification_1769909011817.png)
+<!-- slide -->
+![Explore Categories Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen7_explore_verification_1769909070615.png)
+<!-- slide -->
+![Category Detail Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen8_category_verification_1769909122275.png)
+<!-- slide -->
+![Song Detail Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen2_song_detail_verification_1769909134519.png)
+````
 
 ## Repository State
-- **Status**: Navigation Layout Standardized site-wide.
+- **Status**: Interlinking & Labeling Complete. All Administrative screens standardized.
+
+
+# Session Sync: 2026-02-01
+
+# Walkthrough - Interlinking and Refining Administrative Screens
+
+Standardized navigation and inter-linked key administrative screens for a seamless user experience.
+
+## Changes Made
+
+### Navigation Layout & Inter-linking
+- **Standardized Sidebar**: Added "Playlists" to all sidebars and ensured consistent order (Dashboard, Browse Songs/Explore, Library, Add Song, Playlists).
+- **Inter-linked Headers**: All Logo/Title headers now link directly to the Dashboard (`screen1_home.html`).
+- **Inter-linked Content**:
+    - **Home**: Recent Song additions link to `screen2_song_detail.html`. Browse Songs grid links to `screen7_explore_categories.html`.
+    - **Explore Categories**: Category badges (e.g., Water) link to `screen8_category_detail.html`.
+    - **Category Detail**: Song results link to `screen2_song_detail.html`. Breadcrumbs link back to `screen7_explore_categories.html`.
+    - **Song Detail**: Back arrow links to `screen1_home.html`.
+
+### Renaming
+- **"Settings" -> "Playlists"**: Replaced "Settings" with "Playlists" (and updated the icon to `list-music`) across all relevant screens to better reflect the application's focus on music organization.
+
+## Verification Results
+
+### Visual Verification
+Verification was performed across Home, Song Detail, Explore Categories, and Category Detail screens.
+
+````carousel
+![Home Screen Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen1_home_verification_1769909011817.png)
+<!-- slide -->
+![Explore Categories Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen7_explore_verification_1769909070615.png)
+<!-- slide -->
+![Category Detail Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen8_category_verification_1769909122275.png)
+<!-- slide -->
+![Song Detail Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen2_song_detail_verification_1769909134519.png)
+````
+
+### Key Verification points:
+- [x] Branding/Logo links to Home on all screens.
+- [x] 'Settings' renamed to 'Playlists' with matching icon.
+- [x] Cross-navigation between Home, Explore, and Detail screens works as expected.
+
+## Inter-linking Refinement (Feb 1st)
+
+I have further refined the inter-linking by converting static `<div>` and `<button>` elements into fully functional `<a>` tags across the key screens.
+
+- **Refined Tags**: All subcategory tags in `screen7` are now interactive links.
+- **Refined Song Cards**: All song cards in `screen1` and `screen8` (including the private ones) now link directly to the Song Detail page.
+
+### Verification of Link Polishing
+
+The following hover states confirm the functionality of the new links:
+
+````carousel
+![Explore Tags Interactivity](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen7_explore_hover_1769909458996.png)
+<!-- slide -->
+![Home Song Cards Interactivity](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen1_home_hover_1769909468579.png)
+<!-- slide -->
+![Category Detail Song Cards Interactivity](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen8_category_hover_1769909478623.png)
+````
