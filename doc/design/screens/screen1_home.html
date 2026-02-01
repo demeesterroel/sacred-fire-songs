@@ -1,5 +1,5 @@
 <!--
-**Version:** 1.3
+**Version:** 1.4
 **Status:** Draft
 **Date:** February 1, 2026
 
@@ -11,6 +11,7 @@
 | **1.1** | Dec 29, 2025 | Added Back Button to align with global navigation. |
 | **1.2** | Jan 10, 2026 | Changed "Upload Song" button text to "Add Song". |
 | **1.3** | Feb 1, 2026 | Standardized navigation layout, renamed "Settings" to "Playlists", and converted song cards to active links. |
+| **1.4** | Feb 1, 2026 | Refined sidebar navigation (Dashboard, Explore, Library, Playlist, Add Song). |
 -->
 
 <!DOCTYPE html>
@@ -86,76 +87,32 @@
             <nav class="space-y-1 mb-8">
                 <a href="screen1_home.html"
                     class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
-                    <i data-lucide="layout-grid" class="w-5 h-5 text-red-500"></i>
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 text-red-500"></i>
                     Dashboard
                 </a>
                 <a href="screen7_explore_categories.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                    <i data-lucide="music" class="w-5 h-5"></i>
-                    Browse Songs
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                    Explore
                 </a>
-                <a href="#"
+                <a href="screen15_library.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                    <i data-lucide="upload-cloud" class="w-5 h-5"></i>
-                    Add Song
+                    <i data-lucide="library" class="w-5 h-5"></i>
+                    Library
                 </a>
-                <a href="#"
+                <a href="screen16_playlists.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
                     <i data-lucide="list-music" class="w-5 h-5"></i>
-                    Playlists
+                    Playlist
+                </a>
+                <a href="actions/screen4_song_add.html"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                    Add Song
                 </a>
             </nav>
 
-            <!-- Filters -->
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Elements</h3>
-                    <div class="space-y-1">
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-red-600 focus:ring-red-500/30">
-                            Fire
-                        </label>
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-blue-500 focus:ring-blue-500/30">
-                            Water
-                        </label>
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-amber-500 focus:ring-amber-500/30">
-                            Earth
-                        </label>
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-slate-400 focus:ring-slate-500/30">
-                            Air
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Origin</h3>
-                    <div class="space-y-1">
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-green-500 focus:ring-green-500/30">
-                            Medicine
-                        </label>
-                        <label
-                            class="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                            <input type="checkbox"
-                                class="rounded border-gray-700 bg-gray-800 text-purple-500 focus:ring-purple-500/30">
-                            Icaros
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <!-- Filters Removed for Dashboard -->
         </div>
 
         <!-- Sidebar Footer (Empty for Balance) -->
@@ -169,33 +126,34 @@
 
         <!-- Desktop Header (Now contains Logo and Name) -->
         <div
-            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-4 hidden md:flex justify-between items-center transition-all">
-            <div class="flex items-center gap-6">
-                <button class="p-2 text-gray-400 hover:text-white transition-colors cursor-not-allowed opacity-30"><i
-                        data-lucide="arrow-left" class="w-5 h-5"></i></button>
+            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-6 hidden md:block transition-all">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-6">
 
-                <!-- Logo and Site Name (Moved from Sidebar) -->
-                <a href="screen1_home.html" class="flex items-center gap-4 border-l border-gray-800/50 pl-6 group">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h1
-                            class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-400 transition-colors">
-                            Sacred Fire Songs</h1>
-                        <span
-                            class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Dashboard</span>
-                    </div>
-                </a>
-            </div>
-            <div class="relative w-96">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
+
+                    <!-- Standardized Header Logo Component -->
+                    <a href="screen1_home.html" class="flex items-center gap-4 group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <h1
+                                class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-500 transition-colors">
+                                Sacred Fire Songs</h1>
+                            <span
+                                class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Dashboard</span>
+                        </div>
+                    </a>
                 </div>
-                <input type="text"
-                    class="block w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 focus:border-red-500/50 transition-all text-sm"
-                    placeholder="Search songs, lyrics, artists...">
+                <div class="relative w-96">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
+                    </div>
+                    <input type="text"
+                        class="block w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 focus:border-red-500/50 transition-all text-sm"
+                        placeholder="Search songs, lyrics, artists...">
+                </div>
             </div>
         </div>
 
