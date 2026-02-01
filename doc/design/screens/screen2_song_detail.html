@@ -1,7 +1,7 @@
 <!--
-**Version:** 1.0
+**Version:** 1.2
 **Status:** Draft
-**Date:** December 25, 2025
+**Date:** February 1, 2026
 
 ## Changelog
 
@@ -9,6 +9,7 @@
 | ----- | ----- | ----- |
 | **1.0** | Dec 25, 2025 | Initial Mockup Creation. Song Detail Screen. |
 | **1.1** | Dec 29, 2025 | Updated Header with Logo, Admin Button, and Back Button. |
+| **1.2** | Feb 1, 2026 | Refined UI: Added sidebar, responsive widescreen/mobile layout, updated badges, metadata rows, and thematic title. |
 -->
 
 <!DOCTYPE html>
@@ -17,15 +18,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sacred Fire Songs - Song Detail</title>
+    <title>Song Detail - Sacred Fire Songs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
-            background-color: #111827;
+            background-color: #0b0f1a;
         }
 
-        /* bg-gray-900 */
         .hide-scroll::-webkit-scrollbar {
             display: none;
         }
@@ -40,7 +40,6 @@
             font-family: monospace;
             font-weight: 700;
             margin-bottom: -4px;
-            /* Pull chords closer to lyrics */
             min-height: 1.2em;
         }
 
@@ -49,156 +48,280 @@
             margin-bottom: 1rem;
             line-height: 1.4;
         }
+
+        /* Thematic Red/Pink Color */
+        .text-fire {
+            color: #ff4400;
+        }
+
+        .bg-fire-muted {
+            background: rgba(255, 68, 0, 0.1);
+        }
+
+        .border-fire-muted {
+            border-color: rgba(255, 68, 0, 0.2);
+        }
+
+        /* Badge Styling */
+        .badge-chords {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #fbbf24;
+        }
+
+        .badge-melody {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
     </style>
 </head>
 
-<body class="text-gray-100 font-sans min-h-screen flex justify-center bg-gray-900">
+<body class="text-gray-100 font-sans min-h-screen bg-gray-950 flex flex-col md:flex-row">
 
-    <!-- Phone Frame -->
-    <div
-        class="w-full max-w-[400px] bg-gray-900 min-h-screen border-x border-gray-800 relative shadow-2xl flex flex-col">
-
-        <!-- Status Bar Area (Simulated) -->
-        <div
-            class="h-6 w-full bg-gray-900 flex justify-between items-center px-4 text-[10px] text-gray-400 select-none shrink-0">
-            <span>9:42</span>
-            <div class="flex gap-1">
-                <i data-lucide="signal" class="w-3 h-3"></i>
-                <i data-lucide="wifi" class="w-3 h-3"></i>
-                <i data-lucide="battery" class="w-3 h-3"></i>
+    <!-- Mobile Header (Visible only on mobile) -->
+    <header
+        class="md:hidden flex justify-between items-center px-4 py-3 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-lg">
+        <div class="flex items-center gap-3">
+            <div
+                class="w-8 h-8 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
             </div>
+            <h1 class="font-bold text-base tracking-tight text-white truncate">Sacred Fire Songs</h1>
         </div>
+        <div class="flex items-center gap-1">
+            <button class="p-2 text-red-500/80 hover:text-red-500"><i data-lucide="trash-2"
+                    class="w-5 h-5"></i></button>
+            <button class="p-2 text-gray-400 hover:text-white"><i data-lucide="edit-2" class="w-5 h-5"></i></button>
+            <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white"><i data-lucide="arrow-left"
+                    class="w-5 h-5"></i></a>
+        </div>
+    </header>
 
-        <!-- App Header (Navigation) -->
-        <header
-            class="flex justify-between items-center px-4 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 ring-1 ring-white/5">
-            <div class="flex items-center gap-3 overflow-hidden">
-                <!-- Logo -->
+    <!-- Sidebar (Desktop Navigation & Filters) - Mirrored from Home Screen -->
+    <aside
+        class="hidden md:flex flex-col w-64 bg-[#0d121f] border-r border-gray-800/50 sticky top-0 h-screen overflow-y-auto z-20 shadow-xl">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-8">
                 <div
-                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
-                    <i data-lucide="flame" class="text-white w-6 h-6 fill-current"></i>
+                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
+                    <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
                 </div>
-                <h1 class="font-bold text-lg tracking-tight text-white drop-shadow-sm truncate">Sacred Fire Songs</h1>
+                <h1 class="font-bold text-xl tracking-tight text-white leading-none">Sacred Fire<br><span
+                        class="text-lg opacity-80">Songs</span></h1>
             </div>
 
-            <div class="flex items-center gap-2 shrink-0">
-                <!-- Delete Song (Admin) -->
-                <button
-                    class="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20"
-                    title="Delete Song (Admin Only)">
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
-                </button>
-
-                <!-- Edit Song -->
-                <button
-                    class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10">
-                    <i data-lucide="edit-2" class="w-5 h-5"></i>
-                </button>
-
-                <!-- Back Button -->
+            <nav class="space-y-1 mb-8">
                 <a href="screen1_home.html"
-                    class="text-gray-400 hover:text-white transition-all p-2.5 rounded-full hover:bg-white/5 active:bg-white/10">
-                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    Dashboard
                 </a>
-            </div>
-        </header>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
+                    <i data-lucide="music" class="w-5 h-5 text-red-500"></i>
+                    Browse Songs
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                    Add Song
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    Settings
+                </a>
+            </nav>
 
-        <!-- Song Metadata -->
-        <div class="bg-gray-800/30 border-b border-gray-800 px-6 py-3 flex justify-between items-center shrink-0">
-            <div class="flex items-center gap-2">
-                <i data-lucide="mic-2" class="w-4 h-4 text-red-400"></i>
-                <span class="text-sm text-gray-300 font-medium">Traditional</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-full border border-gray-700">
-                <i data-lucide="music" class="w-3 h-3 text-yellow-500"></i>
-                <span class="text-xs font-mono font-bold text-yellow-500">Key: Am</span>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3 px-2">Elements</h3>
+                    <div class="space-y-1 text-xs uppercase tracking-wide font-medium">
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox" checked
+                                class="rounded border-gray-700 bg-gray-800 text-red-600 focus:ring-red-500/30">
+                            Fire</label>
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-blue-500 focus:ring-blue-500/30">
+                            Water</label>
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-amber-500 focus:ring-amber-500/30">
+                            Earth</label>
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-slate-400 focus:ring-slate-500/30">
+                            Air</label>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3 px-2">Origin</h3>
+                    <div class="space-y-1 text-xs uppercase tracking-wide font-medium">
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox" checked
+                                class="rounded border-gray-700 bg-gray-800 text-green-500 focus:ring-green-500/30">
+                            Medicine</label>
+                        <label
+                            class="flex items-center gap-3 px-2 py-1.5 text-gray-400 hover:bg-gray-800/30 rounded"><input
+                                type="checkbox"
+                                class="rounded border-gray-700 bg-gray-800 text-purple-500 focus:ring-purple-500/30">
+                            Icaros</label>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Main Content Area -->
-        <main class="flex-1 overflow-y-auto p-6 pb-24">
-
-            <!-- Verse 1 -->
-            <div class="mb-8">
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Verse 1</span>
-
-                <!-- Line 1 -->
-                <div class="text-amber-400 chord-line">
-                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Grandmother Earth</div>
-
-                <!-- Line 2 -->
-                <div class="text-amber-400 chord-line">
-                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">We call upon your spirit</div>
-
-                <!-- Line 3 -->
-                <div class="text-amber-400 chord-line">
-                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Grandmother Earth</div>
-
-                <!-- Line 4 -->
-                <div class="text-amber-400 chord-line">
-                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">We call upon your love</div>
-            </div>
-
-            <!-- Chorus -->
-            <div class="mb-8">
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Chorus</span>
-
-                <!-- Line 1 -->
-                <div class="text-amber-400 chord-line">
-                    F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Hear our prayers</div>
-
-                <!-- Line 2 -->
-                <div class="text-amber-400 chord-line">
-                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Healing for the people</div>
-
-                <!-- Line 3 -->
-                <div class="text-amber-400 chord-line">
-                    F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Hear our prayers</div>
-
-                <!-- Line 4 -->
-                <div class="text-amber-400 chord-line">
-                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Healing for the soul</div>
-            </div>
-
-            <!-- Verse 2 -->
-            <div class="mb-8 opacity-70">
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Verse 2</span>
-
-                <!-- Line 1 -->
-                <div class="text-amber-400 chord-line">
-                    Am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Grandfather Fire</div>
-
-                <!-- Line 2 -->
-                <div class="text-amber-400 chord-line">
-                    G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am
-                </div>
-                <div class="text-xl text-gray-100 lyric-line">Burn away the shadows</div>
-            </div>
-
-            <!-- YouTube Embed -->
-            <div class="mt-8 border-t border-gray-800 pt-6">
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 block">Listen on
-                    YouTube</span>
+        <div class="mt-auto p-4 border-t border-gray-800/50 bg-gray-900/30">
+            <div class="flex items-center gap-3">
                 <div
-                    class="w-full aspect-video bg-black rounded-xl overflow-hidden relative border border-gray-700 shadow-2xl">
+                    class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20">
+                    RM</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-[11px] font-bold text-white truncate">roel.de.meester+4</p>
+                    <p class="text-[9px] text-gray-500 truncate">ID: 89c4850e...</p>
+                </div>
+                <button><i data-lucide="log-out" class="w-4 h-4 text-gray-600 hover:text-white"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0 overflow-y-auto bg-[#0b0f1a]">
+
+        <!-- Desktop Page Header (Visible only on desktop) -->
+        <div
+            class="hidden md:flex justify-between items-center px-8 py-4 border-b border-gray-800/50 bg-[#0d121f]/50 sticky top-0 backdrop-blur-md z-10 transition-all">
+            <div class="flex items-center gap-4">
+                <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors"><i
+                        data-lucide="arrow-left" class="w-5 h-5"></i></a>
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Song Detail</h2>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
+                </button>
+                <button
+                    class="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
+                    <i data-lucide="edit-2" class="w-4 h-4"></i> Edit
+                </button>
+            </div>
+        </div>
+
+        <div class="max-w-4xl p-6 md:p-10 space-y-8">
+
+            <!-- Song Title and Badges Section -->
+            <div class="space-y-2">
+                <div class="flex flex-wrap items-center gap-3">
+                    <h1 class="text-4xl md:text-5xl font-black text-fire tracking-tight">Caboclo</h1>
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="badge-chords flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                            <i data-lucide="link" class="w-3 h-3"></i> Chords
+                        </span>
+                        <span
+                            class="badge-melody flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                            <i data-lucide="music" class="w-3 h-3"></i> Melody
+                        </span>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-lg md:text-xl font-medium">by Traditional (Umbanda)</p>
+            </div>
+
+            <!-- Metadata Grid -->
+            <div class="grid grid-cols-3 gap-4 py-4 border-y border-gray-800/50 text-center">
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Key</p>
+                    <p class="text-lg font-mono font-bold text-amber-500">Am</p>
+                </div>
+                <div class="space-y-1 border-x border-gray-800/50">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Capo</p>
+                    <p class="text-lg font-bold text-gray-300">None</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Tuning</p>
+                    <p class="text-lg font-bold text-gray-300">Standard</p>
+                </div>
+            </div>
+
+            <!-- Song Content (Lyrics/Chords) -->
+            <div class="pt-4 space-y-12">
+
+                <!-- Verse 1 -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-4 top-0 -translate-x-full hidden md:block text-[10px] font-black text-gray-600 uppercase tracking-widest vertical-text rotate-180"
+                        style="writing-mode: vertical-rl;">Verse 1</span>
+                    <span
+                        class="md:hidden block text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">Verse</span>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-fire chord-line">Am</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Caboclo nas matas
+                                Nas cachoeiras</div>
+                        </div>
+                        <div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight opacity-90">Nas
+                                pedras e nas pedreiras E nas ondas do mar</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line">Am</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Cabocla guerreira
+                                mensageira</div>
+                        </div>
+                        <div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight opacity-90">Da paz
+                                e da harmonia soldado de oxala</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chorus -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-4 top-0 -translate-x-full hidden md:block text-[10px] font-black text-red-500/50 uppercase tracking-widest vertical-text rotate-180"
+                        style="writing-mode: vertical-rl;">Chorus</span>
+                    <span
+                        class="md:hidden block text-[10px] font-black text-red-500/50 uppercase tracking-widest mb-4">Chorus</span>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-fire chord-line">Dm</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Vem de aruanda vem
+                                vem vem</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line">Am</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Trazendo forca vem
+                                vem vem</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line">E</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Quebrando mironga
+                                vem vem vem</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line">Am, A7</div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight">Na umbanda sarava
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Player Section -->
+            <div class="pt-8 border-t border-gray-800/50">
+                <h3 class="text-xs font-black text-gray-600 uppercase tracking-[0.2em] mb-6">Recordings</h3>
+                <div
+                    class="w-full aspect-video bg-black/40 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/4WbP18qcE78"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -206,10 +329,9 @@
                 </div>
             </div>
 
-            <!-- Bottom spacing -->
-            <div class="h-8"></div>
-        </main>
-    </div>
+            <div class="h-20"></div>
+        </div>
+    </main>
 
     <script>
         lucide.createIcons();
