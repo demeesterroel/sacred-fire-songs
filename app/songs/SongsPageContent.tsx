@@ -38,15 +38,15 @@ export default function SongsPageContent() {
         category: activeCategory
     });
 
-    // 2. Tab Filter (Public/Private)
+    // 2. Tab Filter (Public/Draft)
     if (user) {
         if (activeFilter === 'public') {
             displaySongs = displaySongs.filter(song => song.isPublic);
-        } else if (activeFilter === 'private') {
+        } else if (activeFilter === 'draft') {
             displaySongs = displaySongs.filter(song => !song.isPublic);
         }
     } else {
-        // Guest: Always filter out private songs
+        // Guest: Always filter out non-public (draft) songs
         displaySongs = displaySongs.filter(song => song.isPublic);
     }
 
@@ -192,22 +192,22 @@ export default function SongsPageContent() {
                                 {user && (
                                     <div className="bg-gray-900/80 p-1 rounded-xl border border-gray-800 inline-flex shadow-inner">
                                         <button
-                                            onClick={() => setActiveFilter('all')}
+                                            onClick={() => updateQuery({ status: 'all' })}
                                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'all' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
                                             All
                                         </button>
                                         <button
-                                            onClick={() => setActiveFilter('public')}
+                                            onClick={() => updateQuery({ status: 'public' })}
                                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'public' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
                                             Public
                                         </button>
                                         <button
-                                            onClick={() => setActiveFilter('private')}
-                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'private' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
+                                            onClick={() => updateQuery({ status: 'draft' })}
+                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'draft' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
-                                            Private
+                                            Draft
                                         </button>
                                     </div>
                                 )}
