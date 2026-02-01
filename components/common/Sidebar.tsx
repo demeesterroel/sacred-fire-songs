@@ -88,9 +88,6 @@ export default function Sidebar() {
 
                 {/* Footer */}
                 <div className="p-4 border-t border-gray-800/30 bg-gray-950/20">
-                    <div className="hidden lg:block">
-                        <DevTools />
-                    </div>
                     <p className="text-[9px] text-center font-mono uppercase tracking-[0.2em] opacity-20 mt-2">
                         Sacred Fire v1.0
                     </p>
