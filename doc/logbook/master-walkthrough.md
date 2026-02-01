@@ -1106,3 +1106,31 @@ Mobile drawer showing the logo and the new close icon at the top right.
 2. **Mobile Minimalist**: Header and Drawer are optimized for small screens, hiding secondary text in favor of icons.
 3. **Transition Alignment**: Breakpoints are now synchronized with page content (3 -> 2 columns).
 4. **Consistency**: The "Mighty Networks" feel is maintained while adding requested simplicity.
+
+---
+
+## Session Update (Feb 1, 2026 - Evening - UI & Guest Access)
+
+### UI Overlap Fix
+I have relocated the action buttons (Edit, Delete, Back) on the Song Detail page to be integrated into the title row. This eliminates the secondary sticky header and resolves the issue where it would overlap with the User Profile dropdown menu.
+
+- **Removed** the secondary sticky header from `app/songs/[id]/page.tsx`.
+- **Integrated** the Edit, Delete, and Back buttons into the title section using a responsive flex layout.
+
+### Guest Access Fix (Explore & Playlists)
+Guests were previously redirected to the login page when accessing the "Explore" and "Playlists" sections. This was due to a strict middleware policy.
+
+- **Updated `lib/supabase/proxy.ts`**: Added exceptions for `/explore` and `/playlists` paths.
+- **Production Repair**: 
+    - Resolved a deployment bottleneck by removing a ghost migration (`20260201053000`) from the production history.
+    - Manually synchronized the missing `icon_name` column to the production `categories` table.
+
+### Final Verification Results
+- [x] **Song Detail Page**: Action buttons are stable and do not overlap the user profile menu.
+- [x] **Guest Navigation**: Users can browse the Explore grid and Playlists overview without logging in.
+- [x] **Production Status**: The Explore page is now fully functional on the live site with all icons loading.
+
+
+### Production Sync Final Resolution
+- **Reconciliation**: The production migration history was manually repaired using `supabase migration repair --status applied` for versions `20260201135800` and `20260201191000`.
+- **Status**: Production is now 100% in sync with local migrations, as verified by `supabase migration list`.
