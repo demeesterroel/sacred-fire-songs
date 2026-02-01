@@ -1,150 +1,105 @@
 'use client';
 
+import { Suspense } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Flame, LayoutGrid, Music, CloudUpload, Settings, LogOut } from 'lucide-react';
-import { useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import { useAuth, MOCK_USERS } from '@/hooks/useAuth';
-import DevTools from '../dev/DevTools';
-
+import { Flame, PanelLeftClose } from 'lucide-react';
+import DevTools from '@/components/dev/DevTools';
+import LibrarySidebar from '../library/LibrarySidebar';
+import { useEnvironment } from '@/hooks/useEnvironment';
+import { useActivePath } from '@/hooks/useActivePath';
+import { UserProfile } from './navigation/UserProfile';
+import { NavLink } from './navigation/NavLink';
+import { NAV_ITEMS } from '@/lib/navigation';
+import { useSidebar } from '@/context/SidebarContext';
 import { getSiteTitle } from '@/lib/env';
 
-const Sidebar = () => {
-    const { user, loading, logout } = useAuth();
-    const pathname = usePathname();
-
-    const isActive = (path: string) => {
-        if (path === '/') return pathname === '/';
-        return pathname?.startsWith(path);
-    };
+export default function Sidebar() {
+    const env = useEnvironment();
+    const { pathname } = useActivePath();
+    const { isOpen, setIsOpen } = useSidebar();
 
     return (
-        <aside className="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20">
-            <div className="p-6">
-                <div className="flex items-center gap-3 mb-8">
-                    <div
-                        className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
-                        <Flame className="text-white w-5 h-5 fill-current" />
-                    </div>
-                    <h1 className="font-bold text-xl tracking-tight text-white">{getSiteTitle()}</h1>
+        <>
+            {/* Mobile Overlay */}
+            {isOpen && (
+                <div
+                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+                    onClick={() => setIsOpen(false)}
+                />
+            )}
+
+            <aside
+                className={`
+                    fixed lg:sticky top-0 left-0 h-screen z-50
+                    flex flex-col bg-gray-900 border-r border-gray-800 transition-all duration-300 ease-in-out
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+                    w-[260px]
+                `}
+            >
+                {/* Header: Logo & Branding */}
+                <div className="p-4 flex items-center border-b border-gray-800/50 bg-gray-900/50 h-[72px] justify-between">
+                    <Link href="/" className="flex items-center gap-3 group/logo shrink-0" onClick={() => setIsOpen(false)}>
+                        <div className="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 group-hover/logo:scale-110 transition-transform">
+                            <Flame className="text-white w-6 h-6 fill-current" />
+                        </div>
+                        {/* Title: Only on Desktop. Hide on Mobile Drawer as requested. */}
+                        <div className="hidden lg:flex flex-col">
+                            <span className="font-bold text-lg leading-tight text-white tracking-tight group-hover/logo:text-red-500 transition-colors">
+                                {getSiteTitle()}
+                            </span>
+                        </div>
+                    </Link>
+
+                    {/* Mobile Close Toggle - Positioned at Top Right of Sidebar */}
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                        title="Close Menu"
+                    >
+                        <PanelLeftClose className="w-6 h-6" />
+                    </button>
                 </div>
 
-                {/* Main Menu */}
-                <nav className="space-y-1 mb-8">
-                    <Link
-                        href="/"
-                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/') && pathname === '/'
-                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                            }`}
-                    >
-                        <LayoutGrid className={`w-5 h-5 ${isActive('/') && pathname === '/' ? 'text-red-500' : 'text-gray-500'}`} />
-                        Dashboard
-                    </Link>
-                    <Link
-                        href="/songs"
-                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/songs') && pathname !== '/songs/add'
-                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                            }`}
-                    >
-                        <Music className={`w-5 h-5 ${isActive('/songs') && pathname !== '/songs/add' ? 'text-red-500' : 'text-gray-500'}`} />
-                        Browse Songs
-                    </Link>
-                    <Link
-                        href="/songs/add"
-                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${isActive('/songs/add')
-                            ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                            }`}
-                    >
-                        <CloudUpload className={`w-5 h-5 ${isActive('/songs/add') ? 'text-red-500' : 'text-gray-500'}`} />
-                        Add Song
-                    </Link>
-                    <Link href="#" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                        <Settings className="w-5 h-5 text-gray-500" />
-                        Settings
-                    </Link>
+                {/* Profile Section */}
+                <div className="p-4 border-b border-gray-800/50 bg-gray-800/30">
+                    <UserProfile layout="sidebar" showText={true} />
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex-1 space-y-1 overflow-y-auto px-2 py-6">
+                    {NAV_ITEMS.map((item) => (
+                        <NavLink
+                            key={item.href}
+                            href={item.href}
+                            label={item.label}
+                            icon={item.icon}
+                            exact={'exact' in item ? item.exact : false}
+                            exclude={'exclude' in item ? item.exclude : []}
+                            layout="sidebar"
+                            showText={true}
+                        />
+                    ))}
+
+                    {/* Filters (Dynamic Taxonomy) */}
+                    {(pathname === '/songs' || pathname?.startsWith('/explore')) && (
+                        <div className="mt-6 pt-6 border-t border-gray-800/50">
+                            <Suspense fallback={<div className="text-gray-500 text-xs px-4">Loading filters...</div>}>
+                                <LibrarySidebar />
+                            </Suspense>
+                        </div>
+                    )}
                 </nav>
 
-                {/* Filters (Visual Only for now) */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Elements</h3>
-                        <div className="space-y-1">
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-red-600 focus:ring-red-500/30" />
-                                Fire
-                            </label>
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-blue-500 focus:ring-blue-500/30" />
-                                Water
-                            </label>
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-amber-500 focus:ring-amber-500/30" />
-                                Earth
-                            </label>
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-slate-400 focus:ring-slate-500/30" />
-                                Air
-                            </label>
-                        </div>
+                {/* Footer */}
+                <div className="p-4 border-t border-gray-800/30 bg-gray-950/20">
+                    <div className="hidden lg:block">
+                        <DevTools />
                     </div>
-
-                    <div>
-                        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Origin</h3>
-                        <div className="space-y-1">
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-green-500 focus:ring-green-500/30" />
-                                Medicine
-                            </label>
-                            <label className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-300 hover:bg-gray-800/30 rounded cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-700 bg-gray-800 text-purple-500 focus:ring-purple-500/30" />
-                                Icaros
-                            </label>
-                        </div>
-                    </div>
+                    <p className="text-[9px] text-center font-mono uppercase tracking-[0.2em] opacity-20 mt-2">
+                        Sacred Fire v1.0
+                    </p>
                 </div>
-            </div>
-
-            {/* User Profile (Bottom Sidebar) */}
-            <div className="mt-auto p-4 border-t border-gray-800 bg-gray-900/50">
-                <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-400">
-                        {user ? (user.email?.charAt(0).toUpperCase() || '?') : '?'}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white truncate">
-                            {user ? (user.email?.split('@')[0] || 'Member') : 'Guest'}
-                        </p>
-                        <p className="text-[10px] text-gray-500 truncate font-mono" title={user?.id || ''}>
-                            {user ? `ID: ${user.id.slice(0, 8)}...` : 'Not Logged In'}
-                        </p>
-                    </div>
-                    {user ? (
-                        <button
-                            onClick={logout}
-                            title="Log Out"
-                            className="p-1 hover:bg-gray-800 rounded-full transition-colors"
-                        >
-                            <LogOut className="w-4 h-4 text-gray-500 hover:text-white" />
-                        </button>
-                    ) : (
-                        <Link
-                            href="/auth/login"
-                            title="Sign In"
-                            className="p-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-md transition-colors"
-                        >
-                            Sign In
-                        </Link>
-                    )}
-                </div>
-
-                <DevTools />
-            </div>
-        </aside>
+            </aside>
+        </>
     );
 }
-
-export default Sidebar;
