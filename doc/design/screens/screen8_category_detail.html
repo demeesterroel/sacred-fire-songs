@@ -1,5 +1,5 @@
 <!--
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Draft
 **Date:** February 1, 2026
 
@@ -8,6 +8,7 @@
 | Version | Date | Description of Changes |
 | ----- | ----- | ----- |
 | **1.0** | Feb 1, 2026 | Initial Mockup Creation for Category Detail Screen (Songs tagged with Category/Subcategory). |
+| **1.1** | Feb 1, 2026 | Converted song cards to active links pointing to Screen 2 and aligned navigation layout. |
 -->
 
 <!DOCTYPE html>
@@ -104,6 +105,11 @@
           <i data-lucide="plus-circle" class="w-5 h-5"></i>
           Add Song
         </a>
+        <a href="#"
+          class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+          <i data-lucide="list-music" class="w-5 h-5"></i>
+          Playlists
+        </a>
         <!-- Sidebar Footer (Empty for Balance) -->
         <div class="mt-auto p-4 border-t border-gray-800/30 opacity-20">
           <p class="text-[9px] text-center font-mono uppercase tracking-[0.2em]">Sacred Fire v1.0</p>
@@ -120,28 +126,30 @@
       <div class="flex flex-col gap-4 max-w-7xl mx-auto w-full">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-6">
-            <button onclick="window.history.back()" class="p-2 text-gray-400 hover:text-white transition-colors">
+            <a href="screen7_explore_categories.html" class="p-2 text-gray-400 hover:text-white transition-colors">
               <i data-lucide="arrow-left" class="w-5 h-5"></i>
-            </button>
+            </a>
 
             <!-- Logo and Site Name (Moved from Sidebar) -->
-            <div class="flex items-center gap-4 border-l border-gray-800/50 pl-6">
+            <a href="screen1_home.html" class="flex items-center gap-4 border-l border-gray-800/50 pl-6 group">
               <div
-                class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
                 <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
               </div>
               <div class="flex flex-col">
-                <h1 class="font-bold text-lg tracking-tight text-white leading-none">Sacred Fire Songs</h1>
+                <h1
+                  class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-400 transition-colors">
+                  Sacred Fire Songs</h1>
                 <div class="flex items-center gap-2 mt-1">
-                  <span
-                    class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80 leading-none">Category
-                    Detail</span>
+                  <a href="screen7_explore_categories.html"
+                    class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80 leading-none hover:opacity-100 transition-opacity">Category
+                    Detail</a>
                   <i data-lucide="chevron-right" class="w-2 h-2 text-gray-600"></i>
                   <span class="text-[9px] font-medium text-blue-500 uppercase tracking-widest leading-none">💧
                     Water</span>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="flex items-center gap-2">
@@ -174,8 +182,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
         <!-- Song Card 1 -->
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block">
           <div
             class="accent-bar absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 transition-opacity">
           </div>
@@ -196,11 +204,11 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Em</span>
           </div>
-        </div>
+        </a>
 
         <!-- Song Card 2 -->
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block">
           <div
             class="accent-bar absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 transition-opacity">
           </div>
@@ -222,11 +230,11 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Dm</span>
           </div>
-        </div>
+        </a>
 
         <!-- Song Card 3 -->
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block">
           <div
             class="accent-bar absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 transition-opacity">
           </div>
@@ -247,11 +255,11 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">C</span>
           </div>
-        </div>
+        </a>
 
         <!-- Repeat some cards to show a grid -->
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block">
           <div
             class="accent-bar absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 transition-opacity">
           </div>
@@ -268,10 +276,10 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">Am</span>
           </div>
-        </div>
+        </a>
 
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block">
           <div
             class="accent-bar absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 transition-opacity">
           </div>
@@ -288,10 +296,10 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">G</span>
           </div>
-        </div>
+        </a>
 
-        <div
-          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm opacity-50 grayscale border-dashed">
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all cursor-pointer group relative overflow-hidden shadow-sm block opacity-50 grayscale border-dashed">
           <div
             class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 bg-gray-900/60 backdrop-blur-[2px]">
             <div class="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-full border border-gray-700 shadow-xl">
@@ -314,7 +322,7 @@
             <span
               class="text-xs font-mono font-bold bg-gray-800 text-gray-400 px-2 py-1 rounded-md border border-gray-700">B</span>
           </div>
-        </div>
+        </a>
 
       </div>
 

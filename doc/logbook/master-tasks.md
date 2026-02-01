@@ -525,15 +525,46 @@
     - [x] Verify layout on widescreen and mobile <!-- id: 32 -->
     - [x] Sync walkthrough and logbook <!-- id: 33 -->
 
-# Task: Standardize Navigation Layout (Multi-Screen)
 
-- [x] Planning & UI Standardization <!-- id: 34 -->
-    - [x] Identify targets: Home, Explore Categories, Category Detail <!-- id: 35 -->
-    - [x] Update implementation plan for global layout consistency <!-- id: 36 -->
-- [x] Implement Structural Changes <!-- id: 37 -->
-    - [x] Update `screen1_home.html` <!-- id: 38 -->
-    - [x] Update `screen7_explore_categories.html` <!-- id: 39 -->
-    - [x] Update `screen8_category_detail.html` <!-- id: 40 -->
-- [x] Verification & Documentation <!-- id: 41 -->
-    - [x] Visually verify each updated screen <!-- id: 42 -->
-    - [x] Update walkthrough and sync logbooks <!-- id: 43 -->
+# Task: Interlink and Refine Administrative Screens (Feb 1, 2026)
+
+- [x] Planning & Audit <!-- id: 0 -->
+    - [x] Read `screen1`, `screen2`, `screen7`, and `screen8` <!-- id: 1 -->
+    - [x] Identify all navigation points needing inter-linking <!-- id: 2 -->
+    - [x] Create implementation plan <!-- id: 3 -->
+- [x] Rename "Settings" to "Playlists" <!-- id: 4 -->
+    - [x] Update `screen1_home.html` <!-- id: 5 -->
+    - [x] Update `screen2_song_detail.html` <!-- id: 6 -->
+    - [x] Update `screen7_explore_categories.html` <!-- id: 7 -->
+    - [x] Update `screen8_category_detail.html` <!-- id: 8 -->
+- [x] Implement Inter-screen Links <!-- id: 9 -->
+    - [x] Link Home -> Explore & Song Detail <!-- id: 10 -->
+    - [x] Link Song Detail -> Home & Explore <!-- id: 11 -->
+    - [x] Link Explore -> Category Detail <!-- id: 12 -->
+    - [x] Link Category Detail -> Song Detail & Explore <!-- id: 13 -->
+- [x] Verification & Sync <!-- id: 14 -->
+    - [x] Verify links and renaming via browser <!-- id: 15 -->
+    - [x] Update walkthrough and sync artifacts <!-- id: 16 -->
+# Task: Interlink and Refine Administrative Screens
+
+- [x] Planning & Audit <!-- id: 0 -->
+    - [x] Read `screen1`, `screen2`, `screen7`, and `screen8` <!-- id: 1 -->
+    - [x] Identify all navigation points needing inter-linking <!-- id: 2 -->
+    - [x] Create implementation plan <!-- id: 3 -->
+- [x] Rename "Settings" to "Playlists" <!-- id: 4 -->
+    - [x] Update `screen1_home.html` <!-- id: 5 -->
+    - [x] Update `screen2_song_detail.html` <!-- id: 6 -->
+    - [x] Update `screen7_explore_categories.html` <!-- id: 7 -->
+    - [x] Update `screen8_category_detail.html` <!-- id: 8 -->
+- [x] Implement Inter-screen Links <!-- id: 9 -->
+    - [x] Link Home -> Explore & Song Detail <!-- id: 10 -->
+    - [x] Link Song Detail -> Home & Explore <!-- id: 11 -->
+    - [x] Link Explore -> Category Detail <!-- id: 12 -->
+    - [x] Link Category Detail -> Song Detail & Explore <!-- id: 13 -->
+- [x] Verification & Sync <!-- id: 14 -->
+    - [x] Verify links and renaming via browser <!-- id: 15 -->
+    - [x] Update walkthrough and sync artifacts <!-- id: 16 -->
+- [x] Refine Specific Navigation Links <!-- id: 17 -->
+    - [x] Update `screen7_explore_categories.html` tags <!-- id: 18 -->
+    - [x] Update `screen1_home.html` song cards <!-- id: 19 -->
+    - [x] Update `screen8_category_detail.html` song cards <!-- id: 20 -->

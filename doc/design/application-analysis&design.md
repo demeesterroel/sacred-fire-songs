@@ -1,8 +1,8 @@
 # Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.17
+**Version:** 1.18
 **Status:** Living Document
-**Date:** January 17, 2026
+**Date:** February 1, 2026
 
 ## Changelog
 
@@ -12,6 +12,7 @@
 | **...** | ... | (Previous versions 1.1 - 1.15 retained in history) |
 | **1.16** | Jan 11, 2026 | Implemented Edit Song, Access Denied, Mock Auth & Logout. Updated Screen Inventory. |
 | **1.17** | Jan 17, 2026 | Updated "Add Song" definition to include Metadata (Language, Tags, Links). Added `spotify_url` to schema definition. |
+| **1.18** | Feb 1, 2026 | Standardized navigation layout across all administrative screens. Renamed "Settings" to "Playlists". Refined inter-linking between Home, Explore, and Detail screens. |
 
 ## 1. Introduction
 
@@ -133,3 +134,11 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 ### 7.6 Screen 6: Access Denied
 * **Status:** Implemented (`components/common/AccessDenied.tsx`).
 * **Features:** Visual error page for unauthorized edit attempts.
+
+### 7.7 Screen 7: Explore Categories
+* **Status:** Mockup Updated (`doc/design/screens/screen7_explore_categories.html`).
+* **Features:** Grid of categories and subcategories, inter-linking to Screen 8.
+
+### 7.8 Screen 8: Category Detail (Results)
+* **Status:** Mockup Updated (`doc/design/screens/screen8_category_detail.html`).
+* **Features:** Filtered song list with search and breadcrumbs linking back to Screen 7.
