@@ -648,3 +648,17 @@
     - [x] Add close icon (PanelLeftClose) to mobile drawer.
     - [x] Adjust breakpoint from `md` to `lg` for navigation transition.
     - [x] Verify responsive transitions and song grid alignment.
+
+## Session Feb 1, 2026 - Evening (UI & Guest Access)
+- [x] **UI Polish: Song Detail Action Buttons**
+    - [x] Relocate Action buttons to title row (Fixes overlap with User Menu).
+    - [x] Integrate UserProfile fix for build success.
+- [x] **Middleware: Guest Access Fix**
+    - [x] Allow guest access to `/explore` and `/playlists` in `lib/supabase/proxy.ts`.
+- [x] **Infrastructure: Production Repair**
+    - [x] Repair production migration history (Remove ghost migration `20260201053000`).
+    - [x] Apply `icon_name` column to production `categories` table.
+- [x] **Documentation & Issue Tracking**
+    - [x] Create GitHub Issue #50 for guest access fix.
+    - [x] Update Epic & User Stories documentation.
+- [x] **Final Sync**: Reconciled migration history manually via CLI.
