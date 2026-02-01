@@ -11,21 +11,36 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getCategoryColor, getCategoryStyles } from "@/lib/uiUtils";
 
-type FilterType = 'all' | 'public' | 'private';
+type FilterType = 'all' | 'public' | 'draft';
 type SortByType = 'title' | 'newest';
 
 export default function SongsPageContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
+
+    // Derive state from URL params
     const activeCategory = searchParams.get('category') || undefined;
     const activeTag = searchParams.get('tag') || undefined;
+    const activeFilter = (searchParams.get('status') as FilterType) || 'all';
+    const sortBy = (searchParams.get('sort') as SortByType) || 'newest';
+    const showOnlyChords = searchParams.get('chords') === 'true';
+    const showOnlyMelody = searchParams.get('melody') === 'true';
 
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeFilter, setActiveFilter] = useState<FilterType>('all');
-    const [sortBy, setSortBy] = useState<SortByType>('newest');
-    const [showOnlyChords, setShowOnlyChords] = useState(false);
-    const [showOnlyMelody, setShowOnlyMelody] = useState(false);
     const { user } = useAuth();
+
+    // Helper to update URL params
+    const updateQuery = (updates: Record<string, string | null>) => {
+        const params = new URLSearchParams(searchParams.toString());
+        Object.entries(updates).forEach(([key, value]) => {
+            if (value === null) {
+                params.delete(key);
+            } else {
+                params.set(key, value);
+            }
+        });
+        router.push(`?${params.toString()}`);
+    };
 
     const { data: songs = [], isLoading } = useQuery({
         queryKey: ['songs', 'all'],
@@ -38,15 +53,15 @@ export default function SongsPageContent() {
         category: activeCategory
     });
 
-    // 2. Tab Filter (Public/Private)
+    // 2. Tab Filter (Public/Draft)
     if (user) {
         if (activeFilter === 'public') {
             displaySongs = displaySongs.filter(song => song.isPublic);
-        } else if (activeFilter === 'private') {
+        } else if (activeFilter === 'draft') {
             displaySongs = displaySongs.filter(song => !song.isPublic);
         }
     } else {
-        // Guest: Always filter out private songs
+        // Guest: Always filter out non-public (draft) songs
         displaySongs = displaySongs.filter(song => song.isPublic);
     }
 
@@ -178,7 +193,7 @@ export default function SongsPageContent() {
                                     <div className="relative">
                                         <select
                                             value={sortBy}
-                                            onChange={(e) => setSortBy(e.target.value as SortByType)}
+                                            onChange={(e) => updateQuery({ sort: e.target.value })}
                                             className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-gray-300 outline-none focus:border-gray-700 appearance-none pr-8 cursor-pointer"
                                         >
                                             <option value="newest">Newest First</option>
@@ -192,22 +207,22 @@ export default function SongsPageContent() {
                                 {user && (
                                     <div className="bg-gray-900/80 p-1 rounded-xl border border-gray-800 inline-flex shadow-inner">
                                         <button
-                                            onClick={() => setActiveFilter('all')}
+                                            onClick={() => updateQuery({ status: 'all' })}
                                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'all' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
                                             All
                                         </button>
                                         <button
-                                            onClick={() => setActiveFilter('public')}
+                                            onClick={() => updateQuery({ status: 'public' })}
                                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'public' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
                                             Public
                                         </button>
                                         <button
-                                            onClick={() => setActiveFilter('private')}
-                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'private' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
+                                            onClick={() => updateQuery({ status: 'draft' })}
+                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'draft' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
                                         >
-                                            Private
+                                            Draft
                                         </button>
                                     </div>
                                 )}
@@ -217,7 +232,7 @@ export default function SongsPageContent() {
                                 {/* View Toggles */}
                                 <div className="flex items-center gap-2">
                                     <button
-                                        onClick={() => setShowOnlyChords(!showOnlyChords)}
+                                        onClick={() => updateQuery({ chords: !showOnlyChords ? 'true' : null })}
                                         className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${showOnlyChords
                                             ? 'border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20'
                                             : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700'
@@ -226,7 +241,7 @@ export default function SongsPageContent() {
                                         <Guitar className="w-3.5 h-3.5" /> Chords
                                     </button>
                                     <button
-                                        onClick={() => setShowOnlyMelody(!showOnlyMelody)}
+                                        onClick={() => updateQuery({ melody: !showOnlyMelody ? 'true' : null })}
                                         className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${showOnlyMelody
                                             ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500 shadow-sm shadow-emerald-900/20'
                                             : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700'
