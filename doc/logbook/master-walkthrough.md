@@ -957,3 +957,79 @@ The following hover states confirm the functionality of the new links:
 <!-- slide -->
 ![Category Detail Song Cards Interactivity](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen8_category_hover_1769909478623.png)
 ````
+
+## 10. Sidebar Refinement & Library Hub (Feb 1, 2026)
+**Timeline:** Feb 1, 2026
+**Goal:** Standardize administrative navigation and centralized content management.
+
+-   **Navigation Refinement**:
+    -   Implemented a standardized 5-item sidebar: Dashboard, Explore, Library, Playlist, Add Song.
+    -   Applied consistently across all core administrative mockups (Home, Detail, Explore).
+    -   Fixed navigation edge cases (e.g., close buttons returning to Dashboard).
+-   **Library Hub (`screen15`)**:
+    -   Created a sophisticated search and filter center.
+    -   Implemented advanced filters for Elements (Fire, Water, etc.) and Origins.
+    -   Added view toggles (Chords/Melody) and visibility filters (Public/Private).
+-   **Playlist Management (`screen16`)**:
+    -   Developed a dedicated screen for managing ceremonial sets and favorites.
+    -   Structured the UI for quick creation and management of list-based metadata.
+
+### Visual Evolution
+
+````carousel
+![Library Screen](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/library_screen_1769910328988.png)
+New Library hub with advanced filtering.
+<!-- slide -->
+![Playlists Screen](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/playlists_screen_1769910378327.png)
+Dedicated Playlists management mockup.
+<!-- slide -->
+![Navigation Recording](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/sidebar_nav_verification_1769910246957.webp)
+Full navigation walkthrough.
+````
+
+## 11. Unified Library Hub (Feb 1, 2026)
+**Timeline:** Feb 1, 2026
+**Goal:** Merge category detail views into the central Library Hub for a more powerful browsing experience.
+
+-   **Consolidated Navigation**: Redirected all category links from the Explore screen (`screen7`) to the enhanced Library Hub (`screen15`).
+-   **Enhanced Filtering**:
+    -   Added a "Categories" section to the Library sidebar.
+    -   Implemented active filter pills in the header to show Element and Category selections.
+-   **Full Replacement**: Formally deprecated the standalone Category Detail screen (`screen8`), simplifying the application's design architecture.
+
+![Unified Library Verification](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/unified_library_verification_1769911089410.webp)
+*Recording showing category navigation landing in the enhanced Library Hub.*
+
+## Session Update (Feb 1, 2026 - Category Library & Navigation)
+
+# Walkthrough - Category Library and Navigation
+
+I have implemented the `screen17_category_library.html` and refined the navigation from `screen7_explore_categories.html` to provide a seamless category browsing experience.
+
+## Changes Made
+
+### Category Library Screen (`screen17_category_library.html`)
+- **Duplication & Customization**: Created `screen17` as a specialized version of the main `screen15_library.html`.
+- **Sidebar Highlighting**: Implemented logic to highlight the active category in the sidebar (e.g., "The Elements") while de-highlighting the main "Library" link.
+- **Active Filtering**: Added a persistent "Category: The Elements" filter pill in the content area to reinforce context.
+- **Content Population**: Populated the grid with 15 mock songs relevant to "The Elements" (Water, Fire, Air, Earth tags).
+
+### Explore Categories Screen (`screen7_explore_categories.html`)
+- **Card Interactivity**: Updated all 6 category cards to be fully clickable, linking to `screen17_category_library.html`.
+- **Layering Fixes**: Applied `relative z-10` to sub-category tag containers to ensure they remain independently clickable within the parent card link.
+- **Visual Feedback**: Added `relative` positioning to card containers (`glass-panel`) to anchor the absolute positioning of the main link overlay.
+
+## Verification
+- **Navigation**: Confirmed that clicking any category card navigates to the category library.
+- **Sub-navigation**: Confirmed that clicking specific tags (e.g., "Water") still works independently.
+- **Context**: Verified that the destination screen (`screen17`) correctly reflects the selected category in both the sidebar and main content area.
+
+## Session Update (Feb 1, 2026 - Visual Polish)
+
+### Typography Refinement
+- **JetBrains Mono**: Integrated this premium monospace font into the **Song Detail** screen (`screen2`).
+- **Lyric/Chord Alignment**: Appplied the font to both chord lines and lyric lines. This ensures character widths are consistent, which is crucial for musicians reading chords positioned relatively to lyrics.
+
+### Category Filtering Logic
+- **"Match Any" Indicator**: In the **Category Library** (`screen17`), I added a clearer visual cue to the sidebar. The category header now displays a "Match Any" badge.
+- **UX Intent**: This distinguishes the broad category selection (which shows songs with *any* of the contained tags: Fire OR Water OR Earth) from specific tag filtering (which typically implies an AND or strict selection).

@@ -568,3 +568,51 @@
     - [x] Update `screen7_explore_categories.html` tags <!-- id: 18 -->
     - [x] Update `screen1_home.html` song cards <!-- id: 19 -->
     - [x] Update `screen8_category_detail.html` song cards <!-- id: 20 -->
+# Task: Refine Sidebar and Create Library/Playlist Screens (Feb 1, 2026)
+
+- [x] Planning & UI Audit <!-- id: 0 -->
+    - [x] Analyze new menu requirements <!-- id: 1 -->
+    - [x] Analyze "Library" screenshot <!-- id: 2 -->
+    - [x] Create implementation plan <!-- id: 3 -->
+- [x] Sidebar Menu Standardization <!-- id: 4 -->
+    - [x] Update `screen1_home.html` <!-- id: 5 -->
+    - [x] Update `screen2_song_detail.html` <!-- id: 6 -->
+    - [x] Update `screen7_explore_categories.html` <!-- id: 7 -->
+    - [x] Update `screen8_category_detail.html` <!-- id: 8 -->
+    - [x] Update `actions/screen4_song_add.html` <!-- id: 9 -->
+    - [x] Update auth and error screens (Minimalist - no sidebar needed) <!-- id: 10 -->
+- [x] New Screen Implementation <!-- id: 11 -->
+    - [x] Create `screen15_library.html` (Merge of screenshot + screen8) <!-- id: 12 -->
+    - [x] Create `screen16_playlists.html` <!-- id: 13 -->
+- [x] Final Interlinking and Verification <!-- id: 14 -->
+    - [x] Verify all sidebar links <!-- id: 15 -->
+    - [x] Sync artifacts and walkthrough <!-- id: 16 -->
+
+- [x] Enhance Library Hub (Replace Screen 8) <!-- id: 17 -->
+    - [x] Audit Screen 8 and Screen 15 differences <!-- id: 18 -->
+    - [x] Update Library Hub (`screen15_library.html`) with category filters <!-- id: 19 -->
+    - [x] Update Explore Category (`screen7_explore_categories.html`) links <!-- id: 20 -->
+    - [x] Deprecate/Update references to `screen8_category_detail.html` <!-- id: 21 -->
+
+# Task: Category Navigation & Library Refinement
+
+- [x] Create `screen17_category_library.html` (Duplicate of Screen 15)
+- [x] Implement Active Sidebar State for Categories
+- [x] Implement Active Filter Pills for Categories
+- [x] Populate Screen 17 with category-specific mock songs
+- [x] Update `screen7_explore_categories.html`:
+    - [x] Make entire category cards clickable
+    - [x] Ensure sub-tags remain interactive (z-index fix)
+    - [x] Link cards to `screen17_category_library.html`
+- [x] Perform final artifact sync
+
+# Task: Visual Polish & Mechanics (Feb 1, 2026)
+
+- [x] **Song Detail Typography**:
+    - [x] Import "JetBrains Mono" from Google Fonts.
+    - [x] Apply fixed-width font to both Chords and Lyrics in `screen2_song_detail.html`.
+    - [x] Ensure distinct `.font-lyrics` class usage.
+- [x] **Category Logic Visuals**:
+    - [x] Reset hardcoded highlighting in `screen17_category_library.html`.
+    - [x] Implement "Match Any" badge in the sidebar header to explain OR logic.
+- [x] **Artifact Sync**: Update logbooks and commit.
