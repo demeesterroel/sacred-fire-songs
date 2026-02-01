@@ -662,3 +662,14 @@
     - [x] Create GitHub Issue #50 for guest access fix.
     - [x] Update Epic & User Stories documentation.
 - [x] **Final Sync**: Reconciled migration history manually via CLI.
+
+- [x] **Session Feb 2, 2026 - Filters & Rebranding**
+    - [x] **Rebranding: "Private" to "Draft"**
+        - [x] Update `SongsPageContent.tsx` tabs and types.
+        - [x] Update `SongCard.tsx` badge.
+        - [x] Update `SongForm.tsx` action button.
+        - [x] Update `user-guide.md` (v2.1).
+    - [x] **Logic: Combinable URL Filters**
+        - [x] Synchronize filter state with `useSearchParams`.
+        - [x] Update `updateQuery` helper for URL persistence.
+        - [x] Verify filter mixing (Category + Chords + Status).

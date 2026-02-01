@@ -1,8 +1,8 @@
 # User Guide: Sacred Fire Songs
 
-**Version:** 2.0
+**Version:** 2.1
 **Status:** Published
-**Date:** January 30, 2026
+**Date:** February 2, 2026
 
 ## Changelog
 
@@ -13,6 +13,7 @@
 | **1.2** | Jan 10, 2026 | Moved "Adding New Songs" to Member section. |
 | **1.3** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 | **2.0** | Jan 30, 2026 | Major update: Magic Link auth, .cho/.txt imports, Public/Private songs, and Advanced Filters. |
+| **2.1** | Feb 02, 2026 | Rebranded "Private" songs to "Draft" and added advanced filter combinability. |
 
 Welcome to **Sacred Fire Songs**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
 
