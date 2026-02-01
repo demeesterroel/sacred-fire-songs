@@ -725,3 +725,25 @@ I have created a high-fidelity mockup for the new **Explore by Category** page, 
 ## Repository State
 - **Issue**: [#44](https://github.com/demeesterroel/sacred-fire-songs/issues/44)
 - **Status**: Design Complete.
+
+## Session Feb 1, 2026 (Part 2 - 404 Design)
+
+# Walkthrough - 404 Error Screen Design
+
+I have implemented a high-fidelity mockup for the **404 Not Found** page, mirroring the mystical and flame-inspired aesthetic of the "Access Denied" screen.
+
+## Design Highlights
+- **Mystical Aesthetic**: Dark theme with ambient glow, smoky overlays, and animated embers.
+- **Iconography**: Glowing compass icon representing a lost path.
+- **Copy**: Poetic and atmospheric messaging: *"The Path has Vanished into the Smoke. The song you seek has not yet been kindled, or the wind has carried it away."*
+- **Call to Action**: Clear "Return to the Hearth" button linking back to the home dashboard.
+
+## Visual Verification
+
+![404 Error Screen](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/screen9_404_not_found_view_1769906797648.png)
+
+## Files Created
+- **[[screen9_404_not_found.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/error/screen9_404_not_found.html)]**: Premium 404 error page mockup.
+
+## Repository State
+- **Status**: Implementation Ready.
