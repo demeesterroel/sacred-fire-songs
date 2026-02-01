@@ -1,6 +1,6 @@
 # Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.18
+**Version:** 1.19
 **Status:** Living Document
 **Date:** February 1, 2026
 
@@ -9,10 +9,9 @@
 | Version | Date | Description of Changes | 
 | ----- | ----- | ----- | 
 | **1.0** | Oct 26, 2023 | Initial Document Creation. Defined User Personas, Core Requirements, Domain Model, and Tech Stack. | 
-| **...** | ... | (Previous versions 1.1 - 1.15 retained in history) |
-| **1.16** | Jan 11, 2026 | Implemented Edit Song, Access Denied, Mock Auth & Logout. Updated Screen Inventory. |
-| **1.17** | Jan 17, 2026 | Updated "Add Song" definition to include Metadata (Language, Tags, Links). Added `spotify_url` to schema definition. |
+| **...** | ... | (Previous versions 1.1 - 1.17 retained in history) |
 | **1.18** | Feb 1, 2026 | Standardized navigation layout across all administrative screens. Renamed "Settings" to "Playlists". Refined inter-linking between Home, Explore, and Detail screens. |
+| **1.19** | Feb 1, 2026 | Refined sidebar navigation (Dashboard, Explore, Library, Playlist, Add Song). Implemented new Library hub (screen15) and Playlists management (screen16) mockups. |
 
 ## 1. Introduction
 
@@ -139,6 +138,14 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 * **Status:** Mockup Updated (`doc/design/screens/screen7_explore_categories.html`).
 * **Features:** Grid of categories and subcategories, inter-linking to Screen 8.
 
-### 7.8 Screen 8: Category Detail (Results)
-* **Status:** Mockup Updated (`doc/design/screens/screen8_category_detail.html`).
-* **Features:** Filtered song list with search and breadcrumbs linking back to Screen 7.
+### 7.8 Screen 8: Category Detail (Results) [DEPRECATED]
+* **Status:** Deprecated (Merged into Screen 15).
+* **Notes:** Replaced by the enhanced Library Hub (`doc/design/screens/screen15_library.html`) which now supports full category filtering.
+
+### 7.9 Screen 15: Library
+* **Status:** Mockup Updated (`doc/design/screens/screen15_library.html`).
+* **Features:** Unified search and filtering hub. Supports elements, origins, and categories. Includes active filter pills and results count.
+
+### 7.10 Screen 16: Playlists
+* **Status:** Mockup Created (`doc/design/screens/screen16_playlists.html`).
+* **Features:** Playlist management with creation and list view of ceremonial sets.
