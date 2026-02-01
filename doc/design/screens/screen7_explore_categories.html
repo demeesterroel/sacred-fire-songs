@@ -1,5 +1,5 @@
 <!--
-**Version:** 1.1
+**Version:** 1.3
 **Status:** Draft
 **Date:** February 1, 2026
 
@@ -9,6 +9,8 @@
 | ----- | ----- | ----- |
 | **1.0** | Feb 1, 2026 | Initial Mockup Creation for Explore by Category Screen. |
 | **1.1** | Feb 1, 2026 | Converted category tags to active links pointing to Screen 8 and aligned navigation layout. |
+| **1.2** | Feb 1, 2026 | Refined sidebar navigation (Dashboard, Explore, Library, Playlist, Add Song). |
+| **1.3** | Feb 1, 2026 | Redirected category links to unified Library Hub (Screen 15). |
 -->
 
 <!DOCTYPE html>
@@ -87,27 +89,28 @@
             <nav class="space-y-1 mb-8">
                 <a href="screen1_home.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                     Dashboard
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
+                <a href="screen7_explore_categories.html"
+                    class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
                     <i data-lucide="compass" class="w-5 h-5 text-red-500"></i>
                     Explore
                 </a>
-                <a href="#"
+                <a href="screen15_library.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                    <i data-lucide="music" class="w-5 h-5"></i>
+                    <i data-lucide="library" class="w-5 h-5"></i>
                     Library
                 </a>
-                <a href="screen4_song_add.html"
+                <a href="screen16_playlists.html"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="list-music" class="w-5 h-5"></i>
+                    Playlist
+                </a>
+                <a href="actions/screen4_song_add.html"
                     class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
                     <i data-lucide="plus-circle" class="w-5 h-5"></i>
                     Add Song
-                </a>
-                <a href="#"
-                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
-                    <i data-lucide="list-music" class="w-5 h-5"></i>
-                    Playlists
                 </a>
             </nav>
         </div>
@@ -123,35 +126,36 @@
 
         <!-- Header Area (Now contains Logo and Name) -->
         <div
-            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-4 flex justify-between items-center transition-all">
-            <div class="flex items-center gap-6">
-                <button onclick="window.history.back()" class="p-2 text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                </button>
+            class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-6 hidden md:block transition-all">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-6">
 
-                <!-- Logo and Site Name (Moved from Sidebar) -->
-                <a href="screen1_home.html" class="flex items-center gap-4 border-l border-gray-800/50 pl-6 group">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h1
-                            class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-400 transition-colors">
-                            Sacred Fire Songs</h1>
-                        <span class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Explore
-                            Categories</span>
-                    </div>
-                </a>
-            </div>
 
-            <div class="relative w-72 hidden lg:block">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
+                    <!-- Standardized Header Logo Component -->
+                    <a href="screen1_home.html" class="flex items-center gap-4 group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <h1
+                                class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-500 transition-colors">
+                                Sacred Fire Songs</h1>
+                            <span
+                                class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Explore
+                                Categories</span>
+                        </div>
+                    </a>
                 </div>
-                <input type="text"
-                    class="block w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 focus:border-red-500/50 transition-all text-sm"
-                    placeholder="Find a category...">
+
+                <div class="relative w-72 hidden lg:block">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="text-gray-500 w-4 h-4"></i>
+                    </div>
+                    <input type="text"
+                        class="block w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 focus:border-red-500/50 transition-all text-sm"
+                        placeholder="Find a category...">
+                </div>
             </div>
         </div>
 
@@ -163,7 +167,7 @@
                 <!-- 1. The Elements -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-blue-500/40 transition-all h-full shadow-2xl shadow-blue-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-blue-500/40 transition-all h-full shadow-2xl shadow-blue-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 transition-transform duration-300">
@@ -171,22 +175,26 @@
                             </div>
                             <span class="text-3xl">🌀</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">The
-                            Elements</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs honoring the core forces of
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                The
+                                Elements</h3>
+                        </a>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed relative z-0">Songs honoring the core
+                            forces of
                             existence.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">💧
                                 Water</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-slate-500/10 text-slate-300 text-xs font-medium border border-slate-500/20 hover:bg-slate-500/20 transition-all">🌬️
                                 Air</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🔥
                                 Fire</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🌎
                                 Earth</a>
                         </div>
@@ -196,7 +204,7 @@
                 <!-- 2. Nature -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-green-500/40 transition-all h-full shadow-2xl shadow-green-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-green-500/40 transition-all h-full shadow-2xl shadow-green-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 transition-transform duration-300">
@@ -204,31 +212,33 @@
                             </div>
                             <span class="text-3xl">🌿</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
-                            Nature</h3>
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
+                                Nature</h3>
+                        </a>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Connecting with the flora, fauna, and
                             celestial cycles.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20 transition-all">🐾
                                 Animales</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20 transition-all">🦅
                                 Bird</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">🍃
                                 Plantas</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">🌙
                                 Moon</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20 transition-all">☀️
                                 Sun</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50 transition-all">🏔️
                                 Mountain</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30 transition-all">🌳
                                 Selva</a>
                         </div>
@@ -238,7 +248,7 @@
                 <!-- 3. Languages -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-purple-500/40 transition-all h-full shadow-2xl shadow-purple-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-purple-500/40 transition-all h-full shadow-2xl shadow-purple-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 transition-transform duration-300">
@@ -246,28 +256,30 @@
                             </div>
                             <span class="text-3xl">🗣️</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
-                            Languages</h3>
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                                Languages</h3>
+                        </a>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs from diverse linguistic and native
                             traditions.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🇪🇸
                                 Spanish</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">🇬🇧
                                 English</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20 hover:bg-amber-600/20 transition-all">🏔️
                                 Quechua</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">🇧🇷
                                 Portuguese</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20 hover:bg-orange-600/20 transition-all">🏹
                                 Nahuatl</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">🐍
                                 Huni Kuin</a>
                         </div>
@@ -277,7 +289,7 @@
                 <!-- 4. Lineage & Tradition -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-amber-500/40 transition-all h-full shadow-2xl shadow-amber-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-amber-500/40 transition-all h-full shadow-2xl shadow-amber-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 transition-transform duration-300">
@@ -285,25 +297,27 @@
                             </div>
                             <span class="text-3xl">🌳</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
-                            Lineage & Tradition</h3>
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+                                Lineage & Tradition</h3>
+                        </a>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ancestral wisdom and specialized spiritual
                             lineages.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30 hover:bg-red-700/40 transition-all">🧣
                                 Andean</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30 hover:bg-green-800/40 transition-all">🏹
                                 Amazonian</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30 hover:bg-amber-700/40 transition-all">🪶
                                 Native American</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30 hover:bg-blue-800/40 transition-all">🌟
                                 Santo Daime</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700 hover:bg-gray-700 transition-all">📜
                                 Traditional</a>
                         </div>
@@ -313,7 +327,7 @@
                 <!-- 5. Medicine & Healing -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-red-500/40 transition-all h-full shadow-2xl shadow-red-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-red-500/40 transition-all h-full shadow-2xl shadow-red-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 transition-transform duration-300">
@@ -321,25 +335,27 @@
                             </div>
                             <span class="text-3xl">🦅</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
-                            Medicine & Healing</h3>
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
+                                Medicine & Healing</h3>
+                        </a>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ritual songs for cleansing, protection,
                             and transformation.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">🧪
                                 Medicine Songs</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">🎶
                                 Icaros</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">🌿
                                 Healing</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700 hover:bg-slate-700 transition-all">🛡️
                                 Protection</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50 hover:bg-red-800/40 transition-all">🔑
                                 Opening/Closing</a>
                         </div>
@@ -349,7 +365,7 @@
                 <!-- 6. Spiritual Concepts -->
                 <div class="category-card group flex flex-col">
                     <div
-                        class="glass-panel p-6 rounded-3xl border border-gray-800/50 hover:border-yellow-500/40 transition-all h-full shadow-2xl shadow-yellow-900/10">
+                        class="glass-panel relative p-6 rounded-3xl border border-gray-800/50 hover:border-yellow-500/40 transition-all h-full shadow-2xl shadow-yellow-900/10">
                         <div class="flex items-start justify-between mb-6">
                             <div
                                 class="category-icon w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 transition-transform duration-300">
@@ -357,25 +373,27 @@
                             </div>
                             <span class="text-3xl">✨</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
-                            Spiritual Concepts</h3>
+                        <a href="screen17_category_library.html" class="before:absolute before:inset-0 z-0">
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                                Spiritual Concepts</h3>
+                        </a>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Songs centered on profound themes of the
                             soul.</p>
 
-                        <div class="flex flex-wrap gap-2">
-                            <a href="screen8_category_detail.html"
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🙏
                                 Gratitude</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20 hover:bg-pink-500/20 transition-all">💖
                                 Love</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20 hover:bg-yellow-600/20 transition-all">🕯️
                                 Plegarias</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20 hover:bg-sky-500/20 transition-all">🗣️
                                 Vocalization</a>
-                            <a href="screen8_category_detail.html"
+                            <a href="screen15_library.html"
                                 class="px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20 hover:bg-purple-500/20 transition-all">♀️
                                 Women</a>
                         </div>

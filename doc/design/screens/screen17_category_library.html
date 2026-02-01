@@ -1,0 +1,821 @@
+<!-- Screen 17: Category Library (Duplicate of Screen 15 for specific category filtering) 
+     Version: 1.0
+     Based on: Screen 15 v1.1
+     Changelog:
+     1.0: Initial creation as duplicate of Screen 15.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Library - Sacred Fire Songs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .song-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .song-card:hover {
+      transform: translateY(-4px);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+
+<body class="text-gray-100 font-sans min-h-screen bg-gray-950 flex flex-col md:flex-row">
+
+  <!-- Mobile Header -->
+  <header
+    class="md:hidden flex justify-between items-center px-5 py-4 sticky top-0 bg-gray-900/95 backdrop-blur-sm z-30 border-b border-gray-800/50">
+    <div class="flex items-center gap-3">
+      <div
+        class="w-9 h-9 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10">
+        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+      </div>
+      <h1 class="font-bold text-xl tracking-tight text-white">Sacred Fire Songs</h1>
+    </div>
+    <button class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </header>
+
+  <!-- Sidebar (Desktop Navigation & Filters) -->
+  <aside
+    class="hidden md:flex flex-col w-64 bg-gray-900 border-r border-gray-800 sticky top-0 h-screen overflow-y-auto z-20 transition-all">
+
+    <!-- User Profile -->
+    <div class="p-4 border-b border-gray-800/50 bg-gray-800/30 mb-4">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner">
+          AG</div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[11px] font-bold text-white truncate">Admin Guest</p>
+          <p class="text-[9px] text-gray-500 truncate">admin@sacredfire.com</p>
+        </div>
+        <button title="Logout" class="group"><i data-lucide="log-out"
+            class="w-4 h-4 text-gray-600 group-hover:text-red-400 transition-colors"></i></button>
+      </div>
+    </div>
+
+    <div class="px-6 py-2">
+
+      <!-- Main Menu -->
+      <nav class="space-y-1 mb-8">
+        <a href="screen1_home.html"
+          class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+          <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          Dashboard
+        </a>
+        <a href="screen7_explore_categories.html"
+          class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+          <i data-lucide="compass" class="w-5 h-5"></i>
+          Explore
+        </a>
+        <a href="screen15_library.html"
+          class="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-lg text-white font-medium">
+          <i data-lucide="library" class="w-5 h-5 text-red-500"></i>
+          Library
+        </a>
+        <a href="screen16_playlists.html"
+          class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+          <i data-lucide="list-music" class="w-5 h-5"></i>
+          Playlist
+        </a>
+        <a href="actions/screen4_song_add.html"
+          class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+          <i data-lucide="plus-circle" class="w-5 h-5"></i>
+          Add Song
+        </a>
+      </nav>
+
+      <!-- Library Specific Filters -->
+      <div class="space-y-6 pt-6 border-t border-gray-800/50">
+
+        <!-- 1. The Elements -->
+        <div>
+          <a href="screen17_category_library.html" class="block">
+            <h3
+              class="flex items-center justify-between text-xs font-bold text-white bg-blue-500/20 rounded px-2 py-1.5 mb-3 shadow shadow-blue-500/10 border border-blue-500/20 uppercase tracking-wider group cursor-pointer hover:bg-blue-500/30 transition-colors">
+              <span>The Elements</span>
+              <span
+                class="text-[9px] font-normal normal-case bg-blue-500 text-white px-1.5 py-0.5 rounded ml-2 opacity-100 shadow-sm border border-blue-400">Match
+                Any</span>
+            </h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">Water</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-slate-500/10 text-slate-300 text-xs font-medium border border-slate-500/20 hover:bg-slate-500/20 transition-all">Air</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">Fire</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">Earth</a>
+          </div>
+        </div>
+
+        <!-- 2. Nature -->
+        <div>
+          <a href="screen17_category_library.html" class="block group">
+            <h3
+              class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2 group-hover:text-white transition-colors">
+              Nature</h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20 transition-all">Animales</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20 transition-all">Bird</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">Plantas</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">Moon</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20 transition-all">Sun</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50 transition-all">Mountain</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30 transition-all">Selva</a>
+          </div>
+        </div>
+
+        <!-- 3. Languages -->
+        <div>
+          <a href="screen17_category_library.html" class="block group">
+            <h3
+              class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2 group-hover:text-white transition-colors">
+              Languages</h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">Spanish</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">English</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20 hover:bg-amber-600/20 transition-all">Quechua</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">Portuguese</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20 hover:bg-orange-600/20 transition-all">Nahuatl</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">Huni
+              Kuin</a>
+          </div>
+        </div>
+
+        <!-- 4. Lineage & Tradition -->
+        <div>
+          <a href="screen17_category_library.html" class="block group">
+            <h3
+              class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2 group-hover:text-white transition-colors">
+              Lineage & Tradition</h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30 hover:bg-red-700/40 transition-all">Andean</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30 hover:bg-green-800/40 transition-all">Amazonian</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30 hover:bg-amber-700/40 transition-all">Native
+              American</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30 hover:bg-blue-800/40 transition-all">Santo
+              Daime</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700 hover:bg-gray-700 transition-all">Traditional</a>
+          </div>
+        </div>
+
+        <!-- 5. Medicine & Healing -->
+        <div>
+          <a href="screen17_category_library.html" class="block group">
+            <h3
+              class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2 group-hover:text-white transition-colors">
+              Medicine & Healing</h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">Medicine
+              Songs</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">Icaros</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">Healing</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700 hover:bg-slate-700 transition-all">Protection</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50 hover:bg-red-800/40 transition-all">Opening/Closing</a>
+          </div>
+        </div>
+
+        <!-- 6. Spiritual Concepts -->
+        <div>
+          <a href="screen17_category_library.html" class="block group">
+            <h3
+              class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2 group-hover:text-white transition-colors">
+              Spiritual Concepts</h3>
+          </a>
+          <div class="flex flex-wrap gap-2 px-2">
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">Gratitude</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20 hover:bg-pink-500/20 transition-all">Love</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20 hover:bg-yellow-600/20 transition-all">Plegarias</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20 hover:bg-sky-500/20 transition-all">Vocalization</a>
+            <a href="screen15_library.html"
+              class="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20 hover:bg-purple-500/20 transition-all">Women</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mt-auto p-4 border-t border-gray-800/30 opacity-20">
+      <p class="text-[9px] text-center font-mono uppercase tracking-[0.2em]">Sacred Fire v1.0</p>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 min-w-0 overflow-y-auto">
+    <!-- Sticky Header with Search and Advanced Sort -->
+    <div class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-8 py-6">
+      <div class="max-w-7xl mx-auto space-y-6">
+        <!-- Top Row: Logo & Search -->
+        <div class="flex items-center justify-between gap-8">
+          <a href="screen1_home.html" class="flex items-center gap-4 group shrink-0">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
+              <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1
+                class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-500 transition-colors">
+                Sacred Fire Songs</h1>
+              <span class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Library</span>
+            </div>
+          </a>
+
+          <div class="flex-1 relative max-w-2xl">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
+            <input type="text" placeholder="Search 500+ medicine songs..."
+              class="w-full bg-gray-900/50 border border-gray-800 rounded-2xl py-3.5 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-all outline-none">
+          </div>
+
+          <div class="flex items-center gap-4">
+            <span class="hidden md:block text-xs text-gray-500 whitespace-nowrap">24 songs found</span>
+            <div class="flex items-center gap-3">
+              <button
+                class="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full transition-colors relative">
+                <i data-lucide="bell" class="w-5 h-5"></i>
+                <span class="absolute top-2 right-2 w-2 h-2 bg-red-600 rounded-full border border-gray-950"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 empty:hidden">
+          <div
+            class="flex items-center gap-1.5 px-2.5 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-blue-500/20">
+            <span>Category: The Elements</span>
+            <button class="hover:text-white"><i data-lucide="x" class="w-2.5 h-2.5"></i></button>
+          </div>
+          <button class="text-[9px] font-bold text-gray-600 hover:text-gray-400 uppercase tracking-widest ml-1">Clear
+            All</button>
+        </div>
+
+        <!-- Lower Row: Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+          <div class="flex items-center gap-6">
+            <!-- Sort Dropdown -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Sort:</span>
+              <div class="relative">
+                <select
+                  class="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-gray-300 outline-none focus:border-gray-700 appearance-none pr-8">
+                  <option>Newest First</option>
+                  <option>Title (A-Z)</option>
+                  <option>Last Played</option>
+                </select>
+                <i data-lucide="chevron-down"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"></i>
+              </div>
+            </div>
+
+            <!-- Visibility Tabs (All / Public / Private) -->
+            <div class="bg-gray-900/80 p-1 rounded-xl border border-gray-800 inline-flex shadow-inner">
+              <button
+                class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all bg-gray-800 text-white shadow-sm ring-1 ring-white/5">
+                All
+              </button>
+              <button class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300">
+                Public
+              </button>
+              <button class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-300">
+                Private
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <!-- View Toggles -->
+            <div class="flex items-center gap-2">
+              <button
+                class="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20 hover:bg-amber-500/20">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i> Chords
+              </button>
+              <button
+                class="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700">
+                <i data-lucide="mic-2" class="w-3.5 h-3.5"></i> Melody
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song Grid -->
+    <div class="p-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <!-- Song 1: Water + Plantas -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-blue-400 transition-colors truncate">
+                Agua de Estrellas</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Miguel Angel Rico</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Am</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 2: Water + Plantas -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-emerald-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-emerald-400 transition-colors truncate">
+                Ayahuasca Medicina</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Traditional</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Em</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 3: Water + Plantas + Healing -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-teal-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-teal-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-teal-400 transition-colors truncate">
+                Río de Luz</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Medicine Song</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-teal-900/20 text-teal-400 border border-teal-900/30">Healing</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>G</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 4: Water + Plantas (Danit) -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-purple-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-purple-400 transition-colors truncate">
+                Madre Selva</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Danit</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Am</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 5: Water + Plantas + Rain -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-indigo-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-indigo-400 transition-colors truncate">
+                Lluvia Que Cae</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Original</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-900/20 text-indigo-400 border border-indigo-900/30">Rain</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>C</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 6: Water + Plantas + Earth -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-amber-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-amber-400 transition-colors truncate">
+                Pachamama</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Traditional</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400 border border-emerald-900/30">Plantas</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-amber-900/20 text-amber-500 border border-amber-900/30">Earth</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Dm</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 7: Fire + Earth -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-red-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-red-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-red-400 transition-colors truncate">
+                Grandfather Fire</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Native Prayer</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-red-900/20 text-red-500 border border-red-900/30">Fire</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-amber-900/20 text-amber-500 border border-amber-900/30">Earth</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>E</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 8: Air + Water -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-slate-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-slate-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-slate-400 transition-colors truncate">
+                Viento del Sur</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Mirabai Ceiba</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-slate-500/10 text-slate-300 border border-slate-500/20">Air</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Dm</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 9: Earth + Water + Fire -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-amber-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-amber-400 transition-colors truncate">
+                Tierra Mi Cuerpo</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Chant</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-amber-900/20 text-amber-500 border border-amber-900/30">Earth</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-red-900/20 text-red-500 border border-red-900/30">Fire</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Am</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 10: Water + Moon -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-blue-400 transition-colors truncate">
+                Yemanja</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Deva Premal</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-900/20 text-indigo-400 border border-indigo-900/30">Moon</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>D</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 11: Fire + Medicine -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-red-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-red-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-red-400 transition-colors truncate">
+                Fuego Salvador</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Medicine</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-red-900/20 text-red-500 border border-red-900/30">Fire</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">Medicine</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Em</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 12: Air + Gratitude -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-slate-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-slate-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-slate-400 transition-colors truncate">
+                Breath of Life</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">English Hymn</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-slate-500/10 text-slate-300 border border-slate-500/20">Air</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">Gratitude</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>C</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 13: Earth + Love -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-amber-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-amber-400 transition-colors truncate">
+                Corazón de la Tierra</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Tradicional</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-amber-900/20 text-amber-500 border border-amber-900/30">Earth</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-500 border border-pink-500/20">Love</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>G</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 14: Water + Love -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-blue-400 transition-colors truncate">
+                Ocean of Love</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Snatam Kaur</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/20 text-blue-400 border border-blue-900/30">Water</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-500 border border-pink-500/20">Love</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>D</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Song 15: Fire + Protection -->
+        <a href="screen2_song_detail.html"
+          class="song-card bg-gray-900/40 p-5 rounded-2xl border border-gray-800 hover:border-red-500/30 hover:bg-gray-800/60 group relative overflow-hidden block">
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-red-500 rounded-l-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+          </div>
+          <div class="flex justify-between items-start">
+            <div class="flex-1 min-w-0">
+              <h3
+                class="text-base font-bold text-gray-100 leading-tight group-hover:text-red-400 transition-colors truncate">
+                Quema</h3>
+              <p class="text-xs text-gray-500 mt-1 truncate">Traditional</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-red-900/20 text-red-500 border border-red-900/30">Fire</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Protection</span>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-4 flex flex-col items-end gap-1">
+              <div class="text-amber-500 mb-1" title="Has Chords">
+                <i data-lucide="music" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-[10px] font-mono text-gray-400"><span
+                  class="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>Em</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
