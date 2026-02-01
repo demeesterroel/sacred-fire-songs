@@ -43,4 +43,5 @@
 | **Feb 1** | **Implementation**: Library Filter Design Refinement | ~2.0 Hours | ✅ Completed |
 | **Feb 1** | **UX**: Simplified Navigation (Fixed Sidebar, Mobile Drawer) | ~2.5 Hours | ✅ Completed |
 | **Feb 1** | **UX**: Breakpoint Alignment (Dashboard Sync) | ~1.5 Hours | ✅ Completed |
-| **Total** | **Development + AI Collaboration** | **~77.1 Hours** | |
+| **Feb 1** | **UI/Auth**: Song Detail Fix, Guest Access, & Prod Repair | ~3.5 Hours | ✅ Completed |
+| **Total** | **Development + AI Collaboration** | **~80.6 Hours** | |
