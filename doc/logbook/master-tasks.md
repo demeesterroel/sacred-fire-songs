@@ -472,3 +472,12 @@
 - [x] Implement category-specific header and active filter pills <!-- id: 7 -->
 - [x] Integrate SongCard grid for results <!-- id: 8 -->
 - [x] Run `/sync-artifacts` to update logbook <!-- id: 5 -->
+
+# Task: Design 404 Error Screen
+
+- [x] Research existing design system from `screen5_access_denied.html` <!-- id: 0 -->
+- [x] Create `screen9_404_not_found.html` with mystical 404 theme <!-- id: 1 -->
+- [x] Implement ambient glow and ember animations <!-- id: 2 -->
+- [x] Add "Path Lost" copy and navigation back to home <!-- id: 3 -->
+- [x] Verify visual consistency with the error screen set <!-- id: 4 -->
+- [x] Run `/sync-artifacts` to update logbook <!-- id: 5 -->
