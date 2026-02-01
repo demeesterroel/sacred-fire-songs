@@ -617,6 +617,8 @@
     - [x] Implement "Match Any" badge in the sidebar header to explain OR logic.
 - [x] **Artifact Sync**: Update logbooks and commit.
 # Session Feb 1, 2026 (Sidebar & Library Implementation)
+
+# Task: Align Mobile and Desktop design
 - [x] Adapt Sidebar Menu Structure
     - [x] Rename "Browse Songs" to "Library"
     - [x] Add "Explore", "Playlist", "Add Song" links
