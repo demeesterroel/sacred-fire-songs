@@ -1619,3 +1619,37 @@ ORDER BY random()
 LIMIT 2 ON CONFLICT (song_id, category_id) DO NOTHING;
 END LOOP;
 END $$;
+-- 4. Assign ownership and visibility to legacy songs (those without an owner_id)
+DO $$
+DECLARE
+    target_ids uuid[];
+    i INTEGER;
+    admin_id uuid := 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
+    musician_id uuid := 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12';
+    v_count INTEGER;
+BEGIN
+    -- Get all compositions without an owner
+    SELECT array_agg(id ORDER BY random()) INTO target_ids
+    FROM public.compositions
+    WHERE owner_id IS NULL;
+
+    v_count := array_length(target_ids, 1);
+
+    IF v_count > 0 THEN
+        FOR i IN 1..v_count LOOP
+            -- Make 15 of them private
+            IF i <= 15 THEN
+                UPDATE public.compositions SET is_public = false WHERE id = target_ids[i];
+            END IF;
+
+            -- Link 10 to admin, the rest to musician
+            IF i <= 10 THEN
+                UPDATE public.compositions SET owner_id = admin_id WHERE id = target_ids[i];
+                UPDATE public.song_versions SET contributor_id = admin_id WHERE composition_id = target_ids[i];
+            ELSE
+                UPDATE public.compositions SET owner_id = musician_id WHERE id = target_ids[i];
+                UPDATE public.song_versions SET contributor_id = musician_id WHERE composition_id = target_ids[i];
+            END IF;
+        END LOOP;
+    END IF;
+END $$;
