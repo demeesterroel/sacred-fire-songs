@@ -32,10 +32,6 @@ export default function Home() {
 
         {/* Header & Search */}
         <div className="space-y-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <h2 className="text-3xl font-bold text-white tracking-tight hidden md:block">Dashboard</h2>
-          </div>
-
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
 
@@ -100,6 +96,7 @@ export default function Home() {
                   isPublic={song.isPublic}
                   hasChords={song.hasChords}
                   hasMelody={song.hasMelody}
+                  categories={song.categories}
                 />
               ))
             ) : (
