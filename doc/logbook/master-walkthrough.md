@@ -1134,3 +1134,20 @@ Guests were previously redirected to the login page when accessing the "Explore"
 ### Production Sync Final Resolution
 - **Reconciliation**: The production migration history was manually repaired using `supabase migration repair --status applied` for versions `20260201135800` and `20260201191000`.
 - **Status**: Production is now 100% in sync with local migrations, as verified by `supabase migration list`.
+
+## 7. Filters & Rebranding (Feb 2, 2026)
+**Goal:** Implement combinable filters and rename "Private" to "Draft".
+
+- **"Draft" Rebranding**:
+    - Renamed "Private" tab to **"Draft"** in `SongsPageContent.tsx`.
+    - Added **"Draft"** badge to `SongCard.tsx`.
+    - Updated `SongForm.tsx` button to **"Save as Draft"**.
+    - Updated `user-guide.md` to version 2.1.
+- **Filter Combinability**:
+    - Refactored `SongsPageContent.tsx` state to use URL parameters (`searchParams`).
+    - Enabled mixing Category, Tag, Status (Draft/Public), Chords, and Melody filters.
+    - Verified URL persistency on page refresh.
+
+### Verification Results
+![Filter Combination](file:///home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/initial_songs_page_1769988846446.png)
+![Verification Recording](file:///home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/verify_filters_and_rebrand_1769988833413.webp)

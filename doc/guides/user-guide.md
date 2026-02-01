@@ -1,8 +1,8 @@
 # User Guide: Sacred Fire Songs
 
-**Version:** 2.0
+**Version:** 2.1
 **Status:** Published
-**Date:** January 30, 2026
+**Date:** February 2, 2026
 
 ## Changelog
 
@@ -13,6 +13,7 @@
 | **1.2** | Jan 10, 2026 | Moved "Adding New Songs" to Member section. |
 | **1.3** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 | **2.0** | Jan 30, 2026 | Major update: Magic Link auth, .cho/.txt imports, Public/Private songs, and Advanced Filters. |
+| **2.1** | Feb 02, 2026 | Rebranded "Private" songs to "Draft" and added advanced filter combinability. |
 
 Welcome to **Sacred Fire Songs**, a digital songbook designed for ceremonial musicians. This guide covers how to browse, learn, and manage medicine songs using our platform.
 
@@ -31,7 +32,7 @@ If you prefer, you can also sign up or log in using a tradition **Email & Passwo
 
 ### 1.3 User Roles
 - **Guest**: Can browse and view all **Public** songs.
-- **Member**: Can add their own songs, save songs as **Private**, and edit/delete songs they own.
+- **Member**: Can add their own songs, save songs as **Draft**, and edit/delete songs they own.
 - **Admin**: Full access to manage all songs, users, and categories.
 
 ---
@@ -47,7 +48,7 @@ The **Library** page allows you to find songs quickly:
 Use the filter tabs at the top to narrow down your selection:
 - **🎸 Chords**: Show only songs that include musical chords.
 - **🎵 Melody**: Show only songs that have a melody/audio reference.
-- **🔒 Private**: (Members only) View your personal drafts and unpublish songs.
+- **🔒 Draft**: (Members only) View your personal drafts and unpublish songs.
 
 ### 2.3 Song Detail View
 Click any song to view its lyrics and musical data:
@@ -64,10 +65,10 @@ Click **"Add Song"** in the sidebar to contribute to the library:
 - **Smart Import**: Drag and drop a `.cho` (ChordPro) or `.txt` file. The system will automatically detect the **Title**, **Author**, **Key**, and **Capo**.
 - **Manual Formatting**: Use standard brackets like `[Am]` for chords. The system will automatically align them above the lyrics for you.
 
-### 3.2 Public vs Private
+### 3.2 Public vs Draft
 When saving a song, you have two choices:
 1. **Publish Song**: Makes the song visible to everyone in the community.
-2. **Save as Private**: Keeps the song hidden from others. Only you (and Admins) can see it in your "Private" filter.
+2. **Save as Draft**: Keeps the song hidden from others. Only you (and Admins) can see it in your "Draft" filter.
 
 ### 3.3 Editing & Deleting
 If you own a song (or are an Admin), you will see icons at the top of the detail page:

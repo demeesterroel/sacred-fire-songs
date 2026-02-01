@@ -75,7 +75,9 @@ export default function SongCard({
                                 {title}
                             </h3>
                             {!isPublic && (
-                                <Lock className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                                <span className="text-[9px] font-black bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded border border-gray-700 uppercase tracking-tighter shrink-0">
+                                    Draft
+                                </span>
                             )}
                         </div>
                         <p className="text-xs text-gray-500 truncate mb-3">

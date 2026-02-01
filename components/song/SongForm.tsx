@@ -565,7 +565,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                             Saving...
                         </>
                     ) : (
-                        'Save as Private'
+                        'Save as Draft'
                     )}
                 </button>
                 <button
