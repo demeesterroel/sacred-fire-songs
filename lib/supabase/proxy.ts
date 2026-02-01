@@ -51,10 +51,12 @@ export async function updateSession(request: NextRequest) {
     if (
         !user &&
         !request.nextUrl.pathname.startsWith("/notes") &&
-        !request.nextUrl.pathname.startsWith("/songs")
+        !request.nextUrl.pathname.startsWith("/songs") &&
+        !request.nextUrl.pathname.startsWith("/explore") &&
+        !request.nextUrl.pathname.startsWith("/playlists")
     ) {
         // This part is for any other protected routes that might be added later
-        // Currently, /notes and /songs are handled in their own logic or allowed
+        // Currently allowed for guests: /, /auth, /login, /notes, /songs, /explore, /playlists
         // But let's keep a tight redirect for anything outside the allowed list
         const url = request.nextUrl.clone();
         url.pathname = "/auth/login";
