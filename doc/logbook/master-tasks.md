@@ -524,3 +524,16 @@
 - [x] Verification <!-- id: 31 -->
     - [x] Verify layout on widescreen and mobile <!-- id: 32 -->
     - [x] Sync walkthrough and logbook <!-- id: 33 -->
+
+# Task: Standardize Navigation Layout (Multi-Screen)
+
+- [x] Planning & UI Standardization <!-- id: 34 -->
+    - [x] Identify targets: Home, Explore Categories, Category Detail <!-- id: 35 -->
+    - [x] Update implementation plan for global layout consistency <!-- id: 36 -->
+- [x] Implement Structural Changes <!-- id: 37 -->
+    - [x] Update `screen1_home.html` <!-- id: 38 -->
+    - [x] Update `screen7_explore_categories.html` <!-- id: 39 -->
+    - [x] Update `screen8_category_detail.html` <!-- id: 40 -->
+- [x] Verification & Documentation <!-- id: 41 -->
+    - [x] Visually verify each updated screen <!-- id: 42 -->
+    - [x] Update walkthrough and sync logbooks <!-- id: 43 -->
