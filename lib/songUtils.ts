@@ -23,7 +23,7 @@ export interface Song {
 /**
  * Filters a list of songs by title, author, content, tags (AND), or categories (OR).
  */
-export function filterSongs(songs: Song[], query: string, activeFilter: 'all' | 'public' | 'private' = 'all', additionalFilters?: { tag?: string, category?: string }) {
+export function filterSongs(songs: Song[], query: string, activeFilter: 'all' | 'public' | 'draft' = 'all', additionalFilters?: { tag?: string, category?: string }) {
     const lowerQuery = query.toLowerCase();
 
     let filtered = songs.filter(song => {
