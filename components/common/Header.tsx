@@ -1,9 +1,10 @@
 'use client';
 
-import { Menu, Flame } from 'lucide-react';
+import { IndentIncrease, Flame } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/context/SidebarContext';
+import { UserProfile } from './navigation/UserProfile';
 
 export default function Header() {
     const pathname = usePathname();
@@ -28,9 +29,10 @@ export default function Header() {
                     {/* Menu Trigger */}
                     <button
                         onClick={() => setIsOpen(true)}
-                        className="lg:hidden text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-gray-800 shrink-0"
+                        className="lg:hidden flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group shrink-0 border border-transparent hover:border-gray-700"
                     >
-                        <Menu className="w-7 h-7" />
+                        <IndentIncrease className="w-7 h-7" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">Menu</span>
                     </button>
 
                     {/* Logo: Only on Mobile (Sidebar is hidden) */}
@@ -40,7 +42,7 @@ export default function Header() {
                         </div>
                     </Link>
 
-                    {/* Divider on Mobile */}
+                    {/* Divider on Mobile (Desktop sidebar is visible) */}
                     <div className="lg:hidden h-6 w-px bg-gray-800 mx-1 shrink-0" />
 
                     {/* Breadcrumb / Subtitle */}
@@ -54,7 +56,8 @@ export default function Header() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* Placeholder for potential right-side header items like Search or Action buttons */}
+                    {/* User Profile moved to Header */}
+                    <UserProfile layout="header" showText={true} />
                 </div>
             </div>
         </header>

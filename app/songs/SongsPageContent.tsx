@@ -2,12 +2,13 @@
 
 import SongCard from "@/components/home/SongCard";
 import SongCardSkeleton from "@/components/home/SongCardSkeleton";
-import { Music, Guitar, ChevronDown, Flame, Search, X } from "lucide-react";
+import { Music, Guitar, ChevronDown, Flame, Search, X, Plus } from "lucide-react";
 import { useState } from "react";
 import { filterSongs, fetchSongs } from "@/lib/songUtils";
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from "@/hooks/useAuth";
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getCategoryColor, getCategoryStyles } from "@/lib/uiUtils";
 
 type FilterType = 'all' | 'public' | 'private';
@@ -93,6 +94,16 @@ export default function SongsPageContent() {
                                 <span className="hidden md:block text-xs text-gray-500 whitespace-nowrap">
                                     {displaySongs.length} songs found
                                 </span>
+
+                                {user && (
+                                    <Link
+                                        href="/songs/add"
+                                        className="flex items-center gap-2 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold text-sm transition-all shadow-lg shadow-red-900/40 active:scale-95 whitespace-nowrap"
+                                    >
+                                        <Plus className="w-4 h-4 text-white" strokeWidth={3} />
+                                        Create Song
+                                    </Link>
+                                )}
                             </div>
                         </div>
 

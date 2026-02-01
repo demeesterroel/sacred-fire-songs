@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { Flame, PanelLeftClose } from 'lucide-react';
+import { Flame, IndentDecrease } from 'lucide-react';
 import DevTools from '@/components/dev/DevTools';
 import LibrarySidebar from '../library/LibrarySidebar';
 import { useEnvironment } from '@/hooks/useEnvironment';
@@ -53,16 +53,12 @@ export default function Sidebar() {
                     {/* Mobile Close Toggle - Positioned at Top Right of Sidebar */}
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                        className="lg:hidden flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group border border-transparent hover:border-gray-700"
                         title="Close Menu"
                     >
-                        <PanelLeftClose className="w-6 h-6" />
+                        <IndentDecrease className="w-6 h-6" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">Close</span>
                     </button>
-                </div>
-
-                {/* Profile Section */}
-                <div className="p-4 border-b border-gray-800/50 bg-gray-800/30">
-                    <UserProfile layout="sidebar" showText={true} />
                 </div>
 
                 {/* Navigation Links */}
@@ -92,9 +88,6 @@ export default function Sidebar() {
 
                 {/* Footer */}
                 <div className="p-4 border-t border-gray-800/30 bg-gray-950/20">
-                    <div className="hidden lg:block">
-                        <DevTools />
-                    </div>
                     <p className="text-[9px] text-center font-mono uppercase tracking-[0.2em] opacity-20 mt-2">
                         Sacred Fire v1.0
                     </p>

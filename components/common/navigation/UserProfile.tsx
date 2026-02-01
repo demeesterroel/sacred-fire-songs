@@ -1,47 +1,153 @@
-'use client';
-
-import { LogOut } from 'lucide-react';
+import { LogOut, ChevronDown, Settings, User, Heart, FileText, ListMusic, Sun, Moon, SlidersHorizontal } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import QuickLogin from '@/components/dev/QuickLogin';
 
 interface UserProfileProps {
   onLogout?: () => void;
-  layout?: 'sidebar' | 'mobile';
+  layout?: 'sidebar' | 'mobile' | 'header';
   showText?: boolean;
 }
 
-export const UserProfile = ({ onLogout, layout = 'sidebar', showText = true }: UserProfileProps) => {
+export const UserProfile = ({ onLogout, layout = 'header', showText = true }: UserProfileProps) => {
   const { user, logout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const handleLogout = () => {
-    logout();
-    onLogout?.();
-  };
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-  const isMobile = layout === 'mobile';
+  if (!user) {
+    return (
+      <Link
+        href="/auth/login"
+        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95"
+      >
+        Sign In
+      </Link>
+    );
+  }
+
+  const userDisplayName = user.full_name || user.email?.split('@')[0] || 'Member';
+  const userInitials = userDisplayName.substring(0, 1).toUpperCase();
+  const userRole = user.role.charAt(0).toUpperCase() + user.role.slice(1);
 
   return (
-    <div className={`flex items-center gap-3 ${isMobile ? '' : ''}`}>
-      <div className={`${isMobile ? 'w-10 h-10' : 'w-8 h-8'} rounded-full bg-red-900/40 flex items-center justify-center ${isMobile ? 'text-sm' : 'text-xs'} font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner`}>
-        {user ? (user.email?.charAt(0).toUpperCase() || '?') : '?'}
-      </div>
-      {showText && (
-        <div className="flex-1 min-w-0">
-          <p className={`${isMobile ? 'text-sm' : 'text-[11px]'} font-bold text-white truncate`}>
-            {user ? (user.email?.split('@')[0] || 'Member') : 'Guest'}
-          </p>
-          <p className={`${isMobile ? 'text-[10px]' : 'text-[9px]'} text-gray-500 truncate`} title={user?.id || ''}>
-            {user ? (user.email || 'Not Logged In') : 'Welcome, Guest'}
-          </p>
+    <div className="relative" ref={menuRef}>
+      {/* Trigger */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 bg-gray-800/40 p-1.5 pl-2.5 rounded-2xl border border-gray-700/50 hover:bg-gray-800/60 transition-all active:scale-95 group"
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner overflow-hidden shrink-0">
+            {user.avatar_url ? (
+              <img src={user.avatar_url} alt={userDisplayName} className="w-full h-full object-cover" />
+            ) : (
+              userInitials
+            )}
+          </div>
+          {showText && (
+            <span className="hidden sm:block text-xs font-bold text-gray-300 truncate max-w-[100px]">
+              {userDisplayName}
+            </span>
+          )}
         </div>
-      )}
-      {user && showText && (
-        <button
-          onClick={handleLogout}
-          title="Log Out"
-          className={`group ${isMobile ? 'p-2 bg-gray-800/50 rounded-lg' : ''}`}
-        >
-          <LogOut className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4'} text-gray-600 group-hover:text-red-400 transition-colors`} />
-        </button>
+        <ChevronDown className={`w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div className="absolute top-full right-0 mt-2 w-72 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in zoom-in duration-200 origin-top-right">
+          {/* Account Title */}
+          <div className="flex justify-between items-center px-4 py-3 border-b border-gray-800">
+            <span className="text-sm font-black text-white uppercase tracking-wider">Account</span>
+            <div className="flex items-center gap-1 opacity-50">
+              <Sun className="w-3.5 h-3.5" />
+              <div className="w-7 h-4 bg-gray-800 rounded-full relative">
+                <div className="absolute left-0.5 top-0.5 w-3 h-3 bg-gray-600 rounded-full" />
+              </div>
+              <Moon className="w-3.5 h-3.5" />
+            </div>
+          </div>
+
+          <div className="p-3">
+            {/* User Identity Card */}
+            <div className="relative group/card bg-gray-800/50 p-3 rounded-xl mb-3 border border-gray-700/30">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-red-900/40 flex items-center justify-center text-sm font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner">
+                  {user.avatar_url ? (
+                    <img src={user.avatar_url} alt={userDisplayName} className="w-full h-full object-cover" />
+                  ) : (
+                    userInitials
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-white truncate">{userDisplayName}</p>
+                  <p className="text-xs text-blue-400/80 font-medium">{userRole}</p>
+                </div>
+              </div>
+
+              {/* Hover Cogwheel */}
+              <Link
+                href="/account/settings"
+                className="absolute top-2 right-2 p-1.5 bg-gray-800/80 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 opacity-0 group-hover/card:opacity-100 transition-all border border-gray-700/50"
+              >
+                <Settings className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Menu Items */}
+            <div className="space-y-1">
+              <Link href="/account/settings" className="flex items-center gap-3 p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors group">
+                <SlidersHorizontal className="w-4 h-4 group-hover:text-blue-400" />
+                <span className="text-sm font-medium">Personal Settings</span>
+              </Link>
+              <Link href="/songs/favorites" className="flex items-center gap-3 p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors group">
+                <Heart className="w-4 h-4 group-hover:text-red-400" />
+                <span className="text-sm font-medium">My Favorites</span>
+              </Link>
+              <Link href="/songs?status=draft" className="flex items-center gap-3 p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors group">
+                <FileText className="w-4 h-4 group-hover:text-orange-400" />
+                <span className="text-sm font-medium">My Drafts</span>
+              </Link>
+              <Link href="/playlists" className="flex items-center gap-3 p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors group">
+                <ListMusic className="w-4 h-4 group-hover:text-purple-400" />
+                <span className="text-sm font-medium">My Playlists</span>
+              </Link>
+            </div>
+
+            <div className="h-px bg-gray-800 my-2" />
+
+            {/* Sign Out */}
+            <button
+              onClick={() => {
+                logout();
+                onLogout?.();
+              }}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-colors group"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="text-sm font-medium">Sign Out</span>
+            </button>
+
+            {/* Local Dev Info */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mt-4 pt-4 border-t border-gray-800/80">
+                <QuickLogin />
+              </div>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
