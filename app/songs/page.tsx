@@ -8,11 +8,16 @@ import { useState } from "react";
 import { filterSongs, fetchSongs } from "@/lib/songUtils";
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from "@/hooks/useAuth";
+import { useSearchParams } from 'next/navigation';
 
 type FilterType = 'all' | 'public' | 'private';
 type SortByType = 'title' | 'newest';
 
 export default function SongsPage() {
+    const searchParams = useSearchParams();
+    const activeCategory = searchParams.get('category') || undefined;
+    const activeTag = searchParams.get('tag') || undefined;
+
     const [searchQuery, setSearchQuery] = useState("");
     const [activeFilter, setActiveFilter] = useState<FilterType>('all');
     const [sortBy, setSortBy] = useState<SortByType>('title');
@@ -26,6 +31,8 @@ export default function SongsPage() {
         queryFn: () => fetchSongs(), // Fetch all songs
     });
 
+
+
     const handleSortClick = (newSortBy: SortByType) => {
         if (newSortBy === sortBy) {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -36,10 +43,13 @@ export default function SongsPage() {
         }
     };
 
-    // 1. Text Search Filter (includes Title, Author, and Content)
-    let displaySongs = filterSongs(songs, searchQuery);
+    // 1. Filter Songs (Search + Tags + Categories)
+    let displaySongs = filterSongs(songs, searchQuery, 'all', {
+        tag: activeTag,
+        category: activeCategory
+    });
 
-    // 2. Tab Filter
+    // 2. Tab Filter (Public/Private)
     if (user) {
         if (activeFilter === 'public') {
             displaySongs = displaySongs.filter(song => song.isPublic);
@@ -50,6 +60,7 @@ export default function SongsPage() {
         // Guest: Always filter out private songs
         displaySongs = displaySongs.filter(song => song.isPublic);
     }
+
 
     // 3. Chord & Melody Filters
     if (showOnlyChords) {
@@ -206,6 +217,7 @@ export default function SongsPage() {
                                     isPublic={song.isPublic}
                                     hasChords={song.hasChords}
                                     hasMelody={song.hasMelody}
+                                    categories={song.categories}
                                 />
                             ))
                         ) : (

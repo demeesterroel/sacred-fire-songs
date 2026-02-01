@@ -616,3 +616,19 @@
     - [x] Reset hardcoded highlighting in `screen17_category_library.html`.
     - [x] Implement "Match Any" badge in the sidebar header to explain OR logic.
 - [x] **Artifact Sync**: Update logbooks and commit.
+# Session Feb 1, 2026 (Sidebar & Library Implementation)
+- [x] Adapt Sidebar Menu Structure
+    - [x] Rename "Browse Songs" to "Library"
+    - [x] Add "Explore", "Playlist", "Add Song" links
+    - [x] Correct Icons (Compass, Library, ListMusic, PlusCircle)
+    - [x] Move User Profile to top (matching Design)
+- [x] Enhance Library Hub (`/songs`)
+    - [x] Implement Tag display in SongCards as colored pills
+    - [x] Ensure Dynamic Filters appear in sidebar
+    - [x] Pass category data to SongCard
+- [x] Implement Static Playlists Page (`/playlists`)
+    - [x] Create page with static placeholder data
+    - [x] Apply consistent Fire/Water/Heart icons logic
+- [x] Refine UI Styling
+    - [x] Centralize category styling in `lib/uiUtils.ts`
+    - [x] Update SongCard layout to match layout in Design

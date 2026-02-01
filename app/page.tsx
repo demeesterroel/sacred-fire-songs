@@ -100,6 +100,7 @@ export default function Home() {
                   isPublic={song.isPublic}
                   hasChords={song.hasChords}
                   hasMelody={song.hasMelody}
+                  categories={song.categories}
                 />
               ))
             ) : (

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Lock, Music, Guitar } from 'lucide-react';
+import { getCategoryColor, getCategoryStyles } from '@/lib/uiUtils';
 
 interface SongCardProps {
     id: string;
@@ -12,9 +13,23 @@ interface SongCardProps {
     isPublic?: boolean;
     hasChords?: boolean;
     hasMelody?: boolean;
+    categories?: {
+        name: string;
+        slug: string;
+    }[];
 }
 
-export default function SongCard({ id, title, author, songKey, accentColor = 'red', isPublic = true, hasChords = false, hasMelody = false }: SongCardProps) {
+export default function SongCard({
+    id,
+    title,
+    author,
+    songKey,
+    accentColor = 'red',
+    isPublic = true,
+    hasChords = false,
+    hasMelody = false,
+    categories = []
+}: SongCardProps) {
     // Mapping color name to Tailwind class
     const borderColors: Record<string, string> = {
         red: 'bg-red-500',
@@ -22,6 +37,10 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
         yellow: 'bg-yellow-500',
         blue: 'bg-blue-500',
         purple: 'bg-purple-500',
+        emerald: 'bg-emerald-500',
+        indigo: 'bg-indigo-500',
+        amber: 'bg-amber-500',
+        slate: 'bg-slate-500',
     };
 
     const textColors: Record<string, string> = {
@@ -30,60 +49,67 @@ export default function SongCard({ id, title, author, songKey, accentColor = 're
         yellow: 'group-hover:text-yellow-400',
         blue: 'group-hover:text-blue-400',
         purple: 'group-hover:text-purple-400',
+        emerald: 'group-hover:text-emerald-400',
+        indigo: 'group-hover:text-indigo-400',
+        amber: 'group-hover:text-amber-400',
     };
 
     return (
         <Link href={`/songs/${id}`} className="block">
             <div className={`
-                relative p-4 rounded-2xl transition-all duration-300 backdrop-blur-sm group overflow-hidden
+                relative p-5 rounded-2xl transition-all duration-300 backdrop-blur-sm group overflow-hidden h-full flex flex-col justify-between
                 ${isPublic
-                    ? 'bg-gray-800/30 border border-white/5 hover:bg-gray-800/50 hover:border-white/10 hover:shadow-2xl hover:shadow-black/50'
-                    : 'bg-black/40 border border-dashed border-white/10 hover:bg-black/60 hover:border-white/20 opacity-70 hover:opacity-100'}
+                    ? 'bg-gray-900/40 border border-gray-800 hover:border-white/10 hover:bg-gray-800/60'
+                    : 'bg-black/40 border border-dashed border-white/10 hover:bg-black/60 opacity-70 hover:opacity-100'}
                 active:scale-[0.98] cursor-pointer
             `}>
-                {/* Glow Effect */}
-                <div className={`absolute -inset-1 ${borderColors[accentColor]} ${isPublic ? 'opacity-0 group-hover:opacity-10' : 'opacity-0'} blur-2xl transition-opacity duration-500`}></div>
-
+                {/* Accent Border */}
                 <div
-                    className={`absolute left-0 top-0 bottom-0 w-1.5 ${borderColors[accentColor]} rounded-l-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-y-110`}
+                    className={`absolute left-0 top-0 bottom-0 w-1 ${borderColors[accentColor] || borderColors.red} rounded-l-2xl opacity-50 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-y-110`}
                 ></div>
 
-                <div className="relative flex justify-between items-center z-10">
+                <div className="relative flex justify-between items-start z-10 w-full mb-4">
                     <div className="flex-1 min-w-0 pr-2">
-                        <div className="flex items-center gap-2 mb-0.5">
-                            <h3 className={`text-[17px] font-bold text-gray-100 leading-tight ${textColors[accentColor]} transition-colors group-hover:translate-x-1 duration-300 truncate`}>
+                        <div className="flex items-center gap-2 mb-1">
+                            <h3 className={`text-base font-bold text-gray-100 leading-tight ${textColors[accentColor] || textColors.red} transition-colors group-hover:translate-x-1 duration-300 truncate`}>
                                 {title}
                             </h3>
                             {!isPublic && (
                                 <Lock className="w-3.5 h-3.5 text-gray-500 shrink-0" />
                             )}
                         </div>
+                        <p className="text-xs text-gray-500 truncate mb-3">
+                            {author}
+                        </p>
+
+                        {/* Categories/Tags */}
                         <div className="flex flex-wrap items-center gap-2">
-                            <p className={`text-sm font-medium transition-colors ${isPublic ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-500'}`}>
-                                {author}
-                            </p>
-                            {hasChords && (
-                                <div className="flex items-center gap-1 bg-amber-500/10 text-amber-400 px-1.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border border-amber-500/20">
-                                    <Guitar className="w-2.5 h-2.5" />
-                                    Chords
-                                </div>
-                            )}
-                            {hasMelody && (
-                                <div className="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">
-                                    <Music className="w-2.5 h-2.5" />
-                                    Melody
-                                </div>
-                            )}
+                            {categories.map((cat, idx) => {
+                                const color = getCategoryColor(cat.slug);
+                                const style = getCategoryStyles(color);
+                                return (
+                                    <span
+                                        key={idx}
+                                        className={`text-[10px] px-2 py-0.5 rounded-full ${style.pill}`}
+                                    >
+                                        {cat.name}
+                                    </span>
+                                );
+                            })}
                         </div>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5 shrink-0">
+
+                    <div className="flex flex-col items-end gap-1.5 shrink-0 ml-4">
+                        {hasChords && (
+                            <div className="text-amber-500 mb-1" title="Has Chords">
+                                <Guitar className="w-3.5 h-3.5" />
+                            </div>
+                        )}
                         {songKey && (
-                            <>
-                                <span className="text-[9px] font-black tracking-[0.1em] text-gray-500 uppercase">Key</span>
-                                <span className="text-xs font-mono font-bold bg-white/5 text-gray-300 px-2.5 py-1 rounded-lg border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
-                                    {songKey}
-                                </span>
-                            </>
+                            <div className="text-[10px] font-mono text-gray-400">
+                                <span className="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>
+                                {songKey}
+                            </div>
                         )}
                     </div>
                 </div>
