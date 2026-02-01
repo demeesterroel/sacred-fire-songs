@@ -1,5 +1,5 @@
 <!--
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Draft
 **Date:** February 1, 2026
 
@@ -8,6 +8,7 @@
 | Version | Date | Description of Changes |
 | ----- | ----- | ----- |
 | **1.0** | Feb 1, 2026 | Initial Mockup Creation for Explore by Category Screen. |
+| **1.1** | Feb 1, 2026 | Converted category tags to active links pointing to Screen 8 and aligned navigation layout. |
 -->
 
 <!DOCTYPE html>
@@ -103,6 +104,11 @@
                     <i data-lucide="plus-circle" class="w-5 h-5"></i>
                     Add Song
                 </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors">
+                    <i data-lucide="list-music" class="w-5 h-5"></i>
+                    Playlists
+                </a>
             </nav>
         </div>
 
@@ -124,17 +130,19 @@
                 </button>
 
                 <!-- Logo and Site Name (Moved from Sidebar) -->
-                <div class="flex items-center gap-4 border-l border-gray-800/50 pl-6">
+                <a href="screen1_home.html" class="flex items-center gap-4 border-l border-gray-800/50 pl-6 group">
                     <div
-                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
                         <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
                     </div>
                     <div class="flex flex-col">
-                        <h1 class="font-bold text-lg tracking-tight text-white leading-none">Sacred Fire Songs</h1>
+                        <h1
+                            class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-red-400 transition-colors">
+                            Sacred Fire Songs</h1>
                         <span class="text-[10px] uppercase font-black text-red-500 tracking-[0.3em] opacity-80">Explore
                             Categories</span>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="relative w-72 hidden lg:block">
@@ -169,18 +177,18 @@
                             existence.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
+                            <a href="screen8_category_detail.html"
                                 class="px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">💧
-                                Water</button>
-                            <button
+                                Water</a>
+                            <a href="screen8_category_detail.html"
                                 class="px-3 py-1.5 rounded-full bg-slate-500/10 text-slate-300 text-xs font-medium border border-slate-500/20 hover:bg-slate-500/20 transition-all">🌬️
-                                Air</button>
-                            <button
+                                Air</a>
+                            <a href="screen8_category_detail.html"
                                 class="px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🔥
-                                Fire</button>
-                            <button
+                                Fire</a>
+                            <a href="screen8_category_detail.html"
                                 class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🌎
-                                Earth</button>
+                                Earth</a>
                         </div>
                     </div>
                 </div>
@@ -202,27 +210,27 @@
                             celestial cycles.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20">🐾
-                                Animales</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20">🦅
-                                Bird</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20">🍃
-                                Plantas</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20">🌙
-                                Moon</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20">☀️
-                                Sun</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50">🏔️
-                                Mountain</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30">🌳
-                                Selva</button>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium border border-orange-500/20 hover:bg-orange-500/20 transition-all">🐾
+                                Animales</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-blue-400/10 text-blue-300 text-xs font-medium border border-blue-400/20 hover:bg-blue-400/20 transition-all">🦅
+                                Bird</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">🍃
+                                Plantas</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">🌙
+                                Moon</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-medium border border-yellow-500/20 hover:bg-yellow-500/20 transition-all">☀️
+                                Sun</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-slate-500/20 text-slate-200 text-xs font-medium border border-slate-600/50 hover:bg-slate-700/50 transition-all">🏔️
+                                Mountain</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-green-800/20 text-green-400 text-xs font-medium border border-green-700/50 hover:bg-green-700/30 transition-all">🌳
+                                Selva</a>
                         </div>
                     </div>
                 </div>
@@ -244,24 +252,24 @@
                             traditions.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20">🇪🇸
-                                Spanish</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20">🇬🇧
-                                English</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20">🏔️
-                                Quechua</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20">🇧🇷
-                                Portuguese</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20">🏹
-                                Nahuatl</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20">🐍
-                                Huni Kuin</button>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-red-600/10 text-red-500 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-all">🇪🇸
+                                Spanish</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-500 text-xs font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-all">🇬🇧
+                                English</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-amber-700/10 text-amber-600 text-xs font-medium border border-amber-600/20 hover:bg-amber-600/20 transition-all">🏔️
+                                Quechua</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-green-600/10 text-green-500 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">🇧🇷
+                                Portuguese</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-orange-700/10 text-orange-600 text-xs font-medium border border-orange-600/20 hover:bg-orange-600/20 transition-all">🏹
+                                Nahuatl</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-teal-600/10 text-teal-500 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">🐍
+                                Huni Kuin</a>
                         </div>
                     </div>
                 </div>
@@ -283,21 +291,21 @@
                             lineages.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30">🧣
-                                Andean</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30">🏹
-                                Amazonian</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30">🪶
-                                Native American</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30">🌟
-                                Santo Daime</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700">📜
-                                Traditional</button>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-red-800/20 text-red-400 text-xs font-medium border border-red-700/30 hover:bg-red-700/40 transition-all">🧣
+                                Andean</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-green-900/20 text-green-500 text-xs font-medium border border-green-800/30 hover:bg-green-800/40 transition-all">🏹
+                                Amazonian</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-amber-800/20 text-amber-400 text-xs font-medium border border-amber-700/30 hover:bg-amber-700/40 transition-all">🪶
+                                Native American</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-blue-900/20 text-blue-400 text-xs font-medium border border-blue-800/30 hover:bg-blue-800/40 transition-all">🌟
+                                Santo Daime</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-medium border border-gray-700 hover:bg-gray-700 transition-all">📜
+                                Traditional</a>
                         </div>
                     </div>
                 </div>
@@ -319,21 +327,21 @@
                             and transformation.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20">🧪
-                                Medicine Songs</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20">🎶
-                                Icaros</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">🌿
-                                Healing</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">🛡️
-                                Protection</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50">🔑
-                                Opening/Closing</button>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium border border-teal-500/20 hover:bg-teal-500/20 transition-all">🧪
+                                Medicine Songs</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium border border-indigo-500/20 hover:bg-indigo-500/20 transition-all">🎶
+                                Icaros</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20 hover:bg-green-500/20 transition-all">🌿
+                                Healing</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700 hover:bg-slate-700 transition-all">🛡️
+                                Protection</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-red-900/20 text-red-500 text-xs font-medium border border-red-800/50 hover:bg-red-800/40 transition-all">🔑
+                                Opening/Closing</a>
                         </div>
                     </div>
                 </div>
@@ -355,21 +363,21 @@
                             soul.</p>
 
                         <div class="flex flex-wrap gap-2">
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20">🙏
-                                Gratitude</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20">💖
-                                Love</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20">🕯️
-                                Plegarias</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20">🗣️
-                                Vocalization</button>
-                            <button
-                                class="px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">♀️
-                                Women</button>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-medium border border-amber-500/20 hover:bg-amber-500/20 transition-all">🙏
+                                Gratitude</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 text-xs font-medium border border-pink-500/20 hover:bg-pink-500/20 transition-all">💖
+                                Love</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-yellow-600/10 text-yellow-600 text-xs font-medium border border-yellow-600/20 hover:bg-yellow-600/20 transition-all">🕯️
+                                Plegarias</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-medium border border-sky-500/20 hover:bg-sky-500/20 transition-all">🗣️
+                                Vocalization</a>
+                            <a href="screen8_category_detail.html"
+                                class="px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20 hover:bg-purple-500/20 transition-all">♀️
+                                Women</a>
                         </div>
                     </div>
                 </div>
