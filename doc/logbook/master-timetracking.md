@@ -30,5 +30,8 @@
 | **Jan 31** | **Auth Fixes**: GoTrue Scan errors, Identities, & Email Config | ~3.5 Hours | ✅ Completed |
 | **Feb 1** | **Design**: Explore by Category Screen (#44) | ~0.75 Hours | ✅ Completed |
 | **Feb 1** | **Design**: 404 Error Screen | ~0.5 Hours | ✅ Completed |
+| **Feb 1** | **Design**: Error Suite Mockups (500, 401, 429, 503, Offline) | ~1.0 Hours | ✅ Completed |
+| **Feb 1** | **Design**: Song Detail Refinement & Responsivity | ~0.75 Hours | ✅ Completed |
+| **Feb 1** | **Design**: Song Detail Navigation & Layout Refinement | ~0.5 Hours | ✅ Completed |
 
-| **Total** | **Development + AI Collaboration** | **~62.5 Hours** | |
+| **Total** | **Development + AI Collaboration** | **~66.0 Hours** | |
