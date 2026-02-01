@@ -132,13 +132,20 @@ Scenario: Guest views song library
   And the list should load more songs as I scroll down
 ```
 
-**Story 1.2.2: [Implemented]** As a Guest, I want to search for a song by title or lyrics so that I can find a specific medicine song.
+**Story 1.2.3: [Implemented]** As a Guest, I want to access the Explore and Playlists pages so that I can discover medicine songs without being forced to log in.
 
-```
-Scenario: Search by lyrics
-  Given the library contains a song titled "Water Spirit" with lyrics "Healing water"
-  When I type "Healing" into the search bar
-  Then the song "Water Spirit" should appear in the results
+```gherkin
+Scenario: Guest accesses Explore page
+  Given I am an unauthenticated Guest
+  When I visit the "/explore" page
+  Then I should see the category grid
+  And I should not be redirected to the login page
+
+Scenario: Guest accesses Playlists page
+  Given I am an unauthenticated Guest
+  When I visit the "/playlists" page
+  Then I should see the Playlists overview
+  And I should not be redirected to the login page
 ```
 
 ### Epic 1.3: Basic Song Viewer
