@@ -17,10 +17,7 @@ VALUES (
 {artist: Unknown}
 {tag: Santa Daime}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Ai que eu já estava caindo
+ Ai que eu já estava caindo
 Aqui no meio do salão
 Foi chegando uma firmeza
 Acalmando a confusão
@@ -223,7 +220,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -264,7 +261,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Abuelito Tatewari
 DO $$
@@ -283,10 +280,7 @@ VALUES (
 {tag: Spanish}
 {tag: Fire}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Abuelito Tatewari Abuelito Tatewari [Grandfather Fire]
+ Abuelito Tatewari Abuelito Tatewari [Grandfather Fire]
 Abuelito Tatewari Abuelito Tatewari
 yana he a nah hey ney yo wey
 
@@ -341,7 +335,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Fire
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -388,9 +382,8 @@ adida, adida adide
 
 
 abuelo lyrics
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss'
+ 
+ '
     );
 -- Map categories
 -- Tag: Spanish
@@ -398,7 +391,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -437,7 +430,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -485,7 +478,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -511,10 +504,7 @@ VALUES (
 {tag: Water}
 {tag: Temazcal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Agua vital, purifícame
+ Agua vital, purifícame
 Fuego del amor, quema mi temor
 Viento del alba, llévame al altar
 Madre Tierra, vuelvo a tu hogar
@@ -527,7 +517,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -588,7 +578,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -638,7 +628,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Temazcal
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -723,7 +713,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -790,7 +780,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -855,7 +845,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -894,7 +884,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -925,10 +915,7 @@ VALUES (
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Hey yana Hey yana 
+ Hey yana Hey yana 
 oiyana hene 
 oini oini oiyana yo
 
@@ -970,7 +957,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -995,10 +982,7 @@ VALUES (
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Agüitay, agüita
+ Agüitay, agüita
 Agüitay, agüita
 Que canta, cura, limpia, sana
 Trai, nai-nai, nai-nai, nai-na (x2)
@@ -1040,7 +1024,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1083,7 +1067,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1174,7 +1158,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Nahuatl
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1223,10 +1207,7 @@ VALUES (
 {tag: Spanish}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Португальский:
+ Португальский:
 
 Esta aliança veio do astral
 Vem do astral do astral superior
@@ -1294,7 +1275,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1336,7 +1317,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Anaboa
 DO $$
@@ -1355,10 +1336,7 @@ VALUES (
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Cielo, montana, selva y mar 
+ Cielo, montana, selva y mar 
 Rios, crystales, agua vital 
 Pinta mi gente, Curandera 
 Vienes danzando, cantando ya 
@@ -1406,7 +1384,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1483,7 +1461,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1545,7 +1523,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1570,10 +1548,7 @@ VALUES (
 {tag: Portuguese}
 {tag: Earth}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Aqui na terra vejo tanta beleza... 
+ Aqui na terra vejo tanta beleza... 
 Minha Mãe, Ela mostra para mim... 
 
 Para sempre eu quero... 
@@ -1700,7 +1675,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1813,7 +1788,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1838,10 +1813,7 @@ VALUES (
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Ayahuasca mama
+ Ayahuasca mama
 Taki taki muyki
 (X2)
 
@@ -1860,7 +1832,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1900,7 +1872,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1952,7 +1924,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2018,7 +1990,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2140,7 +2112,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Brilla un Colibrí
 DO $$
@@ -2185,7 +2157,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2319,7 +2291,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2343,10 +2315,7 @@ VALUES (
 {artist: Unknown}
 {tag: Santa Daime}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-A hey a ho'' pajé assopra
+ A hey a ho'' pajé assopra
 Que me trouxe esta canção foi a jiboia
 [2X]
 
@@ -2457,7 +2426,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Colibri
 DO $$
@@ -2490,7 +2459,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2515,8 +2484,7 @@ VALUES (
 {tag: Spanish}
 {tag: Bird}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 A nuestro hogar llegó volando
 Un Colibrí dorado
@@ -2536,7 +2504,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2576,7 +2544,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Como te quiero yo
 DO $$
@@ -2622,7 +2590,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2685,7 +2653,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Corazón que es lo único que tengo
 DO $$
@@ -2725,7 +2693,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Core core
 DO $$
@@ -2777,7 +2745,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Cuatro Vientos
 DO $$
@@ -2816,7 +2784,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Cura Do Beija-Flor
 DO $$
@@ -2944,7 +2912,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -2969,13 +2937,7 @@ VALUES (
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Desde Cuñaq viene 
-Agüita serpenteando 
-Por las acequias 
-y en remolinos 
+  y en remolinos 
 Hacia nuestras vidas  
 x2
 
@@ -2998,7 +2960,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3219,7 +3181,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Deusa (Curawaka)
 DO $$
@@ -3237,8 +3199,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 [Verso 1]
 Eu conheço uma trilha nas montanhas
@@ -3372,7 +3333,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Eagle Song
 DO $$
@@ -3391,10 +3352,7 @@ VALUES (
 {tag: Spanish}
 {tag: Bird}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Heya na yo wene yana Heya na yo wene yana Heya na yo wene yana
+ Heya na yo wene yana Heya na yo wene yana Heya na yo wene yana
 Heya na hey ney yo wey
 L’agila ya va volando L’agila ya va volando L’agila ya va volando (the eagle is already flying)
 Heya na yo wey ne yana Heya na yo wey ne yana Heya na yo wey ne yayna
@@ -3421,7 +3379,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3476,7 +3434,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: El Agua Cambia
 DO $$
@@ -3516,7 +3474,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3561,8 +3519,7 @@ VALUES (
 {tag: Mountain}
 {tag: Peyote}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 El gran espíritu nos da la vida
 wo wo wo wo wooo
@@ -3615,7 +3572,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Temazcal
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3704,7 +3661,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3754,7 +3711,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3821,7 +3778,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Fire
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3895,7 +3852,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Mountain
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -3927,7 +3884,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Este fuego
 DO $$
@@ -3960,7 +3917,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Estrella del Oriente
 DO $$
@@ -3994,7 +3951,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Eu vou chamar
 DO $$
@@ -4111,7 +4068,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -4135,10 +4092,7 @@ VALUES (
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Flor das águas
+ Flor das águas
 da onde vens, para onde vais
 Vou fazer minha limpeza
 No coração está meu Pai
@@ -4218,7 +4172,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Flores en mi camino
 DO $$
@@ -4237,10 +4191,7 @@ VALUES (
 {tag: Spanish}
 {tag: Medicine Plants}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Rererere
+ Rererere
 Rererere
 X2
 Arararara
@@ -4274,7 +4225,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -4298,10 +4249,7 @@ VALUES (
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Floresta calma o meu pensamento
+ Floresta calma o meu pensamento
 Floresta calma o meu pensamento
 A sua paz é a minha ajuda
 A sua paz é a minha ajuda
@@ -4388,7 +4336,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -4431,10 +4379,7 @@ VALUES (
 {tag: Portuguese}
 {tag: Rapé}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-É a força do Rapé
+ É a força do Rapé
 Quero ver quem vai ficar de pé
 (x2)
 
@@ -4483,10 +4428,7 @@ VALUES (
 {tag: Spanish}
 {tag: Temazcal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Soy de barro y de maíz
+ Soy de barro y de maíz
 soy de Piedra y dentro de mí
 fluye lava en mi corazón
 que arde con la fuerza del Amor.
@@ -4525,7 +4467,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Temazcal
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -4548,10 +4490,7 @@ VALUES (
         '{title: Gitsi Manitou}
 {artist: Unknown}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Gitsi, gitsi, gitsi Manitou
+ Gitsi, gitsi, gitsi Manitou
 x2
 Gitsi Manitou, gitsi Manitou
 
@@ -4635,7 +4574,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Grandmother I honor you
 DO $$
@@ -4695,10 +4634,7 @@ VALUES (
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Eu chamo a força, eu chamo a força eu chamo a força força das pedras para me firmar
+ Eu chamo a força, eu chamo a força eu chamo a força força das pedras para me firmar
 Eu chamo a terra, eu chamo a terra eu chamo a terra eu chamo a terra para me enraizar
 
 Eu chamo o vento, eu chamo o vento eu chamo o vento eu chamo o vento vem me elevar
@@ -4790,10 +4726,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Yana ha wey nei nei awey yo yana (2)
+ Yana ha wey nei nei awey yo yana (2)
 Yana ha wey nei nei awey yo yana (2)
 Hey ana hey ana hei hey yo wey.
 
@@ -4842,7 +4775,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Hermoso espiritu del agua
 DO $$
@@ -4908,7 +4841,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5023,7 +4956,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Icaro Sagrado
 DO $$
@@ -5041,10 +4974,7 @@ VALUES (
 {artist: Unknown}
 {tag: Medicine Plants}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-[Introducción]
+ [Introducción]
 Lay
 Nay-ni nay-ni
 Nay-ni nay-ni nay
@@ -5158,10 +5088,7 @@ VALUES (
 {tag: Temazcal}
 {tag: Women}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Inan tonanzin tlan inan tonanzin tlali 
+ Inan tonanzin tlan inan tonanzin tlali 
 Inan tonanzin inan tonanzin tlan
 (x2)
 Welo we ya ya yo welo we ya yo
@@ -5219,8 +5146,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Rama que cayó 
 este fuego la quemó 
@@ -5288,7 +5214,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Inti Taitiku
 DO $$
@@ -5395,7 +5321,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5449,7 +5375,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Sun
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5513,7 +5439,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5622,7 +5548,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5711,7 +5637,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -5738,7 +5664,7 @@ VALUES (
 {artist: Unknown}
 {tag: Lithuanian}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss'
+ '
     );
 -- Map categories
 -- Tag: Lithuanian
@@ -5890,8 +5816,7 @@ VALUES (
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Haaaaaaay, habla la anaconda, canta la anaconda
 Habla la anaconda y es la voz de mi abuelo
@@ -5917,7 +5842,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6005,7 +5930,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Leti sokole
 DO $$
@@ -6149,7 +6074,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Lobos de la tribu
 DO $$
@@ -6167,8 +6092,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 Curawaka*
 
 
@@ -6275,7 +6199,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Luz divina
 DO $$
@@ -6313,7 +6237,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6396,7 +6320,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Madre Ayahuasca
 DO $$
@@ -6443,7 +6367,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6472,10 +6396,7 @@ VALUES (
 {tag: Water}
 {tag: Temazcal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-En este vientre madre tierra temazcal,
+ En este vientre madre tierra temazcal,
 las gracias hoy le vengo a dar (2).
 
 Fuego sagrado abuelo Huehuetéotl,
@@ -6495,7 +6416,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6584,7 +6505,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6647,7 +6568,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6723,7 +6644,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Mazatl
 DO $$
@@ -6742,10 +6663,7 @@ VALUES (
 {tag: Spanish}
 {tag: Nahuatl}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Mazatl mazatl mazatl mazatl (deer)
+ Mazatl mazatl mazatl mazatl (deer)
 maza maza maza maza huella (paw print) (the deer is trotting)
 correle benadito correle benadito correle benadito (run deer run)
 donde esta tatewaria (where grandpa fire is at)
@@ -6811,7 +6729,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Nahuatl
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6873,7 +6791,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6929,7 +6847,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -6953,8 +6871,7 @@ VALUES (
 {artist: Unknown}
 {tag: Portuguese}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Venho lá da floresta
 O meu canto é de amor
@@ -7061,7 +6978,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -7141,7 +7058,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -7225,7 +7142,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Mother earth I am praying to you
 DO $$
@@ -7320,10 +7237,7 @@ VALUES (
 {tag: Portuguese}
 {tag: Women}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Mulheres de força, mulheres de luz
+ Mulheres de força, mulheres de luz
 Mulheres de força acompanham Jesus
 E a força de oxum, sou as forças de oxum
 E a força de oxum, sou as forças de oxum
@@ -7458,7 +7372,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -7536,7 +7450,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Russian
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -7566,8 +7480,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 No hay más Coraje que sostener
 Todo mi ser, todo mi ser
@@ -7591,7 +7504,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Noku Mana
 DO $$
@@ -7673,7 +7586,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Os segredos vem da floresta
 DO $$
@@ -7693,8 +7606,7 @@ VALUES (
 {tag: Medicine Plants}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Os segredos vem da floresta de luz
 Pacha Mama, Pacha Mama
@@ -7768,7 +7680,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -7793,10 +7705,7 @@ VALUES (
 {tag: Spanish}
 {tag: Animal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Desde lo más hondo de la selva 
+ Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarnos una pantera
@@ -7848,7 +7757,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Animal
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -8029,7 +7938,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Pipe song 10
 DO $$
@@ -8264,7 +8173,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -8310,7 +8219,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -8419,7 +8328,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Salve salve mamae Oxum
 DO $$
@@ -8500,10 +8409,7 @@ VALUES (
 {tag: Medicine Plants}
 {tag: Santa Maria}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Santa Maria vem chegando neste batalhão 
+ Santa Maria vem chegando neste batalhão 
 Trazendo as forças da Rainha da floresta 
 São essas forças vindas de Nossa Senhora 
 Que centralizam essa luz aqui na Terra
@@ -8800,7 +8706,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Sigo adelante con la medicina
 DO $$
@@ -8880,7 +8786,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Sinchi Sinchi
 DO $$
@@ -8978,7 +8884,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -9023,8 +8929,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Abrete florcita de los cuatro vientos yari
 Olorocita perfumera doctorcita
@@ -9050,7 +8955,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Sou Beija-flor
 DO $$
@@ -9431,7 +9336,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Sun
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -9470,7 +9375,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Sun
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -9517,7 +9422,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Tata Awarã
 DO $$
@@ -9536,10 +9441,7 @@ VALUES (
 {tag: Medicine Plants}
 {tag: Ayahuasca}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-
+ 
 
 MAWA ISA version:
 
@@ -9678,7 +9580,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -9710,7 +9612,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: The River Is Flowing
 DO $$
@@ -9801,8 +9703,7 @@ VALUES (
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Aya Aya Ayahuasca
 Aya Aya Ayahuasca
@@ -9838,7 +9739,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -9935,7 +9836,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Todo es Medicina
 DO $$
@@ -9953,10 +9854,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Todo cura, todo sana, 
+ Todo cura, todo sana, 
 todo lleva medicina dentro.(x3)
 Todo lleva medicina dentro, 
 todo lleva medicina dentro.
@@ -9990,7 +9888,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Todo es mi familia
 DO $$
@@ -10041,7 +9939,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Todo lo que tengo
 DO $$
@@ -10103,7 +10001,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10152,7 +10050,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10349,7 +10247,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10399,7 +10297,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Viene Serpenteando
 DO $$
@@ -10518,7 +10416,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Russian
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10603,7 +10501,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10668,7 +10566,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: Mountain
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -10726,10 +10624,7 @@ VALUES (
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Voy comiendo medicina
+ Voy comiendo medicina
 por este camino rojo
 y las flechas de obsidiana
 que vienen de Chicomóztoc
@@ -10751,7 +10646,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Wei Xiuhtecuhtli
 DO $$
@@ -11057,10 +10952,7 @@ VALUES (
 {tag: Spanish}
 {tag: San Pedro}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Yarin di rin din din din
+ Yarin di rin din din din
 Yarin di rin din din din
 Yarin di rin din din din
 Yarin di rin din
@@ -11195,7 +11087,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 -- Tag: San Pedro
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -11323,7 +11215,7 @@ INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
-WHERE slug = 'espanol';
+WHERE slug = 'spanish';
 END $$;
 -- Song: Águas Claras
 DO $$
@@ -11342,10 +11234,7 @@ VALUES (
 {tag: Portuguese}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Águas claras
+ Águas claras
 águas doces
 aguas puras
 Oxum minha mãe
@@ -11546,8 +11435,7 @@ VALUES (
 {artist: Unknown}
 {tag: Russian}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Слышу голос из прекрасного далека,
 Голос утренний в серебряной росе.

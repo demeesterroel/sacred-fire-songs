@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Desde Cuñaq viene 
+ Desde Cuñaq viene 
 Agüita serpenteando 
 Por las acequias 
 y en remolinos 

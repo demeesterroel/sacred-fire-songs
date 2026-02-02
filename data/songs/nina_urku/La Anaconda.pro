@@ -3,8 +3,7 @@
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Haaaaaaay, habla la anaconda, canta la anaconda
 Habla la anaconda y es la voz de mi abuelo

@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Hey yana Hey yana 
+ Hey yana Hey yana 
 oiyana hene 
 oini oini oiyana yo
 

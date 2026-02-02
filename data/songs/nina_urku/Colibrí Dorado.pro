@@ -3,8 +3,7 @@
 {tag: Spanish}
 {tag: Bird}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 A nuestro hogar llegó volando
 Un Colibrí dorado

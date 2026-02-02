@@ -7,7 +7,7 @@ const files = fs.readdirSync(songsDir).filter(f => f.endsWith('.pro')).sort();
 // Slug mapping for tags found in the .pro files
 const tagToSlugMap = {
   // Languages
-  'Spanish': 'espanol',
+  'Spanish': 'spanish',
   'English': 'english',
   'Portuguese': 'portuguese',
   'Nahuatl': 'nahuatl',

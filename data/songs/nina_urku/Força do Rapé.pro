@@ -3,10 +3,7 @@
 {tag: Portuguese}
 {tag: Rapé}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-É a força do Rapé
+ É a força do Rapé
 Quero ver quem vai ficar de pé
 (x2)
 

@@ -6,10 +6,7 @@
 {tag: Temazcal}
 {tag: Women}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Inan tonanzin tlan inan tonanzin tlali  
+ Inan tonanzin tlan inan tonanzin tlali  
 Inan tonanzin inan tonanzin tlan
 (x2)
 Welo we ya ya yo welo we ya yo

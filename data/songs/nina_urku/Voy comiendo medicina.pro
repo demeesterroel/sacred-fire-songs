@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Voy comiendo medicina
+ Voy comiendo medicina
 por este camino rojo
 y las flechas de obsidiana
 que vienen de Chicomóztoc

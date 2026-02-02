@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Nahuatl}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Mazatl mazatl mazatl mazatl (deer)
+ Mazatl mazatl mazatl mazatl (deer)
 maza maza maza maza huella (paw print) (the deer is trotting)
 correle benadito correle benadito correle benadito (run deer run)
 donde esta tatewaria (where grandpa fire is at)
