@@ -18,6 +18,8 @@ FROM public.categories
 WHERE name = 'Lineage & Tradition'
   AND parent_id IS NULL;
 -- Update existing Santo Daime / Umbanda record
+
+
 UPDATE public.categories
 SET name = 'Santo Daime',
   slug = 'santo-daime'
