@@ -91,12 +91,12 @@ SET contributor_id = c.owner_id
 FROM public.compositions c
 WHERE sv.composition_id = c.id;
 -- Set has_chords and has_melody flags
--- 20% of songs have chords, and of those, 20% have melody
+-- 20% of songs have chords, and 10% have melody
 DECLARE songs_with_chords_count INTEGER;
 songs_with_melody_count INTEGER;
 BEGIN -- Calculate counts
 songs_with_chords_count := FLOOR(total_songs * 0.20);
-songs_with_melody_count := FLOOR(songs_with_chords_count * 0.20);
+songs_with_melody_count := FLOOR(total_songs * 0.10);
 -- Reset all flags
 UPDATE public.compositions
 SET has_chords = false,
@@ -110,13 +110,12 @@ WHERE id IN (
         ORDER BY RANDOM()
         LIMIT songs_with_chords_count
     );
--- Set has_melody for 20% of songs that have chords
+-- Set has_melody for 10% of all songs
 UPDATE public.compositions
 SET has_melody = true
 WHERE id IN (
         SELECT id
         FROM public.compositions
-        WHERE has_chords = true
         ORDER BY RANDOM()
         LIMIT songs_with_melody_count
     );
