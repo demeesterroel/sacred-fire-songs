@@ -12,6 +12,11 @@
 | **1.2** | Feb 1, 2026 | Refined UI: Added sidebar, responsive widescreen/mobile layout, updated badges, metadata rows, and thematic title. |
 | **1.3** | Feb 1, 2026 | Renamed "Settings" to "Playlists" and aligned navigation with Home/Explore layout. |
 | **1.4** | Feb 1, 2026 | Refined sidebar navigation (Dashboard, Explore, Library, Playlist, Add Song). |
+| **1.5** | Feb 3, 2026 | Updated with "Abre tus alas" song content, tuning metadata, and complete lyrics. |
+| **1.6** | Feb 3, 2026 | Updated artist to Nina and added melody badge. |
+| **1.7** | Feb 3, 2026 | Synced sidebar with current implementation, added user profile dropdown, moved action buttons below header, added SONG DETAIL label. |
+| **1.8** | Feb 3, 2026 | Updated layout to match screenshot: badges inline with title, action buttons on title row, refined metadata grid. |
+| **1.9** | Feb 3, 2026 | Moved title, artist, and action buttons into desktop header for cleaner layout. |
 -->
 
 <!DOCTYPE html>
@@ -98,32 +103,32 @@
             </div>
             <h1 class="font-bold text-base tracking-tight text-white truncate">Sacred Fire Songs</h1>
         </div>
-        <div class="flex items-center gap-1">
-            <button class="p-2 text-red-500/80 hover:text-red-500"><i data-lucide="trash-2"
-                    class="w-5 h-5"></i></button>
-            <button class="p-2 text-gray-400 hover:text-white"><i data-lucide="edit-2" class="w-5 h-5"></i></button>
-            <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white"><i data-lucide="arrow-left"
-                    class="w-5 h-5"></i></a>
-        </div>
+        <!-- User Profile Button (Mobile) -->
+        <button
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
+            <div
+                class="w-6 h-6 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20">
+                R</div>
+        </button>
     </header>
 
     <!-- Sidebar (Desktop Navigation & Filters) - Mirrored from Home Screen -->
     <aside
         class="hidden md:flex flex-col w-64 bg-[#0d121f] border-r border-gray-800/50 sticky top-0 h-screen overflow-y-auto z-20 shadow-xl transition-all">
 
-        <!-- User Profile (Now at Top of Sidebar) -->
-        <div class="p-4 border-b border-gray-800/50 bg-gray-900/30 mb-4">
-            <div class="flex items-center gap-3">
+        <!-- Logo and Site Name (Top of Sidebar) -->
+        <div class="p-6 border-b border-gray-800/50 mb-4">
+            <a href="screen1_home.html" class="flex items-center gap-3 group">
                 <div
-                    class="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner">
-                    RM</div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-[11px] font-bold text-white truncate">roel.de.meester+4</p>
-                    <p class="text-[9px] text-gray-500 truncate">ID: 89c4850e...</p>
+                    class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
+                    <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
                 </div>
-                <button title="Logout" class="group"><i data-lucide="log-out"
-                        class="w-4 h-4 text-gray-600 group-hover:text-red-400 transition-colors"></i></button>
-            </div>
+                <div class="flex flex-col">
+                    <h1
+                        class="font-bold text-base tracking-tight text-white leading-none group-hover:text-fire transition-colors">
+                        Sacred Fire Songs</h1>
+                </div>
+            </a>
         </div>
 
         <div class="px-6 py-2">
@@ -173,80 +178,126 @@
         <!-- Desktop Page Header (Visible only on desktop) -->
         <div
             class="hidden md:flex justify-between items-center px-8 py-4 border-b border-gray-800/50 bg-[#0d121f]/50 sticky top-0 backdrop-blur-md z-10 transition-all">
+            <!-- Title and Artist -->
             <div class="flex items-center gap-6">
-                <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors"><i
-                        data-lucide="arrow-left" class="w-5 h-5"></i></a>
-
-                <!-- Logo and Site Name (Moved from Sidebar) -->
-                <a href="screen1_home.html" class="flex items-center gap-4 border-l border-gray-800/50 pl-6 group">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center gap-3">
+                        <h1 class="text-3xl font-black text-fire tracking-tight">Abre tus alas</h1>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="badge-chords flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <i data-lucide="link" class="w-3 h-3"></i> Chords
+                            </span>
+                            <span
+                                class="badge-melody flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <i data-lucide="music" class="w-3 h-3"></i> Melody
+                            </span>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <h1
-                            class="font-bold text-lg tracking-tight text-white leading-none group-hover:text-fire transition-colors">
-                            Sacred Fire Songs</h1>
-                        <span class="text-[10px] uppercase font-black text-fire tracking-[0.3em] opacity-80">Song
-                            Detail</span>
-                    </div>
-                </a>
+                    <p class="text-gray-400 text-sm font-medium">by Nina</p>
+                </div>
             </div>
+            <!-- Action Buttons and User Profile -->
             <div class="flex items-center gap-3">
                 <a href="actions/screen6_delete_confirmation.html">
                     <button
-                        class="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all">
+                        class="flex items-center gap-2 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all">
                         <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
                     </button>
                 </a>
                 <a href="actions/screen4_song_add.html?mode=edit&id=1">
                     <button
-                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
+                        class="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
                         <i data-lucide="edit-2" class="w-4 h-4"></i> Edit
                     </button>
                 </a>
+                <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <div class="border-l border-gray-800/50 pl-3 ml-1">
+                    <button
+                        class="flex items-center gap-3 px-4 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
+                        <div
+                            class="w-7 h-7 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20">
+                            R</div>
+                        <span class="text-sm text-gray-300">roel.de.meeste...</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="max-w-4xl p-6 md:p-10 space-y-8">
+        <div class="max-w-5xl p-6 md:p-10 space-y-6">
 
-            <!-- Song Title and Badges Section -->
-            <div class="space-y-2">
-                <div class="flex flex-wrap items-center gap-3">
-                    <h1 class="text-4xl md:text-5xl font-black text-fire tracking-tight">Caboclo</h1>
+            <!-- Mobile: Song Title, Badges, and Action Buttons Row -->
+            <div class="md:hidden flex flex-col gap-4">
+                <div class="flex-1 space-y-3">
+                    <!-- Title and Badges -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <h1 class="text-4xl font-black text-fire tracking-tight">Abre tus alas</h1>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="badge-chords flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <i data-lucide="link" class="w-3 h-3"></i> Chords
+                            </span>
+                            <span
+                                class="badge-melody flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <i data-lucide="music" class="w-3 h-3"></i> Melody
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Artist -->
+                    <p class="text-gray-400 text-base font-medium">by Nina</p>
+                    <!-- Category Tags -->
                     <div class="flex items-center gap-2">
                         <span
-                            class="badge-chords flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
-                            <i data-lucide="link" class="w-3 h-3"></i> Chords
-                        </span>
+                            class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold border border-yellow-500/30">Spanish</span>
                         <span
-                            class="badge-melody flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm">
-                            <i data-lucide="music" class="w-3 h-3"></i> Melody
-                        </span>
+                            class="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold border border-purple-500/30">Vocalization</span>
                     </div>
                 </div>
-                <p class="text-gray-400 text-lg md:text-xl font-medium">by Traditional (Umbanda)</p>
-                <div class="flex items-center gap-2 mt-2">
-                    <span
-                        class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold border border-blue-500/30">Water</span>
-                    <span
-                        class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">Plantas</span>
+
+                <!-- Action Buttons (Mobile) -->
+                <div class="flex items-center gap-2">
+                    <a href="actions/screen6_delete_confirmation.html">
+                        <button
+                            class="flex items-center gap-2 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i> <span class="sm:inline">Delete</span>
+                        </button>
+                    </a>
+                    <a href="actions/screen4_song_add.html?mode=edit&id=1">
+                        <button
+                            class="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
+                            <i data-lucide="edit-2" class="w-4 h-4"></i> <span class="sm:inline">Edit</span>
+                        </button>
+                    </a>
+                    <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Metadata Grid -->
-            <div class="grid grid-cols-3 gap-4 py-4 border-y border-gray-800/50 text-center">
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Key</p>
-                    <p class="text-lg font-mono font-bold text-amber-500">Am</p>
+            <!-- Category Tags (Desktop only, since they're in header on mobile) -->
+            <div class="hidden md:flex items-center gap-2">
+                <span
+                    class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold border border-yellow-500/30">Spanish</span>
+                <span
+                    class="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold border border-purple-500/30">Vocalization</span>
+            </div>
+
+            <!-- Metadata Grid (Key, Capo, Tuning) -->
+            <div class="grid grid-cols-3 gap-6 py-6 border-y border-gray-800/30">
+                <div class="text-center space-y-2">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">KEY</p>
+                    <p class="text-2xl font-mono font-bold text-amber-500">Em</p>
                 </div>
-                <div class="space-y-1 border-x border-gray-800/50">
-                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Capo</p>
-                    <p class="text-lg font-bold text-gray-300">None</p>
+                <div class="text-center space-y-2">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">CAPO</p>
+                    <p class="text-lg font-bold text-gray-300">2nd fret</p>
                 </div>
-                <div class="space-y-1">
-                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Tuning</p>
-                    <p class="text-lg font-bold text-gray-300">Standard</p>
+                <div class="text-center space-y-2">
+                    <p class="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">TUNING</p>
+                    <p class="text-base font-bold text-gray-300 tracking-wider">E A D G B E</p>
                 </div>
             </div>
 
@@ -258,33 +309,26 @@
                     <span
                         class="absolute -left-4 top-0 -translate-x-full hidden md:block text-xs font-black text-gray-600 uppercase tracking-widest vertical-text rotate-180"
                         style="writing-mode: vertical-rl;">Verse 1</span>
-                    <span
-                        class="md:hidden block text-xs font-black text-gray-600 uppercase tracking-widest mb-4">Verse</span>
+                    <span class="md:hidden block text-xs font-black text-gray-600 uppercase tracking-widest mb-4">Verse
+                        1</span>
 
                     <div class="space-y-6">
                         <div>
-                            <div class="text-fire chord-line">Am</div>
+                            <div class="text-fire chord-line">Dm<span class="ml-20">A7</span><span
+                                    class="ml-20">Dm</span></div>
                             <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
-                                Caboclo nas matas
-                                Nas cachoeiras</div>
+                                Abre tus alas pajaro volar</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line"><span class="ml-0">Gm</span><span class="ml-32">A7</span>
+                            </div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                con plumas de colores danzandole a la mar</div>
                         </div>
                         <div>
                             <div
-                                class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight opacity-90 font-lyrics">
-                                Nas
-                                pedras e nas pedreiras E nas ondas do mar</div>
-                        </div>
-                        <div>
-                            <div class="text-fire chord-line">Am</div>
-                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
-                                Cabocla guerreira
-                                mensageira</div>
-                        </div>
-                        <div>
-                            <div
-                                class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight opacity-90 font-lyrics">
-                                Da paz
-                                e da harmonia soldado de oxala</div>
+                                class="text-xl md:text-2xl text-gray-400 font-medium tracking-tight font-lyrics italic">
+                                (x2)</div>
                         </div>
                     </div>
                 </div>
@@ -299,28 +343,105 @@
 
                     <div class="space-y-6">
                         <div>
-                            <div class="text-fire chord-line">Dm</div>
-                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">Vem de
-                                aruanda vem
-                                vem vem</div>
-                        </div>
-                        <div>
-                            <div class="text-fire chord-line">Am</div>
+                            <div class="text-fire chord-line">Gm<span class="ml-20">Dm</span></div>
                             <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
-                                Trazendo forca vem
-                                vem vem</div>
+                                Abre tus alas libres y a volar</div>
                         </div>
                         <div>
-                            <div class="text-fire chord-line">E</div>
+                            <div class="text-fire chord-line"><span class="ml-0">A7</span><span
+                                    class="ml-32">Dm</span><span class="ml-20">D7</span></div>
                             <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
-                                Quebrando mironga
-                                vem vem vem</div>
+                                el sol y las estrellas son mi guia al caminar</div>
                         </div>
                         <div>
-                            <div class="text-fire chord-line">Am, A7</div>
-                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">Na
-                                umbanda sarava
+                            <div
+                                class="text-xl md:text-2xl text-gray-400 font-medium tracking-tight font-lyrics italic">
+                                (x2)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verse 2 -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-4 top-0 -translate-x-full hidden md:block text-xs font-black text-gray-600 uppercase tracking-widest vertical-text rotate-180"
+                        style="writing-mode: vertical-rl;">Verse 2</span>
+                    <span class="md:hidden block text-xs font-black text-gray-600 uppercase tracking-widest mb-4">Verse
+                        2</span>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-fire chord-line">Dm<span class="ml-20">A7</span><span
+                                    class="ml-20">Dm</span></div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                Abre tus alas sin miedo al saltar</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line"><span class="ml-0">Gm</span><span class="ml-32">A7</span>
                             </div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                el cielo nos enseña como aprender amar</div>
+                        </div>
+                        <div>
+                            <div
+                                class="text-xl md:text-2xl text-gray-400 font-medium tracking-tight font-lyrics italic">
+                                (x2)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chorus (Repeat) -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-4 top-0 -translate-x-full hidden md:block text-xs font-black text-red-500/50 uppercase tracking-widest vertical-text rotate-180"
+                        style="writing-mode: vertical-rl;">Chorus</span>
+                    <span
+                        class="md:hidden block text-xs font-black text-red-500/50 uppercase tracking-widest mb-4">Chorus</span>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-fire chord-line">Gm<span class="ml-20">Dm</span></div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                Abre tus alas libres y a volar</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line"><span class="ml-0">A7</span><span
+                                    class="ml-32">Dm</span><span class="ml-20">D7</span></div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                el sol y las estrellas son mi guia al caminar</div>
+                        </div>
+                        <div>
+                            <div
+                                class="text-xl md:text-2xl text-gray-400 font-medium tracking-tight font-lyrics italic">
+                                (x2)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verse 3 -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-4 top-0 -translate-x-full hidden md:block text-xs font-black text-gray-600 uppercase tracking-widest vertical-text rotate-180"
+                        style="writing-mode: vertical-rl;">Verse 3</span>
+                    <span class="md:hidden block text-xs font-black text-gray-600 uppercase tracking-widest mb-4">Verse
+                        3</span>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-fire chord-line">Gm<span class="ml-20">Dm</span></div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                La luz del sol ilumina nuestro dia</div>
+                        </div>
+                        <div>
+                            <div class="text-fire chord-line"><span class="ml-0">A7</span><span
+                                    class="ml-32">Dm</span><span class="ml-20">D7</span></div>
+                            <div class="text-xl md:text-2xl text-gray-300 font-medium tracking-tight font-lyrics">
+                                aprendiendo el camino del amor y alegria</div>
+                        </div>
+                        <div>
+                            <div
+                                class="text-xl md:text-2xl text-gray-400 font-medium tracking-tight font-lyrics italic">
+                                (x2)</div>
                         </div>
                     </div>
                 </div>
