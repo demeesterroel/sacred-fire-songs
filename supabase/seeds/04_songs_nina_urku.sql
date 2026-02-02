@@ -315,7 +315,7 @@ Abuelito Tatewari Abuelito Tatewari
 Abuelito Tatewari Abuelito Tatewari
 yana he a nah hey ney yo wey
 
-a su lado lleva kayumari [at his side he carries kayumari (blue deer)
+a su lado lleva kayumari [at his side he carries kayumari (blue deer)]
 a su lado lleva marakame (curandero/shaman)
 yana he a nah hey ney yo wey
 
