@@ -28,8 +28,7 @@ Por abrir el corazón a la sanaçion, abrirlo al amor
 ...Madrecita Agua
 ...A las Medicinas
 ...A los abuelitos
-...A Ometeotl
-'
+...A Ometeotl'
     );
 END $$;
 -- Song: Abuelito Fuego
@@ -58,8 +57,7 @@ Abuelito Fuego de mi cora[C]zón
 [G]Awakolla Karaway karaway karaway 
 [C]Peyotito Karaway karaway karaway 
 Ayawaska Karaway karaway karaway 
-Tabaquito Karaway karaway karaway 
-'
+Tabaquito Karaway karaway karaway'
     );
 END $$;
 -- Song: Agradecer, agradecer
@@ -74,14 +72,17 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Agradecer, agradecer}
-Agradecer, agradecer. (2x) 
-Esta tierra tan bonita 
-Pachamamita Pachamamita (x2) 
+{artist: Unknown}
+{tag: Spanish}
+{tag: Earth}
 
-Reconocer, reconocer (2x) 
+Agradecer, agradecer 
+Esta tierra tan bonita 
+Pachamamita Pachamamita (x2)
+
+Reconocer, reconocer 
 En este altar el poder 
-este poder este poder (x2) 
-'
+este poder este poder (x2)'
     );
 END $$;
 -- Song: Agua cambia
@@ -109,8 +110,7 @@ todo lo que toca cambia (2x)
 Toca, Cambia, todo lo que toca cambia. (2x) 
 
 La Tierra cambia todo lo que toca, 
-todo lo que toca cambia (2x) 
-'
+todo lo que toca cambia (2x)'
     );
 END $$;
 -- Song: Aho Gran Espíritu
@@ -125,18 +125,21 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Aho Gran Espíritu}
+{artist: Unknown}
+{tag: Spanish}
+{tag: Earth}
+
 Ahó, Ahó, Ahó Gran Espíritu (2x) 
 Del corazón de la montaña 
 Hacia el espacio infinito (2x) 
 
 Ahá, Ahá, Ahá Mi madre Tierra (2x) 
 Madre de todas las criaturas 
-que habitan sobre ella (2x 
+que habitan sobre ella (2x) 
 
-Rayo, Rayo, Rayo del nuevo día 
-Sono el tambor, danza del Sol 
-Mi corazón siente alegría 
-'
+Rayo, Rayo, Rayo del nuevo/medio día (2x)
+Suena el tambor, danza del Sol 
+Mi corazón siente alegría (2x)'
     );
 END $$;
 -- Song: Aho Pacha Mama
@@ -151,26 +154,69 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Aho Pacha Mama}
-Aho Pacha Mama, 
-Madre Tierra, Sacred Goddess / Gaia / Goddess / Gaia 
-Tonantzin (3x) / Tonantzin, Tonantzin, Tonantzin 
-
-Tezcatlipoca y Quetzalcoatl 
-creation of the universe 
-in darkness and light 
-Tezcatlipoca y Quetzalcoatl 
-creation of the universe 
-in darkness and light 
+{artist: Unknown}
+{tag: Spanish}
+{tag: Nahuatl}
+{tag: English}
+{tag: Earth}
+{tag: Fire}
+{tag: Water}
 
 Aho Pacha Mama, 
 Madre Tierra, 
-Sacred Water / Fire / Water / Fire 
-Tonantzin / Tonatiuh / Tonantzin / Tonatiuh, tonatiuh, tonatiuh 
+Sacred Goddess,
+Tonantzin
 
-Tezcatlipoca y Quetzalcoatl 
-creation of the universe 
-in darkness and light 
-'
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Gaia,
+Tonantzin
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Goddess,
+Tonantzin
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Gaia,
+Tonantzin, Tonantzin, Tonantzin
+
+Tezcatlipoca y Quetzalcoatl
+creation of the universe
+in darkness and light
+
+Tezcatlipoca y Quetzalcoatl
+creation of the universe
+in darkness and light
+in darkness and light
+in darkness and light
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Water,
+Tonantzin
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Fire,
+Tonatiuh
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Water,
+Tonantzin
+
+Aho Pacha Mama, 
+Madre Tierra, 
+Sacred Fire,
+Tonatiuh, tonatiuh, tonatiuh
+
+Tezcatlipoca y Quetzalcoatl
+creation of the universe
+in darkness and light
+in darkness and light
+in darkness and light'
     );
 END $$;
 -- Song: Bendice la Tierra
@@ -185,6 +231,13 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Bendice la Tierra}
+{artist: Unknown}
+{tag: Spanish}
+{tag: Air}
+{tag: Earth}
+{tag: Fire}
+{tag: Water}
+
 [Am]Bendice la tierra con [Am]agua. 
 [G]Bendice la tierra con tu cora[Am]zón 
 [Am]Bendice la tierra con [Am]aire 
@@ -236,8 +289,7 @@ Hayahey yahey yahey yoh
 
 [Chorus] (2x)
 [Dm]Hayahey yahey yahey [Am]yoh 
-[C]Hayahey yahey yahey [G]yoh 
-'
+[C]Hayahey yahey yahey [G]yoh'
     );
 END $$;
 -- Song: Brilla Diamante
@@ -252,19 +304,18 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Brilla Diamante}
-Dio mio me presento con los manos vacíos 
-En mi corazon zon, 
-diamante, en tu (su) gracia, 
-brilla brilla diamante 
+{artist: Unknown}
+{tag: Spanish}
 
-Brilla brilla diamante, brilla brilla diamante 
-Brilla brilla diamante, brilla brilla diamante (x2) 
-Brilla brilla hasta luz luz 
-brillan brillan los colores, 
-fluye fluye el amor, 
-fluye fluye el amor 
+Dio mio me presento con los manos vacíos x2
+En mi corazon zon, diamante, en tu(su) gracia, brilla diamante x2
 
-Damderore damderore damderore damderore 
+Brilla brilla diamante, brilla brilla diamante x2
+Brilla brilla diamante, brilla brilla diamante x2
+
+Brilla brilla hasta luz luz brillan los colores, fluye fluye el amor, fluye fluye el amor x2
+
+Damderore damderore damderore damderore x2
 '
     );
 END $$;
@@ -273,18 +324,24 @@ DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Caboclo', 'Traditional (Umbanda)')
+VALUES ('Caboclo', 'Umbanda')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
         '{title: Caboclo}
+{artist: Unknown}
+{tag: Portuguese}
+{tag: Umbanda}
+
+https://www.song-circle.com/world-songs/bejja-flor/caboclo
+
 [Am]Caboclo nas matas Nas cachoeiras 
 Nas pedras e nas pedreiras E nas ondas do mar 
 
 [Am]Cobocla guerreira mensageira 
-Da paz e da harmonia soldado de oxala 
+Da paz e da harmonia soldado de oxalá
 
 [Dm]Vem de aruanda vem vem vem 
 [Am]Trazendo forca vem vem vem 
@@ -292,13 +349,12 @@ Da paz e da harmonia soldado de oxala
 [Am, A7]Na umbanda sarava 
 
 {c: English Translation:}
-{c: Caboclo of the forest, of the waterfalls }
-{c: Of the stone and stony places, and the waves of the sea, }
-{c: Cabocla (female) warrior, messenger of peace & harmony, }
-{c: soldier of Oxala, }
-{c: From Aruanda, come, come, come bringing strength, }
-{c: to break the illusion, so Umbanda can be healed" }
-'
+Caboclo of the forest, of the waterfalls 
+Of the stone and stony places, and the waves of the sea,
+Cabocla (female) warrior, messenger of peace & harmony,
+soldier of Oxala,
+From Aruanda, come, come, come bringing strength,
+to break the illusion, so Umbanda can be healed'
     );
 END $$;
 -- Song: Calling
@@ -322,8 +378,7 @@ Grandmother Earth
 Sacred Water 
 Our heart 
 Grandfather fire 
-is calling us home 
-'
+is calling us home'
     );
 END $$;
 -- Song: Canto enamorado del pájaro
@@ -359,8 +414,7 @@ canta, canta, canta
 Ágida Ágidada 
 Ágidagidaaa (2x) 
 Ágida Aj Ágida 
-Ágida Aj Ágide 
-'
+Ágida Aj Ágide'
     );
 END $$;
 -- Song: Colhendo lírio lirulê
@@ -392,8 +446,7 @@ Olhai seus filhos com olhar sereno
 Ela é beleza 
 Ela é pureza 
 Ela nos traz a paz 
-Do Santo Nazareno 
-'
+Do Santo Nazareno'
     );
 END $$;
 -- Song: Core core
@@ -408,7 +461,8 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Core core}
-Core core core core core core yanamayey (x2) 
+Core core core core
+core core yanamayey (x2) 
 Yana yana yana yanamayey (x4) 
 '
     );
@@ -425,42 +479,27 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Cuatro Vientos}
+	{tag: Spanish}
 Viento que viene de la montaña 
-Viento, tráenos la claridad 
-Viento que viene de la montaña 
-Viento, tráenos la claridad 
+Viento, tráenos la claridad (2x)
 
 Viento que viene del mar 
-[Am]Viento, tráenos la [Em]liber[G]tad 
-Viento que viene del mar 
-Viento, tráenos la libertad 
+[Am]Viento, tráenos la [Em]liber[G]tad (2x)
 
 Vuela, vuela, vuela, vuela 
 Vuela, vuela, vuela, volá con nosotros (2x) 
 
 Viento que viene del desierto 
-Viento, tráenos el silencio 
-Viento que viene del desierto 
-Viento, tráenos el silencio 
+Viento, tráenos el silencio  (2x)
 
 Vuela, vuela, vuela, vuela 
 Vuela, vuela, vuela, volá con nosotros 
 
 Viento que viene de la selva 
-Viento, tráenos la memoria 
-Viento (viento) que viene de la selva 
-Viento, tráenos la memoria 
+Viento, tráenos la memoria (2x)
 
 Vuela, vuela, vuela, vuela 
-Vuela, vuela, vuela, volá con nosotros 
-
-Viento que viene de la selva 
-Viento, tráenos la memoria 
-Viento que viene de la selva 
-Viento, tráenos la memoria 
-
-Vuela, vuela, vuela, vuela 
-Vuela, vuela, vuela, volá con nosotros 
+Vuela, vuela, vuela, volá con nosotros
 '
     );
 END $$;
@@ -487,8 +526,7 @@ Oh sisters, let''s go [D]down
 [C]Down in the river to [G]pray 
 
 {c: (*) Variations for ''wear the starry crown'': wear the robe and crown }
-{c: (*) Variations for ''Sisters'': Oh Brothers }
-'
+{c: (*) Variations for ''Sisters'': Oh Brothers }'
     );
 END $$;
 -- Song: Earth Water Blood
@@ -507,8 +545,7 @@ Earth my body water my blood
 Air my breath and fire my spirit 
 
 Tierra mi cuerpo agua mi sangre 
-Aire mi aliento y fuego mi espíritu 
-'
+Aire mi aliento y fuego mi espíritu'
     );
 END $$;
 -- Song: Espíritu del agua
@@ -552,8 +589,7 @@ La gran águila del norte,
 vuela ya 
 
 Hermoso espíritu de ayahuasca, 
-llega ya 
-'
+llega ya'
     );
 END $$;
 -- Song: Eu sou Santa Maria
@@ -576,8 +612,7 @@ Trago aqui Amor e Alegria (2x)
 
 E aqui dentro deste salão 
 A alegria é a nossa única razão 
-Santa Maria Nina Urku 
-'
+Santa Maria Nina Urku'
     );
 END $$;
 -- Song: Florecerá
@@ -592,22 +627,33 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Florecerá}
+{artist: Unknown}
+{tag: Spanish}
+
+https://www.facebook.com/watch/?v=2328854114060949
+
+
 Voy sembrando una semilla de paz 
-en la tierra y en el corazón (paz, luz, amor) 
+en la tierra y en el corazón (paz, luz, amor)  (2x)
 
 Llamo al agua 
 canto al agua 
-para que venga a darle vida 
+para que venga a darle vida (2x)
 
 Padre Sol le dará la fuerza 
-y el silencio será su melodía 
+y el silencio será su melodía (2x)
 
-Florecerá, florecerá 
-florecerá, florecerá 
+Brotara crecerá celebrará 
+La magia de la vida (2x)
 
-Floreciendo la conciencia 
-florece mi corazón 
-'
+Florecerá, florecerá
+florecerá, florecerá (2x)
+
+Floreciendo la conciencia
+florece mi corazón (2x)
+
+Somos flores somos flores 
+En este jardín de paz.(2x)'
     );
 END $$;
 -- Song: Fly - little bird
@@ -647,8 +693,7 @@ Take me to your world
 [d]Love leads to eter[a]nity 
 [a]Your heart will show the [d]way 
 [a]To your sun, To your [d]moon 
-[C]Your stars behind the [G]sky (2x) 
-'
+[C]Your stars behind the [G]sky (2x)'
     );
 END $$;
 -- Song: Gitsi Manitou
@@ -669,14 +714,33 @@ Gitsi Manitou, gitsi Manitou (x2)
 Yoha, yoha, yoha wanna-yo (x2) 
 Yoha wanna-yo, yoha wanna-yo (x2) 
 
+Gitsi, gitsi, gitsi Manitou (x2) 
+Gitsi Manitou, gitsi Manitou (x2) 
+
+Yoha, yoha, yoha wanna-yo (x2) 
+Yoha wanna-yo, yoha wanna-yo
+hey yana, hey ney yo wei
+
 Quetzalcoatl, take us by the hand 
 we will follow the morning star 
 Yoha wanna-yo, yoha wanna-yo (x2) 
 
 With this star we shall rise 
 with happiness and beauty in our lives 
+Yoha wanna-yo, yoha wanna-yo
+hey yana, hey ney yo wei
+Gitsi, gitsi, gitsi Manitou (x2) 
+Gitsi Manitou, gitsi Manitou (x2) 
+
+Yoha, yoha, yoha wanna-yo (x2) 
 Yoha wanna-yo, yoha wanna-yo (x2) 
-'
+
+Gitsi, gitsi, gitsi Manitou (x2) 
+Gitsi Manitou, gitsi Manitou (x2) 
+
+Yoha, yoha, yoha wanna-yo (x2) 
+Yoha wanna-yo, yoha wanna-yo
+hey yana, hey ney yo wei'
     );
 END $$;
 -- Song: He Yama yo
@@ -692,10 +756,11 @@ VALUES (
         'Standard',
         '{title: He Yama yo}
 {artist: Curawaka} 
+{tag: Vocalization}
 He yama yo 
 Wana hene yo 
 He yama yo 
-Wana hene yo 
+Wana hene yo (2x)
 Wahee 
 Yayana 
 Hey hey hey ho 
@@ -724,8 +789,7 @@ VALUES (
 
 [e]Ocha kiniba nita [C]Oxun [D] 
 Cheke cheke cheke. [G]nita [C]ya. [D] 
-Ide were were. [b] [B7] 
-'
+Ide were were. [b] [B7]'
     );
 END $$;
 -- Song: Inan Tonanzin
@@ -740,10 +804,15 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Inan Tonanzin}
-Inan tonanzin tlan 
-inan tonanzin tlali 
-Inan tonanzin 
-inan tonanzin tlan (x2) 
+{artist: Unknown}
+{tag: Earth}
+{tag: Medicine Plants}
+{tag: Nahuatl}
+{tag: Temazcal}
+{tag: Women}
+
+Inan tonanzin tlan inan tonanzin tlali 
+Inan tonanzin inan tonanzin tlan (x2) 
 
 Welo we ya ya yo welo we ya yo (x2) 
 Heya Heya Heya Heya Heya 
@@ -777,8 +846,7 @@ Dalla radice la forza creatrice nel Tronco si innalzerà
 Chiamata dal sole e dal suo calore nell''acqua inizia a viaggiare 
 Portando il messaggio pieno di coraggio che l''amore sboccerà 
 E con il valore che dà l''amore il seme germoglierà 
-{c: Dario} 
-'
+{c: Dario}'
     );
 END $$;
 -- Song: Luz divina
@@ -793,6 +861,10 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Luz divina}
+{artist: Unknown}
+{tag: Spanish}
+{tag: Water}
+{tag: Santa Maria}
 Luz divina Santa María 
 Santa María divino amor (2x) 
 Agua limpia y milagrosa 
@@ -801,40 +873,7 @@ Que da todo su esplendor (2x)
 Luz divina Santa María 
 Santa María divino amor (2x) 
 Virgen madre que me guía 
-/ a mi es ella quien me guia, 
 En esta planta que es todo amor (2x) 
-'
-    );
-END $$;
--- Song: Medicina Lapitoj
-DO $$
-DECLARE comp_id uuid;
-BEGIN
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Medicina Lapitoj', 'Coral Herencia')
-RETURNING id INTO comp_id;
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
-VALUES (
-        comp_id,
-        'Standard',
-        '{title: Medicina Lapitoj}
-Te lleva adentro 
-al centro de tu centro 
-medicina lapitoj 
-toco tu corazón (2x) 
-
-Tiene colmillos de Jaguar 
-mirada profunda como la serpiente 
-alas de cóndor para volar 
-espirales salen desde su frente 
-
-Cura, sana, siente, ama (2x) 
-Cura por dentro 
-sonrie contento 
-Espiritu Antiguo 
-puente vivo cosmico (2x) 
-
-Tiene colmillos de Jaguar 
 '
     );
 END $$;
@@ -864,8 +903,7 @@ Hey ya (7x) ho
 
 Brother I can see you in the fire flame 
 Dancing and drumming''s gonna make us stronger (2x) 
-Hey ya (7x) ho 
-'
+Hey ya (7x) ho'
     );
 END $$;
 -- Song: Mother I Honor You
@@ -890,8 +928,7 @@ You spirit is my guide
 Every day and every night 
 I give thanks for your love
 
-Awe awe awe awa... 
-'
+Awe awe awe awa...'
     );
 END $$;
 -- Song: Pachamama Madre Tierra
@@ -906,17 +943,21 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Pachamama Madre Tierra}
-Pachamama madre tierra (x2) 
-Taita inti taita inti taita inti 
-Gran Espiritu 
+{artist: Unknown}
+{tag: Spanish}
+{tag: Earth}
 
 Pachamama madre tierra (x2) 
-Wirikuta wirikuta wirikuta 
-Gran Espiritu 
+Taita inti taita inti 
+taita inti  Gran Espiritu 
 
 Pachamama madre tierra (x2) 
-Nina Urku Nina Urku Nina Urku 
-Gran Espiritu 
+Wirikuta wirikuta
+wirikuta Gran Espiritu 
+
+Pachamama madre tierra (x2) 
+Nina Urku Nina Urku
+Nina Urku Gran Espiritu 
 '
     );
 END $$;
@@ -932,7 +973,10 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Queen of the Web}
-Momma iktomi (hitomi) Queen of the Web 
+{artist: Unknown}
+{tag: English}
+
+Momma iktomi (hitomi) Queen of the web 
 weaving us all with her sacred thread (x2) 
 
 wiki tiki tiki tiki 
@@ -943,14 +987,15 @@ weaving the heavens into the earth,
 weaving our dying into our birth (x2) 
 
 wiki tiki tiki tiki 
+wiki tiki tiki tiki
 Queen of the Web (x2) 
 
 nothing escapes her tender embrace, 
 dark, light, wrong, right Queen of the Web (x2) 
 
 wiki tiki tiki tiki 
-Queen of the Web (x2) 
-'
+wiki tiki tiki tiki
+Queen of the Web (x2)'
     );
 END $$;
 -- Song: Salve salve mamae Oxum
@@ -968,6 +1013,10 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Salve salve mamae Oxum}
+{artist: Unknown}
+{tag: Portuguese}
+{tag: Water}
+{tag: Umbanda}
 Salve salve mamae Oxum 
 Com sua luz vem-nos iluminar (x2) 
 Salve salve mamae (x2) 
@@ -979,32 +1028,7 @@ Salve salve mamae Oxum (x2)
 
 Com sue sorriso vem-nos alegrar (x2) 
 Salve salve mamae (x2) 
-'
-    );
-END $$;
--- Song: Salve Rainha do Mar
-DO $$
-DECLARE comp_id uuid;
-BEGIN
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Salve Rainha do Mar', 'João de Angola')
-RETURNING id INTO comp_id;
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
-VALUES (
-        comp_id,
-        'Standard',
-        '{title: Salve Rainha do Mar}
-[C]Sal ve Ra hi [G]na Do [C]Mar 
-[G]Salve Rahina do Mar 
-[Dm]Salve minha mae [G]Iemanja 
-[C]Ella é [Dm]criadora 
-Du [G]fundu du [C]mar (x2) 
-
-[C]Ella é pro[Dm]tectora 
-Du [G]fundu du [C]mar (x2) 
-
-[C]Ella é minha [Dm]Mae 
-[G]Ella é Ie[C]manja (x2) 
+Salve salve mamae Oxum (x2) 
 '
     );
 END $$;
@@ -1043,8 +1067,7 @@ VALUES (
 [Dm]Madre Ayahuasca / Abuelo San [Am]Pedro calma mi [C]mente [G] 
 [Dm]Luz divina guia mi cora[Am]zon [C] [G] 
 [Dm]Madre Ayahuasca / Abuelo San [Am]Pedro danos cons[C]ciencia [G] 
-[Dm]Luz divina guia mi cora[Am]zon [C] [G] 
-'
+[Dm]Luz divina guia mi cora[Am]zon [C] [G]'
     );
 END $$;
 -- Song: Sou Filho de Deus
@@ -1079,8 +1102,7 @@ deixando tudo com perfume de Jasmim (x2)
 {c: Get rid of all that is bad, leaving everything with the scent of Jasmine (x2) }
 
 Sou filha de Deus, sou filho da Rainha 
-Awakallero è o Mestre quem me ensina nesta linha (x2) 
-'
+Awakallero è o Mestre quem me ensina nesta linha (x2)'
     );
 END $$;
 -- Song: Tamborcito
@@ -1095,6 +1117,10 @@ VALUES (
         comp_id,
         'Standard',
         '{title: Tamborcito}
+{artist: Unknown}
+{tag: Spanish}
+
+https://www.song-circle.com/world-songs/condor/tamborcito
 Tamborcito tamborcito 
 ayúdame a cantar (x2) 
 
@@ -1116,20 +1142,21 @@ del viente
 
 Al corazón al corazón 
 
-{c: Translation:} 
-{c: Tamborcito tamborcito }
-{c: help me to sing (x2) }
-{c: For the voice to come out }
-{c: To bring out the voice }
-{c: So that the voice comes out }
-{c: And let it go where it needs to go }
-{c: To my brother''s heart }
-{c: To my sister''s heart }
-{c: To the heart of the earth }
-{c: of this fire, }
-{c: of this water, }
-{c: of the wind }
-{c: To the heart of the heart }
+{c: English Translation:} 
+Tamborcito tamborcito 
+help me to sing (x2) 
+For the voice to come out 
+To bring out the voice 
+So that the voice comes out
+And let it go where it needs to go 
+To my brother''s heart 
+To my sister''s heart 
+To the heart of the earth 
+ of this fire, 
+ of this water, 
+ of the wind 
+
+To the heart of the heart 
 '
     );
 END $$;
@@ -1148,8 +1175,7 @@ VALUES (
 Tonantzin tzin tzin tonantzin (x2) 
 Tona tona tona tonantzin $(\times2)$ 
 Tonatiuh tiuh tiuh tonatiuh $(\times2)$ 
-Tona tona tona tonatiuh $(\times2)$ 
-'
+Tona tona tona tonatiuh $(\times2)$'
     );
 END $$;
 -- Song: Ven, ven
@@ -1157,15 +1183,20 @@ DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Ven, ven', 'Traditional')
+VALUES ('Ven, ven', 'Fiona Helmer')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
         '{title: Ven, ven}
-Ven, ven.. ven, ven. 
-ven, ven. ven, ven. ven, ven... 
+{artist: Fiona Helmer}
+{tag: Spanish}
+{tag: Water}
+
+
+Ven, ven... ven, ven... ven, ven... ven, ven... ven, ven... (x2)
+
 
 Agua de la vida, 
 agua pura, cura agua, ven, ven (x2) 
@@ -1187,38 +1218,6 @@ Ven ven, agua cura... (x2)
 Remos hechos de cantos 
 Deliciosos y antiguos para ti (x2) 
 Ven ven, agua cura... (x2) 
-'
-    );
-END $$;
--- Song: Vuela
-DO $$
-DECLARE comp_id uuid;
-BEGIN
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Vuela', 'Traditional')
-RETURNING id INTO comp_id;
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
-VALUES (
-        comp_id,
-        'Standard',
-        '{title: Vuela}
-Vuela, vuela, vuela, vuela 
-Vuela y se feliz 
-Vuela, vuela, vuela, vuela 
-Vuela dentro de ti 
-
-Dentro de ti, dentro de ti 
-Está este cielo 
-Dentro de ti, dentro de ti 
-Arde este fuego 
-
-Dentro de ti, 
-La medicina 
-Está danzando 
-
-Dentro de ti, 
-Dentro de ti, algo 
-Está cambiando 
 '
     );
 END $$;
@@ -1249,8 +1248,7 @@ Y en el cero weyo wey yana Canta la tierra weyo wey yana
 Con los honguitos weyo wey yana Los Ninos Santos weyo wey yana 
 
 Weyo wey yanna weyo wey yanna (x3) 
-Weyo wey yana Hey ney oh wey 
-'
+Weyo wey yana Hey ney oh wey'
     );
 END $$;
 -- Song: Wichita tuya
@@ -1267,8 +1265,7 @@ VALUES (
         '{title: Wichita tuya}
 danklied en waterlied 
 Wishi Ta Duja Duja Duja 
-Washan Te Neya Heya Heya 
-'
+Washan Te Neya Heya Heya'
     );
 END $$;
 -- Song: Agüita
@@ -1322,8 +1319,7 @@ VALUES (
 [Bm]Agüitay, [A]agüita
 [G]Agüitay, [A]agüita
 [G]Canta, calma, [A]cura el cami[Bm]nito
-[G]El cuerpe[A]cito [Bm]
-'
+[G]El cuerpe[A]cito [Bm]'
     );
 END $$;
 -- Script to populate YouTube URLs for the top 10 songs
