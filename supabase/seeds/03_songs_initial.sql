@@ -13,7 +13,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 01. Abuelitas piedras}
+        '{title: Abuelitas piedras}
 {ci: Temazcal version}
 Abuelitas piedras las gracias te damos, las gracias te damos
 Por abrir el corazón a la sanaçion, abrirlo al amor
@@ -43,7 +43,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 02. Abuelito Fuego}
+        '{title: Abuelito Fuego}
 {subtitle: Santiago song}
 [C]Abuelito Fuego tu [E7]pluma es bri[Am]llante 
 Abuelito Fuego de mi cora[C]zón 
@@ -62,18 +62,18 @@ Tabaquito Karaway karaway karaway
 '
     );
 END $$;
--- Song: Agradecer
+-- Song: Agradecer, agradecer
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Agradecer', 'Traditional')
+VALUES ('Agradecer, agradecer', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 03. Agradecer}
+        '{title: Agradecer, agradecer}
 Agradecer, agradecer. (2x) 
 Esta tierra tan bonita 
 Pachamamita Pachamamita (x2) 
@@ -95,7 +95,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 04. Agua cambia}
+        '{title: Agua cambia}
 El agua cambia todo lo que toca, 
 todo lo que toca cambia (2x) 
 Toca, Cambia, todo lo que toca cambia. (2x) 
@@ -124,7 +124,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 05. Aho Gran Espíritu}
+        '{title: Aho Gran Espíritu}
 Ahó, Ahó, Ahó Gran Espíritu (2x) 
 Del corazón de la montaña 
 Hacia el espacio infinito (2x) 
@@ -150,7 +150,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 06. Aho Pacha Mama}
+        '{title: Aho Pacha Mama}
 Aho Pacha Mama, 
 Madre Tierra, Sacred Goddess / Gaia / Goddess / Gaia 
 Tonantzin (3x) / Tonantzin, Tonantzin, Tonantzin 
@@ -184,7 +184,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 07. Bendice la Tierra}
+        '{title: Bendice la Tierra}
 [Am]Bendice la tierra con [Am]agua. 
 [G]Bendice la tierra con tu cora[Am]zón 
 [Am]Bendice la tierra con [Am]aire 
@@ -214,7 +214,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 08. Blessed we are}
+        '{title: Blessed we are}
 [Verse 1]
 [Am]Blessed we are to [Dm]dance on [G]this ground, 
 The [G]rhythm of saints to [C]carry the sound. 
@@ -251,7 +251,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 09. Brilla Diamante}
+        '{title: Brilla Diamante}
 Dio mio me presento con los manos vacíos 
 En mi corazon zon, 
 diamante, en tu (su) gracia, 
@@ -279,7 +279,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 10. Caboclo}
+        '{title: Caboclo}
 [Am]Caboclo nas matas Nas cachoeiras 
 Nas pedras e nas pedreiras E nas ondas do mar 
 
@@ -312,7 +312,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 11. Calling}
+        '{title: Calling}
 Calling calling calling us home 
 Calling calling calling us home 
 Wherever we may roam 
@@ -337,7 +337,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 12. Canto enamorado del pájaro}
+        '{title: Canto enamorado del pájaro}
 Desde lejos... 
 desde lejos oigo el canto enamorado 
 de un pájaro... 
@@ -374,7 +374,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 13. Colhendo lírio lirulê}
+        '{title: Colhendo lírio lirulê}
 Eu vi mamãe oxum na cachoeira 
 Sentada na beira do rio 
 
@@ -407,7 +407,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 14. Core core}
+        '{title: Core core}
 Core core core core core core yanamayey (x2) 
 Yana yana yana yanamayey (x4) 
 '
@@ -424,7 +424,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 15. Cuatro Vientos}
+        '{title: Cuatro Vientos}
 Viento que viene de la montaña 
 Viento, tráenos la claridad 
 Viento que viene de la montaña 
@@ -475,7 +475,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 16. Down to the river}
+        '{title: Down to the river}
 [G]As I went down to the river to pray 
 [D]Studying about that good old [G]way 
 And who shall *wear the starry crown 
@@ -502,7 +502,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 17. Earth Water Blood}
+        '{title: Earth Water Blood}
 Earth my body water my blood 
 Air my breath and fire my spirit 
 
@@ -522,7 +522,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 18. Espíritu del agua}
+        '{title: Espíritu del agua}
 Hermoso espíritu del agua, 
 llega ya 
 Curando purificando, llega ya 
@@ -570,7 +570,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 19. Eu sou Santa Maria}
+        '{title: Eu sou Santa Maria}
 Eu sou Santa Maria 
 Trago aqui Amor e Alegria (2x) 
 
@@ -591,7 +591,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 20. Florecerá}
+        '{title: Florecerá}
 Voy sembrando una semilla de paz 
 en la tierra y en el corazón (paz, luz, amor) 
 
@@ -621,7 +621,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 21. Fly - little bird}
+        '{title: Fly - little bird}
 [d]I just need your little [a]smile 
 [a]I just need your [d]smile 
 [d]Sing for me, my little [a]bird 
@@ -651,18 +651,18 @@ Take me to your world
 '
     );
 END $$;
--- Song: Gitsi Gitsi Manitou
+-- Song: Gitsi Manitou
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Gitsi Gitsi Manitou', 'Traditional')
+VALUES ('Gitsi Manitou', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 22. Gitsi Gitsi Manitou}
+        '{title: Gitsi Manitou}
 Gitsi, gitsi, gitsi Manitou (x2) 
 Gitsi Manitou, gitsi Manitou (x2) 
 
@@ -679,18 +679,18 @@ Yoha wanna-yo, yoha wanna-yo (x2)
 '
     );
 END $$;
--- Song: Hey yamayo
+-- Song: He Yama yo
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Hey yamayo', 'Curawaka')
+VALUES ('He Yama yo', 'Curawaka')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 23. Hey yamayo}
+        '{title: He Yama yo}
 {artist: Curawaka} 
 He yama yo 
 Wana hene yo 
@@ -716,7 +716,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 24. Ide were were}
+        '{title: Ide were were}
 [e]Ide were were nita [D]Oxun. 
 [E]Ide were were. 
 [e]Ide were were nita [D]Oxun. 
@@ -739,7 +739,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 25. Inan Tonanzin}
+        '{title: Inan Tonanzin}
 Inan tonanzin tlan 
 inan tonanzin tlali 
 Inan tonanzin 
@@ -762,7 +762,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 26. L''albero}
+        '{title: L''albero}
 {capo: 5} 
 La radice è forte l''albero cresce il ramo si allungherà (a Cea) 
 E da quel ramo la foglia che cresce nel sole risplenderà (a Cea) 
@@ -792,7 +792,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 27. Luz divina}
+        '{title: Luz divina}
 Luz divina Santa María 
 Santa María divino amor (2x) 
 Agua limpia y milagrosa 
@@ -817,7 +817,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 28. Medicina Lapitoj}
+        '{title: Medicina Lapitoj}
 Te lleva adentro 
 al centro de tu centro 
 medicina lapitoj 
@@ -849,7 +849,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 29. Mother I Feel You}
+        '{title: Mother I Feel You}
 Mother I feel you under my feet. 
 Mother I can feel your heart beat (2x) 
 Hey ya (7x) ho [G] 
@@ -879,7 +879,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 30. Mother I Honor You}
+        '{title: Mother I Honor You}
 Grand Mother I honor you 
 [a]Your water is my [G]blood 
 Every day and every night 
@@ -894,18 +894,18 @@ Awe awe awe awa...
 '
     );
 END $$;
--- Song: Pachamama
+-- Song: Pachamama Madre Tierra
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Pachamama', 'Traditional')
+VALUES ('Pachamama Madre Tierra', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 31. Pachamama}
+        '{title: Pachamama Madre Tierra}
 Pachamama madre tierra (x2) 
 Taita inti taita inti taita inti 
 Gran Espiritu 
@@ -920,51 +920,54 @@ Gran Espiritu
 '
     );
 END $$;
--- Song: Queen of the web
+-- Song: Queen of the Web
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Queen of the web', 'Traditional')
+VALUES ('Queen of the Web', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 32. Queen of the web}
-Momma iktomi (hitomi) queen of the web 
+        '{title: Queen of the Web}
+Momma iktomi (hitomi) Queen of the Web 
 weaving us all with her sacred thread (x2) 
 
 wiki tiki tiki tiki 
 wiki tiki tiki tiki 
-Queen of the web (x2) 
+Queen of the Web (x2) 
 
 weaving the heavens into the earth, 
 weaving our dying into our birth (x2) 
 
 wiki tiki tiki tiki 
-Queen of the web (x2) 
+Queen of the Web (x2) 
 
 nothing escapes her tender embrace, 
-dark, light, wrong, right Queen of the web (x2) 
+dark, light, wrong, right Queen of the Web (x2) 
 
 wiki tiki tiki tiki 
-Queen of the web (x2) 
+Queen of the Web (x2) 
 '
     );
 END $$;
--- Song: Salve salve mama Oxun
+-- Song: Salve salve mamae Oxum
 DO $$
 DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
-VALUES ('Salve salve mama Oxun', 'Traditional (Umbanda)')
+VALUES (
+        'Salve salve mamae Oxum',
+        'Traditional (Umbanda)'
+    )
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
         comp_id,
         'Standard',
-        '{title: 33. Salve salve mama Oxun}
+        '{title: Salve salve mamae Oxum}
 Salve salve mamae Oxum 
 Com sua luz vem-nos iluminar (x2) 
 Salve salve mamae (x2) 
@@ -990,7 +993,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 34. Salve Rainha do Mar}
+        '{title: Salve Rainha do Mar}
 [C]Sal ve Ra hi [G]na Do [C]Mar 
 [G]Salve Rahina do Mar 
 [Dm]Salve minha mae [G]Iemanja 
@@ -1016,7 +1019,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 35. Siento la medica}
+        '{title: Siento la medica}
 {capo: 2} 
 {c: TRAI NAI NAI NAI NAI NAI NAI NAI NAI NAI NAI NAI }
 
@@ -1055,7 +1058,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 36. Sou Filho de Deus}
+        '{title: Sou Filho de Deus}
 Sou filho de Deus, sou filho da Rainha 
 São Pedro è o Mestre quem me ensina nesta linha (x2) 
 {c: I am a child of God, I am a child of the Queen }
@@ -1091,7 +1094,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 37. Tamborcito}
+        '{title: Tamborcito}
 Tamborcito tamborcito 
 ayúdame a cantar (x2) 
 
@@ -1141,7 +1144,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 38. Tonantzin tzin tzin}
+        '{title: Tonantzin tzin tzin}
 Tonantzin tzin tzin tonantzin (x2) 
 Tona tona tona tonantzin $(\times2)$ 
 Tonatiuh tiuh tiuh tonatiuh $(\times2)$ 
@@ -1160,7 +1163,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 39. Ven, ven}
+        '{title: Ven, ven}
 Ven, ven.. ven, ven. 
 ven, ven. ven, ven. ven, ven... 
 
@@ -1198,7 +1201,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 40. Vuela}
+        '{title: Vuela}
 Vuela, vuela, vuela, vuela 
 Vuela y se feliz 
 Vuela, vuela, vuela, vuela 
@@ -1230,7 +1233,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 41. Weyo wey yanna}
+        '{title: Weyo wey yanna}
 Weyo wey yanna weyo wey yanna (x4) 
 
 En el desierto weyo wey yana Huicholes danzan weyo wey yana 
@@ -1261,7 +1264,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 42. Wichita tuya}
+        '{title: Wichita tuya}
 danklied en waterlied 
 Wishi Ta Duja Duja Duja 
 Washan Te Neya Heya Heya 
@@ -1279,7 +1282,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 43. Agüita}
+        '{title: Agüita}
 {artist: Irina Flórez}
 {subtitle: Camino Rojo version}
 

@@ -13,7 +13,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 01. Abuelitas piedras}
+        '{title: Abuelitas piedras}
 {ci: Temazcal version}
 Abuelitas piedras las gracias te damos, las gracias te damos
 Por abrir el corazón a la sanaçion, abrirlo al amor
@@ -43,7 +43,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 02. Abuelito Fuego}
+        '{title: Abuelito Fuego}
 {subtitle: Santiago song}
 [C]Abuelito Fuego tu [E7]pluma es bri[Am]llante 
 Abuelito Fuego de mi cora[C]zón 
@@ -73,7 +73,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 03. Agradecer}
+        '{title: Agradecer}
 Agradecer, agradecer. (2x) 
 Esta tierra tan bonita 
 Pachamamita Pachamamita (x2) 
@@ -95,7 +95,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 04. Agua cambia}
+        '{title: Agua cambia}
 El agua cambia todo lo que toca, 
 todo lo que toca cambia (2x) 
 Toca, Cambia, todo lo que toca cambia. (2x) 
@@ -124,7 +124,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 05. Aho Gran Espíritu}
+        '{title: Aho Gran Espíritu}
 Ahó, Ahó, Ahó Gran Espíritu (2x) 
 Del corazón de la montaña 
 Hacia el espacio infinito (2x) 
@@ -150,7 +150,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 06. Aho Pacha Mama}
+        '{title: Aho Pacha Mama}
 Aho Pacha Mama, 
 Madre Tierra, Sacred Goddess / Gaia / Goddess / Gaia 
 Tonantzin (3x) / Tonantzin, Tonantzin, Tonantzin 
@@ -184,7 +184,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 07. Bendice la Tierra}
+        '{title: Bendice la Tierra}
 [Am]Bendice la tierra con [Am]agua. 
 [G]Bendice la tierra con tu cora[Am]zón 
 [Am]Bendice la tierra con [Am]aire 
@@ -214,7 +214,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 08. Blessed we are}
+        '{title: Blessed we are}
 [Verse 1]
 [Am]Blessed we are to [Dm]dance on [G]this ground, 
 The [G]rhythm of saints to [C]carry the sound. 
@@ -251,7 +251,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 09. Brilla Diamante}
+        '{title: Brilla Diamante}
 Dio mio me presento con los manos vacíos 
 En mi corazon zon, 
 diamante, en tu (su) gracia, 
@@ -279,7 +279,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 10. Caboclo}
+        '{title: Caboclo}
 [Am]Caboclo nas matas Nas cachoeiras 
 Nas pedras e nas pedreiras E nas ondas do mar 
 
@@ -312,7 +312,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 11. Calling}
+        '{title: Calling}
 Calling calling calling us home 
 Calling calling calling us home 
 Wherever we may roam 
@@ -337,7 +337,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 12. Canto enamorado del pájaro}
+        '{title: Canto enamorado del pájaro}
 Desde lejos... 
 desde lejos oigo el canto enamorado 
 de un pájaro... 
@@ -374,7 +374,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 13. Colhendo lírio lirulê}
+        '{title: Colhendo lírio lirulê}
 Eu vi mamãe oxum na cachoeira 
 Sentada na beira do rio 
 
@@ -407,7 +407,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 14. Core core}
+        '{title: Core core}
 Core core core core core core yanamayey (x2) 
 Yana yana yana yanamayey (x4) 
 '
@@ -424,7 +424,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 15. Cuatro Vientos}
+        '{title: Cuatro Vientos}
 Viento que viene de la montaña 
 Viento, tráenos la claridad 
 Viento que viene de la montaña 
@@ -475,7 +475,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 16. Down to the river}
+        '{title: Down to the river}
 [G]As I went down to the river to pray 
 [D]Studying about that good old [G]way 
 And who shall *wear the starry crown 
@@ -502,7 +502,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 17. Earth Water Blood}
+        '{title: Earth Water Blood}
 Earth my body water my blood 
 Air my breath and fire my spirit 
 
@@ -522,7 +522,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 18. Espíritu del agua}
+        '{title: Espíritu del agua}
 Hermoso espíritu del agua, 
 llega ya 
 Curando purificando, llega ya 
@@ -570,7 +570,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 19. Eu sou Santa Maria}
+        '{title: Eu sou Santa Maria}
 Eu sou Santa Maria 
 Trago aqui Amor e Alegria (2x) 
 
@@ -591,7 +591,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 20. Florecerá}
+        '{title: Florecerá}
 Voy sembrando una semilla de paz 
 en la tierra y en el corazón (paz, luz, amor) 
 
@@ -621,7 +621,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 21. Fly - little bird}
+        '{title: Fly - little bird}
 [d]I just need your little [a]smile 
 [a]I just need your [d]smile 
 [d]Sing for me, my little [a]bird 
@@ -662,7 +662,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 22. Gitsi Gitsi Manitou}
+        '{title: Gitsi Gitsi Manitou}
 Gitsi, gitsi, gitsi Manitou (x2) 
 Gitsi Manitou, gitsi Manitou (x2) 
 
@@ -690,7 +690,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 23. Hey yamayo}
+        '{title: Hey yamayo}
 {artist: Curawaka} 
 He yama yo 
 Wana hene yo 
@@ -716,7 +716,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 24. Ide were were}
+        '{title: Ide were were}
 [e]Ide were were nita [D]Oxun. 
 [E]Ide were were. 
 [e]Ide were were nita [D]Oxun. 
@@ -739,7 +739,7 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 25. Inan Tonanzin}
+        '{title: Inan Tonanzin}
 Inan tonanzin tlan 
 inan tonanzin tlali 
 Inan tonanzin 
@@ -762,9 +762,9 @@ INSERT INTO public.song_versions (composition_id, version_name, content_chordpro
 VALUES (
         comp_id,
         'Standard',
-        '{title: 26. L''albero}
+        '{title: L''albero}
 {capo: 5} 
-{title: 26. L' albero } { artist: Dario } { capo: 5 } [Am] La radice è forte [C] l '' albero cresce il [Em] ramo si allungher [Am] à [Am] E da quel ramo la [C] foglia che cresce nel [Em] sole risplender [Am] à [F] Quando è il momento dan [C] zando nel vento la [C] terra bacer [Am] à [Am] Ed al mattino [C] là sulla cima si [Em] sentirà il [Am] cantare Di [F] chi al risveglio ringr [C] azia il vento che [E] gli insegnò a vo [Am] lare Di [F] chi al risveglio [C] canta contento ed [E] inizia a vo [Am] lare La radice è forte l '' albero cresce il ramo si allungherà E da quel ramo la foglia che cresce nel sole risplenderà Dalla radice la forza creatrice nel Tronco si innalzerà Chiamata dal sole e dal suo calore nell '' acqua inizia a viaggiare Portando il messaggio pieno di coraggio che l '' amore sboccerà E con il valore che dà l '' amore il seme germoglierà { c: Dario } ');
+{title: L' albero } { artist: Dario } { capo: 5 } [Am] La radice è forte [C] l '' albero cresce il [Em] ramo si allungher [Am] à [Am] E da quel ramo la [C] foglia che cresce nel [Em] sole risplender [Am] à [F] Quando è il momento dan [C] zando nel vento la [C] terra bacer [Am] à [Am] Ed al mattino [C] là sulla cima si [Em] sentirà il [Am] cantare Di [F] chi al risveglio ringr [C] azia il vento che [E] gli insegnò a vo [Am] lare Di [F] chi al risveglio [C] canta contento ed [E] inizia a vo [Am] lare La radice è forte l '' albero cresce il ramo si allungherà E da quel ramo la foglia che cresce nel sole risplenderà Dalla radice la forza creatrice nel Tronco si innalzerà Chiamata dal sole e dal suo calore nell '' acqua inizia a viaggiare Portando il messaggio pieno di coraggio che l '' amore sboccerà E con il valore che dà l '' amore il seme germoglierà { c: Dario } ');
 END $$;
 
 -- Song: Luz divina
