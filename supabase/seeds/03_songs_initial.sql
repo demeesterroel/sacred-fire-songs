@@ -1,149 +1,3 @@
--- Comprehensive Seed Data for Local Development
--- Consolidates users, songs, and YouTube links.
--- 1. Setup Dev Test Users (Persistent UUIDs for local dev)
--- Password for all is 'sacred-fire-dev'
-INSERT INTO auth.users (
-    id,
-    instance_id,
-    aud,
-    role,
-    email,
-    encrypted_password,
-    email_confirmed_at,
-    created_at,
-    updated_at,
-    raw_app_meta_data,
-    raw_user_meta_data,
-    is_super_admin,
-    confirmation_token,
-    recovery_token,
-    email_change_token_new,
-    email_change,
-    email_change_token_current,
-    phone_change_token,
-    reauthentication_token
-  )
-VALUES (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    '00000000-0000-0000-0000-000000000000',
-    'authenticated',
-    'authenticated',
-    'roel.de.meester+admin@gmail.com',
-    crypt('sacred-fire-dev', gen_salt('bf')),
-    now(),
-    now(),
-    now(),
-    '{"provider":"email","providers":["email"]}',
-    '{}',
-    false,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ),
-  (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
-    '00000000-0000-0000-0000-000000000000',
-    'authenticated',
-    'authenticated',
-    'roel.de.meester+musician@gmail.com',
-    crypt('sacred-fire-dev', gen_salt('bf')),
-    now(),
-    now(),
-    now(),
-    '{"provider":"email","providers":["email"]}',
-    '{}',
-    false,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ),
-  (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
-    '00000000-0000-0000-0000-000000000000',
-    'authenticated',
-    'authenticated',
-    'roel.de.meester+member@gmail.com',
-    crypt('sacred-fire-dev', gen_salt('bf')),
-    now(),
-    now(),
-    now(),
-    '{"provider":"email","providers":["email"]}',
-    '{}',
-    false,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ) ON CONFLICT (id) DO
-UPDATE
-SET encrypted_password = EXCLUDED.encrypted_password;
--- 1b. Linked Identities (Required by GoTrue for login)
-INSERT INTO auth.identities (
-    id,
-    user_id,
-    identity_data,
-    provider,
-    provider_id,
-    created_at,
-    updated_at
-  )
-VALUES (
-    gen_random_uuid(),
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11","email":"roel.de.meester+admin@gmail.com"}',
-    'email',
-    'roel.de.meester+admin@gmail.com',
-    now(),
-    now()
-  ),
-  (
-    gen_random_uuid(),
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
-    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12","email":"roel.de.meester+musician@gmail.com"}',
-    'email',
-    'roel.de.meester+musician@gmail.com',
-    now(),
-    now()
-  ),
-  (
-    gen_random_uuid(),
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
-    '{"sub":"a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13","email":"roel.de.meester+member@gmail.com"}',
-    'email',
-    'roel.de.meester+member@gmail.com',
-    now(),
-    now()
-  ) ON CONFLICT (provider_id, provider) DO NOTHING;
--- 2. Ensure Profiles exist with correct roles
-INSERT INTO public.profiles (id, email, role)
-VALUES (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'roel.de.meester+admin@gmail.com',
-    'admin'
-  ),
-  (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12',
-    'roel.de.meester+musician@gmail.com',
-    'musician'
-  ),
-  (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',
-    'roel.de.meester+member@gmail.com',
-    'member'
-  ) ON CONFLICT (id) DO
-UPDATE
-SET role = EXCLUDED.role;
 -- 3. Import Songs-- Batch Import of ChordPro Songs with Researched Authors
 -- Song: Abuelitas piedras
 DO $$
@@ -151,15 +5,15 @@ DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
 VALUES (
-    'Abuelitas piedras',
-    'Traditional (Maria Valdivia)'
-  )
+        'Abuelitas piedras',
+        'Traditional (Maria Valdivia)'
+    )
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 01. Abuelitas piedras}
+        comp_id,
+        'Standard',
+        '{title: 01. Abuelitas piedras}
 {ci: Temazcal version}
 Abuelitas piedras las gracias te damos, las gracias te damos
 Por abrir el corazón a la sanaçion, abrirlo al amor
@@ -176,7 +30,7 @@ Por abrir el corazón a la sanaçion, abrirlo al amor
 ...A los abuelitos
 ...A Ometeotl
 '
-  );
+    );
 END $$;
 -- Song: Abuelito Fuego
 DO $$
@@ -187,9 +41,9 @@ VALUES ('Abuelito Fuego', 'Traditional (Camino Rojo)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 02. Abuelito Fuego}
+        comp_id,
+        'Standard',
+        '{title: 02. Abuelito Fuego}
 {subtitle: Santiago song}
 [C]Abuelito Fuego tu [E7]pluma es bri[Am]llante 
 Abuelito Fuego de mi cora[C]zón 
@@ -206,7 +60,7 @@ Abuelito Fuego de mi cora[C]zón
 Ayawaska Karaway karaway karaway 
 Tabaquito Karaway karaway karaway 
 '
-  );
+    );
 END $$;
 -- Song: Agradecer
 DO $$
@@ -217,9 +71,9 @@ VALUES ('Agradecer', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 03. Agradecer}
+        comp_id,
+        'Standard',
+        '{title: 03. Agradecer}
 Agradecer, agradecer. (2x) 
 Esta tierra tan bonita 
 Pachamamita Pachamamita (x2) 
@@ -228,7 +82,7 @@ Reconocer, reconocer (2x)
 En este altar el poder 
 este poder este poder (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Agua cambia
 DO $$
@@ -239,9 +93,9 @@ VALUES ('Agua cambia', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 04. Agua cambia}
+        comp_id,
+        'Standard',
+        '{title: 04. Agua cambia}
 El agua cambia todo lo que toca, 
 todo lo que toca cambia (2x) 
 Toca, Cambia, todo lo que toca cambia. (2x) 
@@ -257,7 +111,7 @@ Toca, Cambia, todo lo que toca cambia. (2x)
 La Tierra cambia todo lo que toca, 
 todo lo que toca cambia (2x) 
 '
-  );
+    );
 END $$;
 -- Song: Aho Gran Espíritu
 DO $$
@@ -268,9 +122,9 @@ VALUES ('Aho Gran Espíritu', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 05. Aho Gran Espíritu}
+        comp_id,
+        'Standard',
+        '{title: 05. Aho Gran Espíritu}
 Ahó, Ahó, Ahó Gran Espíritu (2x) 
 Del corazón de la montaña 
 Hacia el espacio infinito (2x) 
@@ -283,7 +137,7 @@ Rayo, Rayo, Rayo del nuevo día
 Sono el tambor, danza del Sol 
 Mi corazón siente alegría 
 '
-  );
+    );
 END $$;
 -- Song: Aho Pacha Mama
 DO $$
@@ -294,9 +148,9 @@ VALUES ('Aho Pacha Mama', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 06. Aho Pacha Mama}
+        comp_id,
+        'Standard',
+        '{title: 06. Aho Pacha Mama}
 Aho Pacha Mama, 
 Madre Tierra, Sacred Goddess / Gaia / Goddess / Gaia 
 Tonantzin (3x) / Tonantzin, Tonantzin, Tonantzin 
@@ -317,7 +171,7 @@ Tezcatlipoca y Quetzalcoatl
 creation of the universe 
 in darkness and light 
 '
-  );
+    );
 END $$;
 -- Song: Bendice la Tierra
 DO $$
@@ -328,9 +182,9 @@ VALUES ('Bendice la Tierra', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 07. Bendice la Tierra}
+        comp_id,
+        'Standard',
+        '{title: 07. Bendice la Tierra}
 [Am]Bendice la tierra con [Am]agua. 
 [G]Bendice la tierra con tu cora[Am]zón 
 [Am]Bendice la tierra con [Am]aire 
@@ -347,7 +201,7 @@ Trayendo pura sanación (2x)
 Y ábrete (3x) 
 A la vida y al amor (2x) 
 '
-  );
+    );
 END $$;
 -- Song: Blessed we are
 DO $$
@@ -358,9 +212,9 @@ VALUES ('Blessed we are', 'Peia')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 08. Blessed we are}
+        comp_id,
+        'Standard',
+        '{title: 08. Blessed we are}
 [Verse 1]
 [Am]Blessed we are to [Dm]dance on [G]this ground, 
 The [G]rhythm of saints to [C]carry the sound. 
@@ -384,7 +238,7 @@ Hayahey yahey yahey yoh
 [Dm]Hayahey yahey yahey [Am]yoh 
 [C]Hayahey yahey yahey [G]yoh 
 '
-  );
+    );
 END $$;
 -- Song: Brilla Diamante
 DO $$
@@ -395,9 +249,9 @@ VALUES ('Brilla Diamante', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 09. Brilla Diamante}
+        comp_id,
+        'Standard',
+        '{title: 09. Brilla Diamante}
 Dio mio me presento con los manos vacíos 
 En mi corazon zon, 
 diamante, en tu (su) gracia, 
@@ -412,7 +266,7 @@ fluye fluye el amor
 
 Damderore damderore damderore damderore 
 '
-  );
+    );
 END $$;
 -- Song: Caboclo
 DO $$
@@ -423,9 +277,9 @@ VALUES ('Caboclo', 'Traditional (Umbanda)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 10. Caboclo}
+        comp_id,
+        'Standard',
+        '{title: 10. Caboclo}
 [Am]Caboclo nas matas Nas cachoeiras 
 Nas pedras e nas pedreiras E nas ondas do mar 
 
@@ -445,7 +299,7 @@ Da paz e da harmonia soldado de oxala
 {c: From Aruanda, come, come, come bringing strength, }
 {c: to break the illusion, so Umbanda can be healed" }
 '
-  );
+    );
 END $$;
 -- Song: Calling
 DO $$
@@ -456,9 +310,9 @@ VALUES ('Calling', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 11. Calling}
+        comp_id,
+        'Standard',
+        '{title: 11. Calling}
 Calling calling calling us home 
 Calling calling calling us home 
 Wherever we may roam 
@@ -470,7 +324,7 @@ Our heart
 Grandfather fire 
 is calling us home 
 '
-  );
+    );
 END $$;
 -- Song: Canto enamorado del pájaro
 DO $$
@@ -481,9 +335,9 @@ VALUES ('Canto enamorado del pájaro', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 12. Canto enamorado del pájaro}
+        comp_id,
+        'Standard',
+        '{title: 12. Canto enamorado del pájaro}
 Desde lejos... 
 desde lejos oigo el canto enamorado 
 de un pájaro... 
@@ -507,7 +361,7 @@ canta, canta, canta
 Ágida Aj Ágida 
 Ágida Aj Ágide 
 '
-  );
+    );
 END $$;
 -- Song: Colhendo lírio lirulê
 DO $$
@@ -518,9 +372,9 @@ VALUES ('Colhendo lírio lirulê', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 13. Colhendo lírio lirulê}
+        comp_id,
+        'Standard',
+        '{title: 13. Colhendo lírio lirulê}
 Eu vi mamãe oxum na cachoeira 
 Sentada na beira do rio 
 
@@ -540,7 +394,7 @@ Ela é pureza
 Ela nos traz a paz 
 Do Santo Nazareno 
 '
-  );
+    );
 END $$;
 -- Song: Core core
 DO $$
@@ -551,13 +405,13 @@ VALUES ('Core core', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 14. Core core}
+        comp_id,
+        'Standard',
+        '{title: 14. Core core}
 Core core core core core core yanamayey (x2) 
 Yana yana yana yanamayey (x4) 
 '
-  );
+    );
 END $$;
 -- Song: Cuatro Vientos
 DO $$
@@ -568,9 +422,9 @@ VALUES ('Cuatro Vientos', 'Danit')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 15. Cuatro Vientos}
+        comp_id,
+        'Standard',
+        '{title: 15. Cuatro Vientos}
 Viento que viene de la montaña 
 Viento, tráenos la claridad 
 Viento que viene de la montaña 
@@ -608,7 +462,7 @@ Viento, tráenos la memoria
 Vuela, vuela, vuela, vuela 
 Vuela, vuela, vuela, volá con nosotros 
 '
-  );
+    );
 END $$;
 -- Song: Down to the river
 DO $$
@@ -619,9 +473,9 @@ VALUES ('Down to the river', 'Traditional (Spiritual)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 16. Down to the river}
+        comp_id,
+        'Standard',
+        '{title: 16. Down to the river}
 [G]As I went down to the river to pray 
 [D]Studying about that good old [G]way 
 And who shall *wear the starry crown 
@@ -635,7 +489,7 @@ Oh sisters, let''s go [D]down
 {c: (*) Variations for ''wear the starry crown'': wear the robe and crown }
 {c: (*) Variations for ''Sisters'': Oh Brothers }
 '
-  );
+    );
 END $$;
 -- Song: Earth Water Blood
 DO $$
@@ -646,16 +500,16 @@ VALUES ('Earth Water Blood', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 17. Earth Water Blood}
+        comp_id,
+        'Standard',
+        '{title: 17. Earth Water Blood}
 Earth my body water my blood 
 Air my breath and fire my spirit 
 
 Tierra mi cuerpo agua mi sangre 
 Aire mi aliento y fuego mi espíritu 
 '
-  );
+    );
 END $$;
 -- Song: Espíritu del agua
 DO $$
@@ -666,9 +520,9 @@ VALUES ('Espíritu del agua', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 18. Espíritu del agua}
+        comp_id,
+        'Standard',
+        '{title: 18. Espíritu del agua}
 Hermoso espíritu del agua, 
 llega ya 
 Curando purificando, llega ya 
@@ -700,7 +554,7 @@ vuela ya
 Hermoso espíritu de ayahuasca, 
 llega ya 
 '
-  );
+    );
 END $$;
 -- Song: Eu sou Santa Maria
 DO $$
@@ -708,15 +562,15 @@ DECLARE comp_id uuid;
 BEGIN
 INSERT INTO public.compositions (title, original_author)
 VALUES (
-    'Eu sou Santa Maria',
-    'Traditional (Santo Daime)'
-  )
+        'Eu sou Santa Maria',
+        'Traditional (Santo Daime)'
+    )
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 19. Eu sou Santa Maria}
+        comp_id,
+        'Standard',
+        '{title: 19. Eu sou Santa Maria}
 Eu sou Santa Maria 
 Trago aqui Amor e Alegria (2x) 
 
@@ -724,7 +578,7 @@ E aqui dentro deste salão
 A alegria é a nossa única razão 
 Santa Maria Nina Urku 
 '
-  );
+    );
 END $$;
 -- Song: Florecerá
 DO $$
@@ -735,9 +589,9 @@ VALUES ('Florecerá', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 20. Florecerá}
+        comp_id,
+        'Standard',
+        '{title: 20. Florecerá}
 Voy sembrando una semilla de paz 
 en la tierra y en el corazón (paz, luz, amor) 
 
@@ -754,7 +608,7 @@ florecerá, florecerá
 Floreciendo la conciencia 
 florece mi corazón 
 '
-  );
+    );
 END $$;
 -- Song: Fly - little bird
 DO $$
@@ -765,9 +619,9 @@ VALUES ('Fly - little bird', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 21. Fly - little bird}
+        comp_id,
+        'Standard',
+        '{title: 21. Fly - little bird}
 [d]I just need your little [a]smile 
 [a]I just need your [d]smile 
 [d]Sing for me, my little [a]bird 
@@ -795,7 +649,7 @@ Take me to your world
 [a]To your sun, To your [d]moon 
 [C]Your stars behind the [G]sky (2x) 
 '
-  );
+    );
 END $$;
 -- Song: Gitsi Gitsi Manitou
 DO $$
@@ -806,9 +660,9 @@ VALUES ('Gitsi Gitsi Manitou', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 22. Gitsi Gitsi Manitou}
+        comp_id,
+        'Standard',
+        '{title: 22. Gitsi Gitsi Manitou}
 Gitsi, gitsi, gitsi Manitou (x2) 
 Gitsi Manitou, gitsi Manitou (x2) 
 
@@ -823,7 +677,7 @@ With this star we shall rise
 with happiness and beauty in our lives 
 Yoha wanna-yo, yoha wanna-yo (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Hey yamayo
 DO $$
@@ -834,9 +688,9 @@ VALUES ('Hey yamayo', 'Curawaka')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 23. Hey yamayo}
+        comp_id,
+        'Standard',
+        '{title: 23. Hey yamayo}
 {artist: Curawaka} 
 He yama yo 
 Wana hene yo 
@@ -849,7 +703,7 @@ Waahee
 Hey hey hey hey hey ho 
 Wahee 
 '
-  );
+    );
 END $$;
 -- Song: Ide were were
 DO $$
@@ -860,9 +714,9 @@ VALUES ('Ide were were', 'Traditional (Yoruba)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 24. Ide were were}
+        comp_id,
+        'Standard',
+        '{title: 24. Ide were were}
 [e]Ide were were nita [D]Oxun. 
 [E]Ide were were. 
 [e]Ide were were nita [D]Oxun. 
@@ -872,7 +726,7 @@ VALUES (
 Cheke cheke cheke. [G]nita [C]ya. [D] 
 Ide were were. [b] [B7] 
 '
-  );
+    );
 END $$;
 -- Song: Inan Tonanzin
 DO $$
@@ -883,9 +737,9 @@ VALUES ('Inan Tonanzin', 'Traditional (Nahuatl)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 25. Inan Tonanzin}
+        comp_id,
+        'Standard',
+        '{title: 25. Inan Tonanzin}
 Inan tonanzin tlan 
 inan tonanzin tlali 
 Inan tonanzin 
@@ -895,7 +749,7 @@ Welo we ya ya yo welo we ya yo (x2)
 Heya Heya Heya Heya Heya 
 Heya Heya Heya welo we ya yo (x2) 
 '
-  );
+    );
 END $$;
 -- Song: L'albero
 DO $$
@@ -906,9 +760,9 @@ VALUES ('L''albero', 'Dario Hampi Pakari')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 26. L''albero}
+        comp_id,
+        'Standard',
+        '{title: 26. L''albero}
 {capo: 5} 
 La radice è forte l''albero cresce il ramo si allungherà (a Cea) 
 E da quel ramo la foglia che cresce nel sole risplenderà (a Cea) 
@@ -925,7 +779,7 @@ Portando il messaggio pieno di coraggio che l''amore sboccerà
 E con il valore che dà l''amore il seme germoglierà 
 {c: Dario} 
 '
-  );
+    );
 END $$;
 -- Song: Luz divina
 DO $$
@@ -936,9 +790,9 @@ VALUES ('Luz divina', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 27. Luz divina}
+        comp_id,
+        'Standard',
+        '{title: 27. Luz divina}
 Luz divina Santa María 
 Santa María divino amor (2x) 
 Agua limpia y milagrosa 
@@ -950,7 +804,7 @@ Virgen madre que me guía
 / a mi es ella quien me guia, 
 En esta planta que es todo amor (2x) 
 '
-  );
+    );
 END $$;
 -- Song: Medicina Lapitoj
 DO $$
@@ -961,9 +815,9 @@ VALUES ('Medicina Lapitoj', 'Coral Herencia')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 28. Medicina Lapitoj}
+        comp_id,
+        'Standard',
+        '{title: 28. Medicina Lapitoj}
 Te lleva adentro 
 al centro de tu centro 
 medicina lapitoj 
@@ -982,7 +836,7 @@ puente vivo cosmico (2x)
 
 Tiene colmillos de Jaguar 
 '
-  );
+    );
 END $$;
 -- Song: Mother I Feel You
 DO $$
@@ -993,9 +847,9 @@ VALUES ('Mother I Feel You', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 29. Mother I Feel You}
+        comp_id,
+        'Standard',
+        '{title: 29. Mother I Feel You}
 Mother I feel you under my feet. 
 Mother I can feel your heart beat (2x) 
 Hey ya (7x) ho [G] 
@@ -1012,7 +866,7 @@ Brother I can see you in the fire flame
 Dancing and drumming''s gonna make us stronger (2x) 
 Hey ya (7x) ho 
 '
-  );
+    );
 END $$;
 -- Song: Mother I Honor You
 DO $$
@@ -1023,9 +877,9 @@ VALUES ('Mother I Honor You', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 30. Mother I Honor You}
+        comp_id,
+        'Standard',
+        '{title: 30. Mother I Honor You}
 Grand Mother I honor you 
 [a]Your water is my [G]blood 
 Every day and every night 
@@ -1038,7 +892,7 @@ I give thanks for your love
 
 Awe awe awe awa... 
 '
-  );
+    );
 END $$;
 -- Song: Pachamama
 DO $$
@@ -1049,9 +903,9 @@ VALUES ('Pachamama', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 31. Pachamama}
+        comp_id,
+        'Standard',
+        '{title: 31. Pachamama}
 Pachamama madre tierra (x2) 
 Taita inti taita inti taita inti 
 Gran Espiritu 
@@ -1064,7 +918,7 @@ Pachamama madre tierra (x2)
 Nina Urku Nina Urku Nina Urku 
 Gran Espiritu 
 '
-  );
+    );
 END $$;
 -- Song: Queen of the web
 DO $$
@@ -1075,9 +929,9 @@ VALUES ('Queen of the web', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 32. Queen of the web}
+        comp_id,
+        'Standard',
+        '{title: 32. Queen of the web}
 Momma iktomi (hitomi) queen of the web 
 weaving us all with her sacred thread (x2) 
 
@@ -1097,7 +951,7 @@ dark, light, wrong, right Queen of the web (x2)
 wiki tiki tiki tiki 
 Queen of the web (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Salve salve mama Oxun
 DO $$
@@ -1108,9 +962,9 @@ VALUES ('Salve salve mama Oxun', 'Traditional (Umbanda)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 33. Salve salve mama Oxun}
+        comp_id,
+        'Standard',
+        '{title: 33. Salve salve mama Oxun}
 Salve salve mamae Oxum 
 Com sua luz vem-nos iluminar (x2) 
 Salve salve mamae (x2) 
@@ -1123,7 +977,7 @@ Salve salve mamae Oxum (x2)
 Com sue sorriso vem-nos alegrar (x2) 
 Salve salve mamae (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Salve Rainha do Mar
 DO $$
@@ -1134,9 +988,9 @@ VALUES ('Salve Rainha do Mar', 'João de Angola')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 34. Salve Rainha do Mar}
+        comp_id,
+        'Standard',
+        '{title: 34. Salve Rainha do Mar}
 [C]Sal ve Ra hi [G]na Do [C]Mar 
 [G]Salve Rahina do Mar 
 [Dm]Salve minha mae [G]Iemanja 
@@ -1149,7 +1003,7 @@ Du [G]fundu du [C]mar (x2)
 [C]Ella é minha [Dm]Mae 
 [G]Ella é Ie[C]manja (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Siento la medica
 DO $$
@@ -1160,9 +1014,9 @@ VALUES ('Siento la medica', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 35. Siento la medica}
+        comp_id,
+        'Standard',
+        '{title: 35. Siento la medica}
 {capo: 2} 
 {c: TRAI NAI NAI NAI NAI NAI NAI NAI NAI NAI NAI NAI }
 
@@ -1188,7 +1042,7 @@ VALUES (
 [Dm]Madre Ayahuasca / Abuelo San [Am]Pedro danos cons[C]ciencia [G] 
 [Dm]Luz divina guia mi cora[Am]zon [C] [G] 
 '
-  );
+    );
 END $$;
 -- Song: Sou Filho de Deus
 DO $$
@@ -1199,9 +1053,9 @@ VALUES ('Sou Filho de Deus', 'Traditional (Santo Daime)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 36. Sou Filho de Deus}
+        comp_id,
+        'Standard',
+        '{title: 36. Sou Filho de Deus}
 Sou filho de Deus, sou filho da Rainha 
 São Pedro è o Mestre quem me ensina nesta linha (x2) 
 {c: I am a child of God, I am a child of the Queen }
@@ -1224,7 +1078,7 @@ deixando tudo com perfume de Jasmim (x2)
 Sou filha de Deus, sou filho da Rainha 
 Awakallero è o Mestre quem me ensina nesta linha (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Tamborcito
 DO $$
@@ -1235,9 +1089,9 @@ VALUES ('Tamborcito', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 37. Tamborcito}
+        comp_id,
+        'Standard',
+        '{title: 37. Tamborcito}
 Tamborcito tamborcito 
 ayúdame a cantar (x2) 
 
@@ -1274,7 +1128,7 @@ Al corazón al corazón
 {c: of the wind }
 {c: To the heart of the heart }
 '
-  );
+    );
 END $$;
 -- Song: Tonantzin tzin tzin
 DO $$
@@ -1285,15 +1139,15 @@ VALUES ('Tonantzin tzin tzin', 'Traditional (Nahuatl)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 38. Tonantzin tzin tzin}
+        comp_id,
+        'Standard',
+        '{title: 38. Tonantzin tzin tzin}
 Tonantzin tzin tzin tonantzin (x2) 
 Tona tona tona tonantzin $(\times2)$ 
 Tonatiuh tiuh tiuh tonatiuh $(\times2)$ 
 Tona tona tona tonatiuh $(\times2)$ 
 '
-  );
+    );
 END $$;
 -- Song: Ven, ven
 DO $$
@@ -1304,9 +1158,9 @@ VALUES ('Ven, ven', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 39. Ven, ven}
+        comp_id,
+        'Standard',
+        '{title: 39. Ven, ven}
 Ven, ven.. ven, ven. 
 ven, ven. ven, ven. ven, ven... 
 
@@ -1331,7 +1185,7 @@ Remos hechos de cantos
 Deliciosos y antiguos para ti (x2) 
 Ven ven, agua cura... (x2) 
 '
-  );
+    );
 END $$;
 -- Song: Vuela
 DO $$
@@ -1342,9 +1196,9 @@ VALUES ('Vuela', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 40. Vuela}
+        comp_id,
+        'Standard',
+        '{title: 40. Vuela}
 Vuela, vuela, vuela, vuela 
 Vuela y se feliz 
 Vuela, vuela, vuela, vuela 
@@ -1363,7 +1217,7 @@ Dentro de ti,
 Dentro de ti, algo 
 Está cambiando 
 '
-  );
+    );
 END $$;
 -- Song: Weyo wey yanna
 DO $$
@@ -1374,9 +1228,9 @@ VALUES ('Weyo wey yanna', 'Traditional')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 41. Weyo wey yanna}
+        comp_id,
+        'Standard',
+        '{title: 41. Weyo wey yanna}
 Weyo wey yanna weyo wey yanna (x4) 
 
 En el desierto weyo wey yana Huicholes danzan weyo wey yana 
@@ -1394,7 +1248,7 @@ Con los honguitos weyo wey yana Los Ninos Santos weyo wey yana
 Weyo wey yanna weyo wey yanna (x3) 
 Weyo wey yana Hey ney oh wey 
 '
-  );
+    );
 END $$;
 -- Song: Wichita tuya
 DO $$
@@ -1405,14 +1259,14 @@ VALUES ('Wichita tuya', 'Traditional (Lakota)')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 42. Wichita tuya}
+        comp_id,
+        'Standard',
+        '{title: 42. Wichita tuya}
 danklied en waterlied 
 Wishi Ta Duja Duja Duja 
 Washan Te Neya Heya Heya 
 '
-  );
+    );
 END $$;
 -- Song: Agüita
 DO $$
@@ -1423,9 +1277,9 @@ VALUES ('Agüita', 'Irina Flórez')
 RETURNING id INTO comp_id;
 INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
 VALUES (
-    comp_id,
-    'Standard',
-    '{title: 43. Agüita}
+        comp_id,
+        'Standard',
+        '{title: 43. Agüita}
 {artist: Irina Flórez}
 {subtitle: Camino Rojo version}
 
@@ -1467,7 +1321,7 @@ VALUES (
 [G]Canta, calma, [A]cura el cami[Bm]nito
 [G]El cuerpe[A]cito [Bm]
 '
-  );
+    );
 END $$;
 -- Script to populate YouTube URLs for the top 10 songs
 -- Run this via Supabase SQL Editor or `supabase db reset` seed (if adapted)
@@ -1475,58 +1329,58 @@ END $$;
 UPDATE public.song_versions
 SET youtube_url = '2pzlBCq6k64'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Abuelitas piedras'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Abuelitas piedras'
+    );
 -- 2. Abuelito Fuego
 UPDATE public.song_versions
 SET youtube_url = 'yVAi5K84jFk'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Abuelito Fuego'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Abuelito Fuego'
+    );
 -- 3. Agradecer
 UPDATE public.song_versions
 SET youtube_url = 'dTXwgJp-iPw'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Agradecer'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Agradecer'
+    );
 -- 4. Agua cambia
 UPDATE public.song_versions
 SET youtube_url = 'H3DIEf7bNzs'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Agua cambia'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Agua cambia'
+    );
 -- 5. Agüita
 UPDATE public.song_versions
 SET youtube_url = 'YZHdypgxy14'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Agüita'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Agüita'
+    );
 -- 6. Aho Gran Espíritu
 UPDATE public.song_versions
 SET youtube_url = 'NKMV_zVUOyE'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Aho Gran Espíritu'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Aho Gran Espíritu'
+    );
 -- 7. Aho Pacha Mama
 UPDATE public.song_versions
 SET youtube_url = 'ZE9KR7avpuw'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Aho Pacha Mama'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Aho Pacha Mama'
+    );
 -- 8. Aquí en la montaña (No URL found - Placeholder)
 -- UPDATE public.song_versions
 -- SET youtube_url = 'YOUR_YOUTUBE_ID_HERE'
@@ -1535,121 +1389,15 @@ WHERE composition_id IN (
 UPDATE public.song_versions
 SET youtube_url = 'QXzmdy9myqo'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Bendice la Tierra'
-  );
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Bendice la Tierra'
+    );
 -- 10. Blessed we are
 UPDATE public.song_versions
 SET youtube_url = 'YiDpIaXQDrI'
 WHERE composition_id IN (
-    SELECT id
-    FROM public.compositions
-    WHERE title = 'Blessed we are'
-  );
--- 4. Randomization: Assign 20 songs to the Member user and make 10 private
-DO $$
-DECLARE member_id uuid := 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13';
--- roel.de.meester+member@gmail.com
-private_song_ids uuid [];
-BEGIN -- Reset all to public first for consistency
-UPDATE public.compositions
-SET is_public = true;
--- Pick 20 random songs and assign them to the member
-UPDATE public.compositions
-SET owner_id = member_id
-WHERE id IN (
-    SELECT id
-    FROM public.compositions
-    ORDER BY RANDOM()
-    LIMIT 20
-  );
--- Out of the songs now owned by the member, pick 10 and make them private
-SELECT array_agg(id) INTO private_song_ids
-FROM (
-    SELECT id
-    FROM public.compositions
-    WHERE owner_id = member_id
-    ORDER BY RANDOM()
-    LIMIT 10
-  ) AS sub;
-UPDATE public.compositions
-SET is_public = false
-WHERE id = ANY(private_song_ids);
-END $$;
--- Seed Random Categories
--- 1. Ensure at least 5 songs have BOTH 'Water' and 'Fire' (for testing multi-tag AND logic)
--- 2. Assigns 2 random subcategories to every other song that doesn't have them
-DO $$
-DECLARE song RECORD;
-water_id UUID;
-fire_id UUID;
-BEGIN -- Get IDs for specific test tags
-SELECT id INTO water_id
-FROM public.categories
-WHERE slug = 'water'
-LIMIT 1;
-SELECT id INTO fire_id
-FROM public.categories
-WHERE slug = 'fire'
-LIMIT 1;
--- 1. Assign Water AND Fire to 5 random songs
-IF water_id IS NOT NULL
-AND fire_id IS NOT NULL THEN FOR song IN
-SELECT id
-FROM public.compositions
-ORDER BY random()
-LIMIT 5 LOOP
-INSERT INTO public.song_category_map (song_id, category_id)
-VALUES (song.id, water_id) ON CONFLICT DO NOTHING;
-INSERT INTO public.song_category_map (song_id, category_id)
-VALUES (song.id, fire_id) ON CONFLICT DO NOTHING;
-END LOOP;
-END IF;
--- 2. Assign random tags to all songs (coverage)
-FOR song IN
-SELECT id
-FROM public.compositions LOOP
-INSERT INTO public.song_category_map (song_id, category_id)
-SELECT song.id,
-  id
-FROM public.categories
-WHERE parent_id IS NOT NULL -- Only link to subcategories (Tags)
-ORDER BY random()
-LIMIT 2 ON CONFLICT (song_id, category_id) DO NOTHING;
-END LOOP;
-END $$;
--- 4. Assign ownership and visibility to legacy songs (those without an owner_id)
-DO $$
-DECLARE
-    target_ids uuid[];
-    i INTEGER;
-    admin_id uuid := 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
-    musician_id uuid := 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12';
-    v_count INTEGER;
-BEGIN
-    -- Get all compositions without an owner
-    SELECT array_agg(id ORDER BY random()) INTO target_ids
-    FROM public.compositions
-    WHERE owner_id IS NULL;
-
-    v_count := array_length(target_ids, 1);
-
-    IF v_count > 0 THEN
-        FOR i IN 1..v_count LOOP
-            -- Make 15 of them private
-            IF i <= 15 THEN
-                UPDATE public.compositions SET is_public = false WHERE id = target_ids[i];
-            END IF;
-
-            -- Link 10 to admin, the rest to musician
-            IF i <= 10 THEN
-                UPDATE public.compositions SET owner_id = admin_id WHERE id = target_ids[i];
-                UPDATE public.song_versions SET contributor_id = admin_id WHERE composition_id = target_ids[i];
-            ELSE
-                UPDATE public.compositions SET owner_id = musician_id WHERE id = target_ids[i];
-                UPDATE public.song_versions SET contributor_id = musician_id WHERE composition_id = target_ids[i];
-            END IF;
-        END LOOP;
-    END IF;
-END $$;
+        SELECT id
+        FROM public.compositions
+        WHERE title = 'Blessed we are'
+    );
