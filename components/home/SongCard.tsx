@@ -107,6 +107,11 @@ export default function SongCard({
                                 <Guitar className="w-3.5 h-3.5" />
                             </div>
                         )}
+                        {hasMelody && (
+                            <div className="text-blue-400 mb-1" title="Has Melody">
+                                <Music className="w-3.5 h-3.5" />
+                            </div>
+                        )}
                         {songKey && (
                             <div className="text-[10px] font-mono text-gray-400">
                                 <span className="text-gray-600 uppercase text-[8px] tracking-wider mr-1">Key</span>
