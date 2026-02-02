@@ -166,7 +166,7 @@ SELECT array_agg(id) INTO language_categories
 FROM public.categories
 WHERE slug IN (
         'english',
-        'espanol',
+        'spanish',
         'portuguese',
         'french',
         'german',

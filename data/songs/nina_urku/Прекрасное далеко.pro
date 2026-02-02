@@ -2,8 +2,7 @@
 {artist: Unknown}
 {tag: Russian}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Слышу голос из прекрасного далека,
 Голос утренний в серебряной росе.

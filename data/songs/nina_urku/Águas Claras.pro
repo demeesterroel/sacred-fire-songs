@@ -3,10 +3,7 @@
 {tag: Portuguese}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Águas claras
+ Águas claras
 águas doces
 aguas puras
 Oxum minha mãe

@@ -4,8 +4,7 @@
 {tag: Medicine Plants}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Os segredos vem da floresta de luz
 Pacha Mama, Pacha Mama

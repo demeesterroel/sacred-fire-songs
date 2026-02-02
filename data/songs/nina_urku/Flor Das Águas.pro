@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Flor das águas
+ Flor das águas
 da onde vens, para onde vais
 Vou fazer minha limpeza
 No coração está meu Pai

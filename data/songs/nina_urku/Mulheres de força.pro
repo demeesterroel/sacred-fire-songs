@@ -4,10 +4,7 @@
 {tag: Portuguese}
 {tag: Women}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Mulheres de força, mulheres de luz
+ Mulheres de força, mulheres de luz
 Mulheres de força acompanham Jesus
 E a força de oxum, sou as forças de oxum
 E a força de oxum, sou as forças de oxum

@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Temazcal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Soy de barro y de maíz
+ Soy de barro y de maíz
 soy de Piedra y dentro de mí
 fluye lava en mi corazón
 que arde con la fuerza del Amor.

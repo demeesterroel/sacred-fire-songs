@@ -1,10 +1,7 @@
 {title: Gitsi Manitou}
 {artist: Unknown}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Gitsi, gitsi, gitsi Manitou
+ Gitsi, gitsi, gitsi Manitou
 x2
 Gitsi Manitou, gitsi Manitou
 

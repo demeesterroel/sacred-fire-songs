@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Santa Daime}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-A hey a ho' pajé assopra
+ A hey a ho' pajé assopra
 Que me trouxe esta canção foi a jiboia
 [2X]
 

@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Португальский:
+ Португальский:
 
 Esta aliança veio do astral
 Vem do astral do astral superior

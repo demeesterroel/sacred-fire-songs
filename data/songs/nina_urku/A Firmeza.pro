@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Santa Daime}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Ai que eu já estava caindo
+ Ai que eu já estava caindo
 Aqui no meio do salão
 Foi chegando uma firmeza
 Acalmando a confusão

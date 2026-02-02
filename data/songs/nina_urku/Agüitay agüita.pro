@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Water}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Agüitay, agüita
+ Agüitay, agüita
 Agüitay, agüita
 Que canta, cura, limpia, sana
 Trai, nai-nai, nai-nai, nai-na (x2)

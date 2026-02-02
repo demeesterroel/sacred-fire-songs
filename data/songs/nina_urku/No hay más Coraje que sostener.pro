@@ -2,8 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 No hay más Coraje que sostener
 Todo mi ser, todo mi ser

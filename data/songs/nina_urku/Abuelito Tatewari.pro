@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Fire}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Abuelito Tatewari Abuelito Tatewari [Grandfather Fire]
+ Abuelito Tatewari Abuelito Tatewari [Grandfather Fire]
 Abuelito Tatewari Abuelito Tatewari
 yana he a nah hey ney yo wey
 

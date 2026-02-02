@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Ayahuasca mama
+ Ayahuasca mama
 Taki taki muyki
 (X2)
 

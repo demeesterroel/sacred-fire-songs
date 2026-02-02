@@ -2,8 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 [Verso 1]
 Eu conheço uma trilha nas montanhas

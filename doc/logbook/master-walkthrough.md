@@ -1168,3 +1168,11 @@ Guests were previously redirected to the login page when accessing the "Explore"
 
 ![Filter Combination Screenshot](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/initial_songs_page_1769988846446.png)
 *Above: The song list showing the new "Draft" tab and the "DRAFT" badge on song cards.*
+
+## Session Feb 2, 2026 - Category Refactor
+**Goal:** Data Consistency.
+
+-   **Refactor: Category Slug**:
+    -   Renamed the `espanol` category slug to `spanish` to match the display name and project convention.
+    -   Created migration `20260202221500_rename_espanol_slug.sql`.
+    -   Updated seed scripts (`04_songs_nina_urku.sql`, `05_randomization.sql`) and `doc/design/db-schema.sql` to reflect the change.

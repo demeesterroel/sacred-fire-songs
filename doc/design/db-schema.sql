@@ -396,7 +396,7 @@ values -- THE ELEMENTS
   -- LANGUAGES
   (
     'Spanish',
-    'espanol',
+    'spanish',
     '🇪🇸',
     'Songs written or sung in Spanish.',
     (
