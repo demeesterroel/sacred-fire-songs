@@ -90,6 +90,37 @@ UPDATE public.song_versions sv
 SET contributor_id = c.owner_id
 FROM public.compositions c
 WHERE sv.composition_id = c.id;
+-- Set has_chords and has_melody flags
+-- 20% of songs have chords, and of those, 20% have melody
+DECLARE songs_with_chords_count INTEGER;
+songs_with_melody_count INTEGER;
+BEGIN -- Calculate counts
+songs_with_chords_count := FLOOR(total_songs * 0.20);
+songs_with_melody_count := FLOOR(songs_with_chords_count * 0.20);
+-- Reset all flags
+UPDATE public.compositions
+SET has_chords = false,
+    has_melody = false;
+-- Set has_chords for 20% of songs
+UPDATE public.compositions
+SET has_chords = true
+WHERE id IN (
+        SELECT id
+        FROM public.compositions
+        ORDER BY RANDOM()
+        LIMIT songs_with_chords_count
+    );
+-- Set has_melody for 20% of songs that have chords
+UPDATE public.compositions
+SET has_melody = true
+WHERE id IN (
+        SELECT id
+        FROM public.compositions
+        WHERE has_chords = true
+        ORDER BY RANDOM()
+        LIMIT songs_with_melody_count
+    );
+END;
 END $$;
 -- Category/Tag Assignment
 DO $$
