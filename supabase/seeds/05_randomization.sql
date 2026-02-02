@@ -92,32 +92,48 @@ FROM public.compositions c
 WHERE sv.composition_id = c.id;
 -- Set has_chords and has_melody flags
 -- 20% of songs have chords, and 10% have melody
+-- Ensure at least 10 songs have BOTH chords and melody for faceted filtering testing
 DECLARE songs_with_chords_count INTEGER;
 songs_with_melody_count INTEGER;
+songs_with_both_count INTEGER;
 BEGIN -- Calculate counts
 songs_with_chords_count := FLOOR(total_songs * 0.20);
 songs_with_melody_count := FLOOR(total_songs * 0.10);
+songs_with_both_count := GREATEST(10, FLOOR(total_songs * 0.05));
+-- At least 10 songs with both
 -- Reset all flags
 UPDATE public.compositions
 SET has_chords = false,
     has_melody = false;
--- Set has_chords for 20% of songs
+-- First, set both flags for songs_with_both_count songs
+UPDATE public.compositions
+SET has_chords = true,
+    has_melody = true
+WHERE id IN (
+        SELECT id
+        FROM public.compositions
+        ORDER BY RANDOM()
+        LIMIT songs_with_both_count
+    );
+-- Then set has_chords for additional songs to reach 20% total
 UPDATE public.compositions
 SET has_chords = true
 WHERE id IN (
         SELECT id
         FROM public.compositions
+        WHERE has_chords = false
         ORDER BY RANDOM()
-        LIMIT songs_with_chords_count
+        LIMIT (songs_with_chords_count - songs_with_both_count)
     );
--- Set has_melody for 10% of all songs
+-- Finally set has_melody for additional songs to reach 10% total
 UPDATE public.compositions
 SET has_melody = true
 WHERE id IN (
         SELECT id
         FROM public.compositions
+        WHERE has_melody = false
         ORDER BY RANDOM()
-        LIMIT songs_with_melody_count
+        LIMIT (songs_with_melody_count - songs_with_both_count)
     );
 END;
 END $$;
