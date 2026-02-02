@@ -84,14 +84,12 @@ Reconocer, reconocer
 En este altar el poder 
 este poder este poder (x2)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -155,14 +153,12 @@ Rayo, Rayo, Rayo del nuevo/medio día (2x)
 Suena el tambor, danza del Sol 
 Mi corazón siente alegría (2x)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -246,42 +242,36 @@ in darkness and light
 in darkness and light
 in darkness and light'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Nahuatl
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'nahuatl';
-
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'english';
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'earth';
-
 -- Tag: Fire
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'fire';
-
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -324,35 +314,30 @@ Trayendo pura sanación (2x)
 Y ábrete (3x) 
 A la vida y al amor (2x)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'air';
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'earth';
-
 -- Tag: Fire
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'fire';
-
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -421,7 +406,6 @@ Brilla brilla hasta luz luz brillan los colores, fluye fluye el amor, fluye fluy
 
 Damderore damderore damderore damderore x2'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -466,14 +450,12 @@ soldier of Oxala,
 From Aruanda, come, come, come bringing strength,
 to break the illusion, so Umbanda can be healed'
     );
-
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'portuguese';
-
 -- Tag: Umbanda
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -624,7 +606,6 @@ Viento, tráenos la memoria (2x)
 Vuela, vuela, vuela, vuela 
 Vuela, vuela, vuela, volá con nosotros'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -784,7 +765,6 @@ florece mi corazón (2x)
 Somos flores somos flores 
 En este jardín de paz.(2x)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -904,7 +884,6 @@ Waahee
 Hey hey hey hey hey ho 
 Wahee'
     );
-
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -960,35 +939,30 @@ Welo we ya ya yo welo we ya yo (x2)
 Heya Heya Heya Heya Heya 
 Heya Heya Heya welo we ya yo (x2)'
     );
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'earth';
-
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'plantas';
-
 -- Tag: Nahuatl
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'nahuatl';
-
 -- Tag: Temazcal
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'temazcal';
-
 -- Tag: Women
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1051,27 +1025,71 @@ Santa María divino amor (2x)
 Virgen madre que me guía 
 En esta planta que es todo amor (2x)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'water';
-
 -- Tag: Santa Maria
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'santa-maria';
+END $$;
+-- Song: Medicina Lapitoj
+DO $$
+DECLARE comp_id uuid;
+BEGIN
+INSERT INTO public.compositions (title, original_author)
+VALUES ('Medicina Lapitoj', 'Coral Herencia')
+RETURNING id INTO comp_id;
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+VALUES (
+        comp_id,
+        'Standard',
+        '{title: Medicina Lapitoj}
+{artist: Coral Herencia}
+{tag: Spanish}
+{tag: Medicine Plants}
+
+Te lleva adentro 
+al centro de tu centro 
+medicina lapitoj 
+toco tu corazón (2x) 
+
+Tiene colmillos de Jaguar 
+mirada profunda como la serpiente 
+alas de cóndor para volar 
+espirales salen desde su frente 
+
+Cura, sana, siente, ama (2x) 
+Cura por dentro 
+sonrie contento 
+Espiritu Antiguo 
+puente vivo cosmico (2x) 
+
+Tiene colmillos de Jaguar'
+    );
+-- Tag: Spanish
+INSERT INTO public.song_category_map (song_id, category_id)
+SELECT comp_id,
+    id
+FROM public.categories
+WHERE slug = 'spanish';
+-- Tag: Medicine Plants
+INSERT INTO public.song_category_map (song_id, category_id)
+SELECT comp_id,
+    id
+FROM public.categories
+WHERE slug = 'plantas';
 END $$;
 -- Song: Mother I Feel You
 DO $$
@@ -1155,14 +1173,12 @@ Pachamama madre tierra (x2)
 Nina Urku Nina Urku
 Nina Urku Gran Espiritu'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1206,7 +1222,6 @@ wiki tiki tiki tiki
 wiki tiki tiki tiki
 Queen of the Web (x2)'
     );
-
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1246,21 +1261,66 @@ Com sue sorriso vem-nos alegrar (x2)
 Salve salve mamae (x2) 
 Salve salve mamae Oxum (x2)'
     );
-
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'portuguese';
-
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'water';
+-- Tag: Umbanda
+INSERT INTO public.song_category_map (song_id, category_id)
+SELECT comp_id,
+    id
+FROM public.categories
+WHERE slug = 'umbanda';
+END $$;
+-- Song: Salve Rainha do Mar
+DO $$
+DECLARE comp_id uuid;
+BEGIN
+INSERT INTO public.compositions (title, original_author)
+VALUES ('Salve Rainha do Mar', 'João de Angola')
+RETURNING id INTO comp_id;
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+VALUES (
+        comp_id,
+        'Standard',
+        '{title: Salve Rainha do Mar}
+{artist: João de Angola}
+{tag: Portuguese}
+{tag: Water}
+{tag: Umbanda}
 
+[C]Sal ve Ra hi [G]na Do [C]Mar 
+[G]Salve Rahina do Mar 
+[Dm]Salve minha mae [G]Iemanja 
+[C]Ella é [Dm]criadora 
+Du [G]fundu du [C]mar (x2) 
+
+[C]Ella é pro[Dm]tectora 
+Du [G]fundu du [C]mar (x2) 
+
+[C]Ella é minha [Dm]Mae 
+[G]Ella é Ie[C]manja (x2)'
+    );
+-- Tag: Portuguese
+INSERT INTO public.song_category_map (song_id, category_id)
+SELECT comp_id,
+    id
+FROM public.categories
+WHERE slug = 'portuguese';
+-- Tag: Water
+INSERT INTO public.song_category_map (song_id, category_id)
+SELECT comp_id,
+    id
+FROM public.categories
+WHERE slug = 'water';
 -- Tag: Umbanda
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1394,7 +1454,6 @@ To the heart of the earth
 
 To the heart of the heart'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
@@ -1461,14 +1520,12 @@ Remos hechos de cantos
 Deliciosos y antiguos para ti (x2) 
 Ven ven, agua cura... (x2)'
     );
-
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
     id
 FROM public.categories
 WHERE slug = 'spanish';
-
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
 SELECT comp_id,
