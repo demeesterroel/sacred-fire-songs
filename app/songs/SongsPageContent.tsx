@@ -3,95 +3,104 @@
 import SongCard from "@/components/home/SongCard";
 import SongCardSkeleton from "@/components/home/SongCardSkeleton";
 import { Music, Guitar, ChevronDown, Flame, Search, X, Plus } from "lucide-react";
-import { useState } from "react";
-import { filterSongs, fetchSongs } from "@/lib/songUtils";
+import { useState, useMemo } from "react";
+import { fetchSongs } from "@/lib/songUtils";
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from "@/hooks/useAuth";
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getCategoryColor, getCategoryStyles } from "@/lib/uiUtils";
+import { useDeclarativeFilter } from "@/hooks/useDeclarativeFilter";
+import { songFilterConfig, SongFilterState } from "@/lib/songs/filterConfig";
 
-type FilterType = 'all' | 'public' | 'draft';
 type SortByType = 'title' | 'newest';
 
 export default function SongsPageContent() {
     const searchParams = useSearchParams();
-    const router = useRouter();
-
-    // Derive state from URL params
-    const activeCategory = searchParams.get('category') || undefined;
-    const activeTag = searchParams.get('tag') || undefined;
-    const activeFilter = (searchParams.get('status') as FilterType) || 'all';
-    const sortBy = (searchParams.get('sort') as SortByType) || 'newest';
-    const showOnlyChords = searchParams.get('chords') === 'true';
-    const showOnlyMelody = searchParams.get('melody') === 'true';
-
-    const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter(); // needed for clear all button which uses router.push
     const { user } = useAuth();
 
-    // Helper to update URL params
-    const updateQuery = (updates: Record<string, string | null>) => {
+    // Local UI state for sorting (not part of filtering engine usually)
+    const sortBy = (searchParams.get('sort') as SortByType) || 'newest';
+    const setSortBy = (val: SortByType) => {
         const params = new URLSearchParams(searchParams.toString());
-        Object.entries(updates).forEach(([key, value]) => {
-            if (value === null) {
-                params.delete(key);
-            } else {
-                params.set(key, value);
-            }
-        });
-        router.push(`?${params.toString()}`);
+        params.set('sort', val);
+        router.push(`?${params.toString()}`, { scroll: false });
     };
 
+    // --- 1. Fetch Data ---
     const { data: songs = [], isLoading } = useQuery({
         queryKey: ['songs', 'all'],
-        queryFn: () => fetchSongs(), // Fetch all songs
+        queryFn: () => fetchSongs(),
     });
 
-    // 1. Filter Songs (Search + Tags + Categories)
-    let displaySongs = filterSongs(songs, searchQuery, 'all', {
-        tag: activeTag,
-        category: activeCategory
-    });
-
-    // 2. Tab Filter (Public/Draft)
-    if (user) {
-        if (activeFilter === 'public') {
-            displaySongs = displaySongs.filter(song => song.isPublic);
-        } else if (activeFilter === 'draft') {
-            displaySongs = displaySongs.filter(song => !song.isPublic);
+    // --- 2. Declarative Filter Hook ---
+    const { filteredItems, facets, state, setFilter, resetFilters } = useDeclarativeFilter(
+        songs,
+        songFilterConfig,
+        {
+            status: user ? 'all' : 'public', // Default state
+            search: '',
+            category: undefined,
+            tags: [],
+            chords: false,
+            melody: false
+        },
+        {
+            // Custom Parse: Convert URL params to State
+            parseUrl: (params) => {
+                return {
+                    category: params.get('category') || undefined,
+                    tags: params.get('tag') ? params.get('tag')!.split(',').filter(Boolean) : [],
+                    status: (params.get('status') as any) || (user ? 'all' : 'public'),
+                    search: params.get('search') || '',
+                    chords: params.get('chords') === 'true',
+                    melody: params.get('melody') === 'true',
+                };
+            },
+            // Custom Serialize: Convert State to URL params
+            serializeUrl: (state) => {
+                return {
+                    category: state.category || '',
+                    tag: state.tags?.join(',') || '',
+                    status: state.status === 'all' ? '' : state.status || '', // 'all' is default, don't show in URL
+                    search: state.search || '',
+                    chords: state.chords ? 'true' : '',
+                    melody: state.melody ? 'true' : '',
+                    sort: sortBy // Preserve sort param
+                };
+            }
         }
-    } else {
-        // Guest: Always filter out non-public (draft) songs
-        displaySongs = displaySongs.filter(song => song.isPublic);
-    }
+    );
 
+    // --- 3. Sorting (Applied after filtering) ---
+    const displaySongs = useMemo(() => {
+        return [...filteredItems].sort((a, b) => {
+            if (sortBy === 'title') {
+                return a.title.localeCompare(b.title);
+            } else {
+                // Newest: latest time at top
+                const timeA = new Date(a.createdAt).getTime();
+                const timeB = new Date(b.createdAt).getTime();
+                return timeB - timeA;
+            }
+        });
+    }, [filteredItems, sortBy]);
 
-    // 3. Chord & Melody Filters
-    if (showOnlyChords) {
-        displaySongs = displaySongs.filter(song => song.hasChords);
-    }
-    if (showOnlyMelody) {
-        displaySongs = displaySongs.filter(song => song.hasMelody);
-    }
-
-    // 4. Sorting Logic
-    displaySongs = [...displaySongs].sort((a, b) => {
-        if (sortBy === 'title') {
-            return a.title.localeCompare(b.title);
-        } else {
-            // Newest: latest time at top
-            const timeA = new Date(a.createdAt).getTime();
-            const timeB = new Date(b.createdAt).getTime();
-            return timeB - timeA;
-        }
-    });
+    // Derived counts from facets
+    // Note: 'facets.chords.get("true")' tells us: "If we toggle Chords=ON, how many songs match?"
+    // Since Chords is a boolean filter, the facet count for "true" represents the count of songs 
+    // that MATCH everything else AND have chords=true.
+    const chordsCount = facets.chords?.get('true') || 0;
+    const melodyCount = facets.melody?.get('true') || 0;
 
     return (
         <main className="flex-1 min-h-0 bg-gray-950">
             <div className="p-4 md:p-8 space-y-8 max-w-7xl mx-auto">
-                {/* Sticky Header with Search and Advanced Sort */}
+                {/* Sticky Header */}
                 <div className="sticky top-0 z-20 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-4 py-6 -mx-4 md:-mx-8">
                     <div className="max-w-7xl mx-auto space-y-6">
+
                         {/* Top Row: Search & Stats */}
                         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
                             <div className="flex-1 relative w-full max-w-2xl">
@@ -99,15 +108,15 @@ export default function SongsPageContent() {
                                 <input
                                     type="text"
                                     placeholder="Search 500+ medicine songs..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    value={state.search}
+                                    onChange={(e) => setFilter('search', e.target.value)}
                                     className="w-full bg-gray-900/50 border border-gray-800 rounded-2xl py-3.5 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-red-500/30 focus:border-red-500/50 transition-all outline-none"
                                 />
                             </div>
 
                             <div className="flex items-center gap-4 self-end md:self-auto">
                                 <span className="hidden md:block text-xs text-gray-500 whitespace-nowrap">
-                                    {displaySongs.length} songs found
+                                    {filteredItems.length} songs found
                                 </span>
 
                                 {user && (
@@ -123,9 +132,10 @@ export default function SongsPageContent() {
                         </div>
 
                         {/* Active Filter Pills */}
-                        {(activeCategory || activeTag) && (
+                        {(state.category || (state.tags && state.tags.length > 0)) && (
                             <div className="flex flex-wrap items-center gap-2">
-                                {activeCategory?.split(',').map(cat => {
+                                {state.category && (() => {
+                                    const cat = state.category;
                                     const color = getCategoryColor(cat);
                                     const styles = getCategoryStyles(color);
                                     return (
@@ -133,23 +143,14 @@ export default function SongsPageContent() {
                                             <span>CATEGORY: {cat}</span>
                                             <button
                                                 className="hover:text-white"
-                                                onClick={() => {
-                                                    const params = new URLSearchParams(searchParams.toString());
-                                                    const remaining = activeCategory.split(',').filter(c => c !== cat);
-                                                    if (remaining.length > 0) {
-                                                        params.set('category', remaining.join(','));
-                                                    } else {
-                                                        params.delete('category');
-                                                    }
-                                                    router.push(`?${params.toString()}`);
-                                                }}
+                                                onClick={() => setFilter('category', undefined)}
                                             >
                                                 <X className="w-2.5 h-2.5" />
                                             </button>
                                         </div>
                                     );
-                                })}
-                                {activeTag?.split(',').map(tag => {
+                                })()}
+                                {state.tags?.map(tag => {
                                     const color = getCategoryColor(tag);
                                     const styles = getCategoryStyles(color);
                                     return (
@@ -158,14 +159,8 @@ export default function SongsPageContent() {
                                             <button
                                                 className="hover:text-white"
                                                 onClick={() => {
-                                                    const params = new URLSearchParams(searchParams.toString());
-                                                    const remaining = activeTag.split(',').filter(t => t !== tag);
-                                                    if (remaining.length > 0) {
-                                                        params.set('tag', remaining.join(','));
-                                                    } else {
-                                                        params.delete('tag');
-                                                    }
-                                                    router.push(`?${params.toString()}`);
+                                                    const newTags = state.tags?.filter(t => t !== tag) || [];
+                                                    setFilter('tags', newTags);
                                                 }}
                                             >
                                                 <X className="w-2.5 h-2.5" />
@@ -175,9 +170,7 @@ export default function SongsPageContent() {
                                 })}
                                 <button
                                     className="text-[9px] font-bold text-gray-600 hover:text-gray-400 uppercase tracking-widest ml-1"
-                                    onClick={() => {
-                                        router.push(window.location.pathname);
-                                    }}
+                                    onClick={resetFilters}
                                 >
                                     Clear All
                                 </button>
@@ -193,7 +186,7 @@ export default function SongsPageContent() {
                                     <div className="relative">
                                         <select
                                             value={sortBy}
-                                            onChange={(e) => updateQuery({ sort: e.target.value })}
+                                            onChange={(e) => setSortBy(e.target.value as SortByType)}
                                             className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-gray-300 outline-none focus:border-gray-700 appearance-none pr-8 cursor-pointer"
                                         >
                                             <option value="newest">Newest First</option>
@@ -203,27 +196,18 @@ export default function SongsPageContent() {
                                     </div>
                                 </div>
 
-                                {/* Visibility Tabs (All / Public / Private) */}
+                                {/* Visibility Tabs */}
                                 {user && (
                                     <div className="bg-gray-900/80 p-1 rounded-xl border border-gray-800 inline-flex shadow-inner">
-                                        <button
-                                            onClick={() => updateQuery({ status: 'all' })}
-                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'all' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
-                                        >
-                                            All
-                                        </button>
-                                        <button
-                                            onClick={() => updateQuery({ status: 'public' })}
-                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'public' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
-                                        >
-                                            Public
-                                        </button>
-                                        <button
-                                            onClick={() => updateQuery({ status: 'draft' })}
-                                            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${activeFilter === 'draft' ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
-                                        >
-                                            Draft
-                                        </button>
+                                        {(['all', 'public', 'draft'] as const).map((statusOption) => (
+                                            <button
+                                                key={statusOption}
+                                                onClick={() => setFilter('status', statusOption)}
+                                                className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all capitalize ${state.status === statusOption ? 'bg-gray-800 text-white shadow-sm ring-1 ring-white/5' : 'text-gray-500 hover:text-gray-300'}`}
+                                            >
+                                                {statusOption}
+                                            </button>
+                                        ))}
                                     </div>
                                 )}
                             </div>
@@ -231,23 +215,38 @@ export default function SongsPageContent() {
                             <div className="flex items-center gap-4">
                                 {/* View Toggles */}
                                 <div className="flex items-center gap-2">
+                                    {/* Chords Toggle */}
                                     <button
-                                        onClick={() => updateQuery({ chords: !showOnlyChords ? 'true' : null })}
-                                        className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${showOnlyChords
-                                            ? 'border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20'
-                                            : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700'
+                                        onClick={() => setFilter('chords', !state.chords)}
+                                        disabled={!state.chords && chordsCount === 0}
+                                        className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${state.chords
+                                                ? 'border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20'
+                                                : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
                                             }`}
                                     >
-                                        <Guitar className="w-3.5 h-3.5" /> Chords
+                                        <Guitar className="w-3.5 h-3.5" />
+                                        Chords
+                                        {/* Count Badge */}
+                                        {!state.chords && chordsCount > 0 && (
+                                            <span className="ml-1 px-1.5 py-0.5 rounded-full bg-gray-800 text-gray-400 text-[9px]">{chordsCount}</span>
+                                        )}
                                     </button>
+
+                                    {/* Melody Toggle */}
                                     <button
-                                        onClick={() => updateQuery({ melody: !showOnlyMelody ? 'true' : null })}
-                                        className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${showOnlyMelody
-                                            ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500 shadow-sm shadow-emerald-900/20'
-                                            : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700'
+                                        onClick={() => setFilter('melody', !state.melody)}
+                                        disabled={!state.melody && melodyCount === 0}
+                                        className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${state.melody
+                                                ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500 shadow-sm shadow-emerald-900/20'
+                                                : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
                                             }`}
                                     >
-                                        <Music className="w-3.5 h-3.5" /> Melody
+                                        <Music className="w-3.5 h-3.5" />
+                                        Melody
+                                        {/* Count Badge */}
+                                        {!state.melody && melodyCount > 0 && (
+                                            <span className="ml-1 px-1.5 py-0.5 rounded-full bg-gray-800 text-gray-400 text-[9px]">{melodyCount}</span>
+                                        )}
                                     </button>
                                 </div>
                             </div>
@@ -282,15 +281,15 @@ export default function SongsPageContent() {
                         ) : (
                             <div className="col-span-full text-center py-20 px-4">
                                 <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-900 border border-gray-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search text-gray-600 w-8 h-8"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                                    <Search className="w-8 h-8 text-gray-600" />
                                 </div>
                                 <h3 className="text-xl font-medium text-white mb-2">No songs found</h3>
                                 <p className="text-gray-400 max-w-xs mx-auto">
-                                    {searchQuery ? `We couldn't find any songs matching "${searchQuery}".` : "There are no songs available for this filter."}
+                                    {state.search ? `We couldn't find any songs matching "${state.search}".` : "There are no songs available for this filter."}
                                 </p>
-                                {searchQuery && (
+                                {(state.search || state.category || state.tags?.length) && (
                                     <button
-                                        onClick={() => setSearchQuery("")}
+                                        onClick={resetFilters}
                                         className="mt-6 text-red-500 hover:text-red-400 font-medium transition-colors"
                                     >
                                         Clear search
