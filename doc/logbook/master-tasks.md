@@ -673,3 +673,11 @@
         - [x] Synchronize filter state with `useSearchParams`.
         - [x] Update `updateQuery` helper for URL persistence.
         - [x] Verify filter mixing (Category + Chords + Status).
+
+- [x] **Session Feb 2, 2026 - Filters & Required Categories**
+    - [x] Create migration script `20260202013000_add_required_categories.sql`
+    - [x] Update consolidated `doc/design/db-schema.sql` (v2.5)
+    - [x] Rebrand "Private" to "Draft" in UI and code
+    - [x] Implement URL-driven combinable filters in `SongsPageContent.tsx`
+    - [x] Verify categories and filters on staging
+    - [x] Merge and push to `main`

@@ -45,4 +45,4 @@
 | **Feb 1** | **UX**: Breakpoint Alignment (Dashboard Sync) | ~1.5 Hours | ✅ Completed |
 | **Feb 1** | **UI/Auth**: Song Detail Fix, Guest Access, & Prod Repair | ~3.5 Hours | ✅ Completed |
 | **Feb 2** | **UX**: Combinable Filters & "Draft" Rebranding | ~2.2 Hours | ✅ Completed |
-| **Total** | **Development + AI Collaboration** | **~82.8 Hours** | |
+| **Total** | **Development + AI Collaboration** | **~85.0 Hours** | |

@@ -1151,3 +1151,20 @@ Guests were previously redirected to the login page when accessing the "Explore"
 ### Verification Results
 ![Filter Combination](file:///home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/initial_songs_page_1769988846446.png)
 ![Verification Recording](file:///home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/verify_filters_and_rebrand_1769988833413.webp)
+
+---
+
+## Session Feb 2, 2026 - Combinable Filters & Required Categories
+**Goal:** Overhaul the filtering system and add core subcategories.
+
+- **Rebranding**: Renamed "Private" songs to **"Draft"** across the platform (tabs, badges, actions, and documentation).
+- **Combinable Filters**: Refactored the songs page to support URL-driven, mix-and-match filters (e.g., Category + Chords + Draft status).
+- **Taxonomy Expansion**:
+    - Added 16 new subcategories via migration `20260202013000_add_required_categories.sql`.
+    - Included: Ayahuasca, Peyote, German, Lakota, etc.
+    - Renamed existing `Santo Daime / Umbanda` to `Santo Daime`.
+- **Infrastructure**: Updated consolidated `db-schema.sql` to v2.5.
+- **Verification**: Confirmed URL persistency and multi-filter logic on staging and local.
+
+![Filter Combination Screenshot](/home/roeland/.gemini/antigravity/brain/d49072c8-febb-4ea9-9297-57e39f4a2046/initial_songs_page_1769988846446.png)
+*Above: The song list showing the new "Draft" tab and the "DRAFT" badge on song cards.*
