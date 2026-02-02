@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Todo cura, todo sana, 
+ Todo cura, todo sana, 
 todo lleva medicina dentro.(x3)
 Todo lleva medicina dentro, 
 todo lleva medicina dentro.

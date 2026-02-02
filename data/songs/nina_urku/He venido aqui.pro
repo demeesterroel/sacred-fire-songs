@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Yana ha wey nei nei awey yo yana (2)
+ Yana ha wey nei nei awey yo yana (2)
 Yana ha wey nei nei awey yo yana (2)
 Hey ana hey ana hei hey yo wey.
 

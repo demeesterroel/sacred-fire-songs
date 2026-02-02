@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Eu chamo a força, eu chamo a força eu chamo a força força das pedras para me firmar
+ Eu chamo a força, eu chamo a força eu chamo a força força das pedras para me firmar
 Eu chamo a terra, eu chamo a terra eu chamo a terra eu chamo a terra para me enraizar
 
 Eu chamo o vento, eu chamo o vento eu chamo o vento eu chamo o vento vem me elevar

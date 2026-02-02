@@ -5,8 +5,7 @@
 {tag: Mountain}
 {tag: Peyote}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 El gran espíritu nos da la vida
 wo wo wo wo wooo

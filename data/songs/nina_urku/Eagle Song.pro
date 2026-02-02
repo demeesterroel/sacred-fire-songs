@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Bird}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Heya na yo wene yana Heya na yo wene yana Heya na yo wene yana
+ Heya na yo wene yana Heya na yo wene yana Heya na yo wene yana
 Heya na hey ney yo wey
 L’agila ya va volando L’agila ya va volando L’agila ya va volando (the eagle is already flying)
 Heya na yo wey ne yana Heya na yo wey ne yana Heya na yo wey ne yayna

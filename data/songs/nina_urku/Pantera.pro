@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Animal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Desde lo más hondo de la selva 
+ Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarnos una pantera

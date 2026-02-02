@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Portuguese}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Floresta calma o meu pensamento
+ Floresta calma o meu pensamento
 Floresta calma o meu pensamento
 A sua paz é a minha ajuda
 A sua paz é a minha ajuda

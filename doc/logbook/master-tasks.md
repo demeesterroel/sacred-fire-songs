@@ -681,3 +681,8 @@
     - [x] Implement URL-driven combinable filters in `SongsPageContent.tsx`
     - [x] Verify categories and filters on staging
     - [x] Merge and push to `main`
+
+- [x] **Refactor: Rename 'espanol' slug to 'spanish'**
+    - [x] Create migration script.
+    - [x] Update seed scripts.
+    - [x] Update documentation (`db-schema.sql`).

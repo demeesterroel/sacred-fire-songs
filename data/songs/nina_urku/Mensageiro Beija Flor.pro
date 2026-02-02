@@ -2,8 +2,7 @@
 {artist: Unknown}
 {tag: Portuguese}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Venho lá da floresta
 O meu canto é de amor

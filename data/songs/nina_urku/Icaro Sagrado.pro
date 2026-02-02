@@ -2,10 +2,7 @@
 {artist: Unknown}
 {tag: Medicine Plants}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-[Introducción]
+ [Introducción]
 Lay
 Nay-ni nay-ni
 Nay-ni nay-ni nay

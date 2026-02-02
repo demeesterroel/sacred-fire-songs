@@ -3,8 +3,7 @@
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Aya Aya Ayahuasca
 Aya Aya Ayahuasca

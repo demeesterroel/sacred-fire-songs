@@ -2,8 +2,7 @@
 {artist: Unknown}
 {tag: Spanish}
 
-Load videoYouTubeYouTube might collect personal data. Privacy PolicyContinueDismiss
-
+ 
 
 Rama que cayó 
 este fuego la quemó 

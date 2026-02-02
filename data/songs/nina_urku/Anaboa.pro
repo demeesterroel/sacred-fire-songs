@@ -3,10 +3,7 @@
 {tag: Spanish}
 {tag: Ayahuasca}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Cielo, montana, selva y mar 
+ Cielo, montana, selva y mar 
 Rios, crystales, agua vital 
 Pinta mi gente, Curandera 
 Vienes danzando, cantando ya 

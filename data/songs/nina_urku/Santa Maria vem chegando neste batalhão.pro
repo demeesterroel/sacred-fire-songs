@@ -4,10 +4,7 @@
 {tag: Medicine Plants}
 {tag: Santa Maria}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-Santa Maria vem chegando neste batalhão 
+ Santa Maria vem chegando neste batalhão 
 Trazendo as forças da Rainha da floresta 
 São essas forças vindas de Nossa Senhora 
 Que centralizam essa luz aqui na Terra

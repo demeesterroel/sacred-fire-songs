@@ -7,10 +7,7 @@
 {tag: Water}
 {tag: Temazcal}
 
-Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss
-
-
-En este vientre madre tierra temazcal,
+ En este vientre madre tierra temazcal,
 las gracias hoy le vengo a dar (2).
 
 Fuego sagrado abuelo Huehuetéotl,
