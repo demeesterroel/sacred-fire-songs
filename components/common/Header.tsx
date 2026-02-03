@@ -40,7 +40,7 @@ export default function Header() {
                         className="lg:hidden flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group shrink-0 border border-transparent hover:border-gray-700"
                     >
                         <IndentIncrease className="w-7 h-7" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">Menu</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity hidden sm:inline">Menu</span>
                     </button>
 
                     {/* Logo: Only on Mobile (Sidebar is hidden) */}
