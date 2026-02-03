@@ -149,6 +149,42 @@ alter table public.profiles enable row level security;
 alter table public.categories enable row level security;
 alter table public.compositions enable row level security;
 alter table public.song_category_map enable row level security;
+-- Song Category Map Policies
+create policy "Public read access for song_category_map" on public.song_category_map for
+select to public using (true);
+create policy "Owners/Admins can insert song categories" on public.song_category_map for
+insert to authenticated with check (
+    exists (
+      select 1
+      from public.compositions
+      where id = song_category_map.song_id
+        and (
+          owner_id = auth.uid()
+          or exists (
+            select 1
+            from public.profiles
+            where id = auth.uid()
+              and role = 'admin'
+          )
+        )
+    )
+  );
+create policy "Owners/Admins can delete song categories" on public.song_category_map for delete to authenticated using (
+  exists (
+    select 1
+    from public.compositions
+    where id = song_category_map.song_id
+      and (
+        owner_id = auth.uid()
+        or exists (
+          select 1
+          from public.profiles
+          where id = auth.uid()
+            and role = 'admin'
+        )
+      )
+  )
+);
 alter table public.song_versions enable row level security;
 alter table public.setlists enable row level security;
 alter table public.setlist_items enable row level security;
