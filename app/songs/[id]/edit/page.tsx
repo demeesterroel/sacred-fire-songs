@@ -93,11 +93,8 @@ export default function EditSongPage() {
 
     return (
         <div className="min-h-screen bg-gray-950 pb-20">
-            <main className="container mx-auto px-4 pt-8">
-                <div className="mb-8 text-center">
-                    <h1 className="text-3xl font-bold text-white mb-2">Edit Song</h1>
-                    <p className="text-gray-400">{song.title}</p>
-                </div>
+            <main className="container mx-auto px-4 pt-4 lg:pt-8">
+
 
                 <SongForm
                     mode="edit"
