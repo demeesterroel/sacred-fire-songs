@@ -720,3 +720,7 @@
     - [x] Append story to `doc/logbook/epic&user stories.md`
     - [x] Clear `doc/design/epic&user stories.md`
 
+
+- [x] **Production Updates**
+    - [x] Apply Migration `20260201135800_add_icon_name_to_categories.sql` (Verified Already Applied)
+    - [x] Execute Seed `06_random_chords_melody.sql`
