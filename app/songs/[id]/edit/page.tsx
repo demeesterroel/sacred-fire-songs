@@ -2,6 +2,8 @@
 
 import { useParams, notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { useSidebar } from '@/context/SidebarContext';
+import { Flame, IndentIncrease } from 'lucide-react';
 import SongForm from '@/components/song/SongForm';
 import AccessDenied from '@/components/common/feedback/AccessDenied';
 import { useQuery } from '@tanstack/react-query';
@@ -91,8 +93,27 @@ export default function EditSongPage() {
         isPublic: song.is_public ?? true
     };
 
+    const { setIsOpen } = useSidebar();
+
     return (
         <div className="min-h-screen bg-gray-950 pb-20">
+            {/* Mobile Header (Standardized) */}
+            <header className="lg:hidden flex justify-between items-center px-4 py-3 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-lg">
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => setIsOpen(true)}
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group shrink-0 border border-transparent hover:border-gray-700"
+                    >
+                        <IndentIncrease className="w-7 h-7" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">Menu</span>
+                    </button>
+
+                    <div className="w-8 h-8 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        <Flame className="text-white w-5 h-5 fill-current" />
+                    </div>
+                </div>
+            </header>
+
             <main className="container mx-auto px-4 pt-4 lg:pt-8">
 
 
