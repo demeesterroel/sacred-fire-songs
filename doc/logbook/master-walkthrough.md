@@ -1625,7 +1625,8 @@ Executed critical database operations on the Production environment to ensure da
 - **Experience Logic**: Unified "Under Construction" and "404" flows with spiritual branding.
 - **Draft Persistence**: Implemented local-storage-based auto-save to prevent data loss during edits.
 - **Library UX**: Changed default sorting to **Title (A-Z)** and reordered dropdown options for better alphabetical browsability.
-- **Mobile Navigation**: Restored the "Menu" sidebar trigger to the Song Detail and Edit pages. Standardized the mobile header across these views to ensure global navigation is always accessible.
+- **Mobile Navigation**: Restored the "Menu" sidebar trigger to the Song Detail and Edit pages. Standardized the mobile header across these views to ensure global navigation is always accessible. (Branch: `fix/header-mobile-layout`)
+- **Header Optimization**: Removed the "Menu" text label on mobile and applied `whitespace-nowrap` to the "Sign In" button to prevent wrapping on small viewports.
 
 #### Mobile Menu Verification
 ![Mobile Menu on Detail](/home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/.system_generated/click_feedback/click_feedback_1770092114363.png)
