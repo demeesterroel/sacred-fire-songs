@@ -27,7 +27,7 @@ export default function UnderConstruction({
 
           <div className="relative w-64 h-64 lg:w-80 lg:h-80 mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 cursor-default ring-1 ring-white/20">
             <Image
-              src="/home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/spiritual_mist_landscape_1770088709320.png"
+              src="/images/feedback/spiritual_mist_landscape.png"
               alt="Spiritual Landscape"
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-110"
