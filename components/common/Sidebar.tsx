@@ -77,7 +77,7 @@ export default function Sidebar() {
                     ))}
 
                     {/* Filters (Dynamic Taxonomy) */}
-                    {(pathname === '/songs' || pathname?.startsWith('/explore')) && (
+                    {pathname === '/songs' && (
                         <div className="mt-6 pt-6 border-t border-gray-800/50">
                             <Suspense fallback={<div className="text-gray-500 text-xs px-4">Loading filters...</div>}>
                                 <LibrarySidebar />
