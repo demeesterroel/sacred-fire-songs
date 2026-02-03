@@ -142,8 +142,8 @@
 
 
 
+
 ## 6. GitHub Issue Migration
-**Goal:** Professionalize project management by moving from Markdown to GitHub Issues.
 
 -   **Migration Scripting**:
 	-   Created `migrate_stories.js` to parse `doc/epic&user stories.md`.
@@ -1609,6 +1609,15 @@ Executed critical database operations on the Production environment to ensure da
    - Confirmed Lucide icon mappings are correctly applied to top-level library categories.
 2. **Data Randomization (Access & Filters)**:
    - **Scripts**: `06_random_chords_melody.sql`, `05_random_ownership.sql`
-   - **Execution**: Successfully backfilled composition attributes on Production.
-   - **Ownership Logic**: Adjusted seed IDs to match real Production profile IDs. Assigned ownership (40% Member, 40% Musician, 20% Admin) and applied visibility ratios to facilitate RLS testing.
-   - **Metadata Logic**: Detected `has_chords` via `ChordPro` patterns and applied `has_melody` at a 10% density to verify faceted search results.
+   - [x] **Production Seeding (Sprint 1)**
+       - [x] Seed full Nina Urku collection (180 songs) across 15 granular blocks.
+       - [x] Create missing categories: `sanskrit`, `shamanic`, `guardian`, `chanting`, `instrumental`.
+### UI Improvements & Final Polish
+- **Tag Selection**: Implemented a searchable, colored category selector in the Song Form.
+- **Editor Polish**: Added real-time ChordHighlighter and improved layout for metadata fields.
+- **Experience Logic**: Unified "Under Construction" and "404" flows with spiritual branding.
+- **Draft Persistence**: Implemented local-storage-based auto-save to prevent data loss during edits.
+- **Library UX**: Changed default sorting to **Title (A-Z)** and reordered dropdown options for better alphabetical browsability.
+
+> [!IMPORTANT]
+> The Production library now consists of over 200 high-quality songs with correct metadata, ready for the user's final review.
