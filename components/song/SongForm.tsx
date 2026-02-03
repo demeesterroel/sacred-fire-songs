@@ -15,7 +15,6 @@ type SongFormData = {
     title: string;
     author: string;
     content: string;
-    language: string;
     categoryIds: string[];
     key?: string;
     capo?: string;
@@ -33,7 +32,7 @@ interface SongFormProps {
     versionId?: string; // For updating the specific version
 }
 
-const LANGUAGES = ['English', 'Sanskrit', 'Spanish', 'Portuguese'];
+
 const PREDEFINED_TAGS = ['Healing', 'Mantra', 'Medicine', 'Ceremony'];
 
 const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
@@ -46,7 +45,6 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     } = useForm<SongFormData>({
         defaultValues: {
             ...initialData,
-            language: initialData?.language || 'English',
             categoryIds: initialData?.categoryIds || [],
             key: initialData?.key || '',
             capo: initialData?.capo ? String(initialData.capo) : '',
@@ -81,7 +79,6 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     // Watch fields for UI updates
     const currentCategoryIds = watch('categoryIds') || [];
 
-    const currentLanguage = watch('language');
 
     // Persistence Logic (Create Mode)
     useEffect(() => {
@@ -99,7 +96,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                 if (hasData) {
                     // Update form values
                     Object.keys(parsed).forEach((key) => {
-                        // @ts-ignore
+                        // @ts-expect-error
                         setValue(key, parsed[key]);
                     });
 
@@ -217,7 +214,6 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .insert({
                         title: data.title,
                         original_author: data.author,
-                        primary_language: data.language,
                         owner_id: user?.id,
                         is_public: data.isPublic,
                         has_chords: hasChords(data.content)
@@ -270,7 +266,6 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     .update({
                         title: data.title,
                         original_author: data.author,
-                        primary_language: data.language,
                         is_public: data.isPublic,
                         has_chords: hasChords(data.content),
                     })

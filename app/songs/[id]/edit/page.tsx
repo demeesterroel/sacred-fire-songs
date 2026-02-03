@@ -18,7 +18,6 @@ const fetchSongForEdit = async (id: string) => {
           id,
           title,
           original_author,
-          primary_language,
           owner_id,
           is_public,
           song_category_map (
@@ -46,6 +45,7 @@ export default function EditSongPage() {
     const params = useParams();
     const id = typeof params.id === 'string' ? params.id : params.id?.[0];
     const { user, loading: authLoading } = useAuth();
+    const { setIsOpen } = useSidebar();
 
     const { data: song, isLoading, error } = useQuery({
         queryKey: ['song', id, 'edit'],
@@ -81,7 +81,6 @@ export default function EditSongPage() {
         title: song.title,
         author: song.original_author || '',
         content: song.song_versions[0]?.content_chordpro || '',
-        language: song.primary_language || 'English',
 
         categoryIds: song.song_category_map?.map((m: any) => m.category_id) || [],
         key: song.song_versions[0]?.key,
@@ -93,7 +92,6 @@ export default function EditSongPage() {
         isPublic: song.is_public ?? true
     };
 
-    const { setIsOpen } = useSidebar();
 
     return (
         <div className="min-h-screen bg-gray-950 pb-20">
