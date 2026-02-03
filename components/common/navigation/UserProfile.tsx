@@ -30,7 +30,7 @@ export const UserProfile = ({ onLogout, layout = 'header', showText = true }: Us
     return (
       <Link
         href="/auth/login"
-        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95"
+        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95 whitespace-nowrap"
       >
         Sign In
       </Link>
