@@ -61,7 +61,7 @@ export default function Header() {
 
                 <div className="flex items-center gap-3">
                     {/* User Profile moved to Header */}
-                    <UserProfile layout="header" showText={true} />
+                    <UserProfile layout="header" showText={false} />
                 </div>
             </div>
         </header>

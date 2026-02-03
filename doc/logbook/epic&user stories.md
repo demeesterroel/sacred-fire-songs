@@ -1,8 +1,8 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.8
+**Version:** 1.20
 **Status:** Living Document
-**Date:** January 17, 2026
+**Date:** February 3, 2026
 
 ## Changelog
 
@@ -17,6 +17,7 @@
 | **1.6** | Jan 10, 2026 | Refactored "Upload" terminology to "Add Song". |
 | **1.7** | Jan 11, 2026 | Implemented Edit Song (Story 2.2.1), Access Control, Mock Auth, and Logout. |
 | **1.8** | Jan 17, 2026 | Added Story 1.1.6 (Auto-convert Chords) and Story 1.1.2-bis (Smart Paste). |
+| **1.20** | Feb 3, 2026 | Added Story 1.1.8 (Draft Auto-Save). |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -405,3 +406,25 @@ Scenario: Desktop Layout
 | **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ |
 | **Edit All Songs** | ❌ | ❌ | ❌ | ✅ |
 | **Delete Songs** | ❌ | ❌ | ❌ | ✅ |
+
+
+**Story 1.1.8: [Implemented]** As a Member, I want my new song drafts to be saved automatically to my browser's local storage so that I don't lose my work if I navigate away.
+
+```
+Scenario: Draft Auto-Save
+  Given I am on the "Add Song" page
+  When I type in the Title, Author, Lyrics, or Metadata fields
+  Then the data should be saved to localStorage
+
+Scenario: Restore draft
+  Given I have unsaved changes
+  And I navigate away
+  When I return to the "Add Song" page
+  Then the fields should be populated with the saved data
+```
+
+    *   **Acceptance Criteria:**
+        *   Form data (Title, Author, Lyrics, Metadata) is saved to `localStorage` on change.
+        *   Returning to `/songs/add` restores the saved data.
+        *   Submitting the song successfully clears the draft.
+        *   Draft persistence only applies to the "Add" mode, not Edit.

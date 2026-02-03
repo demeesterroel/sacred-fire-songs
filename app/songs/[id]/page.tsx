@@ -10,7 +10,8 @@ import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
 import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Link as LinkIcon, ChevronDown, Flame } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Link as LinkIcon, Flame } from 'lucide-react';
+import { UserProfile } from '@/components/common/navigation/UserProfile';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
@@ -142,13 +143,7 @@ export default function SongDetailPage() {
                     <Link href="/" className="p-2 text-gray-400 hover:text-white transition-colors">
                         <ArrowLeft className="w-5 h-5" />
                     </Link>
-                    <button className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
-                        <div className="w-[26px] h-[26px] rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
-                            {/* Placeholder for spiritual avatar */}
-                            <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600" />
-                        </div>
-                        <ChevronDown className="w-4 h-4 text-gray-500" />
-                    </button>
+                    <UserProfile layout="header" showText={false} />
                 </div>
             </header>
 
@@ -206,13 +201,7 @@ export default function SongDetailPage() {
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
                         <div className="border-l border-gray-800/50 pl-3 ml-1">
-                            <button className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
-                                <div className="w-[26px] h-[26px] rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
-                                    {/* Placeholder for spiritual avatar */}
-                                    <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600" />
-                                </div>
-                                <ChevronDown className="w-4 h-4 text-gray-500" />
-                            </button>
+                            <UserProfile layout="header" showText={false} />
                         </div>
                     </div>
                 </div>
@@ -275,20 +264,22 @@ export default function SongDetailPage() {
                     </div>
 
                     {/* Metadata Grid (Key, Capo, Tuning) */}
-                    <div className="grid grid-cols-3 gap-6 py-6 border-y border-gray-800/30">
-                        <div className="text-center space-y-2">
-                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">KEY</p>
-                            <p className="text-2xl font-mono font-bold text-amber-500">{currentVersion?.key || '-'}</p>
+                    {(currentVersion?.key || currentVersion?.capo || (currentVersion?.tuning && currentVersion.tuning !== 'Standard')) && (
+                        <div className="grid grid-cols-3 gap-6 py-6 border-y border-gray-800/30">
+                            <div className="text-center space-y-2">
+                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">KEY</p>
+                                <p className="text-2xl font-mono font-bold text-amber-500">{currentVersion?.key || '-'}</p>
+                            </div>
+                            <div className="text-center space-y-2">
+                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">CAPO</p>
+                                <p className="text-lg font-bold text-gray-300">{currentVersion?.capo ? `${currentVersion.capo}nd fret` : '-'}</p>
+                            </div>
+                            <div className="text-center space-y-2">
+                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">TUNING</p>
+                                <p className="text-base font-bold text-gray-300 tracking-wider">{currentVersion?.tuning || 'Standard'}</p>
+                            </div>
                         </div>
-                        <div className="text-center space-y-2">
-                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">CAPO</p>
-                            <p className="text-lg font-bold text-gray-300">{currentVersion?.capo ? `${currentVersion.capo}nd fret` : '-'}</p>
-                        </div>
-                        <div className="text-center space-y-2">
-                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">TUNING</p>
-                            <p className="text-base font-bold text-gray-300 tracking-wider">{currentVersion?.tuning || 'Standard'}</p>
-                        </div>
-                    </div>
+                    )}
 
                     {/* Song Content (Lyrics/Chords) */}
                     <div className="pt-4 pb-12">

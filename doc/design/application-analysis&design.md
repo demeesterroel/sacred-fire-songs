@@ -1,8 +1,8 @@
 # Project Analysis & Design Document: Song Sharing Application (Sacred Fire Songs)
 
-**Version:** 1.19
+**Version:** 1.20
 **Status:** Living Document
-**Date:** February 1, 2026
+**Date:** February 3, 2026
 
 ## Changelog
 
@@ -12,6 +12,7 @@
 | **...** | ... | (Previous versions 1.1 - 1.17 retained in history) |
 | **1.18** | Feb 1, 2026 | Standardized navigation layout across all administrative screens. Renamed "Settings" to "Playlists". Refined inter-linking between Home, Explore, and Detail screens. |
 | **1.19** | Feb 1, 2026 | Refined sidebar navigation (Dashboard, Explore, Library, Playlist, Add Song). Implemented new Library hub (screen15) and Playlists management (screen16) mockups. |
+| **1.20** | Feb 3, 2026 | Implemented Draft Auto-Save (Story 1.1.7). Updated Song Form UI (Layout, Tags). Styled Profile Pill. |
 
 ## 1. Introduction
 

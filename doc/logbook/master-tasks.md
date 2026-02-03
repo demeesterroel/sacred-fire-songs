@@ -686,3 +686,36 @@
     - [x] Create migration script.
     - [x] Update seed scripts.
     - [x] Update documentation (`db-schema.sql`).
+- [x] **UI:** Style User Profile Pill to match Song Detail (Session: UI Polish)
+- [x] **Feat:** Implement Draft Auto-Save (Story 1.1.7)
+- [x] **Fix:** Update Song Detail page header to use shared UserProfile component (Session: UI Consistency)
+
+
+# Session Feb 3, 2026 (Draft Auto-Save & User Profile)
+
+# Task: Implement Tag Editing in Song Form
+
+- [x] **Planning**
+    - [x] Analyze `SongForm.tsx` and submission logic
+    - [x] Identify optimal UI for category selection
+    - [x] Create implementation plan
+- [x] **Execution**
+    - [x] Create API/Action to fetch categories (`lib/actions/category.ts`)
+    - [x] Update `SongForm.tsx` with category selector (`CategorySelector.tsx`)
+    - [x] Update persistence logic to save `song_category_map`
+    - [x] Handle `check_is_subcategory` constraint (Filtered query)
+    - [x] **Fix RLS Policies**:- [x] Debug RLS Policy for `song_category_map` <!-- id: 4 -->
+- [x] Make "Categories / Tags" section collapsible (default collapsed on Add, expanded if data exists) <!-- id: 5 -->
+- [x] Implement Chord Highlighting in Lyrics Editor <!-- id: 6 -->
+- [x] Refine Song Form Layout (Align upload link) <!-- id: 7 -->
+- [x] Implement Draft Auto-Save <!-- id: 8 -->ssions.
+- [x] **Verification**
+    - [x] Verify adding a new song with tags
+    - [x] Verify editing an existing song's tags
+    - [x] Ensure validation passes (Browser UI check success)
+
+- [x] **Creating GitHub Issue & Archiving Stories**
+    - [x] Draft Issue content from `doc/design/epic&user stories.md`
+    - [x] Create GitHub Issue for Story 1.1.7 (Issue #56)
+    - [x] Append story to `doc/logbook/epic&user stories.md`
+    - [x] Clear `doc/design/epic&user stories.md`
