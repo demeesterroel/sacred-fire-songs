@@ -36,7 +36,6 @@ create table public.compositions (
   id uuid default uuid_generate_v4() primary key,
   title text not null,
   original_author text,
-  primary_language text default 'ES',
   owner_id uuid references public.profiles(id),
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
