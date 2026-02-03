@@ -686,3 +686,6 @@
     - [x] Create migration script.
     - [x] Update seed scripts.
     - [x] Update documentation (`db-schema.sql`).
+- [x] **UI:** Style User Profile Pill to match Song Detail (Session: UI Polish)
+- [x] **Feat:** Implement Draft Auto-Save (Story 1.1.7)
+- [x] **Fix:** Update Song Detail page header to use shared UserProfile component (Session: UI Consistency)
