@@ -1176,3 +1176,27 @@ Guests were previously redirected to the login page when accessing the "Explore"
     -   Renamed the `espanol` category slug to `spanish` to match the display name and project convention.
     -   Created migration `20260202221500_rename_espanol_slug.sql`.
     -   Updated seed scripts (`04_songs_nina_urku.sql`, `05_randomization.sql`) and `doc/design/db-schema.sql` to reflect the change.
+
+## Session Feb 3, 2026 - UI Polish & Features
+**Goal:** Enhance the Song Editor experience with real-time feedback and safety nets.
+
+### Changes Made
+
+#### 1. RLS Policy Fix
+- **Issue**: Users couldn't save categories due to missing RLS policies on `song_category_map`.
+- **Fix**: Added policies for public read and authenticated insert/delete.
+- **Artifact**: `supabase/migrations/20260203023000_add_song_category_map_rls.sql`.
+
+#### 2. Song Form Refinements
+- **Collapsible Tags**: The "Categories / Tags" section is now collapsible (default closed) to declutter the UI. It auto-expands if the song has tags.
+- **Redundant Language UI**: Removed the separate Language buttons; language is now handled strictly via the Category system.
+- **Layout**: Aligned the "Or upload a file..." link with the "Song Details" header to remove vertical whitespace.
+
+#### 3. Real-time Chord Highlighting
+- **Component**: Created `ChordProEditor` to replace the standard textarea.
+- **Features**: Highlights chords in brackets `[Am]` in red as you type, providing instant visual feedback for the ChordPro format.
+
+#### 4. Draft Auto-Save
+- **Problem**: Accidental navigation caused data loss.
+- **Solution**: Implemented `localStorage` persistence for the "Add Song" form.
+- **Behavior**: Form state is saved on change and restored on return. State is cleared on successful submission.
