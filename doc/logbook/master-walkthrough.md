@@ -1607,7 +1607,8 @@ Executed critical database operations on the Production environment to ensure da
 1. **Production Schema Verification**:
    - Verified the `icon_name` column in the `categories` table.
    - Confirmed Lucide icon mappings are correctly applied to top-level library categories.
-2. **Data Randomization (Faceted Search Testing)**:
-   - Successfully executed the `06_random_chords_melody.sql` seed on Production.
-   - Backfilled `has_chords` and `has_melody` flags for existing compositions to enable metadata-driven filtering.
-   - Ensured a balanced distribution of melody-tagged songs (10% density) for UI verification.
+2. **Data Randomization (Access & Filters)**:
+   - **Scripts**: `06_random_chords_melody.sql`, `05_random_ownership.sql`
+   - **Execution**: Successfully backfilled composition attributes on Production.
+   - **Ownership Logic**: Adjusted seed IDs to match real Production profile IDs. Assigned ownership (40% Member, 40% Musician, 20% Admin) and applied visibility ratios to facilitate RLS testing.
+   - **Metadata Logic**: Detected `has_chords` via `ChordPro` patterns and applied `has_melody` at a 10% density to verify faceted search results.
