@@ -25,7 +25,6 @@ export interface Composition {
   id: string;
   title: string;
   original_author?: string | null; // Optional because often unknown for medicine songs
-  primary_language: string;
   created_at: string;
   // Relations (populated via joins)
   categories?: Category[];

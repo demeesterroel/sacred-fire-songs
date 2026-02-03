@@ -77,6 +77,10 @@ The application is a **Progressive Web App (PWA)** optimized for mobile use duri
 * `id`: uuid (PK)
 * `title`: text
 * `original_author`: text
+* `owner_id`: uuid (FK -> profiles.id)
+* `is_public`: boolean
+* `has_chords`: boolean
+* `has_melody`: boolean
 * `created_at`: timestamptz
 
 #### **B. song_versions** (The Content)
