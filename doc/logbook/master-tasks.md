@@ -690,8 +690,7 @@
 - [x] **Feat:** Implement Draft Auto-Save (Story 1.1.7)
 - [x] **Fix:** Update Song Detail page header to use shared UserProfile component (Session: UI Consistency)
 
-
-# Session Feb 3, 2026 (Draft Auto-Save & User Profile)
+- [x] **Session Feb 3, 2026 (Draft Auto-Save & User Profile)**
 
 # Task: Implement Tag Editing in Song Form
 
@@ -719,3 +718,4 @@
     - [x] Create GitHub Issue for Story 1.1.7 (Issue #56)
     - [x] Append story to `doc/logbook/epic&user stories.md`
     - [x] Clear `doc/design/epic&user stories.md`
+
