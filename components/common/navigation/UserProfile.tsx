@@ -46,23 +46,21 @@ export const UserProfile = ({ onLogout, layout = 'header', showText = true }: Us
       {/* Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 bg-gray-800/40 p-1.5 pl-2.5 rounded-2xl border border-gray-700/50 hover:bg-gray-800/60 transition-all active:scale-95 group"
+        className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors active:scale-95 group border border-transparent hover:border-gray-600"
       >
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20 shadow-inner overflow-hidden shrink-0">
-            {user.avatar_url ? (
-              <img src={user.avatar_url} alt={userDisplayName} className="w-full h-full object-cover" />
-            ) : (
-              userInitials
-            )}
-          </div>
-          {showText && (
-            <span className="hidden sm:block text-xs font-bold text-gray-300 truncate max-w-[100px]">
-              {userDisplayName}
-            </span>
+        <div className="w-[26px] h-[26px] rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-inner overflow-hidden shrink-0">
+          {user.avatar_url ? (
+            <img src={user.avatar_url} alt={userDisplayName} className="w-full h-full object-cover" />
+          ) : (
+            userInitials
           )}
         </div>
-        <ChevronDown className={`w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        {showText && (
+          <span className="hidden sm:block text-xs font-bold text-gray-300 truncate max-w-[100px]">
+            {userDisplayName}
+          </span>
+        )}
+        <ChevronDown className={`w-4 h-4 text-gray-500 group-hover:text-gray-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}

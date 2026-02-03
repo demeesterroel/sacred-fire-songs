@@ -1200,3 +1200,369 @@ Guests were previously redirected to the login page when accessing the "Explore"
 - **Problem**: Accidental navigation caused data loss.
 - **Solution**: Implemented `localStorage` persistence for the "Add Song" form.
 - **Behavior**: Form state is saved on change and restored on return. State is cleared on successful submission.
+
+
+## Session Feb 3, 2026 (Part 2 - Implementation & Polish)
+
+# Screen Mockups Update - Final Walkthrough
+
+## Overview
+Comprehensive update to all screen mockups in `doc/design/screens/` to match the current Sacred Fire Songs implementation and refine the user interface based on feedback.
+
+---
+
+## 1. Sidebar Design Standardization
+
+### Screens Updated (8 total):
+1. [screen1_home.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html)
+2. [screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)
+3. [screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)
+4. [screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)
+5. [screen15_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen15_library.html)
+6. [screen16_playlists.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen16_playlists.html)
+7. [screen17_category_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen17_category_library.html)
+8. [screen4_song_add.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/actions/screen4_song_add.html)
+
+### Changes Applied:
+- **Breakpoint**: Changed from `md` (768px) to `lg` (1024px)
+- **Version**: Updated from v1.2 to v1.0
+- **Mobile Header**: Changed from `md:hidden` to `lg:hidden`
+
+### Implementation Details:
+```html
+<!-- Before -->
+<aside class="hidden md:flex flex-col w-64 ...">
+<header class="md:hidden flex justify-between ...">
+<p>Sacred Fire v1.2</p>
+
+<!-- After -->
+<aside class="hidden lg:flex flex-col w-64 ...">
+<header class="lg:hidden flex justify-between ...">
+<p>Sacred Fire v1.0</p>
+```
+
+### Responsive Behavior:
+| Breakpoint | Width | Sidebar | Mobile Header |
+|:-----------|:------|:--------|:--------------|
+| Mobile | <1024px | Hidden | Visible |
+| Desktop | ≥1024px | Visible (260px) | Hidden |
+
+---
+
+## 2. Song Detail Screen Enhancements
+
+### Tag Placement
+**Final Implementation:** Tags appear inline after author name in header
+
+![Mobile Header Example](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/uploaded_media_1770078623242.png)
+
+**Desktop Layout:**
+```
+[Title] [Chords Badge] [Melody Badge]
+by Nina [Spanish] [Vocalization]
+```
+
+### User Profile Avatar
+- **Size**: 26px diameter
+- **Design**: Spiritual mandala with sacred fire theme
+- **Display**: Icon only, no username
+
+![Spiritual Avatar](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/spiritual_avatar_1770077065379.png)
+
+### Responsive Action Buttons
+- **Desktop (≥1024px)**: Icon + text label
+- **Tablet/Mobile (<1024px)**: Icon only
+
+**Buttons:**
+- Delete (trash icon)
+- Edit (pencil icon)  
+- Back (arrow-left icon)
+
+---
+
+## 3. Mobile Header Enhancement
+
+### New Layout (<1024px):
+```
+[🔥 Logo] Sacred Fire Songs    [🗑️] [✏️] [←] [Avatar ▼]
+```
+
+### Components:
+1. **Logo** - Sacred Fire flame icon (8x8)
+2. **Site Name** - "Sacred Fire Songs"
+3. **Action Buttons** - Delete, Edit, Back (icon-only)
+4. **User Profile** - 26px spiritual avatar with dropdown
+
+### Benefits:
+- All controls accessible in mobile header
+- Consistent with tablet breakpoint
+- Song title/content remains in content area
+
+---
+
+## 4. Sidebar Analysis
+
+Conducted comprehensive browser analysis of current implementation:
+
+![Sidebar Analysis Recording](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/sidebar_analysis_1770077819232.webp)
+
+### Key Findings:
+- **No icon-only state** - Sidebar is either fully expanded or hidden
+- **No hover-to-expand** - Simple two-state system
+- **260px width** - Fixed on desktop
+- **Slide-in drawer** - Mobile access via hamburger menu
+
+![Mobile Drawer](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/mobile_sidebar_drawer_1770077940399.png)
+
+---
+
+## 5. Summary of All Changes
+
+### Version History (screen2_song_detail.html):
+| Version | Date | Changes |
+|:--------|:-----|:--------|
+| **2.0** | Feb 3, 2026 | Tags below metadata, 26px spiritual avatar, removed username |
+| **2.1** | Feb 3, 2026 | Tags inline after author, responsive action buttons |
+| **2.2** | Feb 3, 2026 | Sidebar lg breakpoint, version v1.0 |
+| **2.3** | Feb 3, 2026 | Mobile header with action buttons and avatar |
+
+### Global Updates:
+- ✅ Sidebar breakpoint standardized to 1024px across all screens
+- ✅ Version updated to v1.0 across all screens
+- ✅ Mobile header breakpoint aligned to lg (1024px)
+- ✅ Spiritual avatar implemented (26px)
+- ✅ Tag placement optimized (inline with author)
+- ✅ Responsive action buttons (icons <1024px)
+
+---
+
+## 6. Files Modified
+
+### Screen Mockups:
+- [screen1_home.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html)
+- [screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html)
+- [screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html)
+- [screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html)
+- [screen15_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen15_library.html)
+- [screen16_playlists.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen16_playlists.html)
+- [screen17_category_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen17_category_library.html)
+- [screen4_song_add.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/actions/screen4_song_add.html)
+
+### Assets:
+- [spiritual_avatar_1770077065379.png](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/spiritual_avatar_1770077065379.png)
+
+### Documentation:
+- [Sidebar Analysis](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/sidebar_analysis.md)
+- [Tag Placement Proposal](file:///home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/tag_placement_proposal.md)
+
+---
+
+## 7. Technical Implementation
+
+### Sidebar Classes:
+```html
+<aside class="hidden lg:flex flex-col w-64 bg-[#0d121f] border-r border-gray-800/50 sticky top-0 h-screen overflow-y-auto z-20 shadow-xl transition-all">
+```
+
+### Mobile Header Classes:
+```html
+<header class="lg:hidden flex justify-between items-center px-4 py-3 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-lg">
+```
+
+### Responsive Button Pattern:
+```html
+<i data-lucide="trash-2" class="w-4 h-4"></i> 
+<span class="hidden lg:inline">Delete</span>
+```
+
+---
+
+## Key Achievements
+
+1. ✅ **Consistency** - All mockups now use the same sidebar implementation
+2. ✅ **Accuracy** - Mockups match the current live application
+3. ✅ **Responsive** - Proper breakpoints at 1024px for all screens
+4. ✅ **Modern Design** - Spiritual avatar, clean layout, optimized spacing
+5. ✅ **Mobile-First** - Enhanced mobile header with all controls
+6. ✅ **Documentation** - Comprehensive analysis and walkthrough
+
+---
+
+## Next Steps (Optional)
+
+- Consider implementing these mockup improvements in the actual Next.js components
+- Test responsive behavior across different devices
+- Gather user feedback on the new avatar and tag placement
+- Evaluate if icon-only sidebar collapse would be valuable for future enhancement
+
+---
+
+## Sidebar Header Standardization (February 3, 2026)
+
+### Overview
+Updated all screen mockups to use a consistent sidebar header design, replacing user profile sections with the Sacred Fire Songs logo and site name.
+
+### Changes Applied
+
+#### Design Update
+**Before:**
+- User profile section at top of sidebar
+- Displayed user avatar, name, and email
+- Included logout/login button
+
+**After:**
+- Logo and site name at top of sidebar
+- Sacred Fire flame icon (gradient from red-700 to orange-600)
+- "Sacred Fire Songs" text with hover effects
+- Clickable link to home screen
+
+#### Updated Screens (8 total)
+All screens now have matching sidebar headers:
+
+1. [screen1_home.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen1_home.html) - Replaced "Admin Guest" profile
+2. [screen2_song_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen2_song_detail.html) - Already had logo (reference)
+3. [screen7_explore_categories.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen7_explore_categories.html) - Replaced "Guest Explorer" profile
+4. [screen8_category_detail.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen8_category_detail.html) - Replaced user profile
+5. [screen15_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen15_library.html) - Replaced user profile
+6. [screen16_playlists.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen16_playlists.html) - Replaced "Admin Guest" profile
+7. [screen17_category_library.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/screen17_category_library.html) - Replaced user profile
+8. [screen4_song_add.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/actions/screen4_song_add.html) - Replaced user profile
+
+#### Technical Details
+
+**New Sidebar Header Structure:**
+```html
+<!-- Logo and Site Name (Top of Sidebar) -->
+<div class="p-6 border-b border-gray-800/50 mb-4">
+  <a href="screen1_home.html" class="flex items-center gap-3 group">
+    <div class="w-10 h-10 bg-gradient-to-br from-red-700 to-orange-600 
+         rounded-full flex items-center justify-center shadow-lg 
+         shadow-red-900/30 ring-1 ring-white/10 shrink-0 
+         group-hover:scale-110 transition-transform">
+      <i data-lucide="flame" class="text-white w-5 h-5 fill-current"></i>
+    </div>
+    <div class="flex flex-col">
+      <h1 class="font-bold text-base tracking-tight text-white 
+           leading-none group-hover:text-fire transition-colors">
+        Sacred Fire Songs</h1>
+    </div>
+  </a>
+</div>
+```
+
+**Key Features:**
+- **Logo**: 40px circular gradient background with flame icon
+- **Typography**: Bold, base-sized text with tight tracking
+- **Hover Effects**: Logo scales to 110%, text color transitions
+- **Spacing**: 24px padding, bottom border for visual separation
+- **Accessibility**: Clickable link to home screen
+
+### Design Rationale
+
+1. **Consistency**: All screens now have identical sidebar headers
+2. **Branding**: Prominent logo placement reinforces brand identity
+3. **Simplicity**: Removed user-specific information from sidebar
+4. **Navigation**: Logo serves as home button across all screens
+5. **Visual Hierarchy**: Clear separation between branding and navigation
+
+### Summary
+
+All 8 screen mockups now have consistent sidebar headers matching the design from `screen2_song_detail.html`. This complements the previous sidebar standardization work (lg breakpoint, v1.0 version) and ensures complete design consistency across all mockups.
+
+---
+
+## 10. Fixed Duplicate Content in screen4_song_add.html
+
+### Issue Identified
+The form content in [screen4_song_add.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/actions/screen4_song_add.html) was appearing "below the fold" (not visible without scrolling) due to duplicate HTML sections that were pushing the form content down.
+
+### Root Cause
+During a previous edit to standardize the sidebar header, duplicate sections were accidentally created:
+- **First set (lines 64-152)**: Incomplete/broken mobile header and sidebar
+- **Second set (lines 154-239)**: Complete duplicate of sidebar and desktop header
+- **Corrupted fragments (lines 275-287)**: Broken HTML tags from the duplication
+
+This duplication effectively doubled the height of the header/sidebar area, pushing the actual form content far below the visible viewport.
+
+### Fix Applied
+Removed all duplicate and corrupted HTML sections, keeping only the clean, complete versions:
+- Removed the first incomplete mobile header and sidebar
+- Removed duplicate desktop header sections
+- Removed corrupted HTML fragments that were breaking the layout
+- Kept the proper, complete header and sidebar structure
+
+### Result
+The form is now properly positioned and visible within the viewport without requiring scrolling. The layout is clean with:
+- Single mobile header
+- Single sidebar with logo and navigation
+- Single desktop header
+- Form content starting immediately after headers
+- Spacer div ensuring content isn't hidden by fixed footer
+- Fixed footer with action buttons
+
+### Files Modified
+- [screen4_song_add.html](file:///home/roeland/Projects/sacred-fire-songs/doc/design/screens/actions/screen4_song_add.html) - Removed ~130 lines of duplicate/corrupted content
+
+## Widescreen Song Detail Design
+
+### Overview
+Implemented the new "Widescreen" design for the Song Detail page (`app/songs/[id]/page.tsx`), matching the provided mockups and incorporating specific design elements like vertical section labels, a metadata grid, and responsive headers.
+
+### Key Changes
+1.  **Refactored Keyword Parsing**: Updated `lib/chordUtils.ts` to group ChordPro lines into structured sections (Verse, Chorus, Bridge) instead of a flat list.
+2.  **Enhanced Song Display**: Modified `components/song/SongDisplay.tsx` to render these sections with vertical labels on desktop (using `writing-mode: vertical-rl`) and standard headers on mobile.
+3.  **New Page Layout**:
+    *   **Custom Headers**: Replaced the global header with a custom implementation for this page.
+        *   **Mobile (< lg)**: Shows Logo, Title, and Action Buttons (Delete, Edit, Back).
+        *   **Desktop (>= lg)**: Shows Title, Badges, Artist, Categories, and Action Buttons.
+    *   **Metadata Grid**: Added a top grid for Key, Capo, and Tuning.
+    *   **Category Tags**: Added colored badges for categories (fetching from `song_category_map`, `color` column removed as it doesn't exist in schema).
+    *   **Media Embeds**: Integrated `MediaEmbeds` for YouTube/Spotify/SoundCloud.
+
+### Verification
+Validated the implementation in the browser. While the specific test ID provided by the user was not found locally, other songs in the database render correctly with the new design.
+
+![Widescreen Design Verification](/home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/song_detail_widescreen_top_1770081060202.png)
+
+## Tag Editing Implementation
+
+### Overview
+Implemented a structured "Categories / Tags" selector in the Add/Edit Song forms, replacing the previous free-text input. This ensures songs are tagged with valid, hierarchical categories (e.g., Lineage, Medicine, Language) from the database.
+
+### Key Changes
+1.  **Server Action**: `getAvailableCategories` (`lib/actions/category.ts`) fetches categories grouped by parent (subcategories only).
+2.  **New Component**: `CategorySelector` renders categories in groups (Languages, Lineage, etc.) with multi-select toggle support.
+3.  **Form Integration**: Updated `SongForm.tsx` to use `CategorySelector` and persist selections to `song_category_map`.
+4.  **Edit Support**: Updated `app/songs/[id]/edit/page.tsx` to fetch existing category associations so they pre-load in the form.
+
+### Verification
+
+### Collapsible UI
+The "Categories / Tags" section is now collapsible, behaving similarly to the Extended Metadata section.
+- **Default (Add Mode)**: Collapsed.
+- **Auto-expand (Edit Mode)**: Expands automatically if the song already has tags.
+
+
+### Layout Refinements
+- **Link Alignment**: Moved the "Or upload a file..." link to be vertically aligned with the "Song Details" header, reducing vertical whitespace.
+- **Placeholder & Helper Update**: Updated the lyrics placeholder example to `[Dm]Abre tus alas [A7]pajaro volar [Dm]` to better reflect the song repertoire context. The helper text now acts as a visual guide with highlighted chords.
+
+### Draft Auto-Save
+Implemented `localStorage` persistence for the "Add Song" form.
+- **Functionality**: Changes are saved automatically as you type.
+- **Restoration**: Navigating back to the page restores all entered data.
+- **Cleanup**: Storage is cleared automatically upon successful song creation.
+
+### Real-time Chord Highlighting
+Implemented a custom `ChordProEditor` component that highlights chords (text within brackets `[]`) in red while typing. This improves visibility and helps users distinguish chords from lyrics instantly.
+
+![Chord Highlighting Proof](/home/roeland/.gemini/antigravity/brain/d41de388-b221-4c7f-a1ba-3acc8e3d5988/chord_highlighting_proof_1770083634537.png)
+
+
+
+
+### Cleanup
+Removed the redundant "Language" buttons from `SongForm.tsx` as language is now handled via the "Language" category group in the new selector.
+
+
+
