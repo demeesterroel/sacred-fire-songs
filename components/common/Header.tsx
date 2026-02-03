@@ -22,6 +22,10 @@ export default function Header() {
 
     const subtitle = getSubtitle();
 
+    // Hide Global Header on Song Detail Page to allow custom Widescreen Design
+    const isSongDetail = pathname?.startsWith('/songs/') && pathname !== '/songs' && pathname !== '/songs/add';
+    if (isSongDetail) return null;
+
     return (
         <header className="sticky top-0 z-30 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-4 md:px-8 py-4 h-[72px] flex items-center">
             <div className="w-full flex justify-between items-center">

@@ -9,9 +9,8 @@ import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
 import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
-import { deleteSong } from '@/app/actions/deleteSong';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Guitar } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Link as LinkIcon, ChevronDown, Flame } from 'lucide-react';
 
 // Standalone fetch function
 const fetchSong = async (id: string) => {
@@ -35,6 +34,12 @@ const fetchSong = async (id: string) => {
             youtube_url,
             spotify_url,
             soundcloud_url
+          ),
+          song_category_map (
+            categories (
+              name,
+              slug
+            )
           )
         `)
         .eq('id', id)
@@ -69,6 +74,8 @@ export default function SongDetailPage() {
 
     const versions = song.song_versions || [];
     const currentVersion = versions[selectedVersionIndex];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const categories = song.song_category_map?.map((map: any) => map.categories) || [];
 
     const handleDelete = async () => {
         if (!id) return;
@@ -95,129 +102,225 @@ export default function SongDetailPage() {
         router.push('/');
     };
 
-    return (
-        <main className="flex-1 min-h-0 bg-gray-900">
-            <div className="p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                    <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                            <h1 className="text-3xl font-bold text-red-500 leading-tight">{song.title}</h1>
-                            {!song.is_public && (
-                                <LockIcon className="w-5 h-5 text-gray-500" />
-                            )}
-                            {song.has_chords && (
-                                <div className="flex items-center gap-1.5 bg-amber-500/10 text-amber-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-amber-500/20">
-                                    <Guitar className="w-3.5 h-3.5" />
-                                    Chords
-                                </div>
-                            )}
-                            {song.has_melody && (
-                                <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-emerald-500/20">
-                                    <Music className="w-3.5 h-3.5" />
-                                    Melody
-                                </div>
-                            )}
-                        </div>
-                        <p className="text-gray-400 mt-2 font-medium">by {song.original_author || 'Traditional'}</p>
-                    </div>
+    // Helper for badge colors (could be moved to utils or globals)
+    const getCategoryColor = (slug: string) => {
+        // Simple mapping based on slug for demo purposes if DB color is missing
+        if (slug === 'spanish') return 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30';
+        if (slug === 'vocalization') return 'text-purple-400 bg-purple-500/20 border-purple-500/30';
+        if (slug === 'english') return 'text-blue-400 bg-blue-500/20 border-blue-500/30';
+        if (slug === 'portuguese') return 'text-green-400 bg-green-500/20 border-green-500/30';
+        return 'text-gray-400 bg-gray-500/20 border-gray-500/30';
+    };
 
-                    {/* Action Buttons (Right Aligned) */}
-                    <div className="flex items-center gap-2 shrink-0">
-                        {/* Delete Button (Owner or Admin) */}
+    return (
+        <div className="flex flex-col min-h-screen">
+            {/* Mobile Header (Visible only on mobile < lg) */}
+            <header className="lg:hidden flex justify-between items-center px-4 py-3 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-lg">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
+                        <Flame className="text-white w-5 h-5 fill-current" />
+                    </div>
+                    <h1 className="font-bold text-base tracking-tight text-white truncate">Sacred Fire Songs</h1>
+                </div>
+                {/* Action Buttons and User Profile (Mobile) */}
+                <div className="flex items-center gap-2">
+                    {(song.owner_id === user?.id || isAdmin) && (
+                        <button
+                            onClick={() => setIsDeleteModalOpen(true)}
+                            className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg border border-red-500/20 transition-all"
+                        >
+                            <Trash2 className="w-5 h-5" />
+                        </button>
+                    )}
+                    {(song.owner_id === user?.id || isAdmin) && (
+                        <Link href={`/songs/${id}/edit`}>
+                            <button className="p-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg border border-gray-700 transition-all">
+                                <Edit2 className="w-5 h-5" />
+                            </button>
+                        </Link>
+                    )}
+                    <Link href="/" className="p-2 text-gray-400 hover:text-white transition-colors">
+                        <ArrowLeft className="w-5 h-5" />
+                    </Link>
+                    <button className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
+                        <div className="w-[26px] h-[26px] rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                            {/* Placeholder for spiritual avatar */}
+                            <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600" />
+                        </div>
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                    </button>
+                </div>
+            </header>
+
+            <main className="flex-1 min-w-0 overflow-y-auto bg-[#0b0f1a]">
+
+                {/* Desktop Page Header (Title, Actions) - Visible only on desktop >= lg */}
+                <div className="hidden lg:flex justify-between items-center px-8 py-4 border-b border-gray-800/50 bg-[#0d121f]/50 sticky top-0 backdrop-blur-md z-10 transition-all">
+                    {/* Title and Artist */}
+                    <div className="flex items-center gap-6">
+                        <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-3">
+                                <h1 className="text-3xl font-black text-[#ff4400] tracking-tight">{song.title}</h1>
+                                <div className="flex items-center gap-2">
+                                    {song.has_chords && (
+                                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm bg-amber-500/5 border border-amber-500/30 text-amber-500">
+                                            <LinkIcon className="w-3 h-3" /> Chords
+                                        </span>
+                                    )}
+                                    {song.has_melody && (
+                                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm bg-emerald-500/5 border border-emerald-500/30 text-emerald-500">
+                                            <Music className="w-3 h-3" /> Melody
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <p className="text-gray-400 text-sm font-medium">by {song.original_author || 'Traditional'}</p>
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {categories.map((cat: any) => (
+                                    <span key={cat.slug} className={`px-2.5 py-1 rounded-full text-xs font-bold border ${getCategoryColor(cat.slug)}`}>
+                                        {cat.name}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    {/* Action Buttons and User Profile */}
+                    <div className="flex items-center gap-3">
                         {(song.owner_id === user?.id || isAdmin) && (
                             <button
                                 onClick={() => setIsDeleteModalOpen(true)}
-                                className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-full transition-colors border border-red-500/20 active:scale-95"
-                                title="Delete Song"
+                                className="flex items-center gap-2 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all"
                             >
-                                <Trash2 className="w-5 h-5" />
+                                <Trash2 className="w-4 h-4" /> <span className="hidden xl:inline">Delete</span>
                             </button>
                         )}
-
-                        {/* Edit Button (Owner or Admin) */}
                         {(song.owner_id === user?.id || isAdmin) && (
-                            <Link
-                                href={`/songs/${id}/edit`}
-                                className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
-                                title="Edit Song"
-                            >
-                                <Edit2 className="w-5 h-5" />
+                            <Link href={`/songs/${id}/edit`}>
+                                <button className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
+                                    <Edit2 className="w-4 h-4" /> <span className="hidden xl:inline">Edit</span>
+                                </button>
                             </Link>
                         )}
-
-                        {/* Back Button */}
-                        <Link
-                            href="/"
-                            className="p-2.5 text-gray-400 hover:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all border border-transparent hover:border-white/10"
-                            title="Back to Library"
-                        >
+                        <Link href="/" className="p-2 text-gray-400 hover:text-white transition-colors">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
+                        <div className="border-l border-gray-800/50 pl-3 ml-1">
+                            <button className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
+                                <div className="w-[26px] h-[26px] rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                                    {/* Placeholder for spiritual avatar */}
+                                    <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600" />
+                                </div>
+                                <ChevronDown className="w-4 h-4 text-gray-500" />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                {/* Version Selector Pills */}
-                {versions.length > 1 && (
-                    <div className="flex gap-2 mt-6 overflow-x-auto pb-2 hide-scroll">
-                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                        {versions.map((v: any, index: number) => (
-                            <button
-                                key={v.id}
-                                onClick={() => setSelectedVersionIndex(index)}
-                                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${index === selectedVersionIndex
-                                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/20'
-                                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700 border border-white/5'
-                                    }`}
-                            >
-                                {v.version_name || `Version ${index + 1}`}
-                            </button>
-                        ))}
-                    </div>
-                )}
+                <div className="max-w-5xl p-6 md:p-10 space-y-0">
 
-                <div className="mt-6 p-4 bg-gray-800 rounded-xl border border-white/5 font-mono text-sm whitespace-pre-wrap transition-all duration-300 shadow-xl">
-                    {/* Metadata Row */}
-                    {(currentVersion?.key || currentVersion?.capo || currentVersion?.tuning) && (
-                        <div className="flex gap-2 mb-4">
-                            {currentVersion?.key && (
-                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
-                                    Key: {currentVersion.key}
-                                </span>
+                    {/* Mobile: Song Title, Badges, and Action Buttons Row (md:hidden but we use lg:hidden to match header switch) */}
+                    <div className="lg:hidden flex flex-col gap-4 mb-6">
+                        <div className="flex-1 space-y-3">
+                            {/* Title and Badges */}
+                            <div className="flex flex-wrap items-center gap-3">
+                                <h1 className="text-4xl font-black text-[#ff4400] tracking-tight">{song.title}</h1>
+                                <div className="flex items-center gap-2">
+                                    {song.has_chords && (
+                                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm bg-amber-500/5 border border-amber-500/30 text-amber-500">
+                                            <LinkIcon className="w-3 h-3" /> Chords
+                                        </span>
+                                    )}
+                                    {song.has_melody && (
+                                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-sm bg-emerald-500/5 border border-emerald-500/30 text-emerald-500">
+                                            <Music className="w-3 h-3" /> Melody
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                            {/* Artist */}
+                            <p className="text-gray-400 text-base font-medium">by {song.original_author || 'Traditional'}</p>
+                            {/* Category Tags */}
+                            <div className="flex items-center gap-2">
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {categories.map((cat: any) => (
+                                    <span key={cat.slug} className={`px-2.5 py-1 rounded-full text-xs font-bold border ${getCategoryColor(cat.slug)}`}>
+                                        {cat.name}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Action Buttons (Mobile) */}
+                        <div className="flex items-center gap-2">
+                            {(song.owner_id === user?.id || isAdmin) && (
+                                <button
+                                    onClick={() => setIsDeleteModalOpen(true)}
+                                    className="flex items-center gap-2 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all"
+                                >
+                                    <Trash2 className="w-4 h-4" /> <span className="sm:inline">Delete</span>
+                                </button>
                             )}
-                            {currentVersion?.capo > 0 && (
-                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
-                                    Capo: {currentVersion.capo}
-                                </span>
+                            {(song.owner_id === user?.id || isAdmin) && (
+                                <Link href={`/songs/${id}/edit`}>
+                                    <button className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
+                                        <Edit2 className="w-4 h-4" /> <span className="sm:inline">Edit</span>
+                                    </button>
+                                </Link>
                             )}
-                            {currentVersion?.tuning && currentVersion.tuning !== 'Standard' && (
-                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-black/20 px-2 py-1 rounded">
-                                    Tuning: {currentVersion.tuning}
-                                </span>
-                            )}
+                            <Link href="/" className="p-2 text-gray-400 hover:text-white transition-colors">
+                                <ArrowLeft className="w-5 h-5" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Metadata Grid (Key, Capo, Tuning) */}
+                    <div className="grid grid-cols-3 gap-6 py-6 border-y border-gray-800/30">
+                        <div className="text-center space-y-2">
+                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">KEY</p>
+                            <p className="text-2xl font-mono font-bold text-amber-500">{currentVersion?.key || '-'}</p>
+                        </div>
+                        <div className="text-center space-y-2">
+                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">CAPO</p>
+                            <p className="text-lg font-bold text-gray-300">{currentVersion?.capo ? `${currentVersion.capo}nd fret` : '-'}</p>
+                        </div>
+                        <div className="text-center space-y-2">
+                            <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.25em]">TUNING</p>
+                            <p className="text-base font-bold text-gray-300 tracking-wider">{currentVersion?.tuning || 'Standard'}</p>
+                        </div>
+                    </div>
+
+                    {/* Song Content (Lyrics/Chords) */}
+                    <div className="pt-4 pb-12">
+                        <SongDisplay content={currentVersion?.content_chordpro || ''} />
+                    </div>
+
+                    {/* Player Section */}
+                    {(currentVersion?.youtube_url || currentVersion?.spotify_url || currentVersion?.soundcloud_url) && (
+                        <div className="pt-8 border-t border-gray-800/50">
+                            <h3 className="text-xs font-black text-gray-600 uppercase tracking-[0.2em] mb-6">Recordings</h3>
+                            <div className="w-full aspect-video bg-black/40 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                                <MediaEmbeds
+                                    youtubeUrl={currentVersion.youtube_url}
+                                    spotifyUrl={currentVersion.spotify_url}
+                                    soundcloudUrl={currentVersion.soundcloud_url}
+                                />
+                            </div>
                         </div>
                     )}
-                    <SongDisplay key={currentVersion?.id || 'empty'} content={currentVersion?.content_chordpro || ''} />
 
-                    {/* Media Embeds */}
-                    <MediaEmbeds
-                        youtubeUrl={currentVersion?.youtube_url}
-                        spotifyUrl={currentVersion?.spotify_url}
-                        soundcloudUrl={currentVersion?.soundcloud_url}
-                    />
+                    <div className="h-20"></div>
                 </div>
 
-                {/* Bottom spacing */}
-                <div className="h-8"></div>
-            </div>
-
-            <DeleteConfirmationModal
-                isOpen={isDeleteModalOpen}
-                onClose={() => setIsDeleteModalOpen(false)}
-                onConfirm={handleDelete}
-                title="Delete Song?"
-                message={`Are you sure you want to delete "${song.title}"? This action cannot be undone.`}
-                isDeleting={isDeleting}
-            />
-        </main>
+                <DeleteConfirmationModal
+                    isOpen={isDeleteModalOpen}
+                    onClose={() => setIsDeleteModalOpen(false)}
+                    onConfirm={handleDelete}
+                    title="Delete Song?"
+                    message={`Are you sure you want to delete "${song.title}"? This action cannot be undone.`}
+                    isDeleting={isDeleting}
+                />
+            </main>
+        </div>
     );
 }
