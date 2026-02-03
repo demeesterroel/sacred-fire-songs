@@ -46,5 +46,6 @@
 | **Feb 1** | **UI/Auth**: Song Detail Fix, Guest Access, & Prod Repair | ~3.5 Hours | ✅ Completed |
 | **Feb 2** | **UX**: Combinable Filters & "Draft" Rebranding | ~2.2 Hours | ✅ Completed |
 | **Feb 2** | **Refactor**: Rename Category Slug ('espanol' -> 'spanish') | ~0.5 Hours | ✅ Completed |
+| Feb 3 | **Production**: Granular Nina Urku Seeding & Metadata Randomization | ~4.5 Hours | ✅ Completed |
 | **Feb 3** | **Feature**: Tag Editing, RLS Fixes, & Production Updates | ~6.75 Hours | ✅ Completed |
-| **Total** | **Development + AI Collaboration** | **~92.75 Hours** | |
+| **Total** | **Development + AI Collaboration** | **~97.25 Hours** | |

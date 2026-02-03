@@ -21,7 +21,7 @@ export default function SongsPageContent() {
     const { user } = useAuth();
 
     // Local UI state for sorting (not part of filtering engine usually)
-    const sortBy = (searchParams.get('sort') as SortByType) || 'newest';
+    const sortBy = (searchParams.get('sort') as SortByType) || 'title';
     const setSortBy = (val: SortByType) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('sort', val);
@@ -189,8 +189,8 @@ export default function SongsPageContent() {
                                             onChange={(e) => setSortBy(e.target.value as SortByType)}
                                             className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-gray-300 outline-none focus:border-gray-700 appearance-none pr-8 cursor-pointer"
                                         >
-                                            <option value="newest">Newest First</option>
                                             <option value="title">Title (A-Z)</option>
+                                            <option value="newest">Newest First</option>
                                         </select>
                                         <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
                                     </div>
@@ -220,8 +220,8 @@ export default function SongsPageContent() {
                                         onClick={() => setFilter('chords', !state.chords)}
                                         disabled={!state.chords && chordsCount === 0}
                                         className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${state.chords
-                                                ? 'border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20'
-                                                : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
+                                            ? 'border-amber-500/50 bg-amber-500/10 text-amber-500 shadow-sm shadow-amber-900/20'
+                                            : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
                                             }`}
                                     >
                                         <Guitar className="w-3.5 h-3.5" />
@@ -237,8 +237,8 @@ export default function SongsPageContent() {
                                         onClick={() => setFilter('melody', !state.melody)}
                                         disabled={!state.melody && melodyCount === 0}
                                         className={`flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all border ${state.melody
-                                                ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500 shadow-sm shadow-emerald-900/20'
-                                                : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
+                                            ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500 shadow-sm shadow-emerald-900/20'
+                                            : 'border-gray-800 bg-gray-900/50 text-gray-500 hover:text-gray-300 hover:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed'
                                             }`}
                                     >
                                         <Music className="w-3.5 h-3.5" />

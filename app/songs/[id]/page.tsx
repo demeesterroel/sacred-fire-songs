@@ -5,12 +5,13 @@ import { useParams, notFound, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
+import { useSidebar } from '@/context/SidebarContext';
 import SongDisplay from '@/components/song/SongDisplay';
 import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
 import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Link as LinkIcon, Flame } from 'lucide-react';
+import { Trash2, Edit2, ArrowLeft, Lock as LockIcon, Music, Link as LinkIcon, Flame, IndentIncrease } from 'lucide-react';
 import { UserProfile } from '@/components/common/navigation/UserProfile';
 
 // Standalone fetch function
@@ -61,6 +62,7 @@ export default function SongDetailPage() {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const { user, loading: authLoading } = useAuth();
+    const { setIsOpen } = useSidebar();
     const isAdmin = user?.role === 'admin';
 
     // The Query Hook
@@ -118,6 +120,15 @@ export default function SongDetailPage() {
             {/* Mobile Header (Visible only on mobile < lg) */}
             <header className="lg:hidden flex justify-between items-center px-4 py-3 sticky top-0 bg-gray-900/95 backdrop-blur-md z-30 border-b border-white/5 shadow-lg">
                 <div className="flex items-center gap-3">
+                    {/* Menu Trigger */}
+                    <button
+                        onClick={() => setIsOpen(true)}
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group shrink-0 border border-transparent hover:border-gray-700"
+                    >
+                        <IndentIncrease className="w-7 h-7" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">Menu</span>
+                    </button>
+
                     <div className="w-8 h-8 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 shrink-0">
                         <Flame className="text-white w-5 h-5 fill-current" />
                     </div>
