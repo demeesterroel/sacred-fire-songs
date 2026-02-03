@@ -1,4 +1,4 @@
-import UnderConstruction from '@/components/common/UnderConstruction';
+import UnderConstruction from '@/components/common/feedback/UnderConstruction';
 
 export default function FavoritesPage() {
   return (
