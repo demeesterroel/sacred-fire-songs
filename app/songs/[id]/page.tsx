@@ -268,9 +268,6 @@ export default function SongDetailPage() {
                                     </button>
                                 </Link>
                             )}
-                            <Link href="/" className="p-2 text-gray-400 hover:text-white transition-colors">
-                                <ArrowLeft className="w-5 h-5" />
-                            </Link>
                         </div>
                     </div>
 
