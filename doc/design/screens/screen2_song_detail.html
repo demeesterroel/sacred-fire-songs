@@ -17,6 +17,8 @@
 | **1.7** | Feb 3, 2026 | Synced sidebar with current implementation, added user profile dropdown, moved action buttons below header, added SONG DETAIL label. |
 | **1.8** | Feb 3, 2026 | Updated layout to match screenshot: badges inline with title, action buttons on title row, refined metadata grid. |
 | **1.9** | Feb 3, 2026 | Moved title, artist, and action buttons into desktop header for cleaner layout. |
+| **2.0** | Feb 3, 2026 | Implemented Option 2: tags below metadata grid, removed whitespace, updated user profile to 26px spiritual avatar without username. |
+| **2.1** | Feb 3, 2026 | Moved tags inline after author in header, action buttons show icons-only below 1024px. |
 -->
 
 <!DOCTYPE html>
@@ -194,7 +196,13 @@
                             </span>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm font-medium">by Nina</p>
+                    <div class="flex items-center gap-3">
+                        <p class="text-gray-400 text-sm font-medium">by Nina</p>
+                        <span
+                            class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold border border-yellow-500/30">Spanish</span>
+                        <span
+                            class="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold border border-purple-500/30">Vocalization</span>
+                    </div>
                 </div>
             </div>
             <!-- Action Buttons and User Profile -->
@@ -202,13 +210,13 @@
                 <a href="actions/screen6_delete_confirmation.html">
                     <button
                         class="flex items-center gap-2 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg text-sm font-bold border border-red-500/20 transition-all">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
+                        <i data-lucide="trash-2" class="w-4 h-4"></i> <span class="hidden lg:inline">Delete</span>
                     </button>
                 </a>
                 <a href="actions/screen4_song_add.html?mode=edit&id=1">
                     <button
                         class="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg text-sm font-bold border border-gray-700 transition-all">
-                        <i data-lucide="edit-2" class="w-4 h-4"></i> Edit
+                        <i data-lucide="edit-2" class="w-4 h-4"></i> <span class="hidden lg:inline">Edit</span>
                     </button>
                 </a>
                 <a href="screen1_home.html" class="p-2 text-gray-400 hover:text-white transition-colors">
@@ -216,21 +224,19 @@
                 </a>
                 <div class="border-l border-gray-800/50 pl-3 ml-1">
                     <button
-                        class="flex items-center gap-3 px-4 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
-                        <div
-                            class="w-7 h-7 rounded-full bg-red-900/40 flex items-center justify-center text-xs font-bold text-red-400 ring-1 ring-red-500/20">
-                            R</div>
-                        <span class="text-sm text-gray-300">roel.de.meeste...</span>
+                        class="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors">
+                        <img src="spiritual_avatar_1770077065379.png" alt="User Avatar"
+                            class="w-[26px] h-[26px] rounded-full object-cover" />
                         <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-5xl p-6 md:p-10 space-y-6">
+        <div class="max-w-5xl p-6 md:p-10 space-y-0">
 
             <!-- Mobile: Song Title, Badges, and Action Buttons Row -->
-            <div class="md:hidden flex flex-col gap-4">
+            <div class="md:hidden flex flex-col gap-4 mb-6">
                 <div class="flex-1 space-y-3">
                     <!-- Title and Badges -->
                     <div class="flex flex-wrap items-center gap-3">
@@ -277,14 +283,6 @@
                 </div>
             </div>
 
-            <!-- Category Tags (Desktop only, since they're in header on mobile) -->
-            <div class="hidden md:flex items-center gap-2">
-                <span
-                    class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold border border-yellow-500/30">Spanish</span>
-                <span
-                    class="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold border border-purple-500/30">Vocalization</span>
-            </div>
-
             <!-- Metadata Grid (Key, Capo, Tuning) -->
             <div class="grid grid-cols-3 gap-6 py-6 border-y border-gray-800/30">
                 <div class="text-center space-y-2">
@@ -300,6 +298,7 @@
                     <p class="text-base font-bold text-gray-300 tracking-wider">E A D G B E</p>
                 </div>
             </div>
+
 
             <!-- Song Content (Lyrics/Chords) -->
             <div class="pt-4 space-y-12">
