@@ -3,7 +3,7 @@
 import { useParams, notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import SongForm from '@/components/song/SongForm';
-import AccessDenied from '@/components/common/AccessDenied';
+import AccessDenied from '@/components/common/feedback/AccessDenied';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 
