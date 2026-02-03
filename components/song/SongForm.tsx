@@ -5,16 +5,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { parseChordPro, hasChords } from '@/lib/chordProParsing';
 import { useAuth } from '@/hooks/useAuth';
+import CategorySelector from './CategorySelector';
+import ChordProEditor from './ChordProEditor';
 
 type SongFormData = {
     title: string;
     author: string;
     content: string;
     language: string;
-    tags: string[];
+    categoryIds: string[];
     key?: string;
     capo?: string;
     tuning?: string;
@@ -45,7 +47,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
         defaultValues: {
             ...initialData,
             language: initialData?.language || 'English',
-            tags: initialData?.tags || [],
+            categoryIds: initialData?.categoryIds || [],
             key: initialData?.key || '',
             capo: initialData?.capo ? String(initialData.capo) : '',
             tuning: initialData?.tuning || '',
@@ -67,14 +69,59 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     const hasMetadata = !!(initialData?.key || initialData?.capo || (initialData?.tuning && initialData.tuning !== 'Standard'));
     const [isMetadataExpanded, setIsMetadataExpanded] = useState(hasMetadata);
 
+    // Auto-expand tags if populated
+    const hasTags = !!(initialData?.categoryIds && initialData.categoryIds.length > 0);
+    const [isTagsExpanded, setIsTagsExpanded] = useState(hasTags);
+
     // Update expansion when parsing finds metadata
     const expandMetadata = (foundData: boolean) => {
         if (foundData) setIsMetadataExpanded(true);
     };
 
     // Watch fields for UI updates
-    const currentTags = watch('tags') || [];
+    const currentCategoryIds = watch('categoryIds') || [];
+
     const currentLanguage = watch('language');
+
+    // Persistence Logic (Create Mode)
+    useEffect(() => {
+        if (mode !== 'create') return;
+        const STORAGE_KEY = 'song-form-draft';
+
+        // Restore on mount
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                // Check if draft has meaningful data before restoring (optional, but good UX)
+                const hasData = Object.values(parsed).some(v => Array.isArray(v) ? v.length > 0 : !!v);
+
+                if (hasData) {
+                    // Update form values
+                    Object.keys(parsed).forEach((key) => {
+                        // @ts-ignore
+                        setValue(key, parsed[key]);
+                    });
+
+                    // Restore UI states
+                    if (parsed.key || parsed.capo || (parsed.tuning && parsed.tuning !== 'Standard')) {
+                        setIsMetadataExpanded(true);
+                    }
+                    if (parsed.categoryIds && parsed.categoryIds.length > 0) {
+                        setIsTagsExpanded(true);
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to restore draft", e);
+            }
+        }
+
+        // Save on change
+        const subscription = watch((value) => {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+        });
+        return () => subscription.unsubscribe();
+    }, [mode, setValue, watch]);
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -159,22 +206,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
     };
 
 
-    const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const input = e.currentTarget;
-            const newTag = input.value.trim();
 
-            if (newTag && !currentTags.includes(newTag)) {
-                setValue('tags', [...currentTags, newTag]);
-                input.value = '';
-            }
-        }
-    };
-
-    const removeTag = (tagToRemove: string) => {
-        setValue('tags', currentTags.filter(tag => tag !== tagToRemove));
-    };
 
     const mutation = useMutation({
         mutationFn: async (data: SongFormData) => {
@@ -195,6 +227,7 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
 
                 if (compError) throw compError;
 
+                // 2. Insert Version
                 const { error: versionError } = await supabase
                     .from('song_versions')
                     .insert({
@@ -211,6 +244,21 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     });
 
                 if (versionError) throw versionError;
+
+                // 3. Insert Categories
+                if (data.categoryIds && data.categoryIds.length > 0) {
+                    const categoryInserts = data.categoryIds.map(catId => ({
+                        song_id: composition.id,
+                        category_id: catId
+                    }));
+
+                    const { error: catError } = await supabase
+                        .from('song_category_map')
+                        .insert(categoryInserts);
+
+                    if (catError) throw catError;
+                }
+
 
                 return composition.id;
             } else {
@@ -245,10 +293,40 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
 
                 if (versionError) throw versionError;
 
+                // 3. Update Categories
+                // Strategy: Delete all existing and re-insert (simplest for many-to-many)
+                // Or compare. For now, delete/insert is safe within transaction (but we aren't in one here).
+                // Supabase calls are atomic but not across calls unless RPC. 
+                // Given low volume, delete all for song and re-insert is acceptable.
+
+                const { error: deleteCatError } = await supabase
+                    .from('song_category_map')
+                    .delete()
+                    .eq('song_id', songId);
+
+                if (deleteCatError) throw deleteCatError;
+
+                if (data.categoryIds && data.categoryIds.length > 0) {
+                    const categoryInserts = data.categoryIds.map(catId => ({
+                        song_id: songId,
+                        category_id: catId
+                    }));
+
+                    const { error: insertCatError } = await supabase
+                        .from('song_category_map')
+                        .insert(categoryInserts);
+
+                    if (insertCatError) throw insertCatError;
+                }
+
+
                 return songId;
             }
         },
         onSuccess: (id) => {
+            if (mode === 'create') {
+                localStorage.removeItem('song-form-draft');
+            }
             queryClient.invalidateQueries({ queryKey: ['songs'] });
             queryClient.invalidateQueries({ queryKey: ['song', id] });
             router.push(mode === 'create' ? '/' : `/songs/${id}`);
@@ -270,18 +348,8 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6 bg-gray-900 border border-white/10 p-6 rounded-2xl max-w-2xl mx-auto shadow-xl">
             <div className="space-y-4">
                 {/* File Upload Toggle Section */}
-                {!showUpload ? (
-                    <div className="flex justify-end">
-                        <button
-                            type="button"
-                            onClick={() => setShowUpload(true)}
-                            className="text-indigo-400 text-xs font-semibold flex items-center gap-1 opacity-80 hover:opacity-100 transition-opacity"
-                        >
-                            <span className="material-symbols-outlined text-sm">attachment</span>
-                            Or upload a file (.cho, .txt)
-                        </button>
-                    </div>
-                ) : (
+                {/* File Upload Section */}
+                {showUpload && (
                     <div className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-4 relative">
                         {/* Upload UI Code */}
                         <button
@@ -331,10 +399,19 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                 )}
 
 
-                {/* Song Details Section */}
                 <div>
-                    <div className="pb-2">
+                    <div className="flex justify-between items-end pb-2">
                         <h3 className="text-white text-lg font-bold leading-tight tracking-tight">Song Details</h3>
+                        {!showUpload && (
+                            <button
+                                type="button"
+                                onClick={() => setShowUpload(true)}
+                                className="text-indigo-400 text-xs font-semibold flex items-center gap-1 opacity-80 hover:opacity-100 transition-opacity"
+                            >
+                                <span className="material-symbols-outlined text-sm">attachment</span>
+                                Or upload a file (.cho, .txt)
+                            </button>
+                        )}
                     </div>
                     <div className="space-y-4">
                         <div className="space-y-2">
@@ -434,50 +511,29 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                             </details>
                         </div>
 
-                        {/* Language Section */}
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-300 p-1">Language</label>
-                            <div className="flex flex-wrap gap-2">
-                                {LANGUAGES.map(lang => (
-                                    <button
-                                        key={lang}
-                                        type="button"
-                                        onClick={() => setValue('language', lang)}
-                                        className={`px-4 py-1.5 rounded-full text-xs font-medium border transition-colors ${currentLanguage === lang
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-[#1d1c26] text-[#a19eb7] border-[#3f3d52] hover:border-gray-500'
-                                            }`}
-                                    >
-                                        {lang}
-                                    </button>
-                                ))}
-                                <button type="button" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1d1c26] border border-[#3f3d52] text-[#a19eb7] hover:text-white hover:border-gray-500">
-                                    <span className="material-symbols-outlined text-sm">add</span>
-                                </button>
-                            </div>
-                        </div>
 
-                        {/* Categories/Tags Section */}
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-300 p-1">Categories / Tags</label>
-                            <div className="flex flex-wrap gap-2 p-2 min-h-[48px] rounded-lg border border-[#3f3d52] bg-[#1d1c26] items-center">
-                                {currentTags.map(tag => (
-                                    <span key={tag} className="flex items-center gap-1 bg-[#3f3d52]/50 text-white text-xs px-2 py-1 rounded">
-                                        {tag}
-                                        <span
-                                            onClick={() => removeTag(tag)}
-                                            className="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-400"
-                                        >
-                                            close
-                                        </span>
-                                    </span>
-                                ))}
-                                <input
-                                    className="bg-transparent border-none focus:ring-0 p-0 text-xs text-[#a19eb7] ml-1 flex-1 min-w-[100px] placeholder:text-[#a19eb7]/30"
-                                    placeholder="Add tags..."
-                                    onKeyDown={handleAddTag}
-                                />
-                            </div>
+
+                        {/* Categories/Tags Section (Collapsible) */}
+                        <div className="pt-2">
+                            <details
+                                className="group bg-[#1d1c26]/50 border border-[#3f3d52] rounded-xl overflow-hidden transition-all duration-300 open:bg-[#1d1c26]"
+                                open={isTagsExpanded}
+                                onToggle={(e) => setIsTagsExpanded(e.currentTarget.open)}
+                            >
+                                <summary className="w-full flex items-center justify-between p-4 hover:bg-[#3f3d52]/30 cursor-pointer select-none list-none">
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="text-blue-400 font-semibold text-sm">Add Categories / Tags</h3>
+                                    </div>
+                                    <span className="material-symbols-outlined text-gray-400 transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+
+                                <div className="p-4 border-t border-[#3f3d52]/50 mt-1">
+                                    <CategorySelector
+                                        selectedIds={currentCategoryIds}
+                                        onChange={(ids) => setValue('categoryIds', ids)}
+                                    />
+                                </div>
+                            </details>
                         </div>
                     </div>
                 </div>
@@ -487,19 +543,20 @@ const SongForm = ({ mode, initialData, songId, versionId }: SongFormProps) => {
                     <div className="flex justify-between items-end pb-2">
                         <div>
                             <h3 className="text-white text-lg font-bold leading-tight tracking-tight">Lyrics & chords</h3>
-                            <p className="text-[#a19eb7] text-xs font-normal mt-1">Use brackets [] for chords: eg.<span className="font-mono text-primary">[Am]</span></p>
+                            <p className="text-[#a19eb7] text-xs font-normal mt-1">Use brackets [] for chords: eg. <span className="font-mono text-primary">[Dm]</span>Abre tus alas <span className="font-mono text-primary">[A7]</span>pajaro volar <span className="font-mono text-primary">[Dm]</span></p>
                         </div>
                         <span className="material-symbols-outlined text-[#a19eb7] cursor-pointer">help_outline</span>
                     </div>
 
-                    <textarea
-                        id="content"
-                        {...register('content', { required: 'Content is required' })}
-                        onPaste={handlePaste}
-                        rows={10}
-                        className="w-full bg-[#1d1c26] border border-[#3f3d52] rounded-lg px-4 py-4 text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-[#a19eb7]/30 leading-relaxed"
-                        placeholder="[Am]In the light of the [G]morning sun...&#10;[F]We rise to [E7]sing as one."
-                    />
+                    <div className="bg-[#1d1c26] border border-[#3f3d52] rounded-lg focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all h-[400px]">
+                        <ChordProEditor
+                            {...register('content', { required: 'Content is required' })}
+                            value={watch('content') || ''}
+                            onPaste={handlePaste}
+                            className="w-full h-full rounded-lg"
+                            placeholder="[Dm]Abre tus alas [A7]pajaro volar [Dm]"
+                        />
+                    </div>
                     {errors.content && <p className="text-red-400 text-sm">{errors.content.message}</p>}
                 </div>
 

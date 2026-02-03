@@ -19,6 +19,9 @@ const fetchSongForEdit = async (id: string) => {
           primary_language,
           owner_id,
           is_public,
+          song_category_map (
+            category_id
+          ),
           song_versions!inner (
             id,
             content_chordpro,
@@ -77,7 +80,8 @@ export default function EditSongPage() {
         author: song.original_author || '',
         content: song.song_versions[0]?.content_chordpro || '',
         language: song.primary_language || 'English',
-        tags: [], // Tags fetching not yet implemented in edit mode
+
+        categoryIds: song.song_category_map?.map((m: any) => m.category_id) || [],
         key: song.song_versions[0]?.key,
         capo: song.song_versions[0]?.capo,
         tuning: song.song_versions[0]?.tuning,
