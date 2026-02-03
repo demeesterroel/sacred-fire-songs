@@ -1566,3 +1566,32 @@ Removed the redundant "Language" buttons from `SongForm.tsx` as language is now 
 
 
 
+
+---
+
+## Session Update (Feb 3, 2026 - Widescreen & Tag Editing)
+
+### Overview
+Comprehensive implementation of the "Widescreen" song detail design, structured tag editing in the song form, and repository-wide UI refinements including a redesigned "Under Construction" experience.
+
+### Key Achievements:
+1. **Widescreen Detail Page**:
+   - Implemented vertical section labels (Verse, Chorus) on desktop.
+   - Metadata grid (Key, Capo, Tuning) prominently displayed.
+   - Contextual headers and action buttons optimized for all devices.
+2. **Tag Editing & Taxonomy**:
+   - Replaced free-text tags with a structured `CategorySelector`.
+   - Categories grouped by type (Lineage, Medicine, Language).
+   - Persistence to `song_category_map` with validation.
+3. **Draft Quality of Life**:
+   - **Auto-Save**: Implemented `localStorage` persistence for the "Add Song" form.
+   - **Highlighting**: Real-time red chord highlighting in the lyrics editor.
+4. **Resilient Feedback Screens**:
+   - Created `components/common/feedback/` to house centralized status components.
+   - **Under Construction**: Redesigned as a mystical, grayscale spiritual portal.
+   - **Header Visibility**: Restored global header breadcrumbs for edit/add flows.
+5. **Security & Infrastructure**:
+   - **RLS Fix**: Implemented a `SECURITY DEFINER` helper for song-category mapping to resolve recursion on staging.
+   - **Cleanup**: Standardized all screen mockups (v1.0, lg breakpoint, logo headers).
+
+![Spiritual Under Construction Design](/images/feedback/spiritual_mist_landscape.png)
