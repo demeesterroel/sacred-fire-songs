@@ -5,11 +5,11 @@
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('A Firmeza', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('A Firmeza', 'Traditional', true, 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -97,7 +97,8 @@ At the dawn of the day
 You remember to pray
 Thanking the sun and the moon
 And to the Queen of the sea'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Santa Daime
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -110,11 +111,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('A fresh new breath is growing', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('A fresh new breath is growing', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -139,7 +142,8 @@ We are the vision circling once again
 And it is timeless it is blossoming
 In the lives we live and the songs we sing
 We are reconnected to the spirit of the earth (x3)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -164,11 +168,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('A la Señora del Carmen', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('A la Señora del Carmen', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -213,7 +219,8 @@ Ay cuando tu me abrazas siento el corazón
 Ay cuando tu me acaricias siento el corazón
 De mi mamamamamma Iemanjá
 De mi mamamamamma Iemanjá'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -232,11 +239,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Abuelito Abuelita', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Abuelito Abuelita', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -254,7 +263,8 @@ Mi cariño, mi amor
 Oh yana, yana wei na hoy yana
 yana wena hey yana, hey ney yo wei
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -267,11 +277,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Abuelito Tatewari', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Abuelito Tatewari', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -328,7 +340,8 @@ sana sana esto ninotos
 cuida cuida los ninots [take care of the kids]
 Abuelito Tatewari
 yana he a nah hey ney yo wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -347,11 +360,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Abuelo (adida, adide)', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Abuelo (adida, adide)', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -384,7 +399,8 @@ adida, adida adide
 abuelo lyrics
  
  '
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -403,11 +419,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agua De Estrellas', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agua De Estrellas', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -432,7 +450,8 @@ Sana sana
 Sana coraźon agua bendita
 Calma calma
 Calma coraźon agua del cielo mama'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -451,11 +470,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agua Vital', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agua Vital', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -471,7 +492,8 @@ Viento del alba, llévame al altar
 Madre Tierra, vuelvo a tu hogar
 En el temazcal
 En el temazcal'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -496,11 +518,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agua de la montaña', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agua de la montaña', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -532,7 +556,8 @@ Sol, luna y estrellas
 En el cielo y en la tierra
 Canta mi corazón, hay yay danza mi corazón
 hay yay, sueña este tambor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -551,11 +576,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agua de vida lluvia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agua de vida lluvia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -582,7 +609,8 @@ Agua que ries
 Agua que lloras
 Agua es tu vientre mujer
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -607,11 +635,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agua transparente', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agua transparente', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -667,7 +697,8 @@ Agua que cura
 Agua-aaa
 Agua purifica el veneno
 Agua purifica el veneno'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -686,11 +717,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aguacollita profunda', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Aguacollita profunda', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -734,7 +767,8 @@ Ayahuasquita profunda, veve veve veve ve veve ve veve ve
 ……….
 
 Ve veve …'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -765,11 +799,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aguila Moteada', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Aguila Moteada', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -799,7 +835,8 @@ Hey ya, hey ya, ha
 Hey ya, hey ya, hey ya, hey ya
 Hey ya, ha
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -818,11 +855,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agüita, lluviecita', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agüita, lluviecita', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -838,7 +877,8 @@ Del cielo vienes trayendo
 Bendiciones del misterio
 Profunda llegas al centro
 Del corazón de mi pueblo'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -863,11 +903,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agüita que Vienes', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agüita que Vienes', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -911,7 +953,8 @@ Agua de mi sangre, recorres la tierra,
 si guías mi gente, cuídala
 
 Hey yana...'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -930,11 +973,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Agüitay, agüita', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Agüitay, agüita', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -978,7 +1023,8 @@ Agua de amor
 Camino rojo de mi corazón
 Camino rojo de mi corazón
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -997,11 +1043,14 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aliança', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+
+VALUES ('Aliança', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1071,7 +1120,8 @@ Ella nos guía hacia alianza superior
 
 Ella es divina y nos dió las medicinas
 las flores tan finas que nos dió el creador'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1090,11 +1140,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Amo Amo Amo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Amo Amo Amo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1113,7 +1165,8 @@ cada paso que doy, es un paso sagrado.
 Amo, amo, amo amo mi espíritu.
 cada paso que doy, es un paso que amo, 
 cada paso que doy, es un paso sagrado.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1126,11 +1179,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Anaboa', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Anaboa', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1180,7 +1235,8 @@ x2
 Nai nai nai nai, nai nai nai nai 
 Nai nai nai nai nai, nai nai nai nai nai
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1199,11 +1255,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Apenas Sale La Aurora', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Apenas Sale La Aurora', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1257,7 +1315,8 @@ Nay-nay-nay nay-nay-nay-nay
 Pachamama / Padre Cielo
 Estrellitas / Flores flores
 припев'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1276,11 +1335,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aprovechó el vuelo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Aprovechó el vuelo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1319,7 +1380,8 @@ Medicinal.
 Weiha weiheihoo, weiha y heiheiho
 Weihaiheheiho, weihaiheiho
 Weihaiheihe weihaiheho'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1338,11 +1400,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aqui Na Terra', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Aqui Na Terra', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1392,7 +1456,8 @@ From the forest across the sea...
 
 Forever I am and forever shall be... 
 With my Mother next to me'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1411,11 +1476,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Aquí en la montaña', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Aquí en la montaña', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1447,7 +1514,8 @@ Que llega desde ella
 2x
 
 4 vezes para todos los elementos'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Air
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1490,11 +1558,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ayahuasca Cura', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ayahuasca Cura', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1584,7 +1654,8 @@ yarindirindin yarindirindin
 yarindirindin yarindirindirindin
 yarindirindin yarindirindin
 yarindirindin dirindirindirindin'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1603,11 +1674,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ayahuasca Urcumanta', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ayahuasca Urcumanta', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1628,7 +1701,8 @@ Ayahuasca lucerito manta....
 Ayahuasca Chacrunera....
 Ayahuasca pinturera....
 Ayahuasca curandera....'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1647,11 +1721,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ayaruna', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ayaruna', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1668,7 +1744,8 @@ Shamu ri ri ri ri ri ri ri ri ri ri ri
 Ensenañdo Caminito 
 De la sinchi 
 Medicina nai nai nai nai nai'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1687,11 +1764,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Belleza Pura', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Belleza Pura', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1720,7 +1799,8 @@ Montaña sagrada, Belleza Pura
 Belleza Pura, Belleza Pura
 Hey wana heyana, hey ney yo wey
 (2 times)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1751,11 +1831,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Bendice', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Bendice', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1783,7 +1865,8 @@ Trayendo pura sanación
 Y ábrete y ábrete y ábrete
 A la vida y al amor
 A la vida y al amor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Water
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1814,11 +1897,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Brilla un Colibrí', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Brilla un Colibrí', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1846,7 +1931,8 @@ Bribri bribri bribri bribri, brilla un colibrí (x2)
 Un ave me llevará, un ave nos llevará (x2) (hacia luz) 
 
 Bribri bribri brilla brilla, brilla un colibrí (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1865,11 +1951,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Caboclo Curador', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Caboclo Curador', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1895,7 +1983,8 @@ Nukum mana ibubu ibubu buta
 Scauata caiaue caiaue ke ke
 
 Chegou…'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1914,11 +2003,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Canta Pajarito', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Canta Pajarito', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -1935,7 +2026,8 @@ La musica es nuestra voz y es lo que necesitamos para el amor (x2)
 
 Somos seres de esperanza en tiempos de allianzas (x2)
 La musica es nuestra voz y es lo que necesitamos para la paz (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -1950,15 +2042,18 @@ SELECT comp_id,
 FROM public.categories
 WHERE slug = 'bird';
 END $$;
+
 -- Song: Canção da Jibóia
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Canção da Jibóia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Canção da Jibóia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2006,7 +2101,8 @@ A hey a ha'' me vem ruã
 A tuas penas nas asas do meu cocar
 A hey a ha'' eu vou voar
 No mundo inteiro com a sua forca eu vou curar'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Santa Daime
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2019,11 +2115,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Churubia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Churubia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2064,7 +2162,8 @@ Mi alconcito ayarindende
 
 Deu deu deu, dao dao dao
 ...'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2083,11 +2182,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Colibri', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Colibri', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2103,7 +2204,8 @@ Colibrí bri bri, Coli coli colibrí (x4)
 Yo soy un colibrí, mis cantos son mis alas en el viento 
 Para adorar a mi reina plateada que los oye desde el firmamento. (x2)
 Colibrí bri bri, Coli coli colibrí (x4).'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2122,11 +2224,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Colibrí Dorado', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Colibrí Dorado', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2148,7 +2252,8 @@ El viento sopla despertando un nuevo día
 Y la frescura en la montaña va llevando
 La esencia de un Picaflor
 Que asciende enamorado'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2167,11 +2272,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Como no voy a cantar', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Como no voy a cantar', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2188,7 +2295,8 @@ Como no voy a reír si tengo todo para ser feliz
 Si tengo luna, si tengo sol, si tengo amor en mi corazón 
 Túna rarará rairái Tuna raráira nará rairái 
 lará naráirai lará nararái rará rairárai rará rairai'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2201,11 +2309,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Como te quiero yo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Como te quiero yo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2234,7 +2344,8 @@ Como ese pajarito le canta al cielo cuando nace el sol. (x2)
 
 Yana heyana yoy, yana heyana yo ianá (x2).
 yana heyana yo ianá (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2277,11 +2388,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Corazón de Oro', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Corazón de Oro', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2291,7 +2404,8 @@ VALUES (
 {tag: Spanish}
 
 '
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2310,14 +2424,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Corazón que es lo único que tengo',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2337,7 +2453,8 @@ a entregar mi corazón, mi corazón
 corazón que es lo único que tengo
 (bis)
 Corazón que es lo único que tengo (x4)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2350,11 +2467,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Corre corriendo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Corre corriendo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2368,7 +2487,8 @@ Una bendición para mi pueblo
 De corazón elevado yo le vengo a pedir,
 Heya heya hey heya heya ho
 Heya heya heya heya heya heya heya ho'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2381,11 +2501,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Cura Do Beija-Flor', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Cura Do Beija-Flor', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2407,7 +2529,8 @@ Pelo mestre que retira o temor
 
 Um presente tão divino fruto de puro carinho
 Que revela os tesouros do amor Beija-flor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2420,11 +2543,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Cura Sana', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Cura Sana', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2457,7 +2582,8 @@ purai la gente pintamos cielo, tierra, vida
 Astrocentro mundo, cosmos seres 
 interplanetario que llega cura y sana (bis) 
 Cura cura, sana sana…'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2470,11 +2596,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Cura Santa Cura', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Cura Santa Cura', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2496,7 +2624,8 @@ Aclara también mi mente
 Poderosa curandera
 Fuerza que todo lo crea
 Regenera, regenera.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2515,11 +2644,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Cuñaq', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Cuñaq', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2544,7 +2675,8 @@ Canta cantorcito
 al agüita 
 Al agüita madre Cuñaq  
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2563,11 +2695,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Danza del sol', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Danza del sol', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2584,7 +2718,8 @@ Wani wachi chale
 Chamu welo omakiayo 
 Makakielo he
 Weya heya he yo weyo heyaha x3'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2603,11 +2738,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Defuma Com As Ervas Da Jurema', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Defuma Com As Ervas Da Jurema', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2620,7 +2757,8 @@ Defuma com arruda e guiné
 
 Benjoim, Alecrim, e alfazema
 Ora vamos defumar filhos de fé'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2633,11 +2771,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Defuma, defumador', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Defuma, defumador', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2660,7 +2800,8 @@ This house of Our Lord
 
 Take to the waves 
 The darkness that there may be here'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2679,11 +2820,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Defuma esta casa', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Defuma esta casa', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2701,7 +2844,8 @@ Eu sou rezador
 Sou filho de Umbanda
 Com a cruz de Deus
 Todo mal se abranda'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2720,11 +2864,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Desde los Andes', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Desde los Andes', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2759,7 +2905,8 @@ x2
 Huaiaiai huaiaiai huaira, huairitas
 Oye las vozes de lejos venir
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Mountain
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2778,11 +2925,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Deusa (Curawaka)', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Deusa (Curawaka)', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2917,7 +3066,8 @@ For the silent to hear
 The queen who lives in the living water
 Who opens our memory
 Who stirs up the divine wellspring'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2930,11 +3080,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Eagle Song', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Eagle Song', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -2963,7 +3115,8 @@ con sus plumas va curando (with his feathers he is curing)
 la familia de guerreros (the family of warriors)
 wey ne yana wey ney yana wey ne yana wey ney yana
 hey ney yo wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -2982,11 +3135,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Eh Madre, Madrecita', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Eh Madre, Madrecita', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3018,7 +3173,8 @@ Esta familia de la montaña, de Nina Urku, de Mama Etna, (del Encantada, del Tat
 heyo wana heyana hey ney yo wey
 
 Oh ney yo'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3031,11 +3187,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('El Agua Cambia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('El Agua Cambia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3058,7 +3216,8 @@ Toca, Cambia, todo lo que toca cambia. (2)
 
 La tierra cambia todo lo que toca, todo lo que toca cambia (2)
 Toca, Cambia, todo lo que toca cambia. (2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3095,11 +3254,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('El Gran Espíritu nos da la Vida', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('El Gran Espíritu nos da la Vida', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3156,7 +3317,8 @@ He yanaya yana yo we no wo wo
 He yanaya yana yo we no wo wo
 Medicina de mi corazón
 He yana he ne yowe.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3187,11 +3349,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Elevo mi canto', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Elevo mi canto', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3245,7 +3409,8 @@ Mil besos te doy, curandera
 Mil besos te doy, sanadora
 Mil besos te doy, curandera 
 Mil besos te doy'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3264,11 +3429,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('En el camino', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('En el camino', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3295,7 +3462,8 @@ En el camino de la abuelita Ayahuasca me encontre (x2)
 En el camino de los Niñitos santitos  me encontre (x2)
 Y no regresare y no regresare (x3)
 Hey yana hey ney yo wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3338,11 +3506,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('En el cielo y en la tierra', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('En el cielo y en la tierra', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3362,7 +3532,8 @@ Vuela vuela aguilita, vuela vuela condorcito
 Vuelan libres por nosotros, miren, cuiden todo todo 
 Siento el fuego dentro dentro, siento el fuego aquí te encuentro (x2) 
 Pachamama en este fuego, Pachamama aquí te encuentro (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3393,11 +3564,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('En la montaña de visión', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('En la montaña de visión', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3436,7 +3609,8 @@ Vibrando, danzando
 Bre bre bre bre…
 Bra bra bra bra…
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3455,11 +3629,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('En lo profundo de tu corazón', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('En lo profundo de tu corazón', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3468,7 +3644,8 @@ VALUES (
 {tag: Spanish}
 
 by Juani Aiaruna'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3481,11 +3658,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Este fuego', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Este fuego', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3495,7 +3674,8 @@ VALUES (
 {tag: Spanish}
 
 Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Fire
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3514,11 +3694,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Estrella del Oriente', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Estrella del Oriente', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3535,7 +3717,8 @@ Montaña de Qualtepec
 No te podré olvidar
 Por que allí fueron lanzadas
 Cuatro flechas a luchar'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3548,11 +3731,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Eu vou chamar', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Eu vou chamar', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3579,7 +3764,8 @@ Ieeeeeemanjá…. ieeeemanjá
 La vem minha rainha Mamae Iemanjá
 Levar o mal corrente
 Pro fundo do mar...'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3598,11 +3784,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Fenix', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Fenix', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3652,7 +3840,8 @@ Hay maru hay maru
 
 Hay marulla
 Hay marulla'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3671,11 +3860,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Flor Das Águas', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Flor Das Águas', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3700,7 +3891,8 @@ Está em toda humanidade
 Se todos se conhecerem
 Aqui dentro da verdade
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3713,11 +3905,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Flores en mi camino', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Flores en mi camino', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3753,7 +3947,8 @@ Arararara
 Rerererere
 X2
 Ayauhasca-awacolla-wachumita-peyotito-hikurito-san pedrito'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3772,11 +3967,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Floresta', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Floresta', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3798,7 +3995,8 @@ Floresta pura joia da minha alma
 Floresta pura joia da minha alma
 Eu agradeço para sempre eu sou sua filha
 Eu agradeço para sempre eu sou sua filha'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3811,11 +4009,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Fluyendo al mar', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Fluyendo al mar', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3864,7 +4064,8 @@ Tierra es mi cuerpo,
 agua es mi sangre, 
 aire es mi aliento, 
 fuego es mi espíritu'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3901,11 +4102,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Força do Rapé', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Força do Rapé', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3931,7 +4134,8 @@ O espirito do alto olhar
 
 Quem desperta faz brilhar
 O espirito do alto olhar (x3)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -3950,11 +4154,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Fuerza Del Copal', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Fuerza Del Copal', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -3995,7 +4201,8 @@ en el Temazcal
 
 Abuelitas piedras ayúdenme a sanar
 Abran los caminos de este Temazcal'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4014,14 +4221,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Gran Espíritu ayuda nuestra gente',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4034,7 +4243,8 @@ Gran Espíritu ayuda nuestra gente
 Ayúdales en la Montana de Visión
 Dales tu calor Dales tu amor
 Dales instrucción oh-oh dales purificación'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Mountain
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4053,11 +4263,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Grandmother I honor you', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Grandmother I honor you', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4076,7 +4288,8 @@ Oh wey, oh wey, oh weya ha
 Oh wey, oh wey, oh wey
 Oh wey, oh wey, oh wey ha
 Oh wey, oh wey, oh wey ha'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4095,11 +4308,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Guerreiro da paz', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Guerreiro da paz', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4138,7 +4353,8 @@ A minha glória para todos eu entrego Porque nós todos somos um nesta união
 Desde o principio todos nós somos irmãos!
 Orei ouá Orei ouá Orei ouá
 Viva o Poder de todo o universo!'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4151,11 +4367,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('He venido aqui', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('He venido aqui', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4205,7 +4423,8 @@ He venido aquí buscando cantos
 Busco Quetzales de mil colores
 Busco alegrías y menos llantos.
 hey ana hey ana hey hey yo wei.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4218,11 +4437,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Hermoso espiritu del agua', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Hermoso espiritu del agua', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4271,7 +4492,8 @@ En el corazón de este fuego vuelan ya
 En el corazón de este fuego vuelan ya 
 La gran águila del cielo vuela ya 
 El gran cóndor de los andes vuela ya'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4308,11 +4530,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Hey ya, hey ya, hey ya ho', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Hey ya, hey ya, hey ya ho', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4327,7 +4551,8 @@ Ya hey, ya hey, ya ho
 Ya hey hey, Ya hey hey ya
 Ya hey, ya hey, ya ho
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4340,11 +4565,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Huey Tonantzin, Tonantzin', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Huey Tonantzin, Tonantzin', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4374,7 +4601,8 @@ Huey: Grand
 Tonantzin: Mother Earth 
 Ipalnemohuani: The one for whom you live, God 
 Tlatzocamatli: Thank you'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Earth
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4399,11 +4627,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Icaro Sagrado', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Icaro Sagrado', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4496,7 +4726,8 @@ Marirí, marirí-ri-ri
 -i-i-i-i-i-i marirí
 
 Marirí'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4509,11 +4740,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Inti Raymi', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Inti Raymi', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4582,7 +4815,8 @@ Solo ya llegó
 Sinchi Runa que bailó
 Con el agua d''Inti Raymi
 y la flor del tiempo abrió'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4595,11 +4829,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Inti Taitiku', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Inti Taitiku', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4619,7 +4855,8 @@ Hauan hua ya
 Hauan hua ya 
 Hauan hau ya 
 Jachiguay'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Quechua
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4650,11 +4887,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Invisible', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Invisible', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4689,7 +4928,8 @@ Invisible es mi camino y en él soy muy sagrado E-, ∆, G, ∆, E-, ∆, G ∆ 
  Mama Wilca medicina... (Yopo)
  Tayta Sairi medicina, es el más sagrado (Tabaco)
  tienes el poder de enseñar medicina'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4720,11 +4960,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Invocar a Dios', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Invocar a Dios', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4743,7 +4985,8 @@ Porque llevo a Dios aquí en el corazón (x2)
 
 Cantemos con alegria alabando a la creación (x2)
 Viva a Pachamama y viva el Taita Sol (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4774,11 +5017,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ivan’s Medicine Song', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ivan’s Medicine Song', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4807,7 +5052,8 @@ De la gente pa mi gente
 Vuela vuela vuela he-ee-ee
 Vuela vuela vuela ha-aa-aa
 (X2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4844,11 +5090,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Jardincito Curandero', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Jardincito Curandero', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4916,7 +5164,8 @@ Trainai nai nai nai nai
 Trainai nai nai nai nai
 Trainai nai nai nai nai
 Breu breu Nai nai nai nai'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4935,11 +5184,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Kandjekere', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Kandjekere', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -4962,7 +5213,8 @@ A tsa cho pei na te, o ne, te o ne
  
 4х
 Te o ne Te o nee Te o nee'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -4981,11 +5233,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Karas Karas', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Karas Karas', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5005,7 +5259,8 @@ Karas Karas kurikingue (x2)
 Karas Karas kurikingue (x2)
 Killa pakari kurikingue (x2)
 Karas Karas kurikingue (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5024,14 +5279,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Kas ten po mano sodelį vaikščiojo',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5040,7 +5297,8 @@ VALUES (
 {tag: Lithuanian}
 
  '
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lithuanian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5053,11 +5311,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Keros (Canto alla Montagna)', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Keros (Canto alla Montagna)', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5102,7 +5362,8 @@ Trainai nai nai nai nai
 Trainai nai nai nai nai
 Trainai nai nai nai nai
 Trainai nai nai nai nai'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Italian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5121,11 +5382,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Kola, lecel lecun wo hey', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Kola, lecel lecun wo hey', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5159,7 +5422,8 @@ When you sit with the one Cannunpa
 Remember me when you fill it  
 When you do, what you need  
 Will become so'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5178,11 +5442,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('La Anaconda', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('La Anaconda', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5210,7 +5476,8 @@ que ya llego el abuelo
 Poderoso abuelo
 Amoroso abuelo
 Yageee, yageee'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5229,11 +5496,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('La canzone del Grano', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('La canzone del Grano', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5265,7 +5534,8 @@ Vento asciuga i Giorni
 Grano nel Mulino e primo Pane dentro i Forni
 Grano Saporito d’Acqua Sole e Sale
 Pane Colorito di Farfalle di Cicale'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Italian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5278,11 +5548,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('La luz del bosque', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('La luz del bosque', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5298,7 +5570,8 @@ Somos la luz divina, sabiduría de los mares (x2)
 Transformamos el dolor trayendo todo a la luz (x2) 
 Con el espíritu de la abuelita cantando toda la noche 
 Con la ayuda de la madrecita cantando toda la noche'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5311,11 +5584,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Leti sokole', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Leti sokole', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5397,7 +5672,8 @@ traj naj na na naaaaa
 Traj naj naj naj nanaaa
 Traj naj naj naj naj naj naj
 Traj naj naj naj naj'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5416,11 +5692,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Libero', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Libero', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5442,7 +5720,8 @@ Mi padre, y mi madre, me guían
 Hacia el centro de mi ser
 Confio, confio, confio
 Confio en que todo es'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5455,11 +5734,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Lobos de la tribu', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Lobos de la tribu', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5567,7 +5848,8 @@ Bailando el corazón
 [El sonido del aullar como lobos]
 
  *“Lobos de la tribu” is based on a variation of “Ani’qu ne’chawu’nani”, an Arapaho Ghost-Dance song. A number of versions of “Ani’qu ne’chawu’nani” have been performed over the years, including a basic form that has been taught to countless schoolchildren. One version introduced Spanish lyrics; Curawaka’s recording is a variation of the Spanish-lyric version. Theirs is unusual in that it alters or omits most of the Arapaho lyrics and phrasing. Compared with Mirabai Ceiba’s version—"Ani Couni“, which was released two years prior—"Lobos de la tribu” sounds like a more uptempo remix.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5580,11 +5862,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Madre Ayahuasca (Mireia)', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Madre Ayahuasca (Mireia)', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5632,7 +5916,8 @@ Madre Ayahuasca
 Muy agradecidas
 Santa Medicina
 Que cura la tribu'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Ayahuasca
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5651,11 +5936,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Madre Ayahuasca', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Madre Ayahuasca', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5685,7 +5972,8 @@ Toma mi cuerpo, hazme brillar
 Con brillo de estrellas, con calor de sol
 Con luz de luna y fuerza de tierra
 Con luz de luna y calor del sol, Madre'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5704,11 +5992,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Madre Tierra Temazcal', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Madre Tierra Temazcal', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5734,7 +6024,8 @@ gracias le doy por respirar (2).
 
 En este vientre madre tierra temazcal,
 las gracias hoy te vendo a dar.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5777,11 +6068,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Manachu', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Manachu', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5823,7 +6116,8 @@ Re re re re re re re re re
 Ra ra ra ra ra ra ra ra ra
 Re re re re re re re re re
 Ra ra ra ra ra ra ra ra ra'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5842,11 +6136,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mariri', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mariri', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5886,7 +6182,8 @@ Ayahuasca / Medicina
 Tabaquito / Taita Sayri
 
 Ding ding ding…'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5935,11 +6232,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('María Magdalena', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('María Magdalena', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -5962,7 +6261,8 @@ Pinta poderosa, ay kayari
 
 María Magdalenita, ay shamuy kuna 
 Pinta poderosa kayariri'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -5975,11 +6275,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mazatl', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mazatl', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6047,7 +6349,8 @@ Mazatl Mazatl,
 Mazatl Mazatl  
 Mazatl Mazatl, 
 Mazatl Mazatl wueeeee'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6066,11 +6369,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Media Luna', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Media Luna', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6109,7 +6414,8 @@ En ti danzan las Abuelas, ellas llevan el misterio de el Agüita horizontal
 
 Cantan y danzan los Ancestros
 Luminosos poderosos ancestros en mi corazón (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6146,11 +6452,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Medicina que trae los cielos', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Medicina que trae los cielos', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6165,7 +6473,8 @@ Doy gracias a todos los seres maestros divinos de redención  (x2)
 Humildad y paciencia enseñan la compasión  (x2) 
 Aquí pido por todos los seres desamparados y sin protección  (x2) 
 Ofreciendo este canto desde el fondo de mi corazón  (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6184,11 +6493,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mensageiro Beija Flor', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mensageiro Beija Flor', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6229,7 +6540,8 @@ Venho lá da floresta
 O meu canto é de amor
 Sou um índio mensageiro
 Mensageiro beija-flor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6242,11 +6554,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mi San Pedro de la laguna', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mi San Pedro de la laguna', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6296,7 +6610,8 @@ H	Mi madre tierra yariri... ri
 
 M	Ri ri ri ri ri ri ri ri ri 
 H	Re re re re re ra ra ra…'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6333,11 +6648,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mira como cura el agua', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mira como cura el agua', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6376,7 +6693,8 @@ Que el Wilkamayu traiga las notas para que alegres tu corazón
 Que el Apu Linli todas las tardes venga soplando su bendición
 Que el Ch''eqta Qaqa venga trayendo al padre rayo que enseñará
 Que Mama Ñusta viene cuidando a mis hijitos en la oscuridad'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6401,11 +6719,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mira todo lo que me encontré', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mira todo lo que me encontré', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6460,7 +6780,8 @@ Con sus frutos y bendiciones
 Con sus frutas y sus amores
 
 Rarararai rarai rai ra rarararai...'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6473,14 +6794,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Mother earth I am praying to you',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6511,7 +6834,8 @@ Family, I am praying to you (x3)
 all my life, all my life
 Hey una heyana, hey yana heyana (x3)
 oh wey, oh wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6548,11 +6872,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mulheres de força', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mulheres de força', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6576,7 +6902,8 @@ E meu protectora, mulher celadora
 Firmeza na menti, ya doçura presente
 E a força de oxum, sou as forças de oxum
 E a força de oxum, sou as forças de oxum'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6601,11 +6928,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Mãe d´ água', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Mãe d´ água', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6631,7 +6960,8 @@ Flor de mamãe Oxum
 
 Água Cristal, Lava clareia
 A Corrente de esta sessão'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6650,11 +6980,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Nai nai nai nai nai nai nai', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Nai nai nai nai nai nai nai', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6690,7 +7022,8 @@ Madre ayahuasca, calma mi mente,
 luz divina, guia mi corazon,
 Madre ayahuasca, da nos consciencia,
 Luz divina, guia mi corazon, nai nai'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6709,11 +7042,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Nananawa', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Nananawa', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6768,7 +7103,8 @@ elevando la energía
 поднимаем нашу силу
 вместе с родом нанава
 поднимаем нашу силу'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6793,11 +7129,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('No hay más Coraje que sostener', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('No hay más Coraje que sostener', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6822,7 +7160,8 @@ que me puedo amar
 que puedo soñar
 Estoy aquí para recordar 
 que me puedo amar'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6835,11 +7174,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Noku Mana', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Noku Mana', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6847,18 +7188,21 @@ VALUES (
 {artist: Unknown}
 
 Load audioSoundCloudSoundCloud might collect personal data. Privacy PolicyContinueDismiss'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 END $$;
 -- Song: Nuevo amanecer
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Nuevo amanecer', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Nuevo amanecer', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6904,7 +7248,8 @@ Va brillando un nuevo amanecer
 Adidada adidada adida-a-a
 Adidada adidada adide-e-e
 x3'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6917,11 +7262,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Os segredos vem da floresta', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Os segredos vem da floresta', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6949,7 +7296,8 @@ Pacha Mama abraça seus filhos
 Na jornada do amor
 Da sua fonte cristalina
 Correm asas de esplendor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -6974,11 +7322,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pantera', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pantera', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -6987,52 +7337,53 @@ VALUES (
 {tag: Spanish}
 {tag: Animal}
 
- Desde lo más hondo de la selva 
+Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarnos una pantera
- 
+
 De su negrura aprenderás los misterios del oscuro
 te protegerá de todo lo que no es puro 
 Con ella aprenderás a rastrear en el abismo
 Sin miedo partirás al encuentro de ti mismo
- 
+
 Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarte una pantera
- 
+
 Te ayudará enfrentarte a lo desconocido
 no existirá en ti el miedo te sabrás bendecido
 Como ella entenderás que no hay enemigos
 Acepta las pruebas que te pone en el camino
- 
+
 Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarnos una pantera
- 
+
 Silencio en su presencia 
 Aprende de su instinto
 Atención a sus lecciones
 son tesoros escondidos
- 
+
 Ábrete a recibir y agradece los regalos
 La pantera acechará cuando hagas tu llamado
- 
+
 Desde lo más hondo de la selva 
 viene oteando una pantera
 Desde lo más hondo de la selva 
 viene enseñarnos una pantera
- 
+
 Desde lo más hondo de tu selva 
 viene oteando una pantera
 Desde lo más hondo de tu selva 
 viene enseñarte una pantera
- 
+
 Desde lo más hondo de la selva 
 nai-nai-nai-nai-nai una pantera'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7051,11 +7402,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Peyote Song 4', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Peyote Song 4', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7082,7 +7435,8 @@ a heya wanna hoyna
 heya wanna hoyna hey ney yo wey 
 
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7101,11 +7455,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Peyote song 3', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Peyote song 3', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7128,7 +7484,8 @@ aheyayna, aheyayna, na weya yo
 heyana hey ney yo wey
 
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7147,11 +7504,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Peço aos Seres da Floresta', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Peço aos Seres da Floresta', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7168,7 +7527,8 @@ Todos façam a concentração
 Para vir me ajudar
 Para mim com os Vossos filhos
 Para sempre triunfar'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7181,14 +7541,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Pido a los seres que me acompañen',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7213,7 +7575,8 @@ Que florezca la luz, que florezca el amor
 Que florezca la paz en la Tierra
 (x2)
 La paz, la paz, la paz en todo el planeta (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7226,11 +7589,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pipe song 10', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pipe song 10', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7264,7 +7629,8 @@ Wakan Tanka cewakiyaca
 Anpetu luta mayaku elo he 
 Weyaya welo hayo		I pray to the Great Spirit 
 weya hayo welohe		he gave me a red day'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7283,11 +7649,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pipe song 58', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pipe song 58', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7315,7 +7683,8 @@ Pilama ya yelo he			I thank you
 Wicozani wa mayakuelo 		You have given me good health
 Pilama ya ye				So I thank you
 Pilama ya yelo he'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7334,11 +7703,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pipe song 63', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pipe song 63', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7360,7 +7731,8 @@ Cannupa wakan ca
 Yuha cewaki yelo he 
 Oyate yanipi kta ca 
 Leca mu welo he'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7379,11 +7751,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pipe song 65', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pipe song 65', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7400,7 +7774,8 @@ Weya heyo he weya heyo welo he
 Wakan Tanka unsimala yelo he		Great Spirit, have mercy on me
 Makakijelo Wani waci yelo he			I am suffering and I will live
 Cannupa ki le yuha hoye wayeloyo he	With this pipe I send a voice'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7419,11 +7794,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Porque te quiero tanto', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Porque te quiero tanto', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7448,7 +7825,8 @@ So much so much
 Because I love you so much
 With all of my heart
 Heyana hey ney o wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7467,11 +7845,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Pájaro viejo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Pájaro viejo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7494,7 +7874,8 @@ Pájaro viejo que cantas, que cantas esta tierra te ha visto nacer (bis)
 Canta, canta, cántame cántame, recuérdame (bis) 
 que somos todos hijos de la luna
 que somos todos hijas de la luna'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7513,11 +7894,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sagrada Familia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sagrada Familia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7545,7 +7928,8 @@ Pinta los colores, cantas tus canciones
 Sierra selva y mar, corazón de fuego
 Mira que belleza, misterio de la vida 
 Un sin fin de flores, muestran sus colores'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Bird
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7570,14 +7954,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Santa Maria vem chegando neste batalhão',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7600,7 +7986,8 @@ Com sua luz com o seu resplendor
 Eu vou seguindo sempre no caminho 
 Sempre guiado pela luz divina 
 Sempre buscando aprender nesta doutrina'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7625,11 +8012,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Santa Maria è uma mulher', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Santa Maria è uma mulher', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7669,7 +8058,8 @@ ru-ru-ru-ru-ru-ru-ru-ru-ru
 re-re-re-re-re-rai rai rai rai ra
 ru-ru-ru-ru-ru-ru-ru-ru-ru
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7688,11 +8078,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Santa Maria', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Santa Maria', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7707,7 +8099,8 @@ Eu sou Santa Maria
 Trago aqui Amor e Alegria
 E aqui dentro deste salão
 A alegria é a nossa única razão'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7726,11 +8119,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Seres vivos da floresta', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Seres vivos da floresta', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7821,7 +8216,8 @@ A clareza vai surgindo
 E agora sei que posso voar
 A clareza vai surgindo
 E agora sei que posso voar'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7834,11 +8230,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Señora mi señora', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Señora mi señora', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7877,7 +8275,8 @@ Van curando, va sanando
 sinchi Tonanzin tlali yarí 
 van curando y endulzando 
 sinchi Tonanzin tlali yarí'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7890,11 +8289,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sigo adelante con la medicina', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sigo adelante con la medicina', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7919,18 +8320,21 @@ Weya heyo we ya he ha io
 weya heyo we ya ha io
 (x2)
 (x3)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 END $$;
 -- Song: Sinchi Pakari
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sinchi Pakari', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sinchi Pakari', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -7957,7 +8361,8 @@ como círculo que se abre hacia el centro
 Y en el nord y en el sur
 wey ya na, hey ney yo wei
 (X2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -7970,11 +8375,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sinchi Sinchi', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sinchi Sinchi', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8055,7 +8462,8 @@ sinchi sinchi yariri ririri ririri ririri
 Legitimo doctorcito kayari
 Sinchi sinchi luminoso
 sinchi sinchi yariri ririri ririri ririri'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8092,14 +8500,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Solo Dios Sabe Si Vuelvo (Abrete florcita)',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8126,7 +8536,8 @@ Chuma borracherita pinta gente yari
 cuatro (o)torongos magos llegan a la fiesta
 s(e) alza (e)n el cielo (e)l brillo (a)zul de la flor blanca
 camino rojo solo Dios sabe si vuelvo.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8139,11 +8550,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sou Beija-flor', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sou Beija-flor', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8175,7 +8588,8 @@ And I kiss the flowers and I fly (x2)
 
 I am praying and my life is a prayer (x2)
 And I pray to God to bless us (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8188,11 +8602,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Sou Filho da Rainha Yemanja', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Sou Filho da Rainha Yemanja', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8245,7 +8661,8 @@ Sou filho da Rainha Iemanjá (x2)
 Iemanjá eêêêê...
 Iemanjá eáááá…
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8264,14 +8681,16 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
 VALUES (
         'Sou filho de Deus, sou filho da Rainha',
-        'Traditional'
+        'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12'
     )
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8292,7 +8711,8 @@ x2
 Despacha tudo quanto for ruim
 deixando tudo com perfume de Jazmin
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8311,11 +8731,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Strong wind', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Strong wind', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8349,7 +8771,8 @@ Heya Heyaho
 Heya Heya Heya Heya 
 Heeey aaahoo
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8380,11 +8803,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('São Paulo (Viva Casa de Maria)', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('São Paulo (Viva Casa de Maria)', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8431,7 +8856,8 @@ Vem aqui nos clarear
 Que o comando é de São Pedro
 Ninguém queira duvidar
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8456,11 +8882,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Taita Inti Inti tai', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Taita Inti Inti tai', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8507,7 +8935,8 @@ Taiticu tai tai tai
 
 Vuela vuela Colibrí
 Bri bri bri bri'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8526,11 +8955,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Taita Inti Padre Sol', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Taita Inti Padre Sol', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8546,7 +8977,8 @@ Hey-ya Hey-ya Hey-ya Hey-ya Hey-ya Hey-ya-ho, sol, luna y estrellas, yo les cant
 Ayahuasca, Caapi Inti intigua currupi currupi (bis) 
 Como me enseñó yo aquí fui y lo llame, agradezco siempre que nos abra su poder (bis) 
 Pájaro cantó, pájaro voló, lleva su presencia quien aquí lo mereció (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8565,11 +8997,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Tata Awarã', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Tata Awarã', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8616,7 +9050,8 @@ BÔRARA, BÔRARA, BÔRARA, BÔRARA
 
 4x
 PĨDA, PĨDA, PĨDA PÔ TATA'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Medicine Plants
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8635,11 +9070,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Te pedimos curacion', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Te pedimos curacion', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8710,7 +9147,8 @@ Ayahuasquita llega aquí
 luz medicina esta por venir
 Ay Madre Selva ayudanos
 poderosita te rezamos'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8729,11 +9167,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Tejido Sonoro', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Tejido Sonoro', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8742,7 +9182,8 @@ VALUES (
 {tag: Spanish}
 
 '
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8755,11 +9196,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('The River Is Flowing', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('The River Is Flowing', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8790,7 +9233,8 @@ The fire is burning destroying and burning
 The fire is burning for us to get pure
 Violet flame burn over me a child I will always be
 Violet flame burn over me until I am pure'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8827,11 +9271,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Tlazocamati', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Tlazocamati', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8869,7 +9315,8 @@ Sigo adelante con la medicina
 We ya hey ya ho hey ya hey yo
 We ya hey ya We ya hey yo
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8888,11 +9335,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Todo el amor', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Todo el amor', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8966,7 +9415,8 @@ Re-re-re-re
 re-re-re
 Ra-ra-ra-ra-ra-ra-ra-ra-ra
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -8979,11 +9429,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Todo es Medicina', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Todo es Medicina', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -8998,6 +9450,7 @@ todo lleva medicina dentro.
 Todo lleva fuego dentro, 
 todo lleva agua dentro 
 Todo lleva tierra dentro, 
+
 todo lleva aire dentro 
 llevo llevo medicina dentro,
 llevo llevo el universo dentro (x2)
@@ -9018,7 +9471,8 @@ mis ancestros van llegando
 Voy curando, voy sanando, 
 las heridas Cicatrizando
 Todo cura, todo sana…'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9031,11 +9485,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Todo es mi familia', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Todo es mi familia', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9063,7 +9519,8 @@ Everything is my family (x2)
 
 he ya he ya he ya, he ya he ya hey (x2).
 Todo es mi familia (x2).'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: English
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9082,11 +9539,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Todo lo que tengo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Todo lo que tengo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9131,7 +9590,8 @@ Y al aire cantando
 Que andamos buscando
 Él me dice que las cuatro son las medicinas
 Que andamos buscando'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9150,11 +9610,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Tuari rari', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Tuari rari', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9180,7 +9642,8 @@ Su comando poderoso quien mandó
 Fue la propia Madre Tierra
 Y el grandioso Sol Central
 Tuari rari tuari ririri'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9211,11 +9674,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Tunkasila omakiyayo omakiyayo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Tunkasila omakiyayo omakiyayo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9232,7 +9697,8 @@ Makatakiya omakiyayo eeyana heyney oh wey
 Peyut wakan omakiyayo omakiyayo 
 Eeyana hey ney
 Peyut wakan omakiyayo eeyana hey ney oh wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9245,11 +9711,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Um ser vestido de branco', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Um ser vestido de branco', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9272,7 +9740,8 @@ Louvando a Deus com meus pés no chão
 Viva a Jurema no meu coração
 Louvando a Deus por este primor
 Viva a Jurema estrela do Amor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9285,11 +9754,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Vem força, vem', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Vem força, vem', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9317,7 +9788,8 @@ De fazer o bem
 De fazer o bem 
 De fazer o bem 
 como poder que tem'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9336,11 +9808,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Vengan Abuelos', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Vengan Abuelos', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9367,7 +9841,8 @@ Ahora siento su presencia
 Siento Paz en mi interior
 No preciso ser perfecto
 Para recibir su Amor'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9380,11 +9855,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Viene Serpenteando', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Viene Serpenteando', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9486,7 +9963,8 @@ Esta Curación
 и душу открой
 излечатся раны
 и обретешь покой'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9511,11 +9989,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Viento', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Viento', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9571,7 +10051,8 @@ Cantando vienen, cantando van
 
 Ay la medicina, ay la medicina, ay la medicina
 Que hay aquí ( x2 )'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9602,11 +10083,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Visión Buscado', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Visión Buscado', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9636,7 +10119,8 @@ En la noche Mama Quilla alumbrará tus sueños
 y una estrellita matutina encenderá tu corazón
 
 Heya heya heya heya, Heya heya heyanna ho (x3)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9655,11 +10139,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Vou Banindo', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Vou Banindo', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9676,7 +10162,8 @@ Espiral, Espiral, Espiral
 Sugue o que há de ruim
 Leve todo mal
 (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9689,11 +10176,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Voy comiendo medicina', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Voy comiendo medicina', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9716,7 +10205,8 @@ negros, rojos, blancos, amarillos
 vienen lanzando sus flechas
 a las cuatro direcciones
 x2'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9729,11 +10219,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Wei Xiuhtecuhtli', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Wei Xiuhtecuhtli', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9755,7 +10247,8 @@ Tlazohcamati I Mexihcah Yo
 Yanawana Hiyana Hey Ne Yo We 
 Xiuhtecuhtli 
 Yanawana Hiyana Hey Ne Yo We'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Nahuatl
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9774,11 +10267,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Wey ya, wey ya', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Wey ya, wey ya', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9791,7 +10286,8 @@ Wey ya hey ya hey yo
 Wey ya hey ya hey yo
 Wey ya, wey yo
 Wey ya, wey yo'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9804,11 +10300,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Wiscachachuscaiman', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Wiscachachuscaiman', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9820,7 +10318,8 @@ Wiscachachuscaiman orqopi sayaiman (2 times)
 Orqo patapiri wayrawantusuyman (2 times)
 Wayra,wayra,wayrawantusuyman (2 times)
 Takiman,tusuyman,wayrawantusuyman (2 times)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Quechua
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9833,11 +10332,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ya weyo he he he', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ya weyo he he he', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9863,7 +10364,8 @@ Weya haya
 Ya weyo he he
 Weya ha
 Ya welo he'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Sun Dance
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9882,11 +10384,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ya yahe yaho weyo he', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ya yahe yaho weyo he', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9920,7 +10424,8 @@ Weyo heya haya
 Wey ha yaho
 Wey ha ya
 Heya ho welo he'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Sun Dance
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9939,11 +10444,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Yaha weyo he', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Yaha weyo he', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -9970,7 +10477,8 @@ Weya weya haya
 Yaha weya haya
 Yaha weya
 Waha weya welo he'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Sun Dance
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -9989,11 +10497,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Yanna heyo wanna', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Yanna heyo wanna', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10003,7 +10513,8 @@ VALUES (
 
 Yanna heyo wanna hey yana hey ney (x3)
 Yanna heyo wanna hey yana hey ney yo wei (x2)'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Vocalization
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10016,11 +10527,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Yarin di rin din din din', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Yarin di rin din din din', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10157,7 +10670,8 @@ Yarin di rin din din din
 Yarin di rin din din din
 Yarin di rin din din din
 Yarin di rin din'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10176,11 +10690,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Yo winni yana', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Yo winni yana', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10197,7 +10713,8 @@ x3
 Yo winni yana 
 Yo wanna eeana hey ney ney
 Yanna yo wanna eeana hey ney oh wey'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Lakota
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10216,11 +10733,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Zhuringa', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Zhuringa', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10243,7 +10762,8 @@ Wairita oña eua
 Oña ufa sueña
 Oña awacolla
 Oña e o a u nee'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10256,11 +10776,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Ábrete Corazón', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Ábrete Corazón', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10285,7 +10807,8 @@ Abre la mente y recuerda
 Como el espíritu cura como el amor sana
 Como el árbol florece
 Y la vida perdura'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Spanish
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10298,11 +10821,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Águas Claras', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Águas Claras', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10330,7 +10855,8 @@ Mãe Natureza
 tuas águas claras
 sempre cristalinas
 são pura beleza'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Portuguese
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10349,11 +10875,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Дай', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Дай', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10420,7 +10948,8 @@ By Anna Milaeva
 Дай дай дай дай папа папа дай дай
 Дай дай дай дай моя мама дай дай
 Дай дай дай дай мой папа дай дай'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Russian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10445,11 +10974,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Купалiнка', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Купалiнка', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10475,7 +11006,8 @@ VALUES (
 Купалiнка-купалiнка, цёмная ночка, 
 Цёмная ночка, а дзе ж твая дочка, 
 Цёмная ночка, а дзе ж твая дочка.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Belarusian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10500,11 +11032,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Прекрасное далеко', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Прекрасное далеко', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10543,7 +11077,8 @@ VALUES (
 По дороге, на которой нет следа.
 
 Припев.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Russian
 INSERT INTO public.song_category_map (song_id, category_id)
@@ -10556,11 +11091,13 @@ END $$;
 DO $$
 DECLARE comp_id uuid;
 BEGIN -- Insert composition
-INSERT INTO public.compositions (title, original_author)
-VALUES ('Рэчанька', 'Traditional')
+INSERT INTO public.compositions (title, original_author, is_public, owner_id)
+VALUES ('Рэчанька', 'Traditional',
+        true,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12')
 RETURNING id INTO comp_id;
 -- Insert standard version
-INSERT INTO public.song_versions (composition_id, version_name, content_chordpro)
+INSERT INTO public.song_versions (composition_id, version_name, content_chordpro, contributor_id)
 VALUES (
         comp_id,
         'Standard',
@@ -10594,7 +11131,8 @@ VALUES (
 Ой, рэчанька, рэчанька, чаму ж ты ня поўная,
 Лю-лі лю-лі лю-лi, чаму ж ты ня поўная, 
 Лю-лі лю-лі лю-лi, чаму ж ты ня поўная.'
-    );
+    ,
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12');
 -- Map categories
 -- Tag: Belarusian
 INSERT INTO public.song_category_map (song_id, category_id)
