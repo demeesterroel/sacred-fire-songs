@@ -1,11 +1,12 @@
 /*
- **Version:** 2.5
+ **Version:** 2.6
  **Status:** Current
- **Date:** February 2, 2026
+ **Date:** February 27, 2026
  
  ## Usage
  This script provides a complete setup for the "Sacred Fire Songs" database. 
- It consolidates the initial schema and all subsequent migrations up to Jan 25, 2026.
+ It consolidates the initial schema and all subsequent migrations up to Feb 27, 2026.
+ (v2.6: Added partial indexes for is_public and alphabetical title index).
  (v2.4: Added tuning to song_versions).
  Run this in the Supabase SQL Editor to initialize a fresh database.
  */
@@ -87,7 +88,13 @@ create table public.setlist_items (
   transposition_override integer,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
--- 3. Triggers & Functions
+-- 3. Indexes
+-- Partial indexes for public content optimization
+CREATE INDEX IF NOT EXISTS idx_compositions_is_public_true ON public.compositions (created_at DESC) WHERE is_public = true;
+CREATE INDEX IF NOT EXISTS idx_setlists_is_public_true ON public.setlists (created_at DESC) WHERE is_public = true;
+CREATE INDEX IF NOT EXISTS idx_compositions_title_alphabetical ON public.compositions (title ASC);
+
+-- 4. Triggers & Functions
 -- Trigger to prevent linking songs to parent groups (only subcategories allowed)
 create or replace function public.check_is_subcategory() returns trigger as $$ begin if (
     select parent_id
