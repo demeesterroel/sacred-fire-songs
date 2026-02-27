@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Flame } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface JoinCircleModalProps {
   open: boolean;
@@ -25,6 +26,7 @@ const COPY = {
 
 export function JoinCircleModal({ open, onClose, context = 'general' }: JoinCircleModalProps) {
   const copy = COPY[context];
+  const pathname = usePathname();
 
   return (
     <Dialog open={open} onOpenChange={open => !open && onClose()}>
@@ -47,7 +49,7 @@ export function JoinCircleModal({ open, onClose, context = 'general' }: JoinCirc
             asChild
             className="w-full bg-amber-500 hover:bg-amber-400 text-gray-950 font-semibold"
           >
-            <Link href="/auth/sign-up" onClick={onClose}>
+            <Link href={`/auth/sign-up?next=${encodeURIComponent(pathname)}`} onClick={onClose}>
               Create Account
             </Link>
           </Button>
@@ -56,7 +58,7 @@ export function JoinCircleModal({ open, onClose, context = 'general' }: JoinCirc
             variant="outline"
             className="w-full border-gray-700 text-gray-300 hover:bg-gray-800"
           >
-            <Link href="/auth/login" onClick={onClose}>
+            <Link href={`/auth/login?next=${encodeURIComponent(pathname)}`} onClick={onClose}>
               Log In
             </Link>
           </Button>
