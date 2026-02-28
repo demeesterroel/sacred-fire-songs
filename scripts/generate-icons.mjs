@@ -26,6 +26,6 @@ for (const { name, size } of sizes) {
     .resize(size, size)
     .png()
     .toFile(resolve(outDir, name));
-  console.log(`Generated ${name}`);
+  console.log(`✓ Generated ${name}`);
 }
 console.log('All icons generated.');
