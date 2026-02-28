@@ -510,11 +510,15 @@ Scenario: Enable musician features from profile
   And I save my profile
   Then transpose controls should appear on song detail pages
   And sheet music / ABC notation should be visible (when available)
+  And a chord icon badge should appear on song cards that have chords
+  And a "Chords" filter toggle should appear on the Songs page
 
 Scenario: Disable musician features
   Given I have the musician setting enabled
   When I toggle it off and save
   Then transpose controls should no longer appear on song detail pages
+  And chord badges on song cards should be hidden
+  And the Chords filter toggle should disappear from the Songs page
 
 Scenario: Default for new accounts
   Given I create a new account

@@ -91,11 +91,13 @@ Saving this flips `is_musician` on their profile. No Admin involvement.
 
 ### Features gated by `is_musician`
 
-| Feature | Behaviour |
-|---|---|
-| Transpose controls | Shown on song detail only when `is_musician = true` |
-| Sheet music / ABC notation (future) | Shown only when `is_musician = true` |
-| Capo & key prominence | Surfaced more visibly in the UI |
+| Feature | File | Behaviour |
+|---|---|---|
+| Transpose controls | `app/songs/[id]/page.tsx` | Shown on song detail only when `is_musician = true` |
+| Sheet music / ABC notation (future) | `components/song/SongDisplay.tsx` | Shown only when `is_musician = true` |
+| Chord pill on song cards | `components/home/SongCard.tsx:114` | The amber chord icon badge is hidden when `is_musician = false` |
+| Chord filter toggle on Songs page | `app/songs/SongsPageContent.tsx:310` | The "Chords" filter pill is hidden when `is_musician = false` |
+| Capo & key prominence | Song detail header | Surfaced more visibly in the UI |
 
 > Setlists/playlists, PDF export, and version submission are **not** gated — any Member can use them.
 
