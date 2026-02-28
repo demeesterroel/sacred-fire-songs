@@ -246,11 +246,14 @@ git commit -m "feat: replace musician role with is_musician on AuthUser"
 
 ## Task 3: Update dev tools
 
+> **Note on MockRoleSwitcher rename:** `MockRoleSwitcher` will be renamed to `QuickSwitch` and gain a Gatekeeper option as part of the Gatekeeper role implementation (see `2026-02-28-gatekeeper-role-design.md` → Dev Tooling section). This task only covers the minimum changes needed for the musician migration; the full rename happens in the Gatekeeper plan.
+
 **Files:**
-- Modify: `components/dev/MockRoleSwitcher.tsx`
+- Modify: `hooks/useAuth.tsx` (MOCK_USERS — already done in Task 2)
+- Modify: `components/dev/MockRoleSwitcher.tsx` (rename the option label only)
 - Modify: `components/dev/QuickLogin.tsx`
 
-### Step 1: Update MockRoleSwitcher
+### Step 1: Update MockRoleSwitcher option label
 
 Replace:
 ```tsx
@@ -258,38 +261,38 @@ Replace:
 ```
 With:
 ```tsx
-<option value="mock-member-musician">Mock Member (Musician)</option>
+<option value="mock-member-musician">Member (Musician)</option>
 ```
 
 ### Step 2: Update QuickLogin
 
-In `QuickLogin.tsx`, the musician test user is labelled "Musician" with `role: 'musician'`. Update the label only (the email and actual DB role remain — the DB migration already changed that row):
+Update the musician test user label and icon:
 
 ```typescript
 { email: 'roel.de.meester+musician@gmail.com', label: 'Member (Musician)', role: 'member', icon: Guitar, color: 'text-amber-500' },
 ```
 
-Also update the import — replace `Music` with `Guitar` if not already imported:
+Update the import — replace `Music` with `Guitar`:
 ```typescript
 import { ShieldCheck, Guitar, Users } from 'lucide-react';
 ```
 
 ### Step 3: Verify dev tools render correctly
 
-Start the dev server:
 ```bash
 npm run dev
 ```
-Open the dev panel. Confirm:
-- MockRoleSwitcher shows "Mock Member (Musician)" instead of "Mock Musician"
-- Switching to "Mock Member (Musician)" sets a user with `is_musician: true`
+
+Confirm:
+- MockRoleSwitcher shows "Member (Musician)" instead of "Mock Musician"
+- Switching to it sets `is_musician: true` on the mock user
 - QuickLogin shows "Member (Musician)" with a guitar icon
 
 ### Step 4: Commit
 
 ```bash
 git add components/dev/MockRoleSwitcher.tsx components/dev/QuickLogin.tsx
-git commit -m "fix: update dev tools to reflect musician→member+is_musician change"
+git commit -m "fix: update dev tool labels for musician→member+is_musician change"
 ```
 
 ---
