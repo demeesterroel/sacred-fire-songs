@@ -99,7 +99,7 @@ Scenario: Successful Admin Login
   And I should see Admin controls (e.g., Upload button, Delete icons)
 ```
 
-**Story 1.1.5: [Not Implemented]** As a Guest, I want to be kindly prompted to create an account when I click "Upload" so that I understand this is a community feature.
+**Story 1.1.5: [Implemented]** As a Guest, I want to be kindly prompted to create an account when I click "Upload" so that I understand this is a community feature.
 <!-- /songs/add renders SongForm directly for all users. The only guard is a silent redirect to /auth/login on submit. No "Please join our circle" modal or Log In / Create Account prompt exists. -->
 
 ```
@@ -544,7 +544,7 @@ Scenario: Onboarding question
 
 ### Epic 4.1: Setlists
 
-**Story 4.1.1:** As a Musician, I want to create a named setlist so that I can prepare for a specific night.
+**Story 4.1.1: [Implemented]** As a Musician, I want to create a named setlist so that I can prepare for a specific night.
 
 ```
 Scenario: Create Setlist
@@ -554,7 +554,7 @@ Scenario: Create Setlist
   Then a new empty setlist named "Full Moon Ceremony" should exist
 ```
 
-**Story 4.1.2:** As a Musician, I want to reorder songs in my setlist so that the flow matches the ceremony intensity.
+**Story 4.1.2: [Implemented]** As a Musician, I want to reorder songs in my setlist so that the flow matches the ceremony intensity.
 
 ```
 Scenario: Reorder Setlist
