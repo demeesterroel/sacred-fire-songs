@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.31
+**Version:** 1.32
 **Status:** Living Document
 **Date:** February 28, 2026
 
@@ -29,6 +29,7 @@
 | **1.29** | Feb 28, 2026 | Added playlist feature stories 4.1.3–4.1.10: quick-win playlist enhancements (search-and-add sheet, visibility toggle, shareable link, description) and high-value future features (presentation mode, duplicate, per-song transpose, cover color). |
 | **1.30** | Feb 28, 2026 | Added Epic 4.5 (Progressive Web App): stories 4.5.1 (Install as App), 4.5.2 (App icons & branding), 4.5.3 (Offline shell/fallback). Updated Roles & Permissions table. |
 | **1.31** | Feb 28, 2026 | Moved PWA install (3.3.1) and branding (3.3.2) to new Epic 3.3 in Phase 3; offline fallback remains as 4.5.1 in Phase 4. |
+| **1.32** | Feb 28, 2026 | Added Epic 3.4 Gatekeeper role: stories 3.4.1 (role & permissions), 3.4.2 (flagging & queue), 3.4.3 (metadata editing), 3.4.4 (duplicate merging), 3.4.5 (featured playlists). Updated Roles & Permissions table. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -390,6 +391,108 @@ Scenario: Status bar theme
   Then the status bar and browser toolbar (if visible) should match the app's dark theme color
 ```
 
+### Epic 3.4: Gatekeeper Role
+
+**Story 3.4.1:** As an Admin, I want to assign the Gatekeeper role to trusted community members so that they can curate the library without having full Admin access.
+
+```gherkin
+Scenario: Assign Gatekeeper role
+  Given I am logged in as an Admin
+  And I am on a user's profile or the user management page
+  When I change their role to "Gatekeeper"
+  Then they should immediately gain Gatekeeper capabilities
+  And lose no capabilities they had as a Musician
+
+Scenario: Gatekeeper accesses their tools
+  Given I am logged in as a Gatekeeper
+  When I visit the library or a song detail page
+  Then I should see Gatekeeper-specific actions (Flag, Edit metadata, Merge)
+  That are not visible to Members or Musicians
+```
+
+**Story 3.4.2:** As a Gatekeeper, I want to flag songs as "Needs Improvement" or "Duplicate" so that quality issues are visible to the community and tracked in my queue, and the original contributor is informed.
+
+```gherkin
+Scenario: Flag a song as needing improvement
+  Given I am logged in as a Gatekeeper
+  And I am viewing a song detail page
+  When I select "Flag — Needs Improvement" from the song actions
+  Then a "Needs Improvement" badge should appear on the song card and detail page
+  And the song should appear in the Gatekeeper queue under "Needs Improvement"
+  And the original poster should receive a notification: "Your song '[title]' has been flagged as needing improvement"
+
+Scenario: Flag a song as a duplicate
+  Given I am logged in as a Gatekeeper
+  When I flag a song as "Duplicate"
+  Then a "Duplicate" badge appears on the song
+  And the song appears in the Gatekeeper queue under "Duplicates"
+  And the original poster is notified
+
+Scenario: Resolve a flag
+  Given a song is flagged
+  When I remove the flag (after improvements are made or the duplicate is merged)
+  Then the badge disappears from the song card and detail page
+  And the original poster receives a notification that the flag has been resolved
+  And the song is removed from the Gatekeeper queue
+```
+
+**Story 3.4.3:** As a Gatekeeper, I want to edit the metadata and media links of any song so that I can enrich the library without waiting for the original contributor.
+
+```gherkin
+Scenario: Add a YouTube link to someone else's song
+  Given I am logged in as a Gatekeeper
+  And I am on the edit page for a song I did not create
+  When I add a valid YouTube URL and save
+  Then the YouTube embed should appear on the song detail page
+  And the song detail should show "Last updated by [Gatekeeper name]"
+
+Scenario: Update song categories and key
+  Given I am logged in as a Gatekeeper
+  When I edit the key, capo, or categories of any song
+  Then the changes are saved immediately
+  And the lyrics and ChordPro content fields are not editable for me
+```
+
+**Story 3.4.4:** As a Gatekeeper, I want to merge two duplicate songs into one canonical entry with multiple versions so that the library stays clean and both contributors are acknowledged.
+
+```gherkin
+Scenario: Merge a duplicate into a canonical song
+  Given I am logged in as a Gatekeeper
+  And I am viewing a song flagged as a duplicate
+  When I select "Merge with…" and search for and select the canonical song
+  And I confirm the merge
+  Then the duplicate song becomes an alternate version of the canonical song
+  And the canonical song's detail page shows a version selector
+  And both original contributors are notified with a link to the merged entry
+  And the duplicate song's old URL redirects to the canonical song page
+
+Scenario: Merge is visible in version selector
+  Given a song has been merged from two originals
+  When any user views the canonical song
+  Then they can switch between versions using the version selector
+  And each version credits its original contributor
+```
+
+**Story 3.4.5:** As a Gatekeeper, I want to mark a public playlist as "Featured" so that it appears in a curated section at the top of the playlists page for all visitors.
+
+```gherkin
+Scenario: Feature a playlist
+  Given I am logged in as a Gatekeeper
+  And I am viewing a public playlist
+  When I select "Feature Playlist" from the context menu
+  Then the playlist should appear in a "Featured" section at the top of the /library/playlists page
+  And the Featured section should be visible to guests and all authenticated users
+
+Scenario: Unfeature a playlist
+  Given a playlist is currently featured
+  When I select "Remove from Featured" from the context menu
+  Then it should move back to the regular Public Playlists section
+
+Scenario: No featured playlists
+  Given no playlists are currently featured
+  Then the Featured section should not appear on the playlists page
+```
+
 ## Phase 4: Professional Toolkit
 
 **Focus:** Tools for ceremony leaders.
@@ -578,23 +681,28 @@ Scenario: Cached pages still load offline
 
 ## Roles & Permissions Summary
 
-| Feature / Action | Guest | Member | Musician | Admin |
-| :--- | :---: | :---: | :---: | :---: |
-| **Browse & Search Songs** | ✅ | ✅ | ✅ | ✅ |
-| **View Chords & Lyrics** | ✅ | ✅ | ✅ | ✅ |
-| **Listen to Audio/Video** | ✅ | ✅ | ✅ | ✅ |
-| **Play Melody (Synth)** | ✅ | ✅ | ✅ | ✅ |
-| **Favorite Songs** | ❌ | ✅ | ✅ | ✅ |
-| **Vote on Versions** | ❌ | ✅ | ✅ | ✅ |
-| **Transpose Chords** | ❌ | ❌ | ✅ | ✅ |
-| **Create/Edit Setlists** | ❌ | ❌ | ✅ | ✅ |
-| **Export/Print PDF** | ❌ | ❌ | ✅ | ✅ |
-| **Submit New Version** | ❌ | ❌ | ✅ | ✅ |
-| **Add/Create Songs** | ❌ | ✅ | ✅ | ✅ |
-| **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ |
-| **Edit All Songs** | ❌ | ❌ | ❌ | ✅ |
-| **Delete Songs** | ❌ | ❌ | ❌ | ✅ |
-| **Install as App (PWA)** | ✅ | ✅ | ✅ | ✅ |
+| Feature / Action | Guest | Member | Musician | Gatekeeper | Admin |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Browse & Search Songs** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **View Chords & Lyrics** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Listen to Audio/Video** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Play Melody (Synth)** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Favorite Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Vote on Versions** | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Transpose Chords** | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Create/Edit Setlists** | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Export/Print PDF** | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Submit New Version** | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Add/Create Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Edit Metadata & Links (any song)** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Flag Songs (needs improvement, duplicate)** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Merge Duplicate Songs** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Feature / Unfeature Playlists** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Edit Lyrics/Chords (any song)** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Delete Songs** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Manage Users & Roles** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Install as App (PWA)** | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 
 **Story 1.1.8: [Implemented]** As a Member, I want my new song drafts to be saved automatically to my browser's local storage so that I don't lose my work if I navigate away.
