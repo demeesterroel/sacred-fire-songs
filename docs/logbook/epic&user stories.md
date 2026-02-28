@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.32
+**Version:** 1.33
 **Status:** Living Document
 **Date:** February 28, 2026
 
@@ -30,6 +30,7 @@
 | **1.30** | Feb 28, 2026 | Added Epic 4.5 (Progressive Web App): stories 4.5.1 (Install as App), 4.5.2 (App icons & branding), 4.5.3 (Offline shell/fallback). Updated Roles & Permissions table. |
 | **1.31** | Feb 28, 2026 | Moved PWA install (3.3.1) and branding (3.3.2) to new Epic 3.3 in Phase 3; offline fallback remains as 4.5.1 in Phase 4. |
 | **1.32** | Feb 28, 2026 | Added Epic 3.4 Gatekeeper role: stories 3.4.1 (role & permissions), 3.4.2 (flagging & queue), 3.4.3 (metadata editing), 3.4.4 (duplicate merging), 3.4.5 (featured playlists). Updated Roles & Permissions table. |
+| **1.33** | Feb 28, 2026 | Removed Musician as a role. Added Epic 3.5: Musician profile setting (self-declared). Role hierarchy is now Guest → Member → Gatekeeper → Admin. Updated Roles & Permissions table. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -493,6 +494,46 @@ Scenario: No featured playlists
   Then the Featured section should not appear on the playlists page
 ```
 
+### Epic 3.5: Musician Profile Setting
+
+> **Note:** The `musician` role has been removed from the role hierarchy. Playing an instrument and reading chords is a personal skill, not a trust level. Members self-declare this via their profile.
+>
+> Role hierarchy: **Guest → Member → Gatekeeper → Admin**
+
+**Story 3.5.1:** As a Member, I want to indicate in my profile that I play an instrument and can read chord notation, so that the app shows me musician-focused features like transpose controls and sheet music.
+
+```gherkin
+Scenario: Enable musician features from profile
+  Given I am logged in as a Member
+  And I am on the Profile / Settings page
+  When I toggle "I play an instrument and can read chord notation" to on
+  And I save my profile
+  Then transpose controls should appear on song detail pages
+  And sheet music / ABC notation should be visible (when available)
+
+Scenario: Disable musician features
+  Given I have the musician setting enabled
+  When I toggle it off and save
+  Then transpose controls should no longer appear on song detail pages
+
+Scenario: Default for new accounts
+  Given I create a new account
+  Then the musician setting should be off by default
+  And I can enable it at any time from my profile settings
+```
+
+**Story 3.5.2:** As a new user, I want to be asked during sign-up whether I play an instrument, so that the right features are available to me immediately without having to find the setting later.
+
+```gherkin
+Scenario: Onboarding question
+  Given I have just created an account and verified my email
+  When the onboarding flow runs
+  Then I should be asked "Do you play an instrument or read chord notation?"
+  And answering Yes should set is_musician = true on my profile
+  And answering No (or skipping) should leave it false
+  And I can always change this later in my profile settings
+```
+
 ## Phase 4: Professional Toolkit
 
 **Focus:** Tools for ceremony leaders.
@@ -681,28 +722,34 @@ Scenario: Cached pages still load offline
 
 ## Roles & Permissions Summary
 
-| Feature / Action | Guest | Member | Musician | Gatekeeper | Admin |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Browse & Search Songs** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **View Chords & Lyrics** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Listen to Audio/Video** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Play Melody (Synth)** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Favorite Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Vote on Versions** | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Transpose Chords** | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Create/Edit Setlists** | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Export/Print PDF** | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Submit New Version** | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Add/Create Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Edit Metadata & Links (any song)** | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Flag Songs (needs improvement, duplicate)** | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Merge Duplicate Songs** | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Feature / Unfeature Playlists** | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Edit Lyrics/Chords (any song)** | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Delete Songs** | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Manage Users & Roles** | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Install as App (PWA)** | ✅ | ✅ | ✅ | ✅ | ✅ |
+> **Role hierarchy:** Guest → Member → Gatekeeper → Admin
+> **Musician** is a profile setting (`is_musician`), not a role. Any Member can self-enable it.
+
+| Feature / Action | Guest | Member | Gatekeeper | Admin |
+| :--- | :---: | :---: | :---: | :---: |
+| **Browse & Search Songs** | ✅ | ✅ | ✅ | ✅ |
+| **View Chords & Lyrics** | ✅ | ✅ | ✅ | ✅ |
+| **Listen to Audio/Video** | ✅ | ✅ | ✅ | ✅ |
+| **Play Melody (Synth)** | ✅ | ✅ | ✅ | ✅ |
+| **Favorite Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Vote on Versions** | ❌ | ✅ | ✅ | ✅ |
+| **Add/Create Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ |
+| **Create/Edit Setlists** | ❌ | ✅ | ✅ | ✅ |
+| **Export/Print PDF** | ❌ | ✅ | ✅ | ✅ |
+| **Submit New Version** | ❌ | ✅ | ✅ | ✅ |
+| **Transpose Chords** *(requires is_musician)* | ❌ | ✅¹ | ✅¹ | ✅ |
+| **Sheet Music / ABC Notation** *(requires is_musician)* | ❌ | ✅¹ | ✅¹ | ✅ |
+| **Edit Metadata & Links (any song)** | ❌ | ❌ | ✅ | ✅ |
+| **Flag Songs (needs improvement, duplicate)** | ❌ | ❌ | ✅ | ✅ |
+| **Merge Duplicate Songs** | ❌ | ❌ | ✅ | ✅ |
+| **Feature / Unfeature Playlists** | ❌ | ❌ | ✅ | ✅ |
+| **Edit Lyrics/Chords (any song)** | ❌ | ❌ | ❌ | ✅ |
+| **Delete Songs** | ❌ | ❌ | ❌ | ✅ |
+| **Manage Users & Roles** | ❌ | ❌ | ❌ | ✅ |
+| **Install as App (PWA)** | ✅ | ✅ | ✅ | ✅ |
+
+*¹ Only when `is_musician = true` on the user's profile (self-declared setting)*
 
 
 **Story 1.1.8: [Implemented]** As a Member, I want my new song drafts to be saved automatically to my browser's local storage so that I don't lose my work if I navigate away.
