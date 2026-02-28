@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.29
+**Version:** 1.30
 **Status:** Living Document
 **Date:** February 28, 2026
 
@@ -27,6 +27,7 @@
 | **1.27** | Feb 26, 2026 | Marked 1.1.5 as [Implemented]: guest upload modal (Log In / Create Account) now shows when unauthenticated user clicks "Add Song". |
 | **1.28** | Feb 26, 2026 | Marked 1.1.4 as [Implemented]: delete icons on song cards in library view (owner/admin, hover-visible, top-right overlay) plus profiles RLS policies fix. |
 | **1.29** | Feb 28, 2026 | Added playlist feature stories 4.1.3–4.1.10: quick-win playlist enhancements (search-and-add sheet, visibility toggle, shareable link, description) and high-value future features (presentation mode, duplicate, per-song transpose, cover color). |
+| **1.30** | Feb 28, 2026 | Added Epic 4.5 (Progressive Web App): stories 4.5.1 (Install as App), 4.5.2 (App icons & branding), 4.5.3 (Offline shell/fallback). Updated Roles & Permissions table. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -515,6 +516,63 @@ Scenario: Desktop Layout
   And the navigation menu should be always visible on the side (instead of a hamburger menu)
 ```
 
+### Epic 4.5: Progressive Web App (PWA)
+
+**Story 4.5.1:** As a Musician, I want to install Sacred Fire Songs as an app on my phone or tablet so that I can launch it from my home screen like a native app, without opening a browser.
+
+```gherkin
+Scenario: Install prompt on mobile
+  Given I am visiting Sacred Fire Songs in a supported mobile browser (Chrome/Safari)
+  When the browser detects the app is installable
+  Then I should see an "Add to Home Screen" prompt or banner
+  And after installing, the app should open in standalone mode (no browser chrome)
+  And the app icon should appear on my home screen with the Sacred Fire Songs icon and name
+
+Scenario: Standalone launch
+  Given I have installed the app on my home screen
+  When I tap the Sacred Fire Songs icon
+  Then the app should open in full-screen standalone mode
+  And the browser address bar should not be visible
+  And the app should load to the home dashboard
+```
+
+**Story 4.5.2:** As a Musician, I want the installed app to display Sacred Fire Songs branding (icon, splash screen, theme color) so that it feels like a proper native app rather than a pinned website.
+
+```gherkin
+Scenario: App icon and name
+  Given the app is installed on my device
+  When I view my home screen or app drawer
+  Then the icon should display the Sacred Fire Songs logo
+  And the app name should read "Sacred Fire Songs" (or a short variant that fits)
+
+Scenario: Splash screen on launch
+  Given I open the installed app
+  When the app is loading
+  Then I should see a branded splash screen with the app icon and background color
+  Rather than a blank white screen
+
+Scenario: Status bar theme
+  Given I am using the installed app on Android
+  Then the status bar and browser toolbar (if visible) should match the app's dark theme color
+```
+
+**Story 4.5.3:** As a Musician, I want to see a friendly offline page when I have no internet connection, so that I understand what happened instead of seeing a browser error.
+
+```gherkin
+Scenario: Offline fallback page
+  Given the app is installed and I have no internet connection
+  When I open the app or navigate to a page that is not cached
+  Then I should see a branded offline page explaining I am not connected
+  And the page should suggest I connect to the internet or access a cached playlist
+  Rather than showing a generic browser "No internet" error
+
+Scenario: Cached pages still load offline
+  Given I have previously visited the home page and song list while online
+  When I open the app without internet
+  Then the home page shell should still load from the service worker cache
+  And cached songs and playlists should remain accessible
+```
+
 ## Roles & Permissions Summary
 
 | Feature / Action | Guest | Member | Musician | Admin |
@@ -533,6 +591,7 @@ Scenario: Desktop Layout
 | **Edit Own Songs** | ❌ | ✅ | ✅ | ✅ |
 | **Edit All Songs** | ❌ | ❌ | ❌ | ✅ |
 | **Delete Songs** | ❌ | ❌ | ❌ | ✅ |
+| **Install as App (PWA)** | ✅ | ✅ | ✅ | ✅ |
 
 
 **Story 1.1.8: [Implemented]** As a Member, I want my new song drafts to be saved automatically to my browser's local storage so that I don't lose my work if I navigate away.
