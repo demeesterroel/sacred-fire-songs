@@ -605,6 +605,154 @@ git commit -m "chore: fix remaining TypeScript references after musician role re
 
 ---
 
+## Task 8: Sign-up onboarding question (Story 3.5.2)
+
+**Files:**
+- Create: `app/onboarding/page.tsx`
+- Modify: `components/finish-registration-form.tsx`
+
+**Goal:** After a new user completes registration (name entry), ask them one question before landing on the app: "Do you play an instrument?" Answering Yes sets `is_musician = true`. Skip leaves it false. Both paths land on `/`.
+
+### Step 1: Write a test for the onboarding save logic
+
+Create `lib/unit-tests/onboarding.test.ts`:
+
+```typescript
+import { describe, it, expect } from 'vitest';
+
+describe('onboarding is_musician save', () => {
+  it('saves true when user clicks Yes', () => {
+    const answer = 'yes';
+    const isMusician = answer === 'yes';
+    expect(isMusician).toBe(true);
+  });
+
+  it('saves false when user clicks Skip', () => {
+    const answer = 'skip';
+    const isMusician = answer === 'yes';
+    expect(isMusician).toBe(false);
+  });
+});
+```
+
+### Step 2: Run — confirm it passes (pure logic)
+
+```bash
+npx vitest run lib/unit-tests/onboarding.test.ts
+```
+Expected: PASS
+
+### Step 3: Create the onboarding page
+
+Create `app/onboarding/page.tsx`:
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
+import { Guitar, SkipForward, Flame } from 'lucide-react';
+
+export default function OnboardingPage() {
+  const router = useRouter();
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleAnswer = async (isMusician: boolean) => {
+    setIsSaving(true);
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      await supabase
+        .from('profiles')
+        .update({ is_musician: isMusician })
+        .eq('id', user.id);
+    }
+    router.push('/');
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 bg-[#0f1117]">
+      <div className="w-full max-w-sm text-center space-y-8">
+        {/* Flame icon */}
+        <div className="flex justify-center">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#b91c1c] to-[#ea580c] flex items-center justify-center shadow-[0_0_20px_rgba(185,28,28,0.3)]">
+            <Flame className="w-8 h-8 text-white fill-current" />
+          </div>
+        </div>
+
+        {/* Heading */}
+        <div className="space-y-2">
+          <h1 className="text-2xl font-bold text-white">One quick question</h1>
+          <p className="text-[#8e99aa] text-sm leading-relaxed">
+            Do you play an instrument and can you read chord notation?
+          </p>
+          <p className="text-[#5a657a] text-xs">
+            This shows chord filters and transposition tools throughout the app.
+            You can change this later in your profile settings.
+          </p>
+        </div>
+
+        {/* Buttons */}
+        <div className="space-y-3">
+          <button
+            onClick={() => handleAnswer(true)}
+            disabled={isSaving}
+            className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-gradient-to-r from-[#d9481e] to-[#f45d1a] hover:brightness-110 disabled:opacity-50 text-white font-bold transition-all shadow-[0_4px_15px_rgba(217,72,30,0.4)] active:scale-[0.98]"
+          >
+            <Guitar className="w-5 h-5" />
+            Yes, I play an instrument
+          </button>
+
+          <button
+            onClick={() => handleAnswer(false)}
+            disabled={isSaving}
+            className="w-full flex items-center justify-center gap-3 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 disabled:opacity-50 text-[#8e99aa] hover:text-white font-medium transition-all border border-white/5"
+          >
+            <SkipForward className="w-4 h-4" />
+            Skip for now
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### Step 4: Redirect to /onboarding after finish-registration
+
+In `components/finish-registration-form.tsx`, change the redirect at line 52:
+
+```typescript
+// Before:
+router.push(next || "/explore");
+
+// After:
+router.push(next || "/onboarding");
+```
+
+> **Note:** `next` carries through from the original pre-auth URL (e.g. if user wanted to view a specific song). When `next` is set, the user goes directly there and skips onboarding — this is intentional since they clearly have context and can set `is_musician` later from Profile Settings.
+
+### Step 5: Verify manually
+
+Full flow:
+1. Sign up with a new email
+2. Enter OTP code on sign-up-success page
+3. Enter name on finish-registration → click "Finish Setup & Explore"
+4. **Onboarding page loads** with Guitar and Skip buttons
+5. Click "Yes, I play" → redirects to `/`
+6. Go to Profile Settings — "I play an instrument" toggle is ON
+7. Repeat flow with a different account, click "Skip" → Profile Settings toggle is OFF
+
+### Step 6: Commit
+
+```bash
+git add app/onboarding/page.tsx components/finish-registration-form.tsx lib/unit-tests/onboarding.test.ts
+git commit -m "feat: add is_musician onboarding question after registration (Story 3.5.2)"
+```
+
+---
+
 ## Manual Test Checklist
 
 - [ ] New member account: `is_musician` defaults to false; no chord UI visible
@@ -614,3 +762,7 @@ git commit -m "chore: fix remaining TypeScript references after musician role re
 - [ ] QuickLogin: "Member (Musician)" test user has chord UI after login
 - [ ] DB: no row in `profiles` has `role = 'musician'`
 - [ ] DB: `user_role` enum has `gatekeeper`, not `musician`
+- [ ] New sign-up: after name entry, onboarding page shows with "Yes" / "Skip" buttons
+- [ ] Clicking "Yes" sets `is_musician = true`; chord UI appears
+- [ ] Clicking "Skip" leaves `is_musician = false`; chord UI is hidden
+- [ ] Signing up with a `?next=…` URL bypasses onboarding and goes directly to the target page
