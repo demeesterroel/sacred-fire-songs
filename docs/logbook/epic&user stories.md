@@ -1,6 +1,6 @@
 # Epics & User Stories: Sacred Fire Songs
 
-**Version:** 1.30
+**Version:** 1.31
 **Status:** Living Document
 **Date:** February 28, 2026
 
@@ -28,6 +28,7 @@
 | **1.28** | Feb 26, 2026 | Marked 1.1.4 as [Implemented]: delete icons on song cards in library view (owner/admin, hover-visible, top-right overlay) plus profiles RLS policies fix. |
 | **1.29** | Feb 28, 2026 | Added playlist feature stories 4.1.3–4.1.10: quick-win playlist enhancements (search-and-add sheet, visibility toggle, shareable link, description) and high-value future features (presentation mode, duplicate, per-song transpose, cover color). |
 | **1.30** | Feb 28, 2026 | Added Epic 4.5 (Progressive Web App): stories 4.5.1 (Install as App), 4.5.2 (App icons & branding), 4.5.3 (Offline shell/fallback). Updated Roles & Permissions table. |
+| **1.31** | Feb 28, 2026 | Moved PWA install (3.3.1) and branding (3.3.2) to new Epic 3.3 in Phase 3; offline fallback remains as 4.5.1 in Phase 4. |
 
 
 This document breaks down the project roadmap into actionable Epics and User Stories, following the Agile methodology. Acceptance Criteria are defined using **Gherkin syntax** (Given/When/Then).
@@ -349,6 +350,46 @@ Scenario: Upvote Version
   Then the vote count for Version B should increment by 1
 ```
 
+### Epic 3.3: Progressive Web App — Installability
+
+**Story 3.3.1:** As a Musician, I want to install Sacred Fire Songs as an app on my phone or tablet so that I can launch it from my home screen like a native app, without opening a browser.
+
+```gherkin
+Scenario: Install prompt on mobile
+  Given I am visiting Sacred Fire Songs in a supported mobile browser (Chrome/Safari)
+  When the browser detects the app is installable
+  Then I should see an "Add to Home Screen" prompt or banner
+  And after installing, the app should open in standalone mode (no browser chrome)
+  And the app icon should appear on my home screen with the Sacred Fire Songs icon and name
+
+Scenario: Standalone launch
+  Given I have installed the app on my home screen
+  When I tap the Sacred Fire Songs icon
+  Then the app should open in full-screen standalone mode
+  And the browser address bar should not be visible
+  And the app should load to the home dashboard
+```
+
+**Story 3.3.2:** As a Musician, I want the installed app to display Sacred Fire Songs branding (icon, splash screen, theme color) so that it feels like a proper native app rather than a pinned website.
+
+```gherkin
+Scenario: App icon and name
+  Given the app is installed on my device
+  When I view my home screen or app drawer
+  Then the icon should display the Sacred Fire Songs logo
+  And the app name should read "Sacred Fire Songs" (or a short variant that fits)
+
+Scenario: Splash screen on launch
+  Given I open the installed app
+  When the app is loading
+  Then I should see a branded splash screen with the app icon and background color
+  Rather than a blank white screen
+
+Scenario: Status bar theme
+  Given I am using the installed app on Android
+  Then the status bar and browser toolbar (if visible) should match the app's dark theme color
+```
+
 ## Phase 4: Professional Toolkit
 
 **Focus:** Tools for ceremony leaders.
@@ -516,47 +557,9 @@ Scenario: Desktop Layout
   And the navigation menu should be always visible on the side (instead of a hamburger menu)
 ```
 
-### Epic 4.5: Progressive Web App (PWA)
+### Epic 4.5: Progressive Web App — Offline Reliability
 
-**Story 4.5.1:** As a Musician, I want to install Sacred Fire Songs as an app on my phone or tablet so that I can launch it from my home screen like a native app, without opening a browser.
-
-```gherkin
-Scenario: Install prompt on mobile
-  Given I am visiting Sacred Fire Songs in a supported mobile browser (Chrome/Safari)
-  When the browser detects the app is installable
-  Then I should see an "Add to Home Screen" prompt or banner
-  And after installing, the app should open in standalone mode (no browser chrome)
-  And the app icon should appear on my home screen with the Sacred Fire Songs icon and name
-
-Scenario: Standalone launch
-  Given I have installed the app on my home screen
-  When I tap the Sacred Fire Songs icon
-  Then the app should open in full-screen standalone mode
-  And the browser address bar should not be visible
-  And the app should load to the home dashboard
-```
-
-**Story 4.5.2:** As a Musician, I want the installed app to display Sacred Fire Songs branding (icon, splash screen, theme color) so that it feels like a proper native app rather than a pinned website.
-
-```gherkin
-Scenario: App icon and name
-  Given the app is installed on my device
-  When I view my home screen or app drawer
-  Then the icon should display the Sacred Fire Songs logo
-  And the app name should read "Sacred Fire Songs" (or a short variant that fits)
-
-Scenario: Splash screen on launch
-  Given I open the installed app
-  When the app is loading
-  Then I should see a branded splash screen with the app icon and background color
-  Rather than a blank white screen
-
-Scenario: Status bar theme
-  Given I am using the installed app on Android
-  Then the status bar and browser toolbar (if visible) should match the app's dark theme color
-```
-
-**Story 4.5.3:** As a Musician, I want to see a friendly offline page when I have no internet connection, so that I understand what happened instead of seeing a browser error.
+**Story 4.5.1:** As a Musician, I want to see a friendly offline page when I have no internet connection, so that I understand what happened instead of seeing a browser error.
 
 ```gherkin
 Scenario: Offline fallback page
