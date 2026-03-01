@@ -12,18 +12,18 @@ export default function Header() {
     const { user } = useAuth();
 
     const getSubtitle = () => {
-        if (pathname === '/') return 'DASHBOARD';
-        if (pathname === '/songs') return 'LIBRARY';
-        if (pathname === '/explore') return 'EXPLORE';
-        if (pathname === '/songs/add') return 'ADD SONG';
+        if (pathname === '/') return 'Dashboard';
+        if (pathname === '/songs') return 'Songs';
+        if (pathname === '/explore') return 'Explore';
+        if (pathname === '/songs/add') return 'Add Song';
         if (pathname?.startsWith('/library')) return 'Your Library';
-        if (pathname?.startsWith('/songs/')) return 'SONG DETAIL';
+        if (pathname?.startsWith('/songs/')) return 'Song Detail';
         return '';
     };
 
     const subtitle = getSubtitle();
     const displaySubtitle = (pathname === '/songs' && headerCount !== undefined)
-        ? `${headerCount} Songs`
+        ? `${headerCount} songs`
         : subtitle;
 
     // Hide Global Header ONLY on Song Detail Page to allow custom Widescreen Design
@@ -68,13 +68,11 @@ export default function Header() {
                         )}
                     </button>
 
-                    {/* Breadcrumb / Subtitle */}
+                    {/* Page Title */}
                     {displaySubtitle && (
-                        <div className="flex items-center">
-                            <span className="text-[10px] lg:text-xs uppercase font-black text-white lg:text-red-500 tracking-[0.2em] lg:tracking-[0.3em] lg:opacity-80">
-                                {displaySubtitle}
-                            </span>
-                        </div>
+                        <h1 className="text-xl font-bold tracking-tight text-white lg:text-xs lg:uppercase lg:font-black lg:text-red-500 lg:tracking-[0.3em] lg:opacity-80">
+                            {displaySubtitle}
+                        </h1>
                     )}
                 </div>
 
