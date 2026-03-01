@@ -8,8 +8,5 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim());
 });
 
-// Pass-through fetch: let the browser handle all requests normally.
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  event.respondWith(fetch(event.request));
-});
+// No fetch handler — browser handles all requests natively.
+// Offline caching will be added in Story 4.5.1.
