@@ -1,7 +1,5 @@
 'use client';
 
-import { Flame } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/context/SidebarContext';
@@ -70,20 +68,10 @@ export default function Header() {
                         )}
                     </button>
 
-                    {/* Logo: Only on Mobile (Sidebar is hidden) */}
-                    <Link href="/" className="flex lg:hidden items-center group/logo shrink-0">
-                        <div className="w-9 h-9 bg-gradient-to-br from-red-700 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-red-900/30 ring-1 ring-white/10 group-hover/logo:scale-110 transition-transform">
-                            <Flame className="text-white w-5 h-5 fill-current" />
-                        </div>
-                    </Link>
-
-                    {/* Divider on Mobile (Desktop sidebar is visible) */}
-                    <div className="lg:hidden h-6 w-px bg-gray-800 mx-1 shrink-0" />
-
                     {/* Breadcrumb / Subtitle */}
                     {displaySubtitle && (
                         <div className="flex items-center">
-                            <span className="text-[10px] lg:text-xs uppercase font-black text-red-500 tracking-[0.2em] lg:tracking-[0.3em] opacity-80">
+                            <span className="text-[10px] lg:text-xs uppercase font-black text-white lg:text-red-500 tracking-[0.2em] lg:tracking-[0.3em] lg:opacity-80">
                                 {displaySubtitle}
                             </span>
                         </div>

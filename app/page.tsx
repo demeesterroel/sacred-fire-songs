@@ -87,28 +87,52 @@ export default async function Home() {
             <Link href="/songs" className="text-xs font-bold text-red-500 hover:text-red-400 uppercase tracking-wider">View All</Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {displaySongs.length > 0 ? (
-              displaySongs.map((song, index) => (
-                <SongCard
-                  key={index}
-                  id={song.id}
-                  title={song.title}
-                  author={song.author}
-                  songKey={song.songKey}
-                  accentColor={song.color}
-                  isPublic={song.isPublic}
-                  hasChords={song.hasChords}
-                  hasMelody={song.hasMelody}
-                  isFavorite={song.isFavorite ?? false}
-                  userId={user?.id}
-                  categories={song.categories}
-                />
-              ))
-            ) : (
-              <p className="col-span-full text-center text-gray-400 pt-10">No public songs found.</p>
-            )}
-          </div>
+          {displaySongs.length > 0 ? (
+            <>
+              {/* Mobile: horizontal swipeable carousel */}
+              <div className="md:hidden -mx-4 px-4 overflow-x-auto hide-scroll snap-x snap-mandatory flex gap-3 pb-2">
+                {displaySongs.map((song, index) => (
+                  <div key={index} className="snap-start shrink-0 w-[82%] first:ml-0">
+                    <SongCard
+                      id={song.id}
+                      title={song.title}
+                      author={song.author}
+                      songKey={song.songKey}
+                      accentColor={song.color}
+                      isPublic={song.isPublic}
+                      hasChords={song.hasChords}
+                      hasMelody={song.hasMelody}
+                      isFavorite={song.isFavorite ?? false}
+                      userId={user?.id}
+                      categories={song.categories}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: grid layout */}
+              <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {displaySongs.map((song, index) => (
+                  <SongCard
+                    key={index}
+                    id={song.id}
+                    title={song.title}
+                    author={song.author}
+                    songKey={song.songKey}
+                    accentColor={song.color}
+                    isPublic={song.isPublic}
+                    hasChords={song.hasChords}
+                    hasMelody={song.hasMelody}
+                    isFavorite={song.isFavorite ?? false}
+                    userId={user?.id}
+                    categories={song.categories}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-center text-gray-400 pt-10">No public songs found.</p>
+          )}
         </section>
       </div>
     </main>
