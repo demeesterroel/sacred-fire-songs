@@ -87,6 +87,11 @@ export default function Sidebar() {
                     )}
                 </nav>
 
+                {/* Personal Menu (mobile only — replaces the hidden header avatar) */}
+                <div className="lg:hidden border-t border-gray-800/50 p-3">
+                    <UserProfile layout="sidebar" showText={true} />
+                </div>
+
                 {/* Footer */}
                 <div className="p-4 border-t border-gray-800/30 bg-gray-950/20">
                     <p className="text-[9px] text-center font-mono uppercase tracking-[0.2em] opacity-20 mt-2">

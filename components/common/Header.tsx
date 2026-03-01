@@ -1,14 +1,17 @@
 'use client';
 
-import { IndentIncrease, Flame } from 'lucide-react';
+import { Flame } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/context/SidebarContext';
 import { UserProfile } from './navigation/UserProfile';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Header() {
     const pathname = usePathname();
     const { setIsOpen, headerCount } = useSidebar();
+    const { user } = useAuth();
 
     const getSubtitle = () => {
         if (pathname === '/') return 'DASHBOARD';
@@ -33,17 +36,38 @@ export default function Header() {
 
     if (isSongDetailPage) return null;
 
+    const userDisplayName = user?.full_name || user?.email?.split('@')[0] || 'Member';
+    const userInitials = userDisplayName.substring(0, 1).toUpperCase();
+
     return (
         <header className="sticky top-0 z-30 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50 px-4 md:px-8 py-4 h-[72px] flex items-center">
             <div className="w-full flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                    {/* Menu Trigger */}
+                    {/* Mobile: Avatar button opens sidebar (replaces hamburger) */}
                     <button
                         onClick={() => setIsOpen(true)}
-                        className="lg:hidden flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-1.5 pr-3 rounded-xl hover:bg-gray-800 group shrink-0 border border-transparent hover:border-gray-700"
+                        className="lg:hidden flex items-center shrink-0 active:scale-95 transition-transform"
+                        aria-label="Open menu"
                     >
-                        <IndentIncrease className="w-7 h-7" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity hidden sm:inline">Menu</span>
+                        {user ? (
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white shadow-inner overflow-hidden relative ring-2 ring-gray-700 hover:ring-gray-500 transition-all">
+                                {user.avatar_url ? (
+                                    <Image
+                                        src={user.avatar_url}
+                                        alt={userDisplayName}
+                                        fill
+                                        className="object-cover"
+                                        sizes="32px"
+                                    />
+                                ) : (
+                                    userInitials
+                                )}
+                            </div>
+                        ) : (
+                            <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center ring-2 ring-gray-700 hover:ring-gray-500 transition-all">
+                                <span className="text-xs font-bold text-gray-500">?</span>
+                            </div>
+                        )}
                     </button>
 
                     {/* Logo: Only on Mobile (Sidebar is hidden) */}
@@ -66,8 +90,8 @@ export default function Header() {
                     )}
                 </div>
 
-                <div className="flex items-center gap-3">
-                    {/* User Profile moved to Header */}
+                {/* User Profile: hidden on mobile (avatar is in bottom nav / header left) */}
+                <div className="hidden lg:flex items-center gap-3">
                     <UserProfile layout="header" showText={false} />
                 </div>
             </div>
