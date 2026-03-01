@@ -8,7 +8,7 @@ import type { LucideIcon } from 'lucide-react';
 
 const BOTTOM_TABS: { label: string; href: string; icon: LucideIcon; exact?: boolean; exclude?: string[] }[] = [
     { label: 'Home', href: '/', icon: Home, exact: true },
-    { label: 'Search', href: '/explore', icon: Search },
+    { label: 'Search', href: '/songs', icon: Search, exclude: ['/songs/add'] },
     { label: 'Library', href: '/library/playlists', icon: ListMusic },
     { label: 'Create', href: '/songs/add', icon: PlusCircle },
 ];
