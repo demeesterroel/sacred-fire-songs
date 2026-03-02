@@ -29,14 +29,6 @@ export default function Sidebar() {
 
     return (
         <>
-            {/* Mobile Overlay */}
-            {isOpen && (
-                <div
-                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
-                    onClick={() => setIsOpen(false)}
-                />
-            )}
-
             <aside
                 className={`
                     fixed lg:sticky top-0 left-0 h-screen z-50
