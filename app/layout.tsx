@@ -76,10 +76,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   <div className="pb-16 lg:pb-0">
                     {children}
                   </div>
-
-                  {/* Mobile Bottom Navigation */}
-                  <MobileBottomNav />
                 </MainContent>
+
+                {/* Mobile Bottom Navigation — outside MainContent so fixed positioning works
+                    (transform on MainContent creates a new containing block, breaking fixed) */}
+                <MobileBottomNav />
               </div>
             </QueryProvider>
           </SidebarProvider>
