@@ -47,10 +47,11 @@ export function AddSongsSheet({ playlistId, existingCompositionIds, open, onClos
         setIsSearching(true);
         const timeout = setTimeout(async () => {
             const supabase = createClient();
+            // Show all songs the user can access (RLS handles visibility)
+            // No is_public filter — owner should see their own drafts too
             let q = supabase
                 .from('compositions')
                 .select('id, title, original_author')
-                .eq('is_public', true)
                 .order('title', { ascending: true })
                 .limit(50);
             if (query.trim()) q = q.ilike('title', `%${query.trim()}%`);
