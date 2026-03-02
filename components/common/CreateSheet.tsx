@@ -7,10 +7,9 @@ import { useRouter } from 'next/navigation';
 interface CreateSheetProps {
     isOpen: boolean;
     onClose: () => void;
-    context: 'songs' | 'library' | 'default';
 }
 
-export default function CreateSheet({ isOpen, onClose, context }: CreateSheetProps) {
+export default function CreateSheet({ isOpen, onClose }: CreateSheetProps) {
     const router = useRouter();
     const sheetRef = useRef<HTMLDivElement>(null);
 
@@ -32,15 +31,10 @@ export default function CreateSheet({ isOpen, onClose, context }: CreateSheetPro
 
     if (!isOpen) return null;
 
-    const options = context === 'library'
-        ? [
-            { label: 'Create Playlist', icon: ListMusic, href: '/library/playlists/add', color: 'text-purple-400' },
-            { label: 'Add Song', icon: Music, href: '/songs/add', color: 'text-red-400' },
-        ]
-        : [
-            { label: 'Add Song', icon: Music, href: '/songs/add', color: 'text-red-400' },
-            { label: 'Create Playlist', icon: ListMusic, href: '/library/playlists/add', color: 'text-purple-400' },
-        ];
+    const options = [
+        { label: 'Add Song', icon: Music, href: '/songs/add', color: 'text-red-400' },
+        { label: 'Create Playlist', icon: ListMusic, href: '/library/playlists/add', color: 'text-purple-400' },
+    ];
 
     return (
         <div

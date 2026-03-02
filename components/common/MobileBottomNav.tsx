@@ -37,19 +37,11 @@ export default function MobileBottomNav() {
 
     if (isSongDetailPage) return null;
 
-    // Determine context for the create sheet
-    const getCreateContext = (): 'songs' | 'library' | 'default' => {
-        if (pathname?.startsWith('/library')) return 'library';
-        if (pathname?.startsWith('/songs')) return 'songs';
-        return 'default';
-    };
-
     return (
         <>
             <CreateSheet
                 isOpen={isSheetOpen}
                 onClose={() => setIsSheetOpen(false)}
-                context={getCreateContext()}
             />
             <nav className="fixed bottom-0 inset-x-0 z-30 lg:hidden">
                 {/* Top edge glow */}
