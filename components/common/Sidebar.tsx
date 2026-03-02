@@ -30,8 +30,9 @@ export default function Sidebar() {
     return (
         <>
             <aside
+                style={{ top: 'var(--env-banner-height, 0px)', height: `calc(100vh - var(--env-banner-height, 0px))` }}
                 className={`
-                    fixed lg:sticky top-0 left-0 h-screen z-50
+                    fixed lg:sticky left-0 z-50
                     flex flex-col bg-gray-900 border-r border-gray-800 transition-all duration-300 ease-in-out
                     ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                     w-[260px]
