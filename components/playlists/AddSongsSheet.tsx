@@ -134,7 +134,7 @@ export function AddSongsSheet({ playlistId, existingCompositionIds, open, onClos
                 </div>
 
                 {/* Song list */}
-                <div className="overflow-y-auto flex-1 pb-safe">
+                <div className="overflow-y-auto flex-1 pb-6">
                     {!isSearching && songs.length === 0 && (
                         <p className="text-center text-sm text-gray-600 py-10">No songs found.</p>
                     )}
