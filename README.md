@@ -11,6 +11,25 @@
 
 ---
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/home.png" width="280"/><br/><sub>Home — library stats and category browser</sub></td>
+    <td align="center"><img src="docs/screenshots/search.png" width="280"/><br/><sub>Search options — filter by category, tags, visibility, and content type</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/library.png" width="280"/><br/><sub>Library — smart playlists, recently viewed, and private playlists</sub></td>
+    <td align="center"><img src="docs/screenshots/editor.png" width="280"/><br/><sub>Song editor — ChordPro notation with live chord highlighting and category tagging</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/settings.png" width="280"/><br/><sub>Settings — appearance, screen wake lock, and upcoming performance features</sub></td>
+    <td></td>
+  </tr>
+</table>
+
+---
+
 ## What it does
 
 Sacred Fire Songs is a collaborative web app for ceremony musicians to store, share, and perform medicine songs. Songs are written in [ChordPro](https://www.chordpro.org/) notation — chords sit above lyrics in a clean, readable format that works on any screen size.
