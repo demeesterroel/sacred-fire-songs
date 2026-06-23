@@ -948,5 +948,7 @@
     - [x] Diagnose client-side PostgREST query failures (\`permission denied for schema public\`) on \`supabase-dev\` database.
     - [x] Restore default Supabase privileges (USAGE and table CRUD) on the \`public\` schema for \`anon\`, \`authenticated\`, and \`service_role\` roles on \`supabase-dev\`.
     - [x] Fix development database URL \`NEXT_PUBLIC_SUPABASE_URL_DEV\` in \`.env.local\` to point to port 5002 (API Gateway) instead of port 3002 (Studio).
+    - [x] Configure GitHub Actions workflow (\`.github/workflows/e2e.yml\`) to set \`E2E_RANDOM_SEED=1\` and \`E2E_RANDOM_SONGS_COUNT=80\` so cloud staging is dynamically seeded with random datasets on E2E CI runs.
     - [x] Verify Playwright E2E smoke tests run successfully and result in a 100% green run (13 passed) on both desktop and mobile chrome.
+
 

@@ -2348,7 +2348,11 @@ Successfully implemented a dedicated `artist` filter parameter (`?artist=Name`) 
 ### 4. Local Development Environment Fixes
 - Corrected the invalid dashboard/Studio URL \`NEXT_PUBLIC_SUPABASE_URL_DEV\` parameter inside \`.env.local\` to point to the actual Kong gateway endpoint at port \`5002\` (\`http://bluette.tailf90350.ts.net:5002\`). This enables \`npm run dev\` to query database records correctly.
 
-### 5. Verification & Green E2E Suite
+### 5. GitHub Actions Workflow Configuration
+- Updated \`.github/workflows/e2e.yml\` to configure \`E2E_RANDOM_SEED: '1'\` and \`E2E_RANDOM_SONGS_COUNT: '80'\` env variables. This ensures that GitHub Actions runs dynamically reset and seed the remote cloud staging database with randomized mock datasets, mirroring the local test environment's capabilities on the CI pipeline.
+
+### 6. Verification & Green E2E Suite
 - Verified that all 13 smoke tests pass successfully on both desktop and mobile chrome projects using \`E2E_REUSE_DB=1\` to skip redundant db setup.
 - Cleaned up all temporary check and helper scripts from the working directory.
+
 
