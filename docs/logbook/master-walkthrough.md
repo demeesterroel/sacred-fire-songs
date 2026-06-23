@@ -2354,5 +2354,7 @@ Successfully implemented a dedicated `artist` filter parameter (`?artist=Name`) 
 ### 6. Verification & Green E2E Suite
 - Verified that all 13 smoke tests pass successfully on both desktop and mobile chrome projects using \`E2E_REUSE_DB=1\` to skip redundant db setup.
 - Cleaned up all temporary check and helper scripts from the working directory.
+- Created GitHub issue #171 to track implementation of the multi-environment CI/CD branching and deployment strategy, mapping dependencies to the automated release train issue (#168).
+
 
 
