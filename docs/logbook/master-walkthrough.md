@@ -2326,5 +2326,29 @@ Successfully implemented a dedicated `artist` filter parameter (`?artist=Name`) 
 - Updated `stacks/admin-dashboard/html/index.html` to split the old unified Supabase Studio card into two separate Tailscale cards: Supabase Studio (Staging) pointing to `:4002` and Supabase Studio (Dev) pointing to `:3002`.
 
 ### 5. VPS Configuration & Rebuild
-- Updated VPS `/opt/dockge/stacks/songbook/.env` to configure `NEXT_PUBLIC_SUPABASE_URL` using the internal Docker hostname `http://supabase-beta-kong:8000`.
-- Checked out the repository at the absolute URL fix commit and successfully rebuilt/started the `songbook` stack, which is now fully healthy and querying staging data.
+- Updated VPS \`/opt/dockge/stacks/songbook/.env\` to configure \`NEXT_PUBLIC_SUPABASE_URL\` using the internal Docker hostname \`http://supabase-beta-kong:8000\`.
+- Checked out the repository at the absolute URL fix commit and successfully rebuilt/started the \`songbook\` stack, which is now fully healthy and querying staging data.
+
+## Session Update (Jun 23, 2026 — Part 5 — E2E Programmatic Random Seeder & DB Privileges Repair)
+
+### 1. Programmatic Random Seeder (\`scripts/random-seeder.mjs\`)
+- Created a randomized medicine song and playlist generator. It generates 80 medicine songs with realistic ChordPro formatting, randomized tuning, capo, key metadata, and Spotify/YouTube media links.
+- Maps generated compositions to the language, elements, medicine, lineage, and concepts taxonomy categories using database joins.
+- Programmatically creates 5 realistic playlists/setlists for the member user, assigning random selections of generated compositions to each setlist.
+
+### 2. Isolated DB Cleanup Configuration (\`scripts/setup-test-db.mjs\`)
+- Excluded the \`categories\` static taxonomy lookup table from truncation, ensuring that taxonomy is preserved during E2E database resets while wiping user-generated tables.
+- Integrated the programmatic random seeder directly into the setup workflow, executed when \`E2E_RANDOM_SEED=1\` is set in the environment.
+
+### 3. VPS Database Role Privileges Restoration
+- Diagnosed database PostgREST client query failures (\`permission denied for schema public\`) affecting \`supabase-dev\`.
+- Identified that drop/recreation of the \`public\` schema during database migration wiped the default privileges.
+- Executed a SQL restoration script to restore standard Supabase \`USAGE\` and table SELECT/CRUD permissions on schema \`public\` for \`anon\`, \`authenticated\`, and \`service_role\` roles.
+
+### 4. Local Development Environment Fixes
+- Corrected the invalid dashboard/Studio URL \`NEXT_PUBLIC_SUPABASE_URL_DEV\` parameter inside \`.env.local\` to point to the actual Kong gateway endpoint at port \`5002\` (\`http://bluette.tailf90350.ts.net:5002\`). This enables \`npm run dev\` to query database records correctly.
+
+### 5. Verification & Green E2E Suite
+- Verified that all 13 smoke tests pass successfully on both desktop and mobile chrome projects using \`E2E_REUSE_DB=1\` to skip redundant db setup.
+- Cleaned up all temporary check and helper scripts from the working directory.
+
