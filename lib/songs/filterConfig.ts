@@ -1,6 +1,6 @@
 import { FilterConfig } from "@/lib/declarative-filter/types";
 import { Song } from "@/lib/songUtils";
-import { normalizeWhitespace } from "@/lib/utils";
+import { normalizeWhitespace, removeDiacritics } from "@/lib/utils";
 
 // 1. Define the Filter State (URL Params map to this)
 export interface SongFilterState {
@@ -77,10 +77,10 @@ export const songFilterConfig: FilterConfig<Song, SongFilterState> = {
     isActive: (val) => !!val && val.trim().length > 0,
     match: (song, query) => {
       if (!query) return true;
-      const cleanQuery = normalizeWhitespace(query).toLowerCase();
-      const cleanTitle = normalizeWhitespace(song.title).toLowerCase();
-      const cleanAuthor = normalizeWhitespace(song.author).toLowerCase();
-      const cleanContent = song.content ? normalizeWhitespace(song.content).toLowerCase() : "";
+      const cleanQuery = removeDiacritics(normalizeWhitespace(query)).toLowerCase();
+      const cleanTitle = removeDiacritics(normalizeWhitespace(song.title)).toLowerCase();
+      const cleanAuthor = removeDiacritics(normalizeWhitespace(song.author)).toLowerCase();
+      const cleanContent = song.content ? removeDiacritics(normalizeWhitespace(song.content)).toLowerCase() : "";
       return (
         cleanTitle.includes(cleanQuery) ||
         cleanAuthor.includes(cleanQuery) ||
