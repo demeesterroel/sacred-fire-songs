@@ -10,7 +10,7 @@ import SongDetailSkeleton from '@/components/song/SongDetailSkeleton';
 import MediaEmbeds from '@/components/song/MediaEmbeds';
 import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal';
 import { useQuery } from '@tanstack/react-query';
-import { Trash2, Edit2, Music, Link as LinkIcon, Heart, MoreVertical, ListPlus, Mic } from 'lucide-react';
+import { Trash2, Edit2, Music, Link as LinkIcon, Heart, MoreVertical, ListPlus, Mic, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 import RehearsalDrawer from '@/components/song/RehearsalDrawer';
 import { useToggleFavorite } from '@/hooks/useToggleFavorite';
@@ -215,6 +215,34 @@ export default function SongDetailPage() {
         await deleteSong(id, { redirectTo: '/' });
     };
 
+    const handleShare = async () => {
+        const shareData = {
+            title: song.title,
+            text: song.original_author 
+                ? `Check out the song "${song.title}" by ${song.original_author} on Sacred Fire Songs`
+                : `Check out the song "${song.title}" on Sacred Fire Songs`,
+            url: window.location.href
+        };
+
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                if ((err as Error).name !== 'AbortError') {
+                    console.error('Error sharing:', err);
+                }
+            }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                toast.success('Link copied to clipboard!');
+            } catch (err) {
+                console.error('Could not copy text: ', err);
+                toast.error('Failed to copy link');
+            }
+        }
+    };
+
     // Helper for badge colors (could be moved to utils or globals)
     // REMOVED: local getCategoryColor - imported from uiUtils
 
@@ -340,6 +368,14 @@ export default function SongDetailPage() {
                         >
                             <Heart className={`w-5 h-5 transition-all duration-200 ${isFav ? 'fill-amber-400' : ''}`} strokeWidth={1.5} />
                         </button>
+                        <button
+                            onClick={handleShare}
+                            aria-label="Share song"
+                            title="Share song"
+                            className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        >
+                            <Share2 className="w-5 h-5" strokeWidth={1.5} />
+                        </button>
 
                     </div>
                 </div>
@@ -457,6 +493,15 @@ export default function SongDetailPage() {
                             >
                                 <Heart className={`w-5 h-5 ${isFav ? 'text-amber-500 fill-amber-500' : 'text-gray-400 dark:text-gray-500'}`} />
                                 <span className="text-sm font-bold">{isFav ? 'Remove from Liked Songs' : 'Add to Liked Songs'}</span>
+                            </button>
+
+                            {/* Share */}
+                            <button
+                                onClick={() => { handleShare(); setIsOverflowOpen(false); }}
+                                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors text-left text-gray-700 dark:text-gray-300"
+                            >
+                                <Share2 className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+                                <span className="text-sm font-bold">Share Song</span>
                             </button>
 
                             {/* Add to Playlist */}
