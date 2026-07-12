@@ -5,5 +5,8 @@
 # Database Environment Rule
 
 - **Database Separation**:
-  - **Development (DEV)**: Use the locally installed Supabase stack for local development (dev environment).
-  - **Testing (TEST/E2E)**: Use the remote `bluette` database via Tailscale for E2E tests and test environments (as configured in `.env.test`).
+  - **Development (DEV)**: Use the locally installed Supabase stack for local development.
+  - **Testing (TEST/E2E)**: Use the remote `bluette` database via Tailscale (as configured in `.env.test`).
+  - **Vercel Preview**: Auto-deployed per branch/PR — uses the **staging** Supabase project (`wuigxbpwkpjqqiystbyz`).
+  - **Beta (`songbook-beta.bluette.be`)**: Hetzner VPS Docker build, pinned to a commit SHA — uses **staging** Supabase.
+  - **Production (Vercel `main`)**: Uses the **production** Supabase project. Never point preview/test environments at prod.
