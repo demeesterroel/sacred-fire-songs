@@ -145,7 +145,7 @@ export default function Header() {
             id="app-navbar"
             className="h-[var(--navbar-height)] w-full text-sm relative lg:sticky lg:top-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-md"
         >
-            <div className="grid h-full grid-cols-[1fr_auto] sm:grid-cols-[auto_1fr_auto] lg:grid-cols-[16rem_1fr_auto] items-center border-b border-gray-200/60 dark:border-gray-800/60">
+            <div className="grid h-full grid-cols-[auto_1fr_auto] lg:grid-cols-[16rem_1fr_auto] items-center border-b border-gray-200/60 dark:border-gray-800/60">
                 {/* Left: Menu button + Logo */}
                 <div className="flex items-center gap-1.5 mx-4">
                     {/* Mobile menu toggle */}
@@ -165,8 +165,8 @@ export default function Header() {
                     </Link>
                 </div>
 
-                {/* Center: Search bar (hidden on xs, visible sm+) */}
-                <div className="hidden sm:flex items-center px-2 lg:px-4">
+                {/* Center: Search bar (visible everywhere) */}
+                <div className="flex items-center px-2 lg:px-4 flex-1">
                     <div ref={searchWrapperRef} className="relative w-full max-w-3xl group">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-gray-600 dark:group-focus-within:text-gray-300 transition-colors pointer-events-none z-10" />
                         <input
@@ -240,18 +240,6 @@ export default function Header() {
 
                 {/* Right: Action buttons */}
                 <div className="flex items-center gap-1 md:gap-2 pe-4 lg:pe-6">
-                    {/* Mobile: search icon opens search filters modal */}
-                    <button
-                        onClick={() => setSearchFiltersOpen(true)}
-                        className="sm:hidden relative p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-                        aria-label="Search"
-                    >
-                        <Search className="w-5 h-5" />
-                        {hasActiveSearchFilters && (
-                            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 ring-1.5 ring-white dark:ring-gray-950" />
-                        )}
-                    </button>
-
                     {/* Create button with dropdown - desktop only */}
                     {user && (
                         <div ref={createMenuRef} className="relative hidden lg:block">

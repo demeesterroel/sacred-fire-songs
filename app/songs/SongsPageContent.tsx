@@ -67,13 +67,21 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
 
     // Debounce URL update - localSearch is the source of truth for input
     useEffect(() => {
+        if (searchFiltersOpen) return; // Disable automatic search while advanced search popup is open
         const timer = setTimeout(() => {
             if (localSearch !== state.search) {
                 setFilter('search', localSearch);
             }
         }, 50);
         return () => clearTimeout(timer);
-    }, [localSearch, setFilter, state.search]);
+    }, [localSearch, setFilter, state.search, searchFiltersOpen]);
+
+    // Reset localSearch to active search state when modal opens
+    useEffect(() => {
+        if (searchFiltersOpen) {
+            setLocalSearch(state.search || '');
+        }
+    }, [searchFiltersOpen, state.search]);
 
     // Handle explicit filter reset (from TagSelector's "Clear All")
     const handleResetFilters = () => {
@@ -183,6 +191,10 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
             <SearchFiltersModal
                 isOpen={searchFiltersOpen}
                 onClose={() => setSearchFiltersOpen(false)}
+                onSubmit={() => {
+                    setFilter('search', localSearch);
+                    setSearchFiltersOpen(false);
+                }}
                 state={state}
                 setFilter={setFilter}
                 resetFilters={resetFilters}
