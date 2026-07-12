@@ -53,13 +53,13 @@ export default function TagSelector({
   }, [taxonomy]);
 
   const filteredOptions = useMemo(() => {
-    if (!inputValue) return [];
     const lower = inputValue.toLowerCase();
-    return allOptions.filter(opt =>
-      opt.name.toLowerCase().includes(lower) &&
-      opt.slug !== category &&
-      !tags.includes(opt.slug)
-    ).slice(0, 10);
+    return allOptions.filter(opt => {
+      const matchesInput = !inputValue || opt.name.toLowerCase().includes(lower);
+      const notCurrentCategory = opt.slug !== category;
+      const notInTags = !tags.includes(opt.slug);
+      return matchesInput && notCurrentCategory && notInTags;
+    }).slice(0, 40);
   }, [allOptions, inputValue, category, tags]);
 
   const handleSelect = (option: typeof allOptions[0]) => {
