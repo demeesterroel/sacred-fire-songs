@@ -53,7 +53,7 @@ export default function Header() {
         if (isOnSongsPage && document.activeElement !== inputRef.current) {
             setSearchValue(searchParams.get('search') || '');
         }
-    }, [isOnSongsPage, searchParams]);
+    }, [isOnSongsPage, searchParams, searchValue]);
 
     // Close dropdowns on outside click
     useEffect(() => {
@@ -88,11 +88,14 @@ export default function Header() {
         saveSearchHistory([]);
     }, []);
 
-    // Live search: debounce URL updates as user types (350ms)
-    // Preserves ALL existing searchParams (tags, status, sort …) so active filters
-    // are never momentarily dropped while the user is typing.
+    // Live search: debounce URL updates ONLY when user is actively typing (input focused)
+    // This prevents background sync changes or modal commits from scheduling stale URL overrides.
     useEffect(() => {
         if (searchFiltersOpen) return; // modal handles its own submit
+        if (typeof window !== 'undefined' && document.activeElement !== inputRef.current) {
+            setIsSearching(false);
+            return;
+        }
         setIsSearching(true);
         const timer = setTimeout(() => {
             const trimmed = searchValue.trim();
@@ -113,7 +116,7 @@ export default function Header() {
         }, 350);
         return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchValue]);
+    }, [searchValue, searchFiltersOpen]);
 
     // Submit search (Enter or history click): save to history + navigate
     const handleSearch = (term?: string) => {
