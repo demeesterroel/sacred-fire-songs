@@ -163,7 +163,7 @@ export default function Header() {
         >
             <div className="grid h-full grid-cols-[auto_1fr_auto] lg:grid-cols-[16rem_1fr_auto] items-center border-b border-gray-200/60 dark:border-gray-800/60">
                 {/* Left: Menu button + Logo */}
-                <div className="flex items-center gap-1.5 mx-4">
+                <div className="flex items-center gap-1.5 ms-4 me-1 lg:me-4">
                     {/* Mobile menu toggle */}
                     <button
                         onClick={() => setSidebarOpen(true)}
