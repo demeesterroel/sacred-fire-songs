@@ -21,10 +21,29 @@ import { useWakeLock } from '@/hooks/useWakeLock';
 import { getCategoryColor, getCategoryStyles } from '@/lib/uiUtils';
 import { recordSongView } from '@/app/actions/recordSongView';
 
+// Enforce a timeout on any promise to prevent infinite loading skeletons
+function withTimeout<T>(promise: Promise<T>, ms: number, errorMessage = "Request timed out"): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+        const timer = setTimeout(() => {
+            reject(new Error(errorMessage));
+        }, ms);
+
+        promise
+            .then((res) => {
+                clearTimeout(timer);
+                resolve(res);
+            })
+            .catch((err) => {
+                clearTimeout(timer);
+                reject(err);
+            });
+    });
+}
+
 // Standalone fetch function
 const fetchSong = async (id: string) => {
     const supabase = createClient();
-    const { data, error } = await supabase
+    const queryPromise = supabase
         .from('compositions')
         .select(`
           title,
@@ -54,6 +73,15 @@ const fetchSong = async (id: string) => {
         `)
         .eq('id', id)
         .single();
+
+    // Wrap query with a dynamic timeout (4.5s in production, 15s in development/testing)
+    const isProd = process.env.NODE_ENV === "production";
+    const timeoutMs = isProd ? 4500 : 15000;
+    const { data, error } = await withTimeout(
+        queryPromise, 
+        timeoutMs, 
+        "The database took too long to respond. This might be due to connection pool limits. Please try again."
+    );
 
     if (error) throw error;
     return data;
@@ -114,14 +142,21 @@ export default function SongDetailPage() {
         queryFn: async () => {
             if (!user) return new Set<string>();
             const supabase = createClient();
-            const { data: setlist } = await supabase
+            const isProd = process.env.NODE_ENV === "production";
+            const timeoutMs = isProd ? 4500 : 15000;
+            
+            const setlistPromise = supabase
                 .from('setlists').select('id')
                 .eq('title', 'My Favorites').maybeSingle();
+                
+            const { data: setlist } = await withTimeout(setlistPromise, timeoutMs, "Favorites query timed out");
             if (!setlist) return new Set<string>();
-            const { data: items } = await supabase
+            
+            const itemsPromise = supabase
                 .from('setlist_items')
-                 
                 .select('song_versions(composition_id)').eq('setlist_id', setlist.id);
+                
+            const { data: items } = await withTimeout(itemsPromise, timeoutMs, "Favorites items query timed out");
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return new Set<string>((items ?? []).map((i: any) => i.song_versions?.composition_id).filter(Boolean));
         },
