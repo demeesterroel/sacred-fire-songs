@@ -27,7 +27,7 @@ export function useSongsFilter({ songs, userId, favoriteIds, viewedSongIds, sort
     artist: '',
   };
 
-  const { filteredItems, state, setFilter, resetFilters } = useDeclarativeFilter(
+  const { filteredItems, state, setFilter, commitFilters, resetFilters } = useDeclarativeFilter(
     songs,
     songFilterConfig,
     defaultState,
@@ -124,6 +124,7 @@ export function useSongsFilter({ songs, userId, favoriteIds, viewedSongIds, sort
     filteredCount: finalFilteredItems.length,
     state,
     setFilter,
+    commitFilters,
     resetFilters,
     chordsCount: toggleCounts.chords,
     melodyCount: toggleCounts.melody,

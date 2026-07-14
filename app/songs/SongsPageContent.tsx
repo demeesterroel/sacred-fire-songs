@@ -35,6 +35,33 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
     const isAdmin = user?.role === 'admin';
     const sortBy = (searchParams.get('sort') as SortByType) || 'title';
 
+    // Draft state for the advanced search modal — nothing commits until "Show results"
+    const [draft, setDraft] = useState<typeof state | null>(null);
+    const [draftSortBy, setDraftSortBy] = useState<SortByType | null>(null);
+
+    // Helper: update a single field in the draft
+    const setDraftFilter = <K extends keyof typeof state>(key: K, value: (typeof state)[K]) => {
+        setDraft(prev => prev ? { ...prev, [key]: value } : prev);
+    };
+
+    // Helper: reset draft to empty/default state
+    const resetDraft = () => {
+        setDraft({
+            status: user?.id ? 'all' : 'public',
+            search: '',
+            category: undefined,
+            tags: [],
+            chords: false,
+            melody: false,
+            favorites: false,
+            mine: false,
+            new: false,
+            artist: '',
+        });
+        setLocalSearch('');
+        setDraftSortBy('title');
+    };
+
     // --- 1. Use Extracted Hooks ---
     const { songs, taxonomy } = useSongsQuery({ initialSongs, initialTaxonomy });
     
@@ -44,6 +71,7 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
         displaySongs,
         state,
         setFilter,
+        commitFilters,
         resetFilters,
         chordsCount,
         melodyCount,
@@ -87,12 +115,20 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
         }
     }, [state.search, localSearch, setIsSearching]);
 
-    // Reset localSearch to active search state when modal opens
+    // Reset localSearch to active search state when modal opens; init draft
     useEffect(() => {
         if (searchFiltersOpen) {
+            // Snapshot committed state → draft when modal opens
+            setDraft({ ...state, search: state.search || '' });
+            setDraftSortBy(sortBy);
             setLocalSearch(state.search || '');
+        } else {
+            // Discard draft on close without submit
+            setDraft(null);
+            setDraftSortBy(null);
         }
-    }, [searchFiltersOpen, state.search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchFiltersOpen]);
 
     // Handle explicit filter reset (from TagSelector's "Clear All")
     const handleResetFilters = () => {
@@ -242,22 +278,42 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
 
             <SearchFiltersModal
                 isOpen={searchFiltersOpen}
-                onClose={() => setSearchFiltersOpen(false)}
+                onClose={() => {
+                    setSearchFiltersOpen(false);
+                    // draft is cleared by the effect above
+                }}
                 onSubmit={() => {
-                    setFilter('search', localSearch);
+                    if (draft) {
+                        commitFilters(
+                            { ...draft, search: localSearch },
+                            { sort: draftSortBy ?? sortBy }
+                        );
+                    }
                     setSearchFiltersOpen(false);
                 }}
-                state={state}
-                setFilter={setFilter}
-                resetFilters={resetFilters}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
+                // Pass draft state while modal is open; fall back to committed state otherwise
+                state={draft ?? state}
+                setFilter={draft ? setDraftFilter : setFilter}
+                resetFilters={draft ? resetDraft : resetFilters}
+                sortBy={draftSortBy ?? sortBy}
+                setSortBy={(val) => setDraftSortBy(val)}
                 taxonomy={taxonomy}
                 chordsCount={chordsCount}
                 melodyCount={melodyCount}
                 favoritesCount={favoritesCount}
                 mineCount={mineCount}
-                hasActiveFilters={hasActiveFilters}
+                hasActiveFilters={draft
+                    ? !!(
+                        draft.category ||
+                        (draft.tags?.length ?? 0) > 0 ||
+                        localSearch ||
+                        (user?.id && draft.status !== 'all') ||
+                        draft.chords || draft.melody ||
+                        draft.favorites || draft.mine ||
+                        draft.new || draft.artist
+                      )
+                    : hasActiveFilters
+                }
                 isAuthenticated={!!user}
                 localSearch={localSearch}
                 setLocalSearch={setLocalSearch}
