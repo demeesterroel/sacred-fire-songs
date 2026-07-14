@@ -77,11 +77,11 @@ const fetchSong = async (id: string) => {
     // Wrap query with a dynamic timeout (4.5s in production, 15s in development/testing)
     const isProd = process.env.NODE_ENV === "production";
     const timeoutMs = isProd ? 4500 : 15000;
-    const { data, error } = await withTimeout(
+    const { data, error } = (await withTimeout(
         queryPromise, 
         timeoutMs, 
         "The database took too long to respond. This might be due to connection pool limits. Please try again."
-    );
+    )) as { data: any; error: any };
 
     if (error) throw error;
     return data;
@@ -149,14 +149,14 @@ export default function SongDetailPage() {
                 .from('setlists').select('id')
                 .eq('title', 'My Favorites').maybeSingle();
                 
-            const { data: setlist } = await withTimeout(setlistPromise, timeoutMs, "Favorites query timed out");
+            const { data: setlist } = (await withTimeout(setlistPromise, timeoutMs, "Favorites query timed out")) as { data: any };
             if (!setlist) return new Set<string>();
             
             const itemsPromise = supabase
                 .from('setlist_items')
                 .select('song_versions(composition_id)').eq('setlist_id', setlist.id);
                 
-            const { data: items } = await withTimeout(itemsPromise, timeoutMs, "Favorites items query timed out");
+            const { data: items } = (await withTimeout(itemsPromise, timeoutMs, "Favorites items query timed out")) as { data: any };
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return new Set<string>((items ?? []).map((i: any) => i.song_versions?.composition_id).filter(Boolean));
         },
