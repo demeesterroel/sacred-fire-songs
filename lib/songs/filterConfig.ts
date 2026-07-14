@@ -81,10 +81,17 @@ export const songFilterConfig: FilterConfig<Song, SongFilterState> = {
       const cleanTitle = removeDiacritics(normalizeWhitespace(song.title)).toLowerCase();
       const cleanAuthor = removeDiacritics(normalizeWhitespace(song.author)).toLowerCase();
       const cleanContent = song.content ? removeDiacritics(normalizeWhitespace(song.content)).toLowerCase() : "";
+      // Also match subcategory names (e.g. "Water") and parent group names (e.g. "Element Songs")
+      const matchesCategory = song.categories?.some(c => {
+        const catName = removeDiacritics(normalizeWhitespace(c.name)).toLowerCase();
+        const parentName = c.parent ? removeDiacritics(normalizeWhitespace(c.parent)).toLowerCase() : "";
+        return catName.includes(cleanQuery) || parentName.includes(cleanQuery);
+      }) ?? false;
       return (
         cleanTitle.includes(cleanQuery) ||
         cleanAuthor.includes(cleanQuery) ||
-        cleanContent.includes(cleanQuery)
+        cleanContent.includes(cleanQuery) ||
+        matchesCategory
       );
     },
     // No facets for free-text search usually
