@@ -147,27 +147,31 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
             <div className="p-4 md:p-8 space-y-3 md:space-y-6 max-w-7xl mx-auto">
                 {/* Results count badge */}
                 <div
-                    className={`flex items-center gap-2 transition-all duration-300 ${
-                        showResultsBadge ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'
+                    className={`transition-all duration-300 ease-in-out ${
+                        showResultsBadge 
+                            ? 'opacity-100 h-7 mb-2 translate-y-0' 
+                            : 'opacity-0 h-0 mb-0 -translate-y-2 pointer-events-none overflow-hidden'
                     }`}
                     aria-live="polite"
                     aria-atomic="true"
                 >
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors duration-200 ${
-                        isSearching
-                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-400 dark:text-gray-500'
-                            : 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400'
-                    }`}>
-                        {resultsLabel}
-                    </span>
-                    {hasActiveFilters && !isSearching && (
-                        <button
-                            onClick={handleResetFilters}
-                            className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                        >
-                            Clear filters
-                        </button>
-                    )}
+                    <div className="flex items-center gap-2">
+                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors duration-200 ${
+                            isSearching
+                                ? 'bg-gray-100 dark:bg-gray-900 text-gray-400 dark:text-gray-500'
+                                : 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400'
+                        }`}>
+                            {resultsLabel}
+                        </span>
+                        {hasActiveFilters && !isSearching && (
+                            <button
+                                onClick={handleResetFilters}
+                                className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            >
+                                Clear filters
+                            </button>
+                        )}
+                    </div>
                 </div>
 
                 {/* Song List */}
