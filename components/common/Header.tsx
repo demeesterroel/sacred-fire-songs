@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ListMusic, Menu, Music, PlusCircle, Search, SlidersHorizontal, X } from 'lucide-react';
+import { ListMusic, Loader2, Menu, Music, PlusCircle, Search, SlidersHorizontal, X } from 'lucide-react';
 import { useSidebar } from '@/context/SidebarContext';
 import { useAuth } from '@/hooks/useAuth';
 import { getSiteTitle } from '@/lib/env';
@@ -27,7 +27,7 @@ export default function Header() {
     const pathname = usePathname();
     const router = useRouter();
     const searchParams = useSearchParams();
-    const { setIsOpen: setSidebarOpen, searchFiltersOpen, setSearchFiltersOpen, hasActiveSearchFilters } = useSidebar();
+    const { setIsOpen: setSidebarOpen, searchFiltersOpen, setSearchFiltersOpen, hasActiveSearchFilters, isSearching, setIsSearching } = useSidebar();
     const { user } = useAuth();
     const inputRef = useRef<HTMLInputElement>(null);
     const searchWrapperRef = useRef<HTMLDivElement>(null);
@@ -88,8 +88,10 @@ export default function Header() {
         saveSearchHistory([]);
     }, []);
 
-    // Live search: debounce URL updates as user types
+    // Live search: debounce URL updates as user types (350ms)
     useEffect(() => {
+        if (searchFiltersOpen) return; // modal handles its own submit
+        setIsSearching(true);
         const timer = setTimeout(() => {
             const trimmed = searchValue.trim();
             if (trimmed) {
@@ -97,7 +99,8 @@ export default function Header() {
             } else if (isOnSongsPage) {
                 router.push('/songs', { scroll: false });
             }
-        }, 250);
+            setIsSearching(false);
+        }, 350);
         return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchValue]);
@@ -168,7 +171,12 @@ export default function Header() {
                 {/* Center: Search bar (visible everywhere) */}
                 <div className="flex items-center px-2 lg:px-4 flex-1">
                     <div ref={searchWrapperRef} className="relative w-full max-w-3xl group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-gray-600 dark:group-focus-within:text-gray-300 transition-colors pointer-events-none z-10" />
+                        {/* Search icon / loading spinner */}
+                        {isSearching && isOnSongsPage && !searchFiltersOpen ? (
+                            <Loader2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-red-400 animate-spin pointer-events-none z-10" />
+                        ) : (
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-gray-600 dark:group-focus-within:text-gray-300 transition-colors pointer-events-none z-10" />
+                        )}
                         <input
                             ref={inputRef}
                             type="text"

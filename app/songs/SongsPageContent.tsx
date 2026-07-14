@@ -27,7 +27,7 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
     const searchParams = useSearchParams();
     const router = useRouter();
     const { user } = useAuth();
-    const { setHeaderCount, searchFiltersOpen, setSearchFiltersOpen, setHasActiveSearchFilters } = useSidebar();
+    const { setHeaderCount, searchFiltersOpen, setSearchFiltersOpen, setHasActiveSearchFilters, isSearching, setIsSearching } = useSidebar();
     const { isDeleting, deleteSong } = useDeleteSong();
     const [localSearch, setLocalSearch] = useState(searchParams.get('search') || '');
     const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
@@ -65,16 +65,27 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
         router.push(`?${params.toString()}`, { scroll: false });
     };
 
-    // Debounce URL update - localSearch is the source of truth for input
+    // Debounce filter update — 350ms matches Header's debounce
+    // Sets isSearching=false once the filter has actually settled
     useEffect(() => {
         if (searchFiltersOpen) return; // Disable automatic search while advanced search popup is open
         const timer = setTimeout(() => {
             if (localSearch !== state.search) {
                 setFilter('search', localSearch);
+            } else {
+                // localSearch already matches — debounce settled with no change
+                setIsSearching(false);
             }
-        }, 50);
+        }, 350);
         return () => clearTimeout(timer);
-    }, [localSearch, setFilter, state.search, searchFiltersOpen]);
+    }, [localSearch, setFilter, state.search, searchFiltersOpen, setIsSearching]);
+
+    // Once state.search catches up to localSearch, mark searching as done
+    useEffect(() => {
+        if (localSearch === state.search) {
+            setIsSearching(false);
+        }
+    }, [state.search, localSearch, setIsSearching]);
 
     // Reset localSearch to active search state when modal opens
     useEffect(() => {
@@ -110,12 +121,53 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
         return () => setHeaderCount(undefined);
     }, [filteredCount, songs.length, hasActiveFilters, setHeaderCount]);
 
+    // Derive display state for the results area
+    const showResultsBadge = hasActiveFilters || !!state.search;
+    const resultsLabel = isSearching
+        ? 'Searching…'
+        : `${filteredCount} result${filteredCount !== 1 ? 's' : ''}`;
+
     return (
         <main className="flex-1 min-h-0 bg-white dark:bg-gray-950">
             <div className="p-4 md:p-8 space-y-3 md:space-y-6 max-w-7xl mx-auto">
+                {/* Results count badge */}
+                <div
+                    className={`flex items-center gap-2 transition-all duration-300 ${
+                        showResultsBadge ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'
+                    }`}
+                    aria-live="polite"
+                    aria-atomic="true"
+                >
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors duration-200 ${
+                        isSearching
+                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-400 dark:text-gray-500'
+                            : 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400'
+                    }`}>
+                        {resultsLabel}
+                    </span>
+                    {hasActiveFilters && !isSearching && (
+                        <button
+                            onClick={handleResetFilters}
+                            className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                        >
+                            Clear filters
+                        </button>
+                    )}
+                </div>
+
                 {/* Song List */}
-                <section>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <section className="relative">
+                    {/* Fade overlay while debounce pending */}
+                    <div
+                        className={`absolute inset-0 z-10 bg-white/50 dark:bg-gray-950/50 backdrop-blur-[1px] rounded-xl pointer-events-none transition-opacity duration-200 ${
+                            isSearching ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    />
+                    <div
+                        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-opacity duration-200 ${
+                            isSearching ? 'opacity-60' : 'opacity-100'
+                        }`}
+                    >
                         {displaySongs.length > 0 ? (
                             displaySongs.map((song) => (
                                 <div key={song.id} className="relative group/card">
