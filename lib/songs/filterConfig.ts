@@ -114,11 +114,11 @@ export const songFilterConfig: FilterConfig<Song, SongFilterState> = {
     isActive: (val) => !!val && val.trim().length > 0,
     match: (song, filterArtist) => {
       if (!filterArtist) return true;
-      const normalizedFilter = normalizeWhitespace(filterArtist).toLowerCase();
+      const normalizedFilter = removeDiacritics(normalizeWhitespace(filterArtist)).toLowerCase();
       if (normalizedFilter === "no artist" || normalizedFilter === "unspecified") {
-        return !song.author; // empty string or undefined
+        return !song.author;
       }
-      return normalizeWhitespace(song.author).toLowerCase() === normalizedFilter;
+      return removeDiacritics(normalizeWhitespace(song.author)).toLowerCase() === normalizedFilter;
     }
   }
 };
