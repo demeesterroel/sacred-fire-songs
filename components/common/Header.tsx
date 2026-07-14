@@ -167,7 +167,7 @@ export default function Header() {
                     {/* Mobile menu toggle */}
                     <button
                         onClick={() => setSidebarOpen(true)}
-                        className="lg:hidden p-2 -ms-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                        className="lg:hidden p-1.5 -ms-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
                         aria-label="Open menu"
                     >
                         <Menu className="w-5 h-5" />
