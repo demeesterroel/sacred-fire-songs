@@ -14,6 +14,7 @@ import type { Song } from "@/lib/songUtils";
 import { useSongsQuery } from "@/hooks/useSongsQuery";
 import { useFavoritesQuery } from "@/hooks/useFavoritesQuery";
 import { useSongsFilter } from "@/hooks/useSongsFilter";
+import { isDraftActive } from "@/lib/songs/filterConfig";
 
 type SortByType = 'title' | 'author' | 'newest';
 
@@ -27,7 +28,7 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
     const searchParams = useSearchParams();
     const router = useRouter();
     const { user } = useAuth();
-    const { setHeaderCount, searchFiltersOpen, setSearchFiltersOpen, setHasActiveSearchFilters, isSearching, setIsSearching } = useSidebar();
+    const { setHeaderCount, searchFiltersOpen, setSearchFiltersOpen, setHasActiveSearchFilters, isSearching } = useSidebar();
     const { isDeleting, deleteSong } = useDeleteSong();
     const [localSearch, setLocalSearch] = useState(searchParams.get('search') || '');
     const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
@@ -92,28 +93,6 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
         params.set('sort', val);
         router.push(`?${params.toString()}`, { scroll: false });
     };
-
-    // Debounce filter update — 350ms matches Header's debounce
-    // Sets isSearching=false once the filter has actually settled
-    useEffect(() => {
-        if (searchFiltersOpen) return; // Disable automatic search while advanced search popup is open
-        const timer = setTimeout(() => {
-            if (localSearch !== state.search) {
-                setFilter('search', localSearch);
-            } else {
-                // localSearch already matches — debounce settled with no change
-                setIsSearching(false);
-            }
-        }, 350);
-        return () => clearTimeout(timer);
-    }, [localSearch, setFilter, state.search, searchFiltersOpen, setIsSearching]);
-
-    // Once state.search catches up to localSearch, mark searching as done
-    useEffect(() => {
-        if (localSearch === state.search) {
-            setIsSearching(false);
-        }
-    }, [state.search, localSearch, setIsSearching]);
 
     // Reset localSearch to active search state when modal opens; init draft
     useEffect(() => {
@@ -302,18 +281,7 @@ export default function SongsPageContent({ initialSongs, initialTaxonomy, initia
                 melodyCount={melodyCount}
                 favoritesCount={favoritesCount}
                 mineCount={mineCount}
-                hasActiveFilters={draft
-                    ? !!(
-                        draft.category ||
-                        (draft.tags?.length ?? 0) > 0 ||
-                        localSearch ||
-                        (user?.id && draft.status !== 'all') ||
-                        draft.chords || draft.melody ||
-                        draft.favorites || draft.mine ||
-                        draft.new || draft.artist
-                      )
-                    : hasActiveFilters
-                }
+                hasActiveFilters={draft ? isDraftActive({ ...draft, search: localSearch }, user?.id) : hasActiveFilters}
                 isAuthenticated={!!user}
                 localSearch={localSearch}
                 setLocalSearch={setLocalSearch}

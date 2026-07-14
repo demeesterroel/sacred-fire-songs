@@ -89,16 +89,26 @@ export default function Header() {
     }, []);
 
     // Live search: debounce URL updates as user types (350ms)
+    // Preserves ALL existing searchParams (tags, status, sort …) so active filters
+    // are never momentarily dropped while the user is typing.
     useEffect(() => {
         if (searchFiltersOpen) return; // modal handles its own submit
         setIsSearching(true);
         const timer = setTimeout(() => {
             const trimmed = searchValue.trim();
-            if (trimmed) {
-                router.push(`/songs?search=${encodeURIComponent(trimmed)}`, { scroll: false });
-            } else if (isOnSongsPage) {
-                router.push('/songs', { scroll: false });
+            // Only push if we're on /songs, or if there's a search term (navigates to /songs)
+            if (!isOnSongsPage && !trimmed) {
+                setIsSearching(false);
+                return;
             }
+            // Build full URL preserving all current filter params
+            const params = new URLSearchParams(searchParams.toString());
+            if (trimmed) {
+                params.set('search', trimmed);
+            } else {
+                params.delete('search');
+            }
+            router.push(`/songs?${params.toString()}`, { scroll: false });
             setIsSearching(false);
         }, 350);
         return () => clearTimeout(timer);

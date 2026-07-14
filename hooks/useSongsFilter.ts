@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useDeclarativeFilter } from '@/hooks/useDeclarativeFilter';
-import { songFilterConfig, type SongFilterState } from '@/lib/songs/filterConfig';
+import { songFilterConfig, isDraftActive, type SongFilterState } from '@/lib/songs/filterConfig';
 import type { Song } from '@/lib/songUtils';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
@@ -106,18 +106,7 @@ export function useSongsFilter({ songs, userId, favoriteIds, viewedSongIds, sort
     return { chords, melody, favorites, mine };
   }, [filteredItems, favoriteIds, userId, state.favorites, state.mine]);
 
-  const hasActiveFilters = !!(
-    state.category ||
-    (state.tags?.length ?? 0) > 0 ||
-    state.search ||
-    (userId && state.status !== 'all') ||
-    state.chords ||
-    state.melody ||
-    state.favorites ||
-    state.mine ||
-    state.new ||
-    state.artist
-  );
+  const hasActiveFilters = isDraftActive(state, userId);
 
   return {
     displaySongs,

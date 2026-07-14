@@ -16,6 +16,26 @@ export interface SongFilterState {
   artist?: string;
 }
 
+/**
+ * Returns true if any filter in the given state deviates from the default (empty) state.
+ * Used by both useSongsFilter (committed state) and SongsPageContent (draft state)
+ * so the boolean logic is not duplicated.
+ */
+export function isDraftActive(draft: SongFilterState, userId?: string): boolean {
+  return !!(
+    draft.category ||
+    (draft.tags?.length ?? 0) > 0 ||
+    draft.search ||
+    (userId && draft.status !== 'all') ||
+    draft.chords ||
+    draft.melody ||
+    draft.favorites ||
+    draft.mine ||
+    draft.new ||
+    draft.artist
+  );
+}
+
 // 2. Define the Configuration
 export const songFilterConfig: FilterConfig<Song, SongFilterState> = {
   // --- CATEGORY (Parent) ---
