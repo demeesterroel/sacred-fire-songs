@@ -24,7 +24,7 @@ def compile_pdf(input_dir, output_pdf, no_grids=True, toc=True):
     print(f"Found {len(cho_files)} ChordPro files in '{input_dir}'.")
     
     # Formulate chordpro command
-    cmd = ['chordpro', '--page-size=a4', '-o', output_pdf]
+    cmd = ['chordpro', '--page-size=a4', '--define=pdf.songbook.align-songs=false', '-o', output_pdf]
     
     if toc:
         cmd.append('--toc')
