@@ -223,7 +223,7 @@ def main():
         print("No .cho files found to compile.")
         return
         
-    cmd = ['chordpro', '--page-size=a4', '--toc', '--no-chord-grids', '-o', pdf_output]
+    cmd = ['chordpro', '--page-size=a4', '--toc', '--no-chord-grids', '--define=pdf.songbook.align-songs=false', '-o', pdf_output]
     cmd.extend(cho_files)
     
     try:
