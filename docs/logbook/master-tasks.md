@@ -1092,7 +1092,7 @@
 - [x] Update roadmap documentation (`epic&user stories.md`) and Roles & Permissions table
 - [x] **July 16, 2026 (Song Reorganization & Production DB Sync)**
     - [x] Move all songs from `doc/extracted_songs` to `data/extracted_songs` using `git mv`
-    - [x] Create Python database sync script `scripts/sync_prod_songs.py`
+    - [x] Create Python database sync and PDF compiler script `scripts/prod_songs_2_pdf.py`
     - [x] Fetch all songs from Production DB (read-only)
     - [x] Format songs to clean ChordPro `.cho` files, merging DB and text metadata
     - [x] Write files to `data/extracted_songs/production_db/`
