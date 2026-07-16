@@ -1,4 +1,13 @@
-#!/usr/bin/env python3
+#!/bin/sh
+'''':
+if [ -d ".venv" ]; then
+  exec .venv/bin/python "$0" "$@"
+elif [ -d "../.venv" ]; then
+  exec ../.venv/bin/python "$0" "$@"
+else
+  exec python3 "$0" "$@"
+fi
+'''
 import os
 import re
 import html
