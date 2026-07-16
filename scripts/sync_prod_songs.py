@@ -198,5 +198,32 @@ def main():
         else:
             print("production_db/ is already ignored in .gitignore.")
             
+    # Compile to PDF using chordpro CLI
+    pdf_output = "production_songbook.pdf"
+    print(f"Compiling synced songs from '{output_dir}' into '{pdf_output}'...")
+    
+    cho_files = [
+        os.path.join(output_dir, f)
+        for f in os.listdir(output_dir)
+        if f.endswith('.cho')
+    ]
+    cho_files.sort(key=lambda x: os.path.basename(x).lower())
+    
+    if not cho_files:
+        print("No .cho files found to compile.")
+        return
+        
+    cmd = ['chordpro', '--page-size=a4', '--toc', '--no-chord-grids', '-o', pdf_output]
+    cmd.extend(cho_files)
+    
+    try:
+        import subprocess
+        subprocess.run(cmd, check=True)
+        print(f"Successfully compiled PDF songbook at '{pdf_output}'!")
+    except FileNotFoundError:
+        print("Warning: 'chordpro' CLI tool is not installed or not in PATH. PDF compilation skipped.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error compiling PDF: {e}")
+
 if __name__ == '__main__':
     main()
