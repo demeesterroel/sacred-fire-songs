@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getCategoryColor, getCategoryStyles } from '@/lib/uiUtils';
 import { getAvailableCategories, Category } from '@/lib/actions/category';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 
 const CATEGORY_ORDER = [
