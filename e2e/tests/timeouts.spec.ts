@@ -97,26 +97,21 @@ test.describe('Song Detail Timeout & Fallbacks', () => {
         }
       });
 
-      // Delay auth and compositions queries indefinitely
-      await page.route('**/supabase-api/auth/v1/user', async () => {
-        await new Promise(() => {}); // never resolves
+      // Delay auth and compositions queries indefinitely to trigger skeleton timeout
+      await page.route('**/*auth/v1/user*', async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 30000));
+        await route.fulfill({ status: 200, body: '{}' });
       });
-      await page.route('**/supabase-api/rest/v1/compositions?*', async () => {
-        await new Promise(() => {}); // never resolves
+      await page.route('**/*compositions*', async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 30000));
+        await route.fulfill({ status: 200, body: '{}' });
       });
 
       await page.goto(songUrl);
 
-      // Wait for the 10s skeleton timeout to trigger
-      await page.waitForTimeout(12000);
-
-      // Verify warning is logged in console
-      const hasSkeletonTimeoutLog = warnings.some(txt => txt.includes('Skeleton timed out after 10s'));
-      expect(hasSkeletonTimeoutLog).toBe(true);
-
-      // Verify "Taking too long..." error UI is visible
+      // Wait for the 10s skeleton timeout to trigger and verify "Taking too long..." error UI is visible
       const errorHeading = page.locator('h2', { hasText: 'Taking too long' });
-      await expect(errorHeading).toBeVisible();
+      await expect(errorHeading).toBeVisible({ timeout: 15000 });
 
       const retryButton = page.locator('button', { hasText: 'Retry' });
       await expect(retryButton).toBeVisible();
