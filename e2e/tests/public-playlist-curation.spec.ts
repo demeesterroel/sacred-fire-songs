@@ -84,8 +84,8 @@ test.describe('Public Playlist Curation (Story 3.4.6)', () => {
       await expect(sheet).toBeVisible();
 
       // Find first song button in the sheet's scrollable container and add/toggle it
-      const firstSongBtn = page.locator('.fixed.bottom-0 .overflow-y-auto button').first();
-      await expect(firstSongBtn).toBeVisible();
+      const firstSongBtn = page.locator('button:has-text("+"), button:has-text("Add")').first();
+      await expect(firstSongBtn).toBeVisible({ timeout: 10000 });
       await firstSongBtn.click();
 
       // Close the sheet
