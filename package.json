@@ -9,7 +9,7 @@
     "test": "vitest run",
     "test:unit": "vitest run testing/unit/tests/",
     "test:e2e": "playwright test --config playwright.config.ts",
-    "test:e2e:smart": "playwright test --grep-invert '@headed' --config playwright.config.ts && playwright test --grep '@headed' --headed --config playwright.config.ts",
+    "test:e2e:smart": "playwright test --grep-invert '@headed' --config playwright.config.ts ; playwright test --grep '@headed' --headed --config playwright.config.ts",
     "test:e2e:laptop": "npm run test:e2e:smart",
     "test:e2e:headed": "playwright test --headed --config playwright.config.ts",
     "test:e2e:headless": "playwright test --grep-invert '@headed' --config playwright.config.ts",
