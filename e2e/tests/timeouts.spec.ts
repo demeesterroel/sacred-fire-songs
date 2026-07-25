@@ -97,14 +97,9 @@ test.describe('Song Detail Timeout & Fallbacks', () => {
         }
       });
 
-      // Delay auth and compositions queries indefinitely to trigger skeleton timeout
-      await page.route('**/*auth/v1/user*', async (route) => {
-        await new Promise((resolve) => setTimeout(resolve, 30000));
-        await route.fulfill({ status: 200, body: '{}' });
-      });
-      await page.route('**/*compositions*', async (route) => {
-        await new Promise((resolve) => setTimeout(resolve, 30000));
-        await route.fulfill({ status: 200, body: '{}' });
+      // Delay auth query indefinitely to keep authLoading true until 10s skeleton timeout fires
+      await page.route('**/*auth/v1/user*', async () => {
+        await new Promise(() => {}); // never resolves, keeping authLoading true
       });
 
       await page.goto(songUrl);
