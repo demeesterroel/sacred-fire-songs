@@ -388,7 +388,7 @@ test.describe('Rehearsal Space Media Player E2E Tests', () => {
     await expect(miniPlayer.locator('text=SoundCloud Reference').first()).toBeVisible();
   });
 
-  test('Permutation 15: Spotify active state does not render mini-player on fold', async ({ page }) => {
+  test('Permutation 15: Spotify active state does not render mini-player on fold @headed', async ({ page }) => {
     const spotifyBtn = page.locator('button:has-text("Spotify")');
     await expect(spotifyBtn).toBeVisible({ timeout: 10000 });
     await spotifyBtn.click();
@@ -474,7 +474,7 @@ test.describe('Rehearsal Space Media Player E2E Tests', () => {
     expect(parsed.value).toBeLessThan(80000);
   });
 
-  test('Permutation 18: Spotify player fold has no progress bar interaction', async ({ page }) => {
+  test('Permutation 18: Spotify player fold has no progress bar interaction @headed', async ({ page }) => {
     const spotifyBtn = page.locator('button:has-text("Spotify")');
     await expect(spotifyBtn).toBeVisible({ timeout: 10000 });
     await spotifyBtn.click();

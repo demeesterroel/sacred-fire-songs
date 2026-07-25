@@ -11,7 +11,7 @@ test.use({
   },
 });
 
-test.describe('Private Rehearsal Audio Recording (Story 4.6.1)', () => {
+test.describe('Private Rehearsal Audio Recording (Story 4.6.1) @headed', () => {
   let songUrl: string;
 
   test.beforeAll(async ({ playwright }) => {
