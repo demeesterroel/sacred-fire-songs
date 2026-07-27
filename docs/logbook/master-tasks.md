@@ -1130,16 +1130,20 @@
 - [x] Verify Next.js production build (`next build`) and 108 unit tests pass cleanly
 - [x] Merge `feat/210-streamline-tag-ux` into `main` on both `sacred-fire-songs` and `songbook-rocks` and clean up feature branches
 
-## Session July 27, 2026 (Release v1.1.0, VPS Deployment, Live DB Sync, Security Audit & Performance Benchmarking)
+## Session July 27, 2026 (Release v1.2.0, VPS Deployment, Live DB Sync, Security Audit, Performance Framework & HTML Reporting)
 
-- [x] Merge Release Please PR #209, publishing release tag **`v1.1.0`** and updating `CHANGELOG.md`
-- [x] Deploy `ghcr.io/demeesterroel/sacred-fire-songs:latest` (`v1.1.0`) to Hetzner VPS (`songbook-prod` and `songbook-preview` stacks)
+- [x] Merge Release Please PR #209 & PR #212, publishing release tag **`v1.2.0`** and updating `CHANGELOG.md`
+- [x] Deploy `ghcr.io/demeesterroel/sacred-fire-songs:latest` (`v1.2.0`) to Hetzner VPS (`songbook-prod` stack)
+- [x] Update `engine` submodule pointer in `songbook-rocks` to `v1.2.0` (`524f069`) to trigger Vercel production build for `https://app.songbook.rocks`
 - [x] Perform live database sync from Supabase Cloud to VPS `supabase-prod-db`, restoring 14 new songs, 2 users, and 2 setlists (100% parity across all 252 songs and 12 users)
 - [x] Audit and remove hardcoded production database connection strings from `songbook-rocks` scripts, moving secrets to `.env.production`
 - [x] Update `stacks/scripts/backup-secrets.sh` with 3-phase diff comparison, colorized line diffs, interactive validation prompt, and VPS hostname check (`ubuntu-8gb-nbg1-1`)
 - [x] Run live HTTP performance benchmark suite comparing Vercel Edge (`app.songbook.rocks`) vs Hetzner VPS (`songbook.bluette.be`), confirming VPS is 2x to 4.8x FASTER for DB-driven pages
 - [x] Configure 10-minute (600s) ISR revalidation on `app/page.tsx` and `app/songs/page.tsx` (`export const revalidate = 600;`) and Traefik `Cache-Control` headers
-- [x] Open Pull Request #213 on feature branch `feat/210-configure-10min-cache` and merge into `main` per the Verification Rule
-- [x] Update `engine` submodule pointer in `songbook-rocks` to commit `69ef02f`
+- [x] Create persistent performance benchmark framework with JSON song fixtures (`testing/performance/benchmark-song-fixtures.json`) and single CLI runner script (`./run-performance-benchmark.sh` / `npm run test:perf`)
+- [x] Create automated HTML benchmark report generator (`testing/performance/scripts/generate-html-report.mjs`) compiling dark-mode HTML reports to `testing/performance/reports/index.html`
+- [x] Open Pull Requests #213, #214, and #215 on feature branches and merge into `main` per the Verification Rule and Artifact Sync Policy
+- [x] Update `engine` submodule pointer in `songbook-rocks` to commit `0fec94a`
+
 
 
