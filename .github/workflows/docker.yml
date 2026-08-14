@@ -58,6 +58,7 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -82,5 +83,6 @@ jobs:
           file: ./Dockerfile.migrator
           push: true
           tags: ${{ steps.meta-migrator.outputs.tags }}
+          labels: ${{ steps.meta-migrator.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
