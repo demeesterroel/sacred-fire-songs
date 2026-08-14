@@ -12,10 +12,6 @@ on:
         description: "Version tag to apply (e.g. v1.4.0-rc.1 or preview)"
         required: false
         default: ""
-      deploy_preview:
-        description: "Deploy automatically to Preview VPS?"
-        type: boolean
-        default: false
 
 jobs:
   build:
@@ -88,16 +84,3 @@ jobs:
           tags: ${{ steps.meta-migrator.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Deploy Branch / Pre-release Images (App & Migrator) to Preview Stack via SSH
-        if: |
-          always() &&
-          (github.ref_name != 'main' || (github.event_name == 'workflow_dispatch' && inputs.deploy_preview == true))
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: root
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            update-server deploy songbook-preview app ${{ steps.meta.outputs.version }}
-            update-server deploy songbook-preview migrator ${{ steps.meta-migrator.outputs.version }}
