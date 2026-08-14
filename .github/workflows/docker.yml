@@ -43,6 +43,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/demeesterroel/sacred-fire-songs
+          labels: |
+            org.opencontainers.image.ref.name=${{ github.ref_name }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix=,format=short,enable={{is_default_branch}}
@@ -67,6 +69,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/demeesterroel/sacred-fire-songs-migrator
+          labels: |
+            org.opencontainers.image.ref.name=${{ github.ref_name }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix=,format=short,enable={{is_default_branch}}
