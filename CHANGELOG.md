@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.0](https://github.com/demeesterroel/sacred-fire-songs/compare/v1.3.2...v1.4.0) (2026-08-14)
+
+
+### ✨ New features
+
+* **docker:** add realtime and meta services to complete 11-service Supabase stack ([82010b6](https://github.com/demeesterroel/sacred-fire-songs/commit/82010b6caa21d6371728612932e1d307fe207fac))
+* **docker:** add roles init migration, storage, and studio services to docker-compose ([24c81f0](https://github.com/demeesterroel/sacred-fire-songs/commit/24c81f0ac7eaae8aec1741cc34caa8acad3d174e))
+* **rehearsals:** add rich diagnostic logging for playback lifecycle, storage signing, DB metadata, and mime format checks ([#230](https://github.com/demeesterroel/sacred-fire-songs/issues/230)) ([b037b37](https://github.com/demeesterroel/sacred-fire-songs/commit/b037b373e2696de4779bb6b186dc09b072be46e0))
+* **songs:** multi-artist tagging & autocomplete UI ([#195](https://github.com/demeesterroel/sacred-fire-songs/issues/195), [#228](https://github.com/demeesterroel/sacred-fire-songs/issues/228)) ([#231](https://github.com/demeesterroel/sacred-fire-songs/issues/231)) ([068c1c6](https://github.com/demeesterroel/sacred-fire-songs/commit/068c1c68874f2503f52094698598360e14fed532))
+
+
+### 🐛 Bug fixes
+
+* **api:** fallback proxy target to http://kong:8000 in route.ts ([f276b8f](https://github.com/demeesterroel/sacred-fire-songs/commit/f276b8fd6669ec164fb339104516da3274e73d40))
+
 ## [1.3.2](https://github.com/demeesterroel/sacred-fire-songs/compare/v1.3.1...v1.3.2) (2026-08-10)
 
 ### ✨ New features
